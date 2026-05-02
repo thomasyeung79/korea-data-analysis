@@ -66,13 +66,13 @@ show_optional_music(
 )
 
 st.caption(
-    "Sport is another important part of South Korea’s global visibility and national soft power."
+    "Sport is another important part of Korea’s global visibility and national soft power."
 )
 
 st.markdown("""
 ## Overview
 
-South Korea is not only strong in football.  
+Korea is not only strong in football.  
 It has also built global visibility through Olympic sports, combat sports, baseball, golf, and esports.
 """)
 
@@ -181,7 +181,7 @@ st.caption(
 )
 
 st.success("""
-South Korea is one of the most globally integrated Asian football systems.
+Korea is one of the most globally integrated Asian football systems.
 """)
 
 st.divider()
@@ -189,7 +189,7 @@ st.divider()
 st.subheader("🌏 East Asia Sports Comparison")
 
 comparison = pd.DataFrame({
-    "Country": ["South Korea", "Japan", "China"],
+    "Country": ["Korea", "Japan", "China"],
     "Olympic Efficiency": [9, 8, 7],
     "Global Athlete Presence": [9, 8, 7],
     "Football Integration": [9, 8, 6]
@@ -210,7 +210,7 @@ st.info("""
 This comparison is not saying one country is absolutely better than another.  
 It shows different sports-system strengths:
 
-- South Korea: efficiency + global integration
+- Korea: efficiency + global integration
 - Japan: stability + infrastructure depth
 - China: scale + Olympic investment
 """)
@@ -227,7 +227,7 @@ selected_country = st.selectbox(
 country_insights = {
     "South Korea": {
         "strength": "Efficiency + global integration",
-        "explanation": "South Korea performs strongly relative to its population size and has high visibility in global football, Olympic sports, golf, and esports."
+        "explanation": "Korea performs strongly relative to its population size and has high visibility in global football, Olympic sports, golf, and esports."
     },
     "Japan": {
         "strength": "Stability + infrastructure depth",
@@ -267,9 +267,9 @@ metric = st.selectbox(
 )
 
 leaders = {
-    "Olympic Efficiency": "South Korea",
-    "Global Athlete Presence": "South Korea",
-    "Football Integration": "South Korea"
+    "Olympic Efficiency": "Korea",
+    "Global Athlete Presence": "Korea",
+    "Football Integration": "Korea"
 }
 
 st.metric("Current Leader", leaders[metric])
@@ -310,7 +310,7 @@ st.divider()
 st.subheader("🧠 Final Insight")
 
 st.info("""
-South Korea is not just a football country.
+Korea is not just a football country.
 
 It is a **multi-sport system** with:
 
