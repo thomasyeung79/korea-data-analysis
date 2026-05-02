@@ -53,6 +53,9 @@ st.markdown("""
 
 st.title("💻 Korea as a Technology System")
 
+if st.button("🏠 Back to Home"):
+    st.switch_page("app.py")
+
 show_optional_music(
     "Dream Launch",
     "WayV",
