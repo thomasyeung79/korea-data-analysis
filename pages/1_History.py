@@ -63,7 +63,7 @@ show_optional_music(
     start=5
 )
 
-st.caption("Understanding how South Korea’s past shaped its present global position.")
+st.caption("Understanding how Korea’s past shaped its present global position.")
 
 st.divider()
 
@@ -172,7 +172,7 @@ st.divider()
 st.subheader("🧠 Key Takeaway")
 
 st.info("""
-South Korea’s rise is not accidental.
+Korea’s rise is not accidental.
 
 👉 It is built through sequential historical stages.  
 👉 Each stage adds structural capability.  
