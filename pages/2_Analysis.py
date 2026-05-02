@@ -70,7 +70,7 @@ st.divider()
 st.subheader("🌏 East Asia Comparison")
 
 comparison_data = pd.DataFrame({
-    "Country": ["South Korea", "Japan", "China"],
+    "Country": ["Korea", "Japan", "China"],
     "GDP (Trillion USD)": [1.88, 4.03, 18.74],
     "GDP per capita (USD)": [36238, 32487, 13303],
     "Innovation Rank (2024)": [6, 13, 11]
@@ -83,7 +83,7 @@ st.bar_chart(
 )
 
 st.info("""
-South Korea has a smaller economy than China and Japan,  
+Korea has a smaller economy than China and Japan,  
 but maintains strong innovation and high income levels.
 """)
 
@@ -106,7 +106,7 @@ st.bar_chart(
 )
 
 st.success("""
-South Korea transformed from a low-income post-war economy  
+Korea transformed from a low-income post-war economy  
 into a high-income global economy within decades.
 """)
 
@@ -202,7 +202,7 @@ st.divider()
 st.subheader("🧠 Key Insight")
 
 st.info("""
-South Korea’s development is best understood through:
+Korea’s development is best understood through:
 
 - Regional comparison (China, Japan, Korea)
 - Historical transformation (Miracle on the Han River)
