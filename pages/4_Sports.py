@@ -304,7 +304,7 @@ st.divider()
 
 st.subheader("🧠 Final Insight")
 
-st.markdown("""
+st.info("""
 South Korea is not just a football country.
 
 It is a **multi-sport system** with:
