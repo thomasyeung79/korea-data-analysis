@@ -232,7 +232,7 @@ st.divider()
 
 st.subheader("🧠 Key Takeaway")
 
-st.markdown("""
+st.info("""
 South Korea’s entertainment power is not limited to K-pop.
 
 It is a system made of:
