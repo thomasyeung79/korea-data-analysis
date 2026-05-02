@@ -56,10 +56,9 @@ if st.button("🏠 Back to Home"):
     st.switch_page("app.py")
 
 show_optional_music(
-    "Into The New World",
-    "Girls' Generation",
-    "https://www.youtube.com/watch?v=0k2Zzkw_-0I",
-    start=20
+    "Universe",
+    "EXO",
+    "https://www.youtube.com/watch?v=leu-cTvMWTA",
 )
 
 st.caption(
