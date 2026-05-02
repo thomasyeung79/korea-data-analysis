@@ -46,6 +46,25 @@ st.caption(
     "A cross-cultural data project exploring South Korea beyond stereotypes."
 )
 
+st.markdown("""
+<div style="
+    background-color:#f8f9fa;
+    padding:20px;
+    border-radius:12px;
+    border-left:5px solid #0d6efd;
+">
+South Korea is often seen through simple labels:
+
+- K-pop  
+- Technology  
+- Economic growth  
+
+👉 But what actually drives its global influence?
+
+This project explores South Korea as a system.
+</div>
+""", unsafe_allow_html=True)
+
 st.markdown("## 🚀 Enter the Experience")
 
 col1, col2, col3 = st.columns(3)
