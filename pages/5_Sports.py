@@ -221,7 +221,7 @@ st.subheader("🧠 Comparison Insight Engine")
 
 selected_country = st.selectbox(
     "Choose a country to analyse",
-    ["South Korea", "Japan", "China"]
+    ["Korea", "Japan", "China"]
 )
 
 country_insights = {
