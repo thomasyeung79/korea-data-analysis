@@ -1,7 +1,15 @@
 import streamlit as st
 
+st.set_page_config(
+    page_title="Understanding South Korea",
+    page_icon="🌏",
+    layout="wide"
+)
+
 st.markdown("""
 <style>
+[data-testid="stSidebar"] {display: none;}
+
 .card {
     padding: 1.5rem;
     border-radius: 20px;
@@ -22,18 +30,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.set_page_config(
-    page_title="Understanding South Korea",
-    page_icon="🌏",
-    layout="wide"
-)
-
-st.markdown("""
-<style>
-[data-testid="stSidebar"] {display: none;}
-</style>
-""", unsafe_allow_html=True)
-
 col_flag, col_title = st.columns([1, 8])
 
 with col_flag:
@@ -43,7 +39,7 @@ with col_title:
     st.title("Understanding South Korea Through Data")
 
 st.caption(
-    "A cross-cultural data project exploring South Korea beyond stereotypes."
+    "A data-driven project exploring South Korea beyond stereotypes."
 )
 
 st.markdown("""
@@ -61,7 +57,7 @@ South Korea is often seen through simple labels:
 
 👉 But what actually drives its global influence?
 
-This project explores South Korea as a system.
+This project explores South Korea as a <strong>system</strong> across history, economy, technology, culture, sports, society, and tourism.
 </div>
 """, unsafe_allow_html=True)
 
@@ -73,7 +69,7 @@ with col1:
     st.markdown("""
     <div class="card">
         <h3>📜 History</h3>
-        <p class="small-text">Explore Korea’s historical path from modern state formation to globalisation.</p >
+        <p class="small-text">Explore Korea’s historical path from state formation to globalisation.</p >
     </div>
     """, unsafe_allow_html=True)
     if st.button("Open History", use_container_width=True):
@@ -92,38 +88,71 @@ with col2:
 with col3:
     st.markdown("""
     <div class="card">
-        <h3>🎤 K-pop</h3>
-        <p class="small-text">Understand K-pop as a global cultural and industrial system.</p >
+        <h3>💻 Technology</h3>
+        <p class="small-text">Understand Korea’s hard power through semiconductors, digital systems, and global expansion.</p >
     </div>
     """, unsafe_allow_html=True)
-    if st.button("Open K-pop", use_container_width=True):
-        st.switch_page("pages/3_Kpop.py")
+    if st.button("Open Technology", use_container_width=True):
+        st.switch_page("pages/3_Technology.py")
 
-col4, col5 = st.columns(2)
+col4, col5, col6 = st.columns(3)
 
 with col4:
     st.markdown("""
     <div class="card">
-        <h3>⚽ Sports</h3>
-        <p class="small-text">See how Korean athletes and footballers contribute to global visibility.</p >
+        <h3>🎤 Culture</h3>
+        <p class="small-text">Explore K-pop, K-drama, global idol systems, and cultural export power.</p >
     </div>
     """, unsafe_allow_html=True)
-    if st.button("Open Sports", use_container_width=True):
-        st.switch_page("pages/4_Sports.py")
+    if st.button("Open Culture", use_container_width=True):
+        st.switch_page("pages/4_Kpop.py")
 
 with col5:
     st.markdown("""
     <div class="card">
-        <h3>🏁 Final Evaluation</h3>
-        <p class="small-text">Use a simple scoring model to summarise South Korea’s overall profile.</p >
+        <h3>⚽ Sports</h3>
+        <p class="small-text">See how Korean athletes contribute to global visibility and national soft power.</p >
     </div>
     """, unsafe_allow_html=True)
-    if st.button("Open Ending", use_container_width=True):
-        st.switch_page("pages/5_Ending.py")
+    if st.button("Open Sports", use_container_width=True):
+        st.switch_page("pages/5_Sports.py")
+
+with col6:
+    st.markdown("""
+    <div class="card">
+        <h3>🧠 Society</h3>
+        <p class="small-text">Understand Korean daily life through pressure, work, lifestyle, and social systems.</p >
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("Open Society", use_container_width=True):
+        st.switch_page("pages/6_Society.py")
+
+col7, col8 = st.columns(2)
+
+with col7:
+    st.markdown("""
+    <div class="card">
+        <h3>✈️ Tourism</h3>
+        <p class="small-text">Experience Korea through travel perception, lifestyle, regional diversity, and accessibility.</p >
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("Open Tourism", use_container_width=True):
+        st.switch_page("pages/7_Tourism.py")
+
+with col8:
+    st.markdown("""
+    <div class="card">
+        <h3>🏁 Final Evaluation</h3>
+        <p class="small-text">Integrate all modules into a system-level conclusion and reflection.</p >
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button("Open Final Evaluation", use_container_width=True):
+        st.switch_page("pages/8_Ending.py")
 
 st.markdown("---")
 
-st.info("""
-Version 1.0 focuses on structure, storytelling, and core analysis.  
-Version 2.0 can add deeper datasets, stronger visual design, and expanded country comparison.
+st.success("""
+Version 2.0 expands the project into a full Korea System Analysis Platform:
+
+History → Analysis → Technology → Culture → Sports → Society → Tourism → Final Evaluation
 """)
