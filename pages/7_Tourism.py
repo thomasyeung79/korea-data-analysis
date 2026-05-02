@@ -50,7 +50,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("✈️ Experiencing South Korea")
+st.title("✈️ Experiencing Korea")
 
 if st.button("🏠 Back to Home"):
     st.switch_page("app.py")
