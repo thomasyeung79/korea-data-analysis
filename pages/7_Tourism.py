@@ -134,7 +134,7 @@ st.divider()
 st.subheader("📍 Beyond Tourist Spots")
 
 st.markdown("""
-South Korea is not only about famous landmarks.
+Korea is not only about famous landmarks.
 
 A strong travel experience comes from everyday systems:
 
@@ -181,7 +181,7 @@ st.divider()
 st.subheader("🧠 Key Takeaway")
 
 st.info("""
-Travelling in South Korea is not just about sightseeing.
+Travelling in Korea is not just about sightseeing.
 
 👉 It is about experiencing a highly connected lifestyle system:  
 transport, food, culture, shopping, cities, and regional diversity.
