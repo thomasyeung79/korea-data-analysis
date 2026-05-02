@@ -55,6 +55,9 @@ st.markdown("""
 
 st.title("🏅 South Korea in Global Sports")
 
+if st.button("🏠 Back to Home"):
+    st.switch_page("app.py")
+
 show_optional_music(
     "Power",
     "EXO",
