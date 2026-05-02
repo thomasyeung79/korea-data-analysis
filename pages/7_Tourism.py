@@ -180,7 +180,7 @@ st.divider()
 
 st.subheader("🧠 Key Takeaway")
 
-st.markdown("""
+st.info("""
 Travelling in South Korea is not just about sightseeing.
 
 👉 It is about experiencing a highly connected lifestyle system:  
