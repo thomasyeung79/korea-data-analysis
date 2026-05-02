@@ -198,7 +198,7 @@ st.divider()
 
 st.subheader("🧠 Key Insight")
 
-st.markdown("""
+st.info("""
 South Korea’s development is best understood through:
 
 - Regional comparison (China, Japan, Korea)
