@@ -53,7 +53,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🏅 South Korea in Global Sports")
+st.title("🏅 Korea in Global Sports")
 
 if st.button("🏠 Back to Home"):
     st.switch_page("app.py")
