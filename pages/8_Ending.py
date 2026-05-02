@@ -93,8 +93,8 @@ perception_map = {
         "insight": "Korea is competitive, but not uniquely extreme."
     },
     "Korea is only culturally strong": {
-        "reality": "Korea combines culture, technology, sports, and industry.",
-        "insight": "It is a multi-dimensional power."
+        "reality": "Korea combines culture, technology, sports, society, tourism, and industry.",
+        "insight": "It is a multi-dimensional system."
     }
 }
 
@@ -115,8 +115,9 @@ with col2:
     <div class="card">
         <h3>✅ Reality</h3>
         <p>{selected_data["reality"]}</p >
-        <br>
-        <strong>{selected_data["insight"]}</strong>
+        <p style="margin-top:10px; color:#0d6efd;">
+            <strong>{selected_data["insight"]}</strong>
+        </p >
     </div>
     """, unsafe_allow_html=True)
 
@@ -128,17 +129,23 @@ st.markdown("""
 Across all modules:
 
 - 📜 History → Rapid transformation  
-- 📊 Analysis → High efficiency system  
-- 🎤 K-pop → Cultural export system  
+- 📊 Analysis → High-efficiency system  
+- 💻 Technology → Industrial and digital foundation  
+- 🎤 Culture → Cultural export system  
 - ⚽ Sports → Global competitiveness  
-
-👉 Korea is not defined by one dimension  
-👉 It is a system
+- 🧠 Society → Pressure and lifestyle balance  
+- ✈️ Tourism → Real-world experience layer  
 """)
 
-st.success(
-    "The project moves from stereotype to structured understanding."
-)
+st.success("""
+Korea’s global influence is not accidental.
+
+👉 It is the result of a coordinated system across:
+history, economy, technology, culture, sports, society, and tourism.
+
+This is not a single success story —  
+it is a system-level outcome.
+""")
 
 st.divider()
 
@@ -146,13 +153,13 @@ st.subheader("🎯 Final Thought")
 
 st.markdown("""
 South Korea is not a "perfect country".  
-But it is a **highly efficient modern system**.
+But it is a **high-performance system**.
 
-It shows that:
+It demonstrates that:
 
-- A country does not need to be large to be influential  
-- Culture, industry, and sports can work together  
-- Development is possible within a few decades  
+- Scale is not a prerequisite for influence  
+- Cultural and industrial power can reinforce each other  
+- Rapid transformation is achievable under the right structure  
 
 👉 The real question is not:
 
@@ -160,7 +167,7 @@ It shows that:
 
 👉 The real question is:
 
-**"What can we learn from it?"**
+**"What can we learn from its system design?"**
 """)
 
 st.divider()
@@ -176,3 +183,5 @@ After exploring this project, consider:
 
 👉 The goal of this project is not to judge, but to understand.
 """)
+
+st.caption("This project is not an answer — it is a framework for thinking.")
