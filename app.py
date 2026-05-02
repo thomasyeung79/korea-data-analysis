@@ -57,9 +57,11 @@ South Korea is often seen through simple labels:
 
 👉 But what actually drives its global influence?
 
-This project explores South Korea as a <strong>system</strong> across history, economy, technology, culture, sports, society, and tourism.
+This project explores Korea as a <strong>system</strong> across history, economy, technology, culture, sports, society, and tourism.
 </div>
 """, unsafe_allow_html=True)
+
+st.caption("In this project, 'Korea' refers to South Korea unless otherwise specified.")
 
 st.markdown("## 🚀 Enter the Experience")
 
