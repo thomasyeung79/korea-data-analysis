@@ -53,6 +53,9 @@ st.markdown("""
 
 st.title("📜 Historical Context")
 
+if st.button("🏠 Back to Home"):
+    st.switch_page("app.py")
+
 show_optional_music(
     "History",
     "EXO-K",
