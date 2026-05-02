@@ -192,7 +192,7 @@ st.divider()
 
 st.subheader("🧠 Key Insight")
 
-st.markdown("""
+st.info("""
 Korean society should not be reduced to one word: **pressure**.
 
 It is better understood as a system where:
