@@ -196,7 +196,7 @@ global_groups = pd.DataFrame({
 st.dataframe(global_groups, use_container_width=True)
 
 st.info("""
-This shows that South Korea is not only exporting Korean artists.
+This shows that Korea is not only exporting Korean artists.
 
 It is exporting the production method itself:
 training, concept planning, performance design, marketing, and fandom management.
