@@ -225,7 +225,7 @@ selected_country = st.selectbox(
 )
 
 country_insights = {
-    "South Korea": {
+    "Korea": {
         "strength": "Efficiency + global integration",
         "explanation": "Korea performs strongly relative to its population size and has high visibility in global football, Olympic sports, golf, and esports."
     },
