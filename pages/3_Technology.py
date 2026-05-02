@@ -57,10 +57,9 @@ if st.button("🏠 Back to Home"):
     st.switch_page("app.py")
 
 show_optional_music(
-    "Dream Launch",
-    "WayV",
-    "https://www.youtube.com/watch?v=jxKIOhAwrik",
-    start=8
+    "Limitless",
+    "NCT 127",
+    "https://www.youtube.com/watch?v=RW8iyJcmve4",
 )
 
 st.divider()
