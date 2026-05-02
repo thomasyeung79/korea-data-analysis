@@ -53,6 +53,9 @@ st.markdown("""
 
 st.title("📊 Understanding Korea Through Data")
 
+if st.button("🏠 Back to Home"):
+    st.switch_page("app.py")
+
 show_optional_music(
     "Next Level",
     "aespa",
