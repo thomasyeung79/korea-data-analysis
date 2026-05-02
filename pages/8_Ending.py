@@ -152,7 +152,7 @@ st.divider()
 st.subheader("🎯 Final Thought")
 
 st.markdown("""
-South Korea is not a "perfect country".  
+Korea is not a "perfect country".  
 But it is a **high-performance system**.
 
 It demonstrates that:
