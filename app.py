@@ -81,6 +81,8 @@ This project explores Korea as a <strong>system</strong> across history, economy
 
 st.caption("In this project, 'Korea' refers to South Korea unless otherwise specified.")
 
+st.divider()
+
 show_optional_music(
     "Into The New World",
     "Girls' Generation",
