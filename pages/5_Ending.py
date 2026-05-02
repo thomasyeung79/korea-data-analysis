@@ -52,6 +52,9 @@ st.markdown("""
 
 st.title("🏁 Final Evaluation")
 
+if st.button("🏠 Back to Home"):
+    st.switch_page("app.py")
+
 show_optional_music(
     "Into The New World",
     "Girls' Generation",
