@@ -168,7 +168,7 @@ st.divider()
 
 st.subheader("🧠 Key Takeaway")
 
-st.markdown("""
+st.info("""
 South Korea’s rise is not accidental.
 
 👉 It is built through sequential historical stages.  
