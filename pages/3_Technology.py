@@ -217,7 +217,7 @@ st.divider()
 
 st.subheader("🧠 Key Takeaway")
 
-st.markdown("""
+st.info("""
 Korea’s strength is not just technology.
 
 👉 It is the ability to build systems that scale globally.
