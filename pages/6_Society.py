@@ -53,6 +53,9 @@ st.markdown("""
 
 st.title("🧠 Korean Society & Daily Life")
 
+if st.button("🏠 Back to Home"):
+    st.switch_page("app.py")
+
 show_optional_music(
     "Feel My Rhythm",
     "Red Velvet",
