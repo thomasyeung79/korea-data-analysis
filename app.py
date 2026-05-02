@@ -1,5 +1,23 @@
 import streamlit as st
 
+def show_optional_music(title, artist, url, start=0):
+    video_id = url.split("v=")[-1].split("&")[0]
+
+    with st.expander("🎵 Optional Music (Official Source)"):
+        st.caption(f"Now Playing: {title} - {artist}")
+
+        st.markdown(f"""
+        <iframe
+            width="360"
+            height="203"
+            src="https://www.youtube.com/embed/{video_id}?start={start}"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+        """, unsafe_allow_html=True)
+
+        st.caption("Music via official YouTube embed.")
+
 st.set_page_config(
     page_title="Understanding South Korea",
     page_icon="🌏",
@@ -62,6 +80,13 @@ This project explores Korea as a <strong>system</strong> across history, economy
 """, unsafe_allow_html=True)
 
 st.caption("In this project, 'Korea' refers to South Korea unless otherwise specified.")
+
+show_optional_music(
+    "Into The New World",
+    "Girls' Generation",
+    "https://www.youtube.com/watch?v=0k2Zzkw_-0I",
+    start=20
+)
 
 st.markdown("## 🚀 Enter the Experience")
 
