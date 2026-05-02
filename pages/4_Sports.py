@@ -140,9 +140,11 @@ sports_data = pd.DataFrame({
 
 st.dataframe(sports_data, use_container_width=True)
 
-st.bar_chart(
-    sports_data.set_index("Sport")["Global Level (0-10)"]
-)
+col1, col2, col3 = st.columns(3)
+
+col1.metric("Archery", "10")
+col2.metric("Speed Skating", "10")
+col3.metric("Football", "9")
 
 st.caption(
     "These scores are conceptual and based on general global performance trends, "
