@@ -52,6 +52,9 @@ st.markdown("""
 
 st.title("✈️ Experiencing South Korea")
 
+if st.button("🏠 Back to Home"):
+    st.switch_page("app.py")
+
 show_optional_music(
     "Party",
     "Girls' Generation",
