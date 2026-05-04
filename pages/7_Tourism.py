@@ -67,7 +67,7 @@ st.divider()
 st.subheader("🧠 Travel Perception vs Reality")
 
 question = st.selectbox(
-    "What do you think about travelling in South Korea?",
+    "What do you think about travelling in Korea?",
     [
         "Korea is too expensive",
         "Korea is only Seoul",
@@ -149,6 +149,35 @@ A strong travel experience comes from everyday systems:
 
 st.divider()
 
+st.subheader("🍜 Food & Lifestyle Experience")
+
+st.markdown("""
+Food is a major part of Korea’s travel experience.
+
+It connects culture with daily life through:
+
+- 🍢 Street food  
+- 🍗 Korean fried chicken  
+- 🥩 BBQ and shared dining  
+- 🏪 Convenience store culture  
+- ☕ Café culture  
+- 🎬 K-drama and K-pop-driven food interest  
+
+👉 In Korea, food is not just consumption — it is a cultural entry point.
+""")
+
+col1, col2, col3 = st.columns(3)
+
+col1.metric("Street Food", "9/10", "Accessible & local")
+col2.metric("Café Culture", "9/10", "Lifestyle experience")
+col3.metric("Shared Dining", "8/10", "Social culture")
+
+st.caption(
+    "Food is included as part of tourism because it directly shapes how visitors experience Korean daily life."
+)
+
+st.divider()
+
 st.subheader("📊 Travel Experience Score")
 
 cost = st.slider("Affordability", 0, 10, 7)
@@ -175,6 +204,13 @@ else:
 st.caption(
     "This score is a conceptual model showing how different factors shape the travel experience."
 )
+
+if "module_scores" not in st.session_state:
+    st.session_state["module_scores"] = {}
+
+st.session_state["module_scores"]["Tourism"] = travel_score
+
+st.caption(f"Saved score: {st.session_state['module_scores']}")
 
 st.divider()
 
