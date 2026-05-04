@@ -22,15 +22,16 @@ User perception:
 System module scores:
 {module_scores}
 
-Write a short professional report with the following structure:
+Return ONLY valid JSON with this structure:
 
-1. Executive Summary (2 sentences)
-2. System Strengths (bullet points)
-3. Structural Risks (bullet points)
-4. Comparative Position (1-2 sentences vs China/Japan)
-5. Strategic Insight (final conclusion)
-
-Also explain how the different modules interact as a system.
+{{
+  "executive_summary": "...",
+  "system_strengths": ["...", "...", "..."],
+  "structural_risks": ["...", "..."],
+  "comparative_position": "...",
+  "strategic_insight": "...",
+  "system_interaction": "..."
+}}
 
 Keep it concise, analytical, and suitable for a portfolio project.
 """
@@ -43,7 +44,7 @@ Keep it concise, analytical, and suitable for a portfolio project.
         return response.output_text
 
     except Exception as e:
-        return f"AI insight not available: {e}"
+        return f'{{"error": "AI insight not available: {e}"}}'
 
 
 def save_user_result(username, q1, q2, q3, q4, score, ai_result):
@@ -258,13 +259,36 @@ if st.button("Generate AI Insight"):
             module_scores
         )
 
+        report = json.loads(result)
+
         st.subheader("📄 AI Strategic Report")
 
-        try:
-            with st.container(border=True):
-                st.markdown(result)
-        except TypeError:
-            st.info(result)
+        if "error" in report:
+            st.warning(report["error"])
+        else:
+            st.markdown("### 🧠 Executive Summary")
+            st.info(report["executive_summary"])
+
+            col1, col2 = st.columns(2)
+
+            with col1:
+                st.markdown("### 💪 System Strengths")
+                for item in report["system_strengths"]:
+                    st.success(f"✅ {item}")
+
+            with col2:
+                st.markdown("### ⚠️ Structural Risks")
+                for item in report["structural_risks"]:
+                    st.warning(f"⚠️ {item}")
+
+            st.markdown("### 🌏 Comparative Position")
+            st.write(report["comparative_position"])
+
+            st.markdown("### 🔗 System Interaction")
+            st.info(report["system_interaction"])
+
+            st.markdown("### 🎯 Strategic Insight")
+            st.success(report["strategic_insight"])
 
         save_user_result(
             username,
