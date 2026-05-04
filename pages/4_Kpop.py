@@ -231,6 +231,13 @@ st.caption(
     "This simplified score shows how multiple cultural industries combine to create global influence."
 )
 
+if "module_scores" not in st.session_state:
+    st.session_state["module_scores"] = {}
+
+st.session_state["module_scores"]["Culture"] = culture_score
+
+st.caption(f"Saved score: {st.session_state['module_scores']}")
+
 st.divider()
 
 st.subheader("🧠 Key Takeaway")
