@@ -188,6 +188,13 @@ st.caption(
     "This model is simplified. It shows how efficiency, pressure, lifestyle, and accessibility interact."
 )
 
+if "module_scores" not in st.session_state:
+    st.session_state["module_scores"] = {}
+
+st.session_state["module_scores"]["Society"] = society_score
+
+st.caption(f"Saved score: {st.session_state['module_scores']}")
+
 st.divider()
 
 st.subheader("🧠 Key Insight")
