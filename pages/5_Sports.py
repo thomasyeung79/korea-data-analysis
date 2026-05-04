@@ -285,18 +285,18 @@ olympic = st.slider("Olympic Strength", 0, 10, 9)
 global_players = st.slider("Global Players", 0, 10, 9)
 diversity = st.slider("Sport Diversity", 0, 10, 9)
 
-score = (
+sports_score = (
     football * 0.3 +
     olympic * 0.3 +
     global_players * 0.2 +
     diversity * 0.2
 )
 
-st.metric("Korean Sports Power Score", round(score, 2))
+st.metric("Korean Sports Power Score", round(sports_score, 2))
 
-if score >= 9:
+if sports_score >= 9:
     st.success("Top-tier sports profile: Korea combines Olympic efficiency, football visibility, global athletes, and sport diversity.")
-elif score >= 7:
+elif sports_score >= 7:
     st.info("Strong sports profile: Korea shows broad competitiveness, especially in Olympic sports and football.")
 else:
     st.warning("Limited sports profile: Korea may rely too much on specific sports or individual stars.")
@@ -304,6 +304,13 @@ else:
 st.caption(
     "This model shows how multiple sports contribute to overall national strength."
 )
+
+if "module_scores" not in st.session_state:
+    st.session_state["module_scores"] = {}
+
+st.session_state["module_scores"]["Sports"] = sports_score
+
+st.caption(f"Saved score: {st.session_state['module_scores']}")
 
 st.divider()
 
