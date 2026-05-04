@@ -27,9 +27,7 @@ def show_optional_music(title, artist, url, start=0):
 
 st.markdown("""
 <style>
-[data-testid="stSidebar"] {
-    display: none;
-}
+[data-testid="stSidebar"] {display: none;}
 
 .card {
     padding: 1.5rem;
@@ -40,14 +38,8 @@ st.markdown("""
     box-shadow: 0 4px 14px rgba(0,0,0,0.05);
 }
 
-.card h3 {
-    margin-top: 0;
-}
-
-.card p {
-    color: #444;
-    font-size: 1rem;
-}
+.card h3 {margin-top: 0;}
+.card p {color: #444; font-size: 1rem;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -56,6 +48,7 @@ st.title("📜 Historical Context")
 if st.button("🏠 Back to Home"):
     st.switch_page("app.py")
 
+# 🎵 Music
 show_optional_music(
     "History",
     "EXO-K",
@@ -86,40 +79,31 @@ selected_index = st.selectbox(
 )
 
 st.progress((selected_index + 1) / len(timeline_steps))
-
 st.caption("Move through each stage to see how Korea developed over time.")
 
 st.divider()
 
 history_data = [
-    {
-        "meaning": "Korea began transitioning toward a modern state system.",
-        "impact": "Established early foundations of national identity."
-    },
-    {
-        "meaning": "Loss of sovereignty under Japanese colonial rule.",
-        "impact": "Strengthened nationalism and long-term development urgency."
-    },
-    {
-        "meaning": "Liberation after World War II.",
-        "impact": "Opened the path for independent state-building."
-    },
-    {
-        "meaning": "Division of the Korean Peninsula.",
-        "impact": "Created two distinct political and economic systems."
-    },
-    {
-        "meaning": "War devastated infrastructure and the economy.",
-        "impact": "Triggered reconstruction-driven development strategy."
-    },
-    {
-        "meaning": "Rapid industrialisation and export-led growth.",
-        "impact": "Transformed Korea into an advanced economy."
-    },
-    {
-        "meaning": "Global expansion in culture, technology, and sports.",
-        "impact": "Built Korea’s modern global influence."
-    }
+    {"meaning": "Korea began transitioning toward a modern state system.",
+     "impact": "Established early foundations of national identity."},
+
+    {"meaning": "Loss of sovereignty under Japanese colonial rule.",
+     "impact": "Strengthened nationalism and long-term development urgency."},
+
+    {"meaning": "Liberation after World War II.",
+     "impact": "Opened the path for independent state-building."},
+
+    {"meaning": "Division of the Korean Peninsula.",
+     "impact": "Created two distinct political and economic systems."},
+
+    {"meaning": "War devastated infrastructure and the economy.",
+     "impact": "Triggered reconstruction-driven development strategy."},
+
+    {"meaning": "Rapid industrialisation and export-led growth.",
+     "impact": "Transformed Korea into an advanced economy."},
+
+    {"meaning": "Global expansion in culture, technology, and sports.",
+     "impact": "Built Korea’s modern global influence."}
 ]
 
 selected = history_data[selected_index]
@@ -144,6 +128,7 @@ with col2:
 
 st.divider()
 
+# 📊 Impact Scores
 st.subheader("📊 System Impact Level")
 
 impact_scores = [
@@ -156,8 +141,10 @@ impact_scores = [
     {"Economy": 9, "Culture": 10, "Global Influence": 10}
 ]
 
+scores = impact_scores[selected_index]
+
 scores_df = pd.DataFrame(
-    list(impact_scores[selected_index].items()),
+    list(scores.items()),
     columns=["Category", "Score"]
 )
 
@@ -167,6 +154,24 @@ st.caption(
     "Scores are conceptual and designed to show how historical stages contribute to Korea’s modern capabilities."
 )
 
+final_scores = impact_scores[-1]
+
+history_score = round(
+    final_scores["Economy"] * 0.3 +
+    final_scores["Culture"] * 0.3 +
+    final_scores["Global Influence"] * 0.4,
+    2
+)
+
+st.metric("History System Score", history_score)
+
+if "module_scores" not in st.session_state:
+    st.session_state["module_scores"] = {}
+
+st.session_state["module_scores"]["History"] = history_score
+
+st.caption(f"Saved module scores: {st.session_state['module_scores']}")
+
 st.divider()
 
 st.subheader("🧠 Key Takeaway")
@@ -174,9 +179,9 @@ st.subheader("🧠 Key Takeaway")
 st.info("""
 Korea’s rise is not accidental.
 
-👉 It is built through sequential historical stages.  
-👉 Each stage adds structural capability.  
-👉 The final result is a globally competitive system.
+👉 It is built through sequential historical stages  
+👉 Each stage adds structural capability  
+👉 The final result is a globally competitive system  
 
 Understanding Korea requires understanding this progression.
 """)
