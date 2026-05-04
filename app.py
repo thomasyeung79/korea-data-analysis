@@ -92,6 +92,8 @@ show_optional_music(
 
 st.markdown("## 🚀 Enter the Experience")
 
+st.divider()
+
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -185,3 +187,10 @@ Version 2.0 expands the project into a full Korea System Analysis Platform:
 
 History → Analysis → Technology → Culture → Sports → Society → Tourism → Final Evaluation
 """)
+
+st.subheader("📈 System Data")
+
+st.caption("View saved user perception data and AI insights.")
+
+if st.button("Open User History", use_container_width=True):
+    st.switch_page("pages/9_User_History.py")
