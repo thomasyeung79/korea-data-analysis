@@ -1,4 +1,74 @@
 import streamlit as st
+from openai import OpenAI
+import json
+from datetime import datetime
+import pandas as pd
+
+client = OpenAI()
+
+
+def generate_ai_summary(q1, q2, q3, q4, score, module_scores):
+    try:
+        prompt = f"""
+You are an analyst writing a concise strategic report on Korea.
+
+User perception:
+- Technology: {q1}/10
+- Culture: {q2}/10
+- Social Pressure: {q3}/10
+- Global Influence: {q4}/10
+- Overall Perception Score: {score}/10
+
+System module scores:
+{module_scores}
+
+Write a short professional report with the following structure:
+
+1. Executive Summary (2 sentences)
+2. System Strengths (bullet points)
+3. Structural Risks (bullet points)
+4. Comparative Position (1-2 sentences vs China/Japan)
+5. Strategic Insight (final conclusion)
+
+Also explain how the different modules interact as a system.
+
+Keep it concise, analytical, and suitable for a portfolio project.
+"""
+
+        response = client.responses.create(
+            model="gpt-4o-mini",
+            input=prompt
+        )
+
+        return response.output_text
+
+    except Exception as e:
+        return f"AI insight not available: {e}"
+
+
+def save_user_result(username, q1, q2, q3, q4, score, ai_result):
+    data = {
+        "username": username if username else "Anonymous",
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "technology": q1,
+        "culture": q2,
+        "pressure": q3,
+        "global_influence": q4,
+        "score": score,
+        "ai_result": ai_result
+    }
+
+    try:
+        with open("user_results.json", "r", encoding="utf-8") as f:
+            results = json.load(f)
+    except FileNotFoundError:
+        results = []
+
+    results.append(data)
+
+    with open("user_results.json", "w", encoding="utf-8") as f:
+        json.dump(results, f, ensure_ascii=False, indent=4)
+
 
 def show_optional_music(title, artist, url, start=0):
     video_id = url.split("v=")[-1].split("&")[0]
@@ -17,6 +87,7 @@ def show_optional_music(title, artist, url, start=0):
         """, unsafe_allow_html=True)
 
         st.caption("Music via official YouTube embed.")
+
 
 st.set_page_config(
     page_title="Ending",
@@ -119,6 +190,93 @@ with col2:
         </p >
     </div>
     """, unsafe_allow_html=True)
+
+st.divider()
+
+st.subheader("📊 System Score Overview")
+
+module_scores = st.session_state.get("module_scores", {})
+
+default_scores = {
+    "History": 8.5,
+    "Analysis": 8,
+    "Technology": 9,
+    "Culture": 9,
+    "Sports": 8,
+    "Society": 7,
+    "Tourism": 8
+}
+
+for k, v in default_scores.items():
+    module_scores.setdefault(k, v)
+
+df = pd.DataFrame(
+    list(module_scores.items()),
+    columns=["Module", "Score"]
+)
+
+st.bar_chart(df.set_index("Module"))
+
+overall_score = round(sum(module_scores.values()) / len(module_scores), 2)
+
+st.metric("🌐 Overall System Score", overall_score)
+
+st.caption(
+    "Scores combine user interaction and system defaults to represent Korea as a multi-dimensional system."
+)
+
+st.divider()
+
+st.subheader("🧠 Your Korea Perception")
+
+st.caption("Rate your personal view before seeing the final analysis.")
+
+username = st.text_input("Enter your name or nickname (optional)")
+
+q1 = st.slider("How strong is Korea in technology?", 0, 10, 5)
+q2 = st.slider("How strong is Korea in culture?", 0, 10, 5)
+q3 = st.slider("How stressful do you think Korea is?", 0, 10, 5)
+q4 = st.slider("How globally influential is Korea?", 0, 10, 5)
+
+score = (
+    q1 * 0.3 +
+    q2 * 0.3 +
+    (10 - q3) * 0.2 +
+    q4 * 0.2
+)
+
+st.metric("Your Korea Understanding Score", round(score, 2))
+
+if st.button("Generate AI Insight"):
+    with st.spinner("Analyzing your perception..."):
+        result = generate_ai_summary(
+            q1,
+            q2,
+            q3,
+            q4,
+            round(score, 2),
+            module_scores
+        )
+
+        st.subheader("📄 AI Strategic Report")
+
+        try:
+            with st.container(border=True):
+                st.markdown(result)
+        except TypeError:
+            st.info(result)
+
+        save_user_result(
+            username,
+            q1,
+            q2,
+            q3,
+            q4,
+            round(score, 2),
+            result
+        )
+
+        st.caption("Your perception profile has been saved locally.")
 
 st.divider()
 
