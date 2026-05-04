@@ -59,7 +59,7 @@ if st.button("🏠 Back to Home"):
 show_optional_music(
     "Limitless",
     "NCT 127",
-    "https://www.youtube.com/watch?v=RW8iyJcmve4",
+    "https://www.youtube.com/watch?v=zmUn7V6uuZM",
 )
 
 st.divider()
@@ -211,6 +211,13 @@ st.metric("Korea Technology Power Score", round(tech_score, 2))
 st.caption(
     "This simplified model shows how different factors combine into a scalable system."
 )
+
+if "module_scores" not in st.session_state:
+    st.session_state["module_scores"] = {}
+
+st.session_state["module_scores"]["Technology"] = tech_score
+
+st.caption(f"Saved score: {st.session_state['module_scores']}")
 
 st.divider()
 
