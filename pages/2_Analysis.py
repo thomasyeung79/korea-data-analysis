@@ -177,18 +177,18 @@ innovation = st.slider("Innovation Strength", 0, 10, 9)
 culture = st.slider("Culture Influence", 0, 10, 10)
 pressure = st.slider("Social Pressure", 0, 10, 7)
 
-score = (
+analysis_score = (
     economy * 0.3 +
     innovation * 0.3 +
     culture * 0.3 +
     (10 - pressure) * 0.1
 )
 
-st.metric("Balanced Development Score", round(score, 2))
+st.metric("Balanced Development Score", round(analysis_score, 2))
 
-if score >= 8:
+if analysis_score >= 8:
     st.success("Strong balanced development: Korea combines economy, innovation, culture, and manageable pressure.")
-elif score >= 6:
+elif analysis_score >= 6:
     st.info("Moderate balanced development: Korea shows strengths, but pressure or structural limits affect the score.")
 else:
     st.warning("Weak balanced development: one or more core factors may be limiting the overall profile.")
@@ -196,6 +196,13 @@ else:
 st.caption(
     "This is a simplified model showing how different factors interact."
 )
+
+if "module_scores" not in st.session_state:
+    st.session_state["module_scores"] = {}
+
+st.session_state["module_scores"]["Analysis"] = analysis_score
+
+st.caption(f"Saved score: {st.session_state['module_scores']}")
 
 st.divider()
 
