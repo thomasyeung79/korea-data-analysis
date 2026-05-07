@@ -136,7 +136,7 @@ with col4:
     </div>
     """, unsafe_allow_html=True)
     if st.button("Open Culture", use_container_width=True):
-        st.switch_page("pages/4_Kpop.py")
+        st.switch_page("pages/4_Culture.py")
 
 with col5:
     st.markdown("""
