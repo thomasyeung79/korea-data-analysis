@@ -203,9 +203,7 @@ default_scores = {
     "Analysis": 8,
     "Technology": 9,
     "Culture": 9,
-    "K-pop": 8.5,
     "Sports": 8,
-    "Football": 8.5,
     "Society": 7,
     "Tourism": 8
 }
