@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-
-
 def show_optional_music(title, artist, url, start=0):
     video_id = url.split("v=")[-1].split("&")[0]
 
@@ -157,34 +155,32 @@ Korea’s sports strength is diversified, not concentrated in a single field.
 
 st.divider()
 
-st.subheader("⚽ Korean Football Global Impact")
+st.subheader("⚽ Korean Football")
 
-football_data = pd.DataFrame({
-    "Category": [
-        "Premier League Players",
-        "European League Players",
-        "World Cup Performance",
-        "Youth Development"
-    ],
-    "Score (0-10)": [9, 9, 8, 9]
-})
+st.markdown("""
+Football is one of the most globally visible parts of Korea’s sports system.
 
-st.dataframe(football_data, use_container_width=True)
+Korean football has developed through:
 
-st.bar_chart(
-    football_data.set_index("Category")["Score (0-10)"]
-)
+- World Cup participation
+- European league integration
+- Premier League visibility
+- Youth development pathways
+- Global player exports
 
-st.caption(
-    "These scores are conceptual and based on general global performance trends, "
-    "including league presence, international tournaments, and player distribution."
-)
-
-st.success("""
-Korea is one of the most globally integrated Asian football systems.
+The football system is explored in a dedicated module with:
+- EPL analysis
+- UEFA Champions League analysis
+- East Asia comparison
+- Player pathway analysis
 """)
 
-st.divider()
+st.info("""
+👉 Korea’s football influence is analysed separately because football has become a global export system, not just a domestic sport.
+""")
+
+if st.button("⚽ Open Football Analytics Module"):
+    st.switch_page("pages/5a_Football.py")
 
 st.subheader("🌏 East Asia Sports Comparison")
 
