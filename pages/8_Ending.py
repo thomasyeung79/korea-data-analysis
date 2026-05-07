@@ -203,7 +203,9 @@ default_scores = {
     "Analysis": 8,
     "Technology": 9,
     "Culture": 9,
+    "K-pop": 8.5,
     "Sports": 8,
+    "Football": 8.5,
     "Society": 7,
     "Tourism": 8
 }
@@ -313,7 +315,9 @@ Across all modules:
 - 📊 Analysis → High-efficiency system  
 - 💻 Technology → Industrial and digital foundation  
 - 🎤 Culture → Cultural export system  
-- ⚽ Sports → Global competitiveness  
+- 🎶 K-pop → Global entertainment market strategy  
+- 🏅 Sports → Multi-sport competitiveness  
+- ⚽ Football → EPL/UCL pathway and elite player export  
 - 🧠 Society → Pressure and lifestyle balance  
 - ✈️ Tourism → Real-world experience layer  
 """)
