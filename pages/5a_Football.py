@@ -724,6 +724,19 @@ The goal is not to predict with certainty, but to model different elite football
                 european_readiness
             )
 
+            st.markdown("""
+            <div style="
+            padding: 1.5rem;
+            border-radius: 20px;
+            background: linear-gradient(135deg,#ffffff,#f7f9fc);
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+            margin-top: 1rem;
+            ">
+            <h2>⚽ AI Football Pathway Insight</h2>
+            </div>
+            """, unsafe_allow_html=True)
+
             st.markdown(result)
 
 with tabs[6]:
