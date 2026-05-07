@@ -1,0 +1,65 @@
+﻿country,player_name,club,ucl_status,first_ucl_season,last_ucl_season,confidence,notes,source_url
+China,Sun Xiang,PSV Eindhoven,appeared,2006-07,2006-07,High,First Chinese player to appear in the UCL proper; PSV vs Arsenal.,https://www.uefa.com/uefachampionsleague/news/01be-0e6e1e0038bc-b044696f7b6d-1000--china-first-as-sun-shines-on-tv/
+China,Dong Fangzhuo,Manchester United,appeared,2007-08,2007-08,High,Substitute appearance vs Roma in the 2007-08 UCL group stage.,https://www.uefa.com/uefachampionsleague/match/301241--roma-vs-man-utd/lineups/
+China,Hao Junmin,Schalke 04,appeared,2010-11,2010-11,High,Schalke 04 UCL squad member with UCL match involvement/appearances.,https://www.transfermarkt.co.uk/junmin-hao/leistungsdatendetails/spieler/63549/wettbewerb/CL
+China,Li Ke / Nico Yennaris,Arsenal,registered_only,2011-12,2011-12,Low,"Current China international; listed by ESPN in Arsenal UCL squad data, but no UCL appearance recorded.",https://www.espn.in/football/team/squad/_/id/359/league/UEFA.CHAMPIONS/season/2010
+Japan,Hidetoshi Nakata,Roma,appeared,2001-02,2001-02,Medium,Roma UCL-era Japanese player; appearance record should be treated as medium confidence.,
+Japan,Shinji Ono,Feyenoord,appeared,2002-03,2002-03,Medium,Feyenoord UCL-era Japanese player.,
+Japan,Junichi Inamoto,Arsenal,registered_only,2001-02,2001-02,Medium,Arsenal UCL-era registration/bench pool; appearance status uncertain.,
+Japan,Shunsuke Nakamura,Celtic,appeared,2006-07,2008-09,High,Celtic UCL regular; scored famous free-kick vs Manchester United.,
+Japan,Naohiro Takahara,Hamburger SV,appeared,2006-07,2006-07,Medium,Hamburger SV UCL involvement.,
+Japan,Makoto Hasebe,VfL Wolfsburg,appeared,2009-10,2009-10,High,Wolfsburg UCL appearance period.,
+Japan,Makoto Hasebe,Eintracht Frankfurt,appeared,2022-23,2022-23,High,Eintracht Frankfurt UCL appearance period.,
+Japan,Keisuke Honda,CSKA Moscow,appeared,2009-10,2013-14,High,"UCL appearances are attributed to CSKA Moscow, not AC Milan.",
+Japan,Yuto Nagatomo,Inter Milan,appeared,2010-11,2011-12,High,Inter Milan UCL appearances.,
+Japan,Yuto Nagatomo,Galatasaray,appeared,2018-19,2019-20,High,Galatasaray UCL appearances.,
+Japan,Atsuto Uchida,Schalke 04,appeared,2010-11,2014-15,High,Schalke 04 UCL regular.,
+Japan,Shinji Kagawa,Borussia Dortmund,appeared,2011-12,2016-17,High,Borussia Dortmund UCL appearances.,https://www.uefa.com/uefachampionsleague/news/024e-0e9966a5662a-0529e81a7579-1000--who-are-japan-s-most-successful-players-in-europe/
+Japan,Shinji Kagawa,Manchester United,appeared,2012-13,2013-14,High,Manchester United UCL appearances.,https://www.uefa.com/uefachampionsleague/news/024e-0e9966a5662a-0529e81a7579-1000--who-are-japan-s-most-successful-players-in-europe/
+Japan,Ryo Miyaichi,Arsenal,appeared,2013-14,2013-14,High,Arsenal UCL appearance and earlier squad registration.,https://www.transfermarkt.com/ryo-miyaichi/leistungsdatendetails/spieler/129688
+Japan,Shinji Okazaki,Leicester City,appeared,2016-17,2016-17,High,Leicester City UCL appearances.,
+Japan,Yoichiro Kakitani,Basel,appeared,2014-15,2014-15,High,Basel UCL appearances.,
+Japan,Junya Tanaka,Sporting CP,appeared,2014-15,2014-15,High,Sporting CP UCL appearances.,
+Japan,Takumi Minamino,Red Bull Salzburg,appeared,2019-20,2019-20,High,Red Bull Salzburg UCL appearances.,https://www.uefa.com/uefachampionsleague/clubs/players/250081223--takumi-minamino/
+Japan,Takumi Minamino,Liverpool,appeared,2020-21,2021-22,High,Liverpool UCL appearances.,https://www.uefa.com/uefachampionsleague/clubs/players/250081223--takumi-minamino/
+Japan,Takumi Minamino,Monaco,appeared,2024-25,2024-25,High,Monaco UCL appearances; became top Japanese UCL scorer in 2025.,https://apnews.com/article/minamino-goal-japanese-record-champions-league-37bd24c13d1505e2d7ec17a6c6f627e9
+Japan,Hiroki Sakai,Marseille,appeared,2020-21,2020-21,High,Marseille UCL appearances.,
+Japan,Junya Ito,Genk,appeared,2019-20,2019-20,High,Genk UCL appearances.,
+Japan,Daichi Kamada,Eintracht Frankfurt,appeared,2022-23,2022-23,High,Eintracht Frankfurt UCL appearances.,
+Japan,Daichi Kamada,Lazio,appeared,2023-24,2023-24,High,Lazio UCL appearances.,
+Japan,Kyogo Furuhashi,Celtic,appeared,2022-23,2024-25,High,Celtic UCL appearances.,
+Japan,Daizen Maeda,Celtic,appeared,2022-23,2024-25,High,Celtic UCL appearances and goals.,
+Japan,Reo Hatate,Celtic,appeared,2022-23,2024-25,High,Celtic UCL appearances.,
+Japan,Hidemasa Morita,Sporting CP,appeared,2022-23,2022-23,High,Sporting CP UCL appearances.,
+Japan,Ayase Ueda,Feyenoord,appeared,2023-24,2024-25,High,Feyenoord UCL appearances.,
+Japan,Takefusa Kubo,Real Sociedad,appeared,2023-24,2023-24,High,Real Sociedad UCL appearances.,
+Japan,Takehiro Tomiyasu,Arsenal,appeared,2023-24,2024-25,High,Arsenal UCL appearances/registration.,
+Japan,Wataru Endo,Liverpool,appeared,2024-25,2024-25,High,Liverpool UCL appearances.,
+Japan,Tomoki Iwata,Celtic,appeared,2023-24,2023-24,Medium,Celtic UCL involvement; appearance status medium-confidence.,
+Japan,Takashi Usami,Bayern Munich,registered_only,2011-12,2011-12,Medium,Bayern Munich UCL squad/registration; no UCL appearance confirmed.,
+Korea,Seol Ki-hyeon,Anderlecht,appeared,2000-01,2001-02,High,Anderlecht UCL appearances; early Korean UCL scorer.,
+Korea,Lee Young-pyo,PSV Eindhoven,appeared,2003-04,2005-06,High,PSV UCL appearances.,
+Korea,Park Ji-sung,PSV Eindhoven,appeared,2003-04,2004-05,High,PSV UCL appearances before Manchester United move.,https://www.uefa.com/uefachampionsleague/news/0253-0e904ea2629d-a8657de76e1c-1000--mehdi-taremi-heung-min-son-takumi-minamino-maksim-shatsk/
+Korea,Park Ji-sung,Manchester United,appeared,2005-06,2012-13,High,Manchester United UCL winner and finalist.,https://www.uefa.com/uefachampionsleague/news/0253-0e904ea2629d-a8657de76e1c-1000--mehdi-taremi-heung-min-son-takumi-minamino-maksim-shatsk/
+Korea,Kim Dong-jin,Zenit Saint Petersburg,appeared,2008-09,2008-09,High,Zenit UCL appearances in 2008-09.,https://www.uefa.com/uefachampionsleague/match/302776--real-madrid-vs-zenit/lineups/
+Korea,Ki Sung-yueng,Celtic,appeared,2012-13,2012-13,High,Celtic UCL appearances.,
+Korea,Park Chu-young,Arsenal,appeared,2011-12,2011-12,High,Started against Marseille and appeared against Milan in the UCL.,https://en.wikipedia.org/wiki/Park_Chu-young
+Korea,Son Heung-min,Bayer Leverkusen,appeared,2013-14,2014-15,High,Bayer Leverkusen UCL appearances.,https://www.uefa.com/uefachampionsleague/news/0253-0e904ea2629d-a8657de76e1c-1000--mehdi-taremi-heung-min-son-takumi-minamino-maksim-shatsk/
+Korea,Son Heung-min,Tottenham Hotspur,appeared,2016-17,2022-23,High,Tottenham Hotspur UCL appearances and 2019 final run.,https://www.uefa.com/uefachampionsleague/news/0253-0e904ea2629d-a8657de76e1c-1000--mehdi-taremi-heung-min-son-takumi-minamino-maksim-shatsk/
+Korea,Jeong Woo-yeong,Bayern Munich,appeared,2018-19,2018-19,Medium,Bayern Munich UCL appearance/registration.,
+Korea,Hwang Hee-chan,Red Bull Salzburg,appeared,2019-20,2019-20,High,Red Bull Salzburg UCL appearances and goals.,https://en.wikipedia.org/wiki/Hwang_Hee-chan
+Korea,Hwang Hee-chan,RB Leipzig,appeared,2020-21,2020-21,High,RB Leipzig UCL appearances.,https://en.wikipedia.org/wiki/Hwang_Hee-chan
+Korea,Lee Kang-in,Valencia,appeared,2018-19,2019-20,High,Valencia UCL appearances.,
+Korea,Lee Kang-in,Paris Saint-Germain,appeared,2023-24,2025-26,High,PSG UCL appearances.,
+Korea,Kim Min-jae,Napoli,appeared,2022-23,2022-23,High,Napoli UCL appearances.,
+Korea,Kim Min-jae,Bayern Munich,appeared,2023-24,2025-26,High,Bayern Munich UCL appearances.,
+Korea,Hwang In-beom,Red Star Belgrade,appeared,2023-24,2023-24,High,Red Star Belgrade UCL appearances.,
+Korea,Hwang In-beom,Feyenoord,appeared,2024-25,2025-26,High,Feyenoord UCL appearances.,
+Korea,Oh Hyeon-gyu,Celtic,appeared,2023-24,2023-24,High,Celtic UCL appearances.,
+Korea,Yang Hyun-jun,Celtic,appeared,2023-24,2023-24,High,Celtic UCL appearances.,
+Korea,Kwon Hyeok-kyu,Celtic,registered_only,2023-24,2023-24,Low,Possible Celtic UCL registration; no appearance confirmed.,
+Korea,Park Joo-ho,FC Basel,appeared,2011-12,2011-12,High,FC Basel UCL appearances in 2011-12; part of Basel side that advanced from group including Manchester United.
+
+
+
+
