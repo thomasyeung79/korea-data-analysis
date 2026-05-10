@@ -673,3 +673,290 @@ with tab1:
             default=["Food", "Shopping"],
             format_func=lambda x: display_interest(x, language)
         )
+
+        travel_style = st.selectbox(
+            t["style"],
+            STYLE_OPTIONS,
+            format_func=lambda x: display_style(x, language)
+        )
+
+    if st.button(t["generate"], use_container_width=True):
+        if not customer_name:
+            st.error(
+                "Please enter customer name."
+                if language == "English"
+                else "请输入客户姓名。"
+            )
+            st.stop()
+
+        if not travel_route:
+            st.error(
+                "Please select at least one location."
+                if language == "English"
+                else "请至少选择一个地点。"
+            )
+            st.stop()
+
+        estimated_price = estimate_price(
+            travel_route,
+            days,
+            budget,
+            interests,
+            travel_style
+        )
+
+        ai_plan = None
+
+        if OPENAI_ENABLED:
+            try:
+                with st.spinner(
+                    "Generating AI itinerary..."
+                    if language == "English"
+                    else "正在生成AI旅行路线..."
+                ):
+                    ai_plan = generate_ai_itinerary(
+                        customer_name,
+                        travel_route,
+                        days,
+                        budget,
+                        interests,
+                        travel_style,
+                        language
+                    )
+            except Exception as e:
+                st.warning(
+                    f"OpenAI generation failed. Fallback itinerary will be used. Error: {e}"
+                    if language == "English"
+                    else f"OpenAI生成失败，将使用基础路线。错误：{e}"
+                )
+
+        fallback_plan = generate_fallback_itinerary(
+            travel_route,
+            days,
+            interests,
+            language
+        )
+
+        st.metric(
+            t["estimated"],
+            f"${estimated_price} AUD"
+        )
+
+        st.markdown(
+            "### AI Itinerary"
+            if language == "English"
+            else "### AI旅行路线"
+        )
+
+        if ai_plan:
+            st.markdown(ai_plan)
+        else:
+            st.dataframe(
+                pd.DataFrame(fallback_plan),
+                use_container_width=True
+            )
+
+        order = {
+            "order_id": str(uuid.uuid4())[:8].upper(),
+            "customer_name": customer_name,
+
+            "travel_route": travel_route,
+            "travel_route_display": [
+                display_location(x, language)
+                for x in travel_route
+            ],
+            "main_route": " → ".join(travel_route),
+            "main_route_display": " → ".join([
+                display_location(x, language)
+                for x in travel_route
+            ]),
+
+            "days": days,
+            "budget": budget,
+            "budget_display": display_budget(budget, language),
+
+            "interests": interests,
+            "interests_display": [
+                display_interest(x, language)
+                for x in interests
+            ],
+
+            "travel_style": travel_style,
+            "travel_style_display": display_style(travel_style, language),
+
+            "estimated_price_aud": estimated_price,
+            "payment_status": "Unpaid",
+            "order_status": "Draft",
+            "created_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "language": language,
+            "ai_plan": ai_plan,
+            "itinerary": fallback_plan
+        }
+
+        save_order(order)
+
+        st.success(
+            f'{t["success"]} Order ID: {order["order_id"]}'
+        )
+
+with tab2:
+    orders = load_orders()
+
+    if not orders:
+        st.info(t["no_orders"])
+
+    else:
+        rows = []
+
+        for o in orders:
+            rows.append({
+                "Order ID": o.get("order_id"),
+                "Customer": o.get("customer_name"),
+                "Route": o.get("main_route_display", o.get("main_route", "Unknown")),
+                "Days": o.get("days"),
+                "Budget": o.get("budget_display", o.get("budget")),
+                "Price AUD": o.get("estimated_price_aud"),
+                "Payment": o.get("payment_status"),
+                "Status": o.get("order_status"),
+                "Created At": o.get("created_at")
+            })
+
+        df_orders = pd.DataFrame(rows)
+
+        st.dataframe(
+            df_orders,
+            use_container_width=True
+        )
+
+        selected_order_id = st.selectbox(
+            "Select Order" if language == "English" else "选择订单",
+            [o["order_id"] for o in orders]
+        )
+
+        selected_order = next(
+            o for o in orders
+            if o["order_id"] == selected_order_id
+        )
+
+        st.markdown(f"### {t['order_detail']}")
+
+        st.write(
+            "Customer:" if language == "English" else "客户：",
+            selected_order.get("customer_name", "")
+        )
+
+        st.write(
+            "Route:" if language == "English" else "路线：",
+            selected_order.get("main_route_display", selected_order.get("main_route", "Unknown"))
+        )
+
+        st.write(
+            "Interests:" if language == "English" else "兴趣：",
+            ", ".join(
+                selected_order.get(
+                    "interests_display",
+                    selected_order.get("interests", [])
+                )
+            )
+        )
+
+        st.write(
+            "Budget:" if language == "English" else "预算：",
+            selected_order.get("budget_display", selected_order.get("budget", "Unknown"))
+        )
+
+        st.write(
+            "Estimated Price:" if language == "English" else "预估价格：",
+            f"${selected_order.get('estimated_price_aud', 0)} AUD"
+        )
+
+        if selected_order.get("ai_plan"):
+            st.markdown(selected_order["ai_plan"])
+        else:
+            st.dataframe(
+                pd.DataFrame(selected_order.get("itinerary", [])),
+                use_container_width=True
+            )
+
+with tab3:
+    orders = load_orders()
+
+    if not orders:
+        st.info(t["no_data"])
+
+    else:
+        df = pd.DataFrame(orders)
+
+        c1, c2, c3 = st.columns(3)
+
+        c1.metric(
+            "Total Orders" if language == "English" else "订单总数",
+            len(df)
+        )
+
+        if "estimated_price_aud" in df.columns:
+            total_revenue = df["estimated_price_aud"].sum()
+            avg_order = round(df["estimated_price_aud"].mean(), 2)
+        else:
+            total_revenue = 0
+            avg_order = 0
+
+        c2.metric(
+            "Total Revenue Estimate" if language == "English" else "预估总收入",
+            f"${total_revenue} AUD"
+        )
+
+        c3.metric(
+            "Average Order Value" if language == "English" else "平均订单金额",
+            f"${avg_order} AUD"
+        )
+
+        st.markdown(
+            f"### {t['route_popularity']}"
+        )
+
+        if "main_route_display" in df.columns:
+            st.bar_chart(
+                df["main_route_display"].value_counts()
+            )
+        elif "main_route" in df.columns:
+            st.bar_chart(
+                df["main_route"].value_counts()
+            )
+        else:
+            st.warning(
+                "No route data available yet."
+                if language == "English"
+                else "暂无路线数据。"
+            )
+
+        st.markdown(
+            f"### {t['budget_distribution']}"
+        )
+
+        if "budget_display" in df.columns:
+            st.bar_chart(
+                df["budget_display"].value_counts()
+            )
+        elif "budget" in df.columns:
+            st.bar_chart(
+                df["budget"].value_counts()
+            )
+        else:
+            st.warning(
+                "No budget data available yet."
+                if language == "English"
+                else "暂无预算数据。"
+            )
+
+        st.markdown(
+            f"### {t['raw_data']}"
+        )
+
+        st.dataframe(
+            df,
+            use_container_width=True
+        )
+
+st.divider()
+st.caption(t["footer"])
