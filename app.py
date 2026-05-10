@@ -90,6 +90,24 @@ show_optional_music(
     start=20
 )
 
+st.subheader("👤 User Profile")
+
+default_name = st.session_state.get("user_name", "")
+
+user_name = st.text_input(
+    "Enter your username",
+    value=default_name
+)
+
+if user_name:
+    st.session_state["user_name"] = user_name
+
+    st.success(
+        f"Welcome, {user_name}!"
+    )
+
+st.divider()
+
 st.markdown("## 🚀 Enter the Experience")
 
 st.divider()
