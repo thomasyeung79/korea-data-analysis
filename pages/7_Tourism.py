@@ -224,3 +224,6 @@ transport, food, culture, shopping, cities, and regional diversity.
 
 Tourism turns Korea’s national system into something visitors can personally feel.
 """)
+
+if st.button("Plan a trip to Korea", use_container_width=True):
+    st.switch_page("pages/7a_korea_travel_system.py")
