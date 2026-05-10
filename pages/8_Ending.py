@@ -277,7 +277,13 @@ if st.button("Generate AI Insight"):
         )
 
         try:
-            report = json.loads(result)
+            clean_result = result.strip()
+
+            clean_result = clean_result.replace("```json", "")
+            clean_result = clean_result.replace("```", "")
+
+            report = json.loads(clean_result)
+            
         except json.JSONDecodeError:
             report = {
                 "error": "AI returned non-JSON content.",
