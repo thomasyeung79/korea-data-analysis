@@ -36,6 +36,27 @@ st.markdown("""
 
 st.title("📈 User Perception History")
 
+language = st.session_state.get("language", "English")
+user_name = st.session_state.get("user_name")
+
+if not user_name:
+    st.warning(
+        "Please return to Home and enter your username first."
+        if language == "English"
+        else "请先返回首页输入用户名。"
+    )
+
+    if st.button(
+        "🏠 Back to Home"
+        if language == "English"
+        else "🏠 返回首页"
+    ):
+        st.switch_page("app.py")
+
+    st.stop()
+
+st.info(f"👤 {user_name}")
+
 if st.button("🏠 Back to Home"):
     st.switch_page("app.py")
 
@@ -44,6 +65,11 @@ try:
         results = json.load(f)
 except FileNotFoundError:
     results = []
+
+results = [
+    r for r in results
+    if r.get("username") == user_name
+]
 
 if not results:
     st.warning("No user results saved yet.")
