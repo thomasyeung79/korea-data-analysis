@@ -822,7 +822,12 @@ with tab1:
         )
 
 with tab2:
-    orders = load_orders()
+    all_orders = load_orders()
+
+    orders = [
+        o for o in all_orders
+        if o.get("user_name") == user_name
+    ]
 
     if not orders:
         st.info(t["no_orders"])
@@ -901,7 +906,12 @@ with tab2:
             )
 
 with tab3:
-    orders = load_orders()
+    all_orders = load_orders()
+
+    orders = [
+        o for o in all_orders
+        if o.get("user_name") == user_name
+    ]
 
     if not orders:
         st.info(t["no_data"])
