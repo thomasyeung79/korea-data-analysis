@@ -838,7 +838,7 @@ with tab2:
         for o in orders:
             rows.append({
                 "Order ID": o.get("order_id"),
-                "Customer": o.get("customer_name"),
+                "Customer": o.get("user_name"),
                 "Route": o.get("main_route_display", o.get("main_route", "Unknown")),
                 "Days": o.get("days"),
                 "Budget": o.get("budget_display", o.get("budget")),
