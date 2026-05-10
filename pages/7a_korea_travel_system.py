@@ -584,7 +584,7 @@ You are a Korea travel intelligence planner.
 
 Please generate a practical Korea multi-city travel itinerary.
 
-Customer name: {customer_name}
+Customer name: {user_name}
 Travel route: {route_text}
 Trip days: {days}
 Budget level: {budget_text}
@@ -780,6 +780,7 @@ with tab1:
 
         order = {
             "order_id": str(uuid.uuid4())[:8].upper(),
+            "user_name": user_name,
             "customer_name": user_name,
 
             "travel_route": travel_route,
@@ -827,6 +828,7 @@ with tab2:
     orders = [
         o for o in all_orders
         if o.get("user_name") == user_name
+        or o.get("customer_name") == user_name
     ]
 
     if not orders:
@@ -911,6 +913,7 @@ with tab3:
     orders = [
         o for o in all_orders
         if o.get("user_name") == user_name
+        or o.get("customer_name") == user_name
     ]
 
     if not orders:
