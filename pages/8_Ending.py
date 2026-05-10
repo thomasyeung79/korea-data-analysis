@@ -124,6 +124,21 @@ st.markdown("""
 
 st.title("🏁 Final Evaluation")
 
+user_name = st.session_state.get("user_name")
+
+if not user_name:
+
+    st.warning(
+        "Please return to Home and enter your username first."
+    )
+
+    if st.button("🏠 Back to Home"):
+        st.switch_page("app.py")
+
+    st.stop()
+
+st.info(f"👤 {user_name}")
+
 if st.button("🏠 Back to Home"):
     st.switch_page("app.py")
 
@@ -203,7 +218,9 @@ default_scores = {
     "Analysis": 8,
     "Technology": 9,
     "Culture": 9,
+    "K-pop": 8.5,
     "Sports": 8,
+    "Football": 8.5,
     "Society": 7,
     "Tourism": 8
 }
@@ -232,7 +249,7 @@ st.subheader("🧠 Your Korea Perception")
 
 st.caption("Rate your personal view before seeing the final analysis.")
 
-username = st.text_input("Enter your name or nickname (optional)")
+st.info(f"👤 {user_name}")
 
 q1 = st.slider("How strong is Korea in technology?", 0, 10, 5)
 q2 = st.slider("How strong is Korea in culture?", 0, 10, 5)
@@ -291,7 +308,7 @@ if st.button("Generate AI Insight"):
             st.success(report["strategic_insight"])
 
         save_user_result(
-            username,
+            user_name,
             q1,
             q2,
             q3,
