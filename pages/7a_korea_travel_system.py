@@ -622,6 +622,25 @@ language = st.selectbox(
 
 t = TEXT[language]
 
+user_name = st.session_state.get("user_name")
+
+if not user_name:
+
+    st.warning(
+        "Please return to Home and enter your username first."
+        if language == "English"
+        else "请先返回首页输入用户名。"
+    )
+
+    if st.button(
+        "🏠 Back to Home"
+        if language == "English"
+        else "🏠 返回首页"
+    ):
+        st.switch_page("app.py")
+
+    st.stop()
+
 st.markdown(f"""
 # {t["title"]}
 
@@ -644,7 +663,10 @@ with tab1:
     col1, col2 = st.columns(2)
 
     with col1:
-        customer_name = st.text_input(t["customer"])
+
+        st.info(
+            f"👤 {user_name}"
+        )
 
         travel_route = st.multiselect(
             t["route"],
@@ -681,7 +703,7 @@ with tab1:
         )
 
     if st.button(t["generate"], use_container_width=True):
-        if not customer_name:
+        if not user_name:
             st.error(
                 "Please enter customer name."
                 if language == "English"
@@ -715,7 +737,7 @@ with tab1:
                     else "正在生成AI旅行路线..."
                 ):
                     ai_plan = generate_ai_itinerary(
-                        customer_name,
+                        user_name,
                         travel_route,
                         days,
                         budget,
@@ -758,7 +780,7 @@ with tab1:
 
         order = {
             "order_id": str(uuid.uuid4())[:8].upper(),
-            "customer_name": customer_name,
+            "customer_name": user_name,
 
             "travel_route": travel_route,
             "travel_route_display": [
