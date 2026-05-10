@@ -276,12 +276,22 @@ if st.button("Generate AI Insight"):
             module_scores
         )
 
-        report = json.loads(result)
+        try:
+            report = json.loads(result)
+        except json.JSONDecodeError:
+            report = {
+                "error": "AI returned non-JSON content.",
+                "raw_text": result
+            }
 
         st.subheader("📄 AI Strategic Report")
 
         if "error" in report:
             st.warning(report["error"])
+
+            if "raw_text" in report:
+                st.markdown("### Raw AI Output")
+                st.write(report["raw_text"])
         else:
             st.markdown("### 🧠 Executive Summary")
             st.info(report["executive_summary"])
