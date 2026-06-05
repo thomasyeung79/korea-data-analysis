@@ -1,0 +1,40 @@
+# Backend secrets
+backend/.env
+
+# Database
+*.db
+*.sqlite3
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/
+
+# Old data files (migrated to DB)
+user_results.json
+korea_travel_orders.json
+pages/korea_travel_orders.json
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Images
+*.jpg
+*.png

@@ -1,0 +1,224 @@
+import streamlit as st
+import pandas as pd
+from ui_style import apply_product_style, tr
+from api_client import get_api
+
+def show_optional_music(title, artist, url, start=0):
+    video_id = url.split("v=")[-1].split("&")[0]
+
+    with st.expander("🎵 Optional Music (Official Source)"):
+        st.caption(f"Now Playing: {title} - {artist}")
+
+        st.markdown(f"""
+        <iframe
+            width="360"
+            height="203"
+            src="https://www.youtube.com/embed/{video_id}?start={start}"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+        """, unsafe_allow_html=True)
+
+        st.caption("Music via official YouTube embed.")
+
+st.set_page_config(
+    page_title="K-pop",
+    page_icon="🎤",
+    layout="wide"
+)
+
+apply_product_style()
+
+st.title(tr("🎤 Culture Strategy Radar", "🎤 文化策略雷达"))
+
+if st.button(tr("🏠 Back to Home", "🏠 返回首页")):
+    st.switch_page("app.py")
+
+show_optional_music(
+    "Growl",
+    "EXO",
+    "https://www.youtube.com/watch?v=I3dezFzsNss"
+)
+
+st.caption(tr("Use K-pop, K-drama, global groups, and lifestyle signals to find campaign and content angles.", "利用 K-pop、韩剧、全球组合与生活方式信号寻找活动和内容角度。"))
+
+st.divider()
+
+st.subheader(tr("🧠 Entertainment System Explorer", "🧠 娱乐系统探索器"))
+
+selected_area = st.selectbox(
+    "Choose an area to explore",
+    [
+        "K-pop Industry",
+        "K-drama Global Impact",
+        "Korean-built Global Groups",
+        "Entertainment as Soft Power"
+    ]
+)
+
+entertainment_map = {
+    "K-pop Industry": {
+        "meaning": "K-pop is built through training systems, company strategy, digital platforms, and global fandom.",
+        "insight": "K-pop is not just music. It is an industrial system."
+    },
+    "K-drama Global Impact": {
+        "meaning": "K-dramas reach global audiences through streaming platforms and strong storytelling.",
+        "insight": "K-drama expands Korea’s cultural influence beyond music."
+    },
+    "Korean-built Global Groups": {
+        "meaning": "Korean companies create groups targeting Japan, China, the US, and other markets.",
+        "insight": "Korea exports not only artists, but also the idol production model."
+    },
+    "Entertainment as Soft Power": {
+        "meaning": "Entertainment strengthens Korea’s image, tourism, language interest, and brand value.",
+        "insight": "Cultural exports turn national image into global influence."
+    }
+}
+
+selected = entertainment_map[selected_area]
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown(f"""
+    <div class="card">
+        <h3>📌 What It Means</h3>
+        <p>{selected["meaning"]}</p >
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown(f"""
+    <div class="card">
+        <h3>💡 Insight</h3>
+        <p>{selected["insight"]}</p >
+    </div>
+    """, unsafe_allow_html=True)
+
+st.divider()
+
+st.subheader(tr("🎤 K-pop Industry Intelligence", "🎤 K-pop 产业智能分析"))
+
+st.markdown("""
+K-pop is one of the most visible parts of Korea's cultural export system.
+
+A dedicated K-pop analytics module explores:
+
+- company strategy
+- generation trends
+- global market focus
+- US market potential
+- next global hit prediction
+""")
+
+if st.button("🎤 Open K-pop Industry Analysis"):
+    st.switch_page("pages/4a_Kpop.py")
+
+st.divider()
+
+st.subheader(tr("🎬 K-drama as Cultural Export", "🎬 韩剧作为文化输出"))
+
+drama_data = pd.DataFrame({
+    "Drama": ["Squid Game", "The Glory", "Crash Landing on You", "Kingdom"],
+    "Global Impact": [10, 9, 9, 8],
+    "Main Strength": [
+        "Global streaming breakthrough",
+        "Strong storytelling and social themes",
+        "Romance and cross-border appeal",
+        "Genre expansion"
+    ]
+})
+
+st.dataframe(drama_data, use_container_width=True)
+
+st.bar_chart(
+    drama_data.set_index("Drama")["Global Impact"]
+)
+
+st.caption(
+    "Scores are approximate and reflect global reach (streaming popularity), cultural impact, and storytelling innovation."
+)
+
+st.success("""
+K-drama strengthens Korea’s soft power by making Korean language, lifestyle, fashion, food, and social themes more visible worldwide.
+""")
+
+st.divider()
+
+st.subheader(tr("🌍 Korean-built Global Groups", "🌍 韩国打造的全球组合"))
+
+global_groups = pd.DataFrame({
+    "Group": ["NiziU", "&TEAM", "WayV", "GIRLSET"],
+    "Target Market": ["Japan", "Japan", "China", "USA"],
+    "Company": ["JYP", "HYBE", "SM", "JYP"],
+    "Meaning": [
+        "Japanese group built with Korean idol system",
+        "Japan-focused group under Korean company system",
+        "China-focused group built under SM/NCT system",
+        "US-focused group using K-pop training model"
+    ]
+})
+
+st.dataframe(global_groups, use_container_width=True)
+
+st.info("""
+This shows that Korea is not only exporting Korean artists.
+
+It is exporting the production method itself:
+training, concept planning, performance design, marketing, and fandom management.
+""")
+
+st.divider()
+
+st.subheader(tr("📊 Cultural Export Simulator", "📊 文化输出模拟器"))
+
+music = st.slider("Music Influence", 0, 10, 9)
+drama = st.slider("Drama Influence", 0, 10, 9)
+global_groups_score = st.slider("Global Group Strategy", 0, 10, 8)
+platform = st.slider("Digital Platform Power", 0, 10, 9)
+
+culture_score = (
+    music * 0.3 +
+    drama * 0.3 +
+    global_groups_score * 0.2 +
+    platform * 0.2
+)
+
+st.metric("Korean Entertainment Power Score", round(culture_score, 2))
+
+if culture_score >= 8:
+    st.success("Strong cultural export system: music, drama, global groups, and platforms work together effectively.")
+elif culture_score >= 6:
+    st.info("Moderate cultural export system: strong influence exists, but some areas may need further development.")
+else:
+    st.warning("Limited cultural export system: influence may depend too much on one area.")
+
+st.caption(
+    "This simplified score shows how multiple cultural industries combine to create global influence."
+)
+
+api = get_api()
+if api.is_authenticated:
+    try:
+        api.save_module_score("Culture", culture_score)
+    except Exception:
+        pass
+
+st.divider()
+
+st.subheader(tr("🧠 Key Takeaway", "🧠 核心结论"))
+
+st.info("""
+Korea’s entertainment power is not limited to K-pop.
+
+It is a system made of:
+
+- 🎤 K-pop
+- 🎬 K-drama
+- 🌍 Global idol production
+- 📱 Digital platforms
+- 💬 Global fandoms
+
+👉 The real strength is not one song, one group, or one company.  
+👉 The real strength is the system behind them.
+""")
