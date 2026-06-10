@@ -3,9 +3,10 @@ Zero-dependency API client for Korea Analysis System.
 Simple `requests` wrapper — no auth, no session state needed in V0.1.
 """
 from typing import Any, Optional
+import os
 import requests as _requests
 
-API_BASE_URL = "http://localhost:8000"
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000")
 
 
 class APIClient:
@@ -87,3 +88,37 @@ class APIClient:
 
     def list_countries(self) -> list[str]:
         return self._request("GET", "/api/v1/countries/countries/list")
+
+    # ── Perception surveys ──
+
+    def submit_survey(
+        self,
+        economy_score: int,
+        technology_score: int,
+        education_score: int,
+        culture_score: int,
+        global_influence_score: int,
+        quality_of_life_score: int,
+        display_name: Optional[str] = None,
+        comment: Optional[str] = None,
+    ) -> dict:
+        return self._request(
+            "POST",
+            "/api/v1/perception-surveys",
+            json={
+                "display_name": display_name or "Anonymous",
+                "economy_score": economy_score,
+                "technology_score": technology_score,
+                "education_score": education_score,
+                "culture_score": culture_score,
+                "global_influence_score": global_influence_score,
+                "quality_of_life_score": quality_of_life_score,
+                "comment": comment,
+            },
+        )
+
+    def get_surveys(self, limit: int = 20) -> list[dict]:
+        return self._request("GET", "/api/v1/perception-surveys", params={"limit": limit})
+
+    def get_survey_stats(self) -> dict:
+        return self._request("GET", "/api/v1/perception-surveys/stats")

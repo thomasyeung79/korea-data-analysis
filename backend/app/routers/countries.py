@@ -3,9 +3,9 @@ from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
-from backend.app.database import get_db
-from backend.app.models import CountryScore
-from backend.app.schemas import CountryScoreCreate, CountryScoreResponse
+from ..database import get_db
+from ..models import CountryScore
+from ..schemas import CountryScoreCreate, CountryScoreResponse
 
 router = APIRouter(prefix="/api/v1/countries", tags=["countries"])
 

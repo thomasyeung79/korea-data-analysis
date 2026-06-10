@@ -1,44 +1,35 @@
-# Korea Analysis System 🇰🇷
+# East Asia Perception Lab 🌏
 
-> **v0.1 — Day 1: Minimum vertical slice**
+> **v0.2 — Comparison Engine**
 
-A bilingual data + AI platform that measures South Korea's global influence across economy, innovation, culture, and more — benchmarked against regional peers.
+A quantitative benchmarking platform that scores six East Asian economies across six dimensions — all normalised to a 0–10 scale for fair comparison.
+
+**Countries:** Korea · Japan · China · Singapore · Vietnam · Thailand  
+**Dimensions:** Economy · Technology · Education · Culture · Global Influence · Quality of Life
 
 ---
 
 ## Architecture
 
 ```
-Streamlit Frontend
-    │  HTTP/JSON
-    ▼
-FastAPI Backend
-    │  SQLAlchemy ORM
-    ▼
-SQLite Database (country_scores)
+Streamlit Frontend     FastAPI Backend      SQLite
+  (Comparison Lab)  →  (REST API)       →  (country_scores)
 ```
 
 ---
 
 ## Quick start
 
-### 1. Backend
-
 ```bash
+# Backend (terminal 1)
 cd backend
 pip install -r requirements.txt
 uvicorn app.main:app --reload
-```
 
-### 2. Frontend
-
-```bash
-# In project root
+# Frontend (terminal 2)
 pip install -r requirements.txt
 streamlit run app.py
 ```
-
-### 3. Open
 
 | What | URL |
 |------|-----|
@@ -47,66 +38,42 @@ streamlit run app.py
 
 ---
 
-## What's inside (Day 1)
+## Pages
 
-### Backend (FastAPI)
+| Page | Description |
+|------|-------------|
+| Home | Dynamic KPIs, country cards, navigation |
+| Comparison Lab | Plotly radar chart, bar chart, data table |
+
+## API
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/api/v1/health` | GET | Health check |
-| `/api/v1/countries` | GET | List scores (filterable by ?country, ?year, ?category) |
+| `/api/v1/countries` | GET | List scores (?country, ?year, ?category) |
+| `/api/v1/countries/{country}` | GET | Scores for one country |
 | `/api/v1/countries` | POST | Create a score |
 | `/api/v1/countries` | PUT | Update a score |
-| `/api/v1/countries/{country}` | GET | Scores for one country |
-| `/api/v1/countries/categories/list` | GET | All distinct categories |
-| `/api/v1/countries/countries/list` | GET | All distinct countries |
-
-### Database (one table)
-
-**`country_scores`** — `country`, `year`, `category`, `score`, `source`
-
-Pre-seeded with East Asia comparison data (South Korea / Japan / China) across:
-- GDP per capita
-- Innovation Rank
-- Cultural Influence
-- Global Influence
-
-### Frontend (Streamlit, 2 pages)
-
-1. **Home** — Overview with live API stats
-2. **Data Explorer** — Filter, visualise, and add/update scores
+| `/api/v1/countries/categories/list` | GET | Distinct categories |
+| `/api/v1/countries/countries/list` | GET | Distinct countries |
 
 ---
 
 ## Project structure
 
 ```
-south_korea_perception_analysis/
 ├── backend/
 │   ├── app/
-│   │   ├── main.py            # FastAPI entry + seed data
-│   │   ├── config.py           # Settings
-│   │   ├── database.py         # SQLAlchemy engine
-│   │   ├── models.py           # CountryScore model
-│   │   ├── schemas.py          # Pydantic request/response
+│   │   ├── main.py              # FastAPI + seed data
+│   │   ├── config.py / database.py / models.py / schemas.py
 │   │   └── routers/
-│   │       ├── health.py       # GET /health
-│   │       └── countries.py    # CRUD /countries
+│   │       ├── health.py
+│   │       └── countries.py
 │   └── requirements.txt
 ├── pages/
-│   ├── 1_Data_Explorer.py      # Explore + edit scores
-├── app.py                      # Home page
-├── api_client.py               # Frontend↔Backend bridge
-├── ui_style.py                 # CSS
+│   └── 1_Comparison_Lab.py       # Radar + bar charts
+├── app.py                        # Home page
+├── api_client.py                 # Frontend↔Backend
+├── ui_style.py                   # CSS
 └── requirements.txt
 ```
-
----
-
-## Coming in V0.2
-
-- Perception survey + AI report generation
-- Historical timeline module
-- User history (saved reports)
-- i18n (中文/English)
-- Comparison charts

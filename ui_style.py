@@ -1,26 +1,6 @@
 import streamlit as st
 
 
-def get_language():
-    return st.session_state.get("language", "English")
-
-
-def tr(en_text, zh_text):
-    return zh_text if get_language() == "中文" else en_text
-
-
-def language_selector(key="language_selector"):
-    current = get_language()
-    language = st.selectbox(
-        "Language / 语言",
-        ["English", "中文"],
-        index=0 if current == "English" else 1,
-        key=key,
-    )
-    st.session_state["language"] = language
-    return language
-
-
 def apply_product_style():
     st.markdown(
         """

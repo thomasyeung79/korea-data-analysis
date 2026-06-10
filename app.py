@@ -1,9 +1,8 @@
 import streamlit as st
 
-# Page must be first command
 st.set_page_config(
-    page_title="Korea Analysis System",
-    page_icon="🇰🇷",
+    page_title="East Asia Perception Lab",
+    page_icon="🌏",
     layout="wide",
 )
 
@@ -14,33 +13,30 @@ apply_product_style()
 
 api = APIClient()
 
+# ── Hero ──
+
 st.markdown(
     """
 <div class="product-hero">
     <section class="hero-panel">
-        <div class="brand-row"><span class="brand-dot"></span>KOREA ANALYSIS SYSTEM</div>
+        <div class="brand-row"><span class="brand-dot"></span>EAST ASIA PERCEPTION LAB</div>
         <h1>Measure. Compare. Understand.</h1>
         <p>
-            A bilingual data + AI platform that measures South Korea's global influence
-            across economy, innovation, culture, and more — benchmarked against regional peers.
+            A quantitative benchmarking platform that scores six East Asian economies
+            across Economy, Technology, Education, Culture, Global Influence, and Quality of Life.
         </p>
-        <div class="hero-kpi">
-            <div class="kpi-card"><strong>3</strong><span>Countries</span></div>
-            <div class="kpi-card"><strong>4+</strong><span>Categories</span></div>
-            <div class="kpi-card"><strong>API</strong><span>Data-driven</span></div>
-        </div>
     </section>
     <aside class="hero-aside">
         <div>
-            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>v0.1 · Day 1</div>
-            <h3 style="margin-top:1.2rem;">Minimum vertical slice</h3>
+            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>v0.2 · Comparison Engine</div>
+            <h3 style="margin-top:1.2rem;">6 countries · 6 dimensions</h3>
             <p style="color:#cbd5e1;">
-                Backend · Database · API · Frontend — wired end-to-end.
+                All scores normalised to a 0–10 scale for fair comparison.
             </p>
         </div>
         <div class="insight-card" style="background:#111c33;border-color:#26344f;">
             <p style="margin:0;color:#dbeafe;">
-                Built with FastAPI + SQLite + Streamlit.
+                Korea · Japan · China · Singapore · Vietnam · Thailand
             </p>
         </div>
     </aside>
@@ -49,56 +45,97 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ── Quick stats from API ──
+# ── Dynamic KPIs ──
 
 try:
     scores = api.get_country_scores()
-    countries = set(s["country"] for s in scores)
-    categories = set(s["category"] for s in scores)
+    all_countries = sorted(set(s["country"] for s in scores))
+    all_categories = sorted(set(s["category"] for s in scores))
 
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Total data points", len(scores))
-    col2.metric("Countries", len(countries))
-    col3.metric("Categories", len(categories))
-    col4.metric("API status", "✅ Online")
+    col1.metric("Data points", len(scores))
+    col2.metric("Countries", len(all_countries))
+    col3.metric("Categories", len(all_categories))
+    col4.metric("API", "✅ Online")
 except Exception as e:
     st.warning(f"Backend not reachable: {e}")
     st.info("Start the backend: `cd backend && uvicorn app.main:app --reload`")
+    all_countries = ["Korea", "Japan", "China", "Singapore", "Vietnam", "Thailand"]
+
+st.divider()
+
+# ── Country Cards ──
+
+st.markdown(f'<div class="section-label">COUNTRIES</div>', unsafe_allow_html=True)
+st.markdown("## Six economies, one dashboard")
+
+FLAGS = {
+    "Korea": "🇰🇷", "Japan": "🇯🇵", "China": "🇨🇳",
+    "Singapore": "🇸🇬", "Vietnam": "🇻🇳", "Thailand": "🇹🇭",
+}
+
+cols = st.columns(3)
+for i, country in enumerate(all_countries):
+    flag = FLAGS.get(country, "🌏")
+    with cols[i % 3]:
+        count = sum(1 for s in scores if s["country"] == country) if scores else 0
+        st.markdown(
+            f"""
+        <div class="module-card" style="min-height:120px;">
+            <div class="module-tag">{flag} {country}</div>
+            <h3 style="font-size:1.5rem;margin:0.5rem 0;">{country}</h3>
+            <p>{count} data points · 6 categories</p>
+        </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+st.divider()
 
 # ── Navigation ──
 
-st.markdown(f'<div class="section-label">NAVIGATION</div>', unsafe_allow_html=True)
+st.markdown(f'<div class="section-label">TOOLS</div>', unsafe_allow_html=True)
 st.markdown("## Explore the data")
 
-col1, col2 = st.columns(2)
+nav1, nav2, nav3 = st.columns(3)
 
-with col1:
+with nav1:
     st.markdown(
         """
     <div class="module-card">
-        <div class="module-tag">DATA · DAY 1</div>
-        <h3>📊 Data Explorer</h3>
-        <p>Browse, filter, and visualise country scores across categories and years.</p>
+        <div class="module-tag">COMPARE · DAY 2</div>
+        <h3>📊 Comparison Lab</h3>
+        <p>Radar chart comparison, category explorer, and raw data table.</p>
     </div>
         """,
         unsafe_allow_html=True,
     )
-    if st.button("Open Data Explorer", use_container_width=True):
-        st.switch_page("pages/1_Data_Explorer.py")
+    if st.button("Open Comparison Lab", use_container_width=True):
+        st.switch_page("pages/1_Comparison_Lab.py")
 
-with col2:
+with nav2:
     st.markdown(
         """
     <div class="module-card">
-        <div class="module-tag">API · DAY 1</div>
+        <div class="module-tag">SURVEY · DAY 3</div>
+        <h3>🧭 Perception Survey</h3>
+        <p>Collect user perception, compare it with Korea baseline, and show community stats.</p>
+    </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    if st.button("Take Perception Survey", use_container_width=True):
+        st.switch_page("pages/2_Perception_Survey.py")
+
+with nav3:
+    st.markdown(
+        """
+    <div class="module-card">
+        <div class="module-tag">API · DAY 2</div>
         <h3>🔌 API Playground</h3>
-        <p>FastAPI auto-docs available at <code>/docs</code> — test endpoints directly.</p>
+        <p>FastAPI auto-docs — test every endpoint live.</p>
     </div>
         """,
         unsafe_allow_html=True,
     )
-    st.markdown(
-        f'<a href="http://localhost:8000/docs" target="_blank">'
-        f'<button style="width:100%;padding:0.5rem;border-radius:8px;border:1px solid #cbd5e1;background:white;font-weight:700;cursor:pointer;">Open API Docs →</button></a>',
-        unsafe_allow_html=True,
-    )
+    st.link_button("Open API Docs →", "http://localhost:8000/docs", use_container_width=True)

@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.app.database import engine, Base
-from backend.app.routers import health, countries
+from .database import engine, Base
+from .routers import health, countries, surveys
 
 app = FastAPI(
     title="Korea Analysis System",
-    description="A bilingual data + AI platform for measuring South Korea's global influence.",
+    description="A bilingual data + AI platform for measuring Korea's global influence.",
     version="0.1.0",
 )
 
@@ -23,8 +23,8 @@ def on_startup():
     Base.metadata.create_all(bind=engine)
 
     # Seed data if empty
-    from backend.app.database import SessionLocal
-    from backend.app.models import CountryScore
+    from .database import SessionLocal
+    from .models import CountryScore
     db = SessionLocal()
     count = db.query(CountryScore).count()
     if count == 0:
@@ -33,26 +33,30 @@ def on_startup():
 
 
 def _seed_data(db):
-    from backend.app.models import CountryScore
+    from .models import CountryScore
 
-    seeds = [
-        # GDP per capita (USD)
-        CountryScore(country="South Korea", year=2024, category="GDP per capita", score=36238, source="World Bank"),
-        CountryScore(country="Japan", year=2024, category="GDP per capita", score=32487, source="World Bank"),
-        CountryScore(country="China", year=2024, category="GDP per capita", score=13303, source="World Bank"),
-        # Innovation Rank (lower = better)
-        CountryScore(country="South Korea", year=2024, category="Innovation Rank", score=6, source="WIPO GII"),
-        CountryScore(country="Japan", year=2024, category="Innovation Rank", score=13, source="WIPO GII"),
-        CountryScore(country="China", year=2024, category="Innovation Rank", score=11, source="WIPO GII"),
-        # Cultural Influence (0-10)
-        CountryScore(country="South Korea", year=2024, category="Cultural Influence", score=9, source="KAS estimate"),
-        CountryScore(country="Japan", year=2024, category="Cultural Influence", score=8, source="KAS estimate"),
-        CountryScore(country="China", year=2024, category="Cultural Influence", score=7, source="KAS estimate"),
-        # Global Influence (0-10)
-        CountryScore(country="South Korea", year=2024, category="Global Influence", score=8, source="KAS estimate"),
-        CountryScore(country="Japan", year=2024, category="Global Influence", score=8, source="KAS estimate"),
-        CountryScore(country="China", year=2024, category="Global Influence", score=9, source="KAS estimate"),
-    ]
+    # 6 countries × 6 categories = 36 scores, all on 0-10 scale
+    countries = ["Korea", "Japan", "China", "Singapore", "Vietnam", "Thailand"]
+    categories = ["Economy", "Technology", "Education", "Culture", "Global Influence", "Quality of Life"]
+
+    # Score grid [country][category] — directional estimates
+    grid = {
+        "Korea":     [8, 9, 8, 9, 8, 7],
+        "Japan":     [8, 8, 9, 8, 8, 7],
+        "China":     [9, 8, 7, 7, 9, 6],
+        "Singapore": [9, 9, 9, 7, 7, 9],
+        "Vietnam":   [5, 5, 6, 6, 4, 6],
+        "Thailand":  [5, 5, 5, 7, 4, 7],
+    }
+
+    seeds = []
+    for ci, country in enumerate(countries):
+        for cj, cat in enumerate(categories):
+            seeds.append(CountryScore(
+                country=country, year=2024, category=cat,
+                score=grid[country][cj],
+                source="KAS estimate (directional)",
+            ))
     for s in seeds:
         db.add(s)
     db.commit()
@@ -61,3 +65,4 @@ def _seed_data(db):
 # Include routers
 app.include_router(health.router)
 app.include_router(countries.router)
+app.include_router(surveys.router)
