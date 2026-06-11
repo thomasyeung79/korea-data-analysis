@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="East Asia Perception Lab",
+    page_title="Korea Analysis",
     page_icon="🌏",
     layout="wide",
 )
@@ -19,24 +19,30 @@ st.markdown(
     """
 <div class="product-hero">
     <section class="hero-panel">
-        <div class="brand-row"><span class="brand-dot"></span>EAST ASIA PERCEPTION LAB</div>
-        <h1>Measure. Compare. Understand.</h1>
+        <div class="brand-row"><span class="brand-dot"></span>KOREA ANALYSIS</div>
+        <h1>Understanding Korea Through Data</h1>
         <p>
-            A quantitative benchmarking platform that scores six East Asian economies
-            across Economy, Technology, Education, Culture, Global Influence, and Quality of Life.
+            An interactive product for comparing regional benchmarks, measuring public perception,
+            generating structured insights, and discovering community views of Korea.
         </p>
+        <div class="hero-kpi">
+            <div class="kpi-card"><strong>Compare</strong><span>Regional benchmarks</span></div>
+            <div class="kpi-card"><strong>Perceive</strong><span>Interactive survey</span></div>
+            <div class="kpi-card"><strong>Understand</strong><span>AI and community insights</span></div>
+        </div>
     </section>
     <aside class="hero-aside">
         <div>
-            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>v0.2 · Comparison Engine</div>
-            <h3 style="margin-top:1.2rem;">6 countries · 6 dimensions</h3>
+            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>PORTFOLIO RELEASE · K6</div>
+            <h3 style="margin-top:1.2rem;">A complete data product workflow</h3>
             <p style="color:#cbd5e1;">
-                All scores normalised to a 0–10 scale for fair comparison.
+                Explore benchmark data, submit a perception profile, generate a structured report,
+                and see how your view compares with the community.
             </p>
         </div>
         <div class="insight-card" style="background:#111c33;border-color:#26344f;">
             <p style="margin:0;color:#dbeafe;">
-                Korea · Japan · China · Singapore · Vietnam · Thailand
+                Streamlit · FastAPI · SQLite · Plotly · OpenAI-compatible fallback architecture
             </p>
         </div>
     </aside>
@@ -60,14 +66,20 @@ try:
 except Exception as e:
     st.warning(f"Backend not reachable: {e}")
     st.info("Start the backend: `cd backend && uvicorn app.main:app --reload`")
+    scores = []
     all_countries = ["Korea", "Japan", "China", "Singapore", "Vietnam", "Thailand"]
+    all_categories = [
+        "Economy", "Technology", "Education",
+        "Culture", "Global Influence", "Quality of Life",
+    ]
 
 st.divider()
 
 # ── Country Cards ──
 
-st.markdown(f'<div class="section-label">COUNTRIES</div>', unsafe_allow_html=True)
-st.markdown("## Six economies, one dashboard")
+st.markdown('<div class="section-label">REGIONAL CONTEXT</div>', unsafe_allow_html=True)
+st.markdown("## Korea in its East Asian context")
+st.caption("Six economies and six shared dimensions provide the benchmark behind the product.")
 
 FLAGS = {
     "Korea": "🇰🇷", "Japan": "🇯🇵", "China": "🇨🇳",
@@ -94,8 +106,8 @@ st.divider()
 
 # ── Navigation ──
 
-st.markdown(f'<div class="section-label">TOOLS</div>', unsafe_allow_html=True)
-st.markdown("## Explore the data")
+st.markdown('<div class="section-label">PRODUCT WORKFLOW</div>', unsafe_allow_html=True)
+st.markdown("## Compare. Perceive. Analyze. Understand.")
 
 nav1, nav2, nav3, nav4 = st.columns(4)
 
@@ -103,9 +115,9 @@ with nav1:
     st.markdown(
         """
     <div class="module-card">
-        <div class="module-tag">COMPARE · DAY 2</div>
+        <div class="module-tag">01 · COMPARE</div>
         <h3>📊 Comparison Lab</h3>
-        <p>Radar chart comparison, category explorer, and raw data table.</p>
+        <p>Benchmark Korea against five East Asian economies across six shared dimensions.</p>
     </div>
         """,
         unsafe_allow_html=True,
@@ -117,9 +129,9 @@ with nav2:
     st.markdown(
         """
     <div class="module-card">
-        <div class="module-tag">SURVEY · DAY 3</div>
+        <div class="module-tag">02 · PERCEIVE</div>
         <h3>🧭 Perception Survey</h3>
-        <p>Collect user perception, compare it with Korea baseline, and show community stats.</p>
+        <p>Measure your view of Korea and compare it with the platform baseline.</p>
     </div>
         """,
         unsafe_allow_html=True,
@@ -131,7 +143,21 @@ with nav3:
     st.markdown(
         """
     <div class="module-card">
-        <div class="module-tag">COMMUNITY · K5</div>
+        <div class="module-tag">03 · ANALYZE</div>
+        <h3>✨ AI Insight</h3>
+        <p>Generate a structured perception report with OpenAI or the local fallback provider.</p>
+    </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    if st.button("Open Survey & AI Insight", use_container_width=True):
+        st.switch_page("pages/2_Perception_Survey.py")
+
+with nav4:
+    st.markdown(
+        """
+    <div class="module-card">
+        <div class="module-tag">04 · UNDERSTAND</div>
         <h3>👥 Community Insights</h3>
         <p>Explore category averages, perception profiles, and recent community voices.</p>
     </div>
@@ -141,15 +167,12 @@ with nav3:
     if st.button("Open Community Insights", use_container_width=True):
         st.switch_page("pages/3_Community_Insights.py")
 
-with nav4:
-    st.markdown(
-        """
-    <div class="module-card">
-        <div class="module-tag">API · DAY 2</div>
-        <h3>🔌 API Playground</h3>
-        <p>FastAPI auto-docs — test every endpoint live.</p>
-    </div>
-        """,
-        unsafe_allow_html=True,
+st.markdown('<div class="section-label">DEVELOPER ACCESS</div>', unsafe_allow_html=True)
+dev1, dev2 = st.columns([1, 2])
+with dev1:
+    st.link_button("Open API Documentation", "http://localhost:8000/docs", use_container_width=True)
+with dev2:
+    st.caption(
+        "FastAPI exposes country benchmarks, survey submissions, community summaries, "
+        "and structured perception reports."
     )
-    st.link_button("Open API Docs →", "http://localhost:8000/docs", use_container_width=True)
