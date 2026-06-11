@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field, field_validator
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 
 class CountryScoreCreate(BaseModel):
@@ -73,3 +73,33 @@ class PerceptionSurveyStats(BaseModel):
     strongest_category: Optional[str] = None
     weakest_category: Optional[str] = None
     korea_baseline: Dict[str, float]
+
+
+class PerceptionScores(BaseModel):
+    economy: int = Field(..., ge=1, le=10)
+    technology: int = Field(..., ge=1, le=10)
+    education: int = Field(..., ge=1, le=10)
+    culture: int = Field(..., ge=1, le=10)
+    global_influence: int = Field(..., ge=1, le=10)
+    quality_of_life: int = Field(..., ge=1, le=10)
+
+
+class AIReportRequest(BaseModel):
+    display_name: Optional[str] = None
+    scores: PerceptionScores
+    comment: Optional[str] = None
+    korea_baseline: Optional[Dict[str, float]] = None
+    community_average: Optional[Dict[str, float]] = None
+    total_submissions: Optional[int] = None
+
+
+class AIReportResponse(BaseModel):
+    provider: str
+    profile_label: str
+    perception_summary: str
+    strongest_associations: List[str]
+    concerns_or_gaps: List[str]
+    korea_baseline_comparison: str
+    community_average_comparison: str
+    interpretation_profile: str
+    suggested_next_question: str

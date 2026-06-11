@@ -97,7 +97,7 @@ st.divider()
 st.markdown(f'<div class="section-label">TOOLS</div>', unsafe_allow_html=True)
 st.markdown("## Explore the data")
 
-nav1, nav2, nav3 = st.columns(3)
+nav1, nav2, nav3, nav4 = st.columns(4)
 
 with nav1:
     st.markdown(
@@ -128,6 +128,20 @@ with nav2:
         st.switch_page("pages/2_Perception_Survey.py")
 
 with nav3:
+    st.markdown(
+        """
+    <div class="module-card">
+        <div class="module-tag">COMMUNITY · K5</div>
+        <h3>👥 Community Insights</h3>
+        <p>Explore category averages, perception profiles, and recent community voices.</p>
+    </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    if st.button("Open Community Insights", use_container_width=True):
+        st.switch_page("pages/3_Community_Insights.py")
+
+with nav4:
     st.markdown(
         """
     <div class="module-card">

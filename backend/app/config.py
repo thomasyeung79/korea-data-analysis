@@ -5,6 +5,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     DATABASE_URL: str = "sqlite:///./korea_analysis.db"
     CORS_ORIGINS: str = "*"
+    OPENAI_API_KEY: str | None = None
 
     class Config:
         env_file = str(Path(__file__).resolve().parent.parent / ".env")

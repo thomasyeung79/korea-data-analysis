@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import engine, Base
-from .routers import health, countries, surveys
+from .routers import ai, health, countries, surveys
 
 app = FastAPI(
     title="Korea Analysis System",
@@ -66,3 +66,4 @@ def _seed_data(db):
 app.include_router(health.router)
 app.include_router(countries.router)
 app.include_router(surveys.router)
+app.include_router(ai.router)

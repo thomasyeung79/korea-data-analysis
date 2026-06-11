@@ -122,3 +122,11 @@ class APIClient:
 
     def get_survey_stats(self) -> dict:
         return self._request("GET", "/api/v1/perception-surveys/stats")
+
+    def get_community_summary(self) -> dict:
+        return self._request("GET", "/api/v1/perception-surveys/community-summary")
+
+    # ── AI reports ──
+
+    def generate_perception_report(self, payload: dict) -> dict:
+        return self._request("POST", "/api/v1/ai/perception-report", json=payload)

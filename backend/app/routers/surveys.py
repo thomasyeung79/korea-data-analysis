@@ -3,6 +3,7 @@ from typing import Dict, List
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
+from ..ai.local_provider import LocalReportProvider
 from ..database import get_db
 from ..models import CountryScore, PerceptionSurvey
 from ..schemas import (
@@ -30,6 +31,23 @@ FALLBACK_KOREA_BASELINE = {
     "Global Influence": 8.0,
     "Quality of Life": 7.0,
 }
+
+COMMUNITY_CATEGORY_FIELDS = {
+    "economy": "economy_score",
+    "technology": "technology_score",
+    "education": "education_score",
+    "culture": "culture_score",
+    "global_influence": "global_influence_score",
+    "quality_of_life": "quality_of_life_score",
+}
+
+COMMUNITY_PROFILES = [
+    "Soft Power Enthusiast",
+    "Technology-Focused Analyst",
+    "Market-Driven Pragmatist",
+    "Balanced Regional Observer",
+    "Quality-of-Life Skeptic",
+]
 
 
 def _to_response(survey: PerceptionSurvey) -> PerceptionSurveyResponse:
@@ -135,3 +153,66 @@ def get_perception_survey_stats(db: Session = Depends(get_db)):
         weakest_category=weakest_category,
         korea_baseline=baseline,
     )
+
+
+@router.get("/community-summary")
+def get_community_summary(db: Session = Depends(get_db)):
+    surveys = db.query(PerceptionSurvey).all()
+    profile_distribution = {profile: 0 for profile in COMMUNITY_PROFILES}
+
+    if not surveys:
+        return {
+            "total_responses": 0,
+            "average_score": 0.0,
+            "category_averages": {
+                category: 0.0 for category in COMMUNITY_CATEGORY_FIELDS
+            },
+            "strongest_category": "",
+            "weakest_category": "",
+            "profile_distribution": profile_distribution,
+            "recent_comments": [],
+        }
+
+    category_averages = {
+        category: round(
+            sum(getattr(survey, field_name) for survey in surveys) / len(surveys),
+            2,
+        )
+        for category, field_name in COMMUNITY_CATEGORY_FIELDS.items()
+    }
+    all_scores = [
+        getattr(survey, field_name)
+        for survey in surveys
+        for field_name in COMMUNITY_CATEGORY_FIELDS.values()
+    ]
+
+    profile_provider = LocalReportProvider()
+    for survey in surveys:
+        scores = {
+            category: getattr(survey, field_name)
+            for category, field_name in COMMUNITY_CATEGORY_FIELDS.items()
+        }
+        profile = profile_provider._profile_label(scores)
+        if profile == "Culture-Driven Korea Optimist":
+            profile = "Soft Power Enthusiast"
+        profile_distribution[profile] += 1
+
+    recent_comments = [
+        survey.comment.strip()
+        for survey in sorted(
+            surveys,
+            key=lambda item: (item.created_at, item.id),
+            reverse=True,
+        )
+        if survey.comment and survey.comment.strip()
+    ][:20]
+
+    return {
+        "total_responses": len(surveys),
+        "average_score": round(sum(all_scores) / len(all_scores), 2),
+        "category_averages": category_averages,
+        "strongest_category": max(category_averages, key=category_averages.get),
+        "weakest_category": min(category_averages, key=category_averages.get),
+        "profile_distribution": profile_distribution,
+        "recent_comments": recent_comments,
+    }

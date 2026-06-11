@@ -80,6 +80,59 @@ def radar_chart(user_scores, baseline):
     return fig
 
 
+def ai_scores_from_survey(survey):
+    return {
+        "economy": survey["economy_score"],
+        "technology": survey["technology_score"],
+        "education": survey["education_score"],
+        "culture": survey["culture_score"],
+        "global_influence": survey["global_influence_score"],
+        "quality_of_life": survey["quality_of_life_score"],
+    }
+
+
+def render_ai_report(report):
+    provider_label = "Generated with AI provider" if report.get("provider") == "openai" else "Generated with local template"
+
+    st.markdown('<div class="section-label">AI INSIGHT</div>', unsafe_allow_html=True)
+    st.markdown("## Structured perception report")
+    st.caption(provider_label)
+
+    st.markdown(
+        f"""
+<div class="insight-card">
+    <div class="module-tag">{report["profile_label"]}</div>
+    <h3>Perception Summary</h3>
+    <p>{report["perception_summary"]}</p>
+</div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    col_a, col_b = st.columns(2)
+    with col_a:
+        st.markdown("### Strongest Associations")
+        for item in report["strongest_associations"]:
+            st.success(item)
+
+        st.markdown("### Korea Baseline Comparison")
+        st.info(report["korea_baseline_comparison"])
+
+    with col_b:
+        st.markdown("### Concerns / Gaps")
+        for item in report["concerns_or_gaps"]:
+            st.warning(item)
+
+        st.markdown("### Community Average Comparison")
+        st.info(report["community_average_comparison"])
+
+    st.markdown("### Interpretation Profile")
+    st.write(report["interpretation_profile"])
+
+    st.markdown("### Suggested Next Question")
+    st.success(report["suggested_next_question"])
+
+
 st.markdown(
     """
 <div class="product-hero">
@@ -186,6 +239,27 @@ if latest_survey:
     r3.metric("Weakest category", weakest)
 
     st.plotly_chart(radar_chart(category_scores, baseline), use_container_width=True)
+
+    if st.button("Generate AI Insight", use_container_width=True):
+        if not api_available:
+            st.warning("Cannot generate report because the backend API is unavailable.")
+        else:
+            try:
+                report_payload = {
+                    "display_name": latest_survey.get("display_name"),
+                    "scores": ai_scores_from_survey(latest_survey),
+                    "comment": latest_survey.get("comment"),
+                    "korea_baseline": baseline,
+                    "community_average": (stats or {}).get("average_by_category"),
+                    "total_submissions": (stats or {}).get("total_submissions"),
+                }
+                report = api.generate_perception_report(report_payload)
+                st.session_state["latest_ai_report"] = report
+            except Exception as exc:
+                st.warning(f"AI insight generation failed: {exc}")
+
+    if st.session_state.get("latest_ai_report"):
+        render_ai_report(st.session_state["latest_ai_report"])
 else:
     st.info("Submit a survey to see your result card and radar comparison.")
 
