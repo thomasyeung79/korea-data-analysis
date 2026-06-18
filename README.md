@@ -127,6 +127,7 @@ This project does not provide legal, immigration, financial, or professional adv
 * UI text only
 * Business data remains language-neutral
 * API and database values remain unchanged
+* Detailed i18n design: [docs/KOREA_ANALYSIS_I18N.md](docs/KOREA_ANALYSIS_I18N.md)
 
 ## Architecture
 
