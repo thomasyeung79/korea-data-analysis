@@ -62,6 +62,12 @@ with col1:
         "Backend Developer",
         "AI Product Manager",
         "AI Engineer",
+        "Marketing Specialist",
+        "Business Analyst",
+        "Operations Specialist",
+        "Customer Support Specialist",
+        "International Sales",
+        "Product Manager",
     ])
 
 with col2:
@@ -195,7 +201,7 @@ if "last_job_result" in st.session_state:
     col_e1, col_e2 = st.columns(2)
     with col_e1:
         summary_text = (
-            f"Korea IT Job Market Analysis\n"
+            f"Korea Career & Job Market Analysis\n"
             f"Role: {inputs['role']}\n"
             f"Experience: {inputs['experience']}\n"
             f"Korean Level: {inputs['korean_level']}\n"

@@ -62,7 +62,19 @@ with col1:
 
 with col2:
     lifestyle_level = st.selectbox(t("study.lifestyle_level"), ["Budget", "Standard", "Premium"])
-    target_role = st.selectbox(t("job.target_role"), ["Not Applicable", "Data Analyst", "Backend Developer", "AI Product Manager", "AI Engineer"])
+    target_role = st.selectbox(t("job.target_role"), [
+        "Not Applicable",
+        "Data Analyst",
+        "Backend Developer",
+        "AI Product Manager",
+        "AI Engineer",
+        "Marketing Specialist",
+        "Business Analyst",
+        "Operations Specialist",
+        "Customer Support Specialist",
+        "International Sales",
+        "Product Manager",
+    ])
     experience_level = st.selectbox(t("job.experience"), ["Student", "0-2 years", "3-5 years"])
     korean_level = st.selectbox(t("job.korean_level"), ["None", "TOPIK 3", "TOPIK 4", "TOPIK 5+"])
 

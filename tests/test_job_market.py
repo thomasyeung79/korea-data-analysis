@@ -1,5 +1,5 @@
 """
-Tests for IT Job Market Analyzer module.
+Tests for Career & Job Market Analyzer module.
 
 Coverage: 20 tests
 - Salary calculations (6)
@@ -15,6 +15,7 @@ from fastapi.testclient import TestClient
 
 from backend.app.database import Base, engine
 from backend.app.main import app
+from backend.app.services.job_market_config import ROLES
 
 client = TestClient(app)
 
@@ -64,7 +65,7 @@ class TestSalaryCalculation:
         assert senior["salary_min"] >= junior["salary_max"]
 
     def test_salary_min_always_positive(self):
-        for role in ["Data Analyst", "Backend Developer", "AI Product Manager", "AI Engineer"]:
+        for role in ROLES:
             resp = client.post("/api/v1/job-market/analyze", json={
                 "role": role, "experience_level": "Student", "korean_level": "None",
             }).json()
@@ -72,7 +73,7 @@ class TestSalaryCalculation:
             assert resp["salary_max"] > resp["salary_min"]
 
     def test_competitiveness_score_range(self):
-        for role in ["Data Analyst", "Backend Developer", "AI Product Manager", "AI Engineer"]:
+        for role in ROLES:
             for exp in ["Student", "0-2 years", "3-5 years"]:
                 resp = client.post("/api/v1/job-market/analyze", json={
                     "role": role, "experience_level": exp, "korean_level": "TOPIK 4",
@@ -148,12 +149,32 @@ class TestSkillsAndLanguage:
         assert resp["korean_language_requirement"] != ""
 
     def test_recommended_cities_non_empty(self):
-        for role in ["Data Analyst", "Backend Developer", "AI Product Manager", "AI Engineer"]:
+        for role in ROLES:
             resp = client.post("/api/v1/job-market/analyze", json={
                 "role": role, "experience_level": "3-5 years", "korean_level": "TOPIK 5+",
             }).json()
             assert len(resp["recommended_cities"]) >= 1
             assert "Seoul" in resp["recommended_cities"]
+
+    def test_non_it_roles_are_supported(self):
+        for role in [
+            "Marketing Specialist",
+            "Business Analyst",
+            "Operations Specialist",
+            "Customer Support Specialist",
+            "International Sales",
+            "Product Manager",
+        ]:
+            resp = client.post("/api/v1/job-market/analyze", json={
+                "role": role,
+                "experience_level": "0-2 years",
+                "korean_level": "TOPIK 4",
+            })
+            assert resp.status_code == 200
+            data = resp.json()
+            assert data["salary_min"] > 0
+            assert data["required_skills"]
+            assert data["recommended_cities"]
 
 
 # ─── Database Persistence ───

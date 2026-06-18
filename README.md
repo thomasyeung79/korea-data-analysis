@@ -14,7 +14,7 @@ A practical decision assistant for international students and job seekers consid
 
 ![Study Cost](docs/screenshots/06-study-cost.png)
 
-### IT Job Market Analyzer
+### Career & Job Market Analyzer
 
 ![Job Market](docs/screenshots/07-job-market.png)
 
@@ -25,10 +25,6 @@ A practical decision assistant for international students and job seekers consid
 ### News & Policy
 
 ![News & Policy](docs/screenshots/09-news-policy.png)
-
-### V1 Legacy — Comparison Lab
-
-![Comparison Lab](docs/screenshots/02-comparison-lab.png)
 
 ## Modules
 
@@ -45,13 +41,13 @@ Estimate monthly and annual costs for studying in Korea. Select your city, schoo
 
 **Output:** Monthly cost, annual cost, breakdown pie chart, monthly vs annual bar chart, AI summary, CSV export, history persistence.
 
-### 💻 IT Job Market Analyzer *(V2 · New)*
+### 💻 Career & Job Market Analyzer *(V2 · New)*
 
-Analyse salary ranges, skill requirements, and visa pathways for 4 tech roles in Korea. Get a personalised 3-month preparation plan based on your experience and Korean language level.
+Analyse salary ranges, skill requirements, and visa pathways for technology, business, operations, support, sales, and product roles in Korea. Get a personalised 3-month preparation plan based on your experience and Korean language level.
 
 | Input | Options |
 |-------|---------|
-| Role | Data Analyst, Backend Developer, AI Product Manager, AI Engineer |
+| Role | Data Analyst, Backend Developer, AI Product Manager, AI Engineer, Marketing Specialist, Business Analyst, Operations Specialist, Customer Support Specialist, International Sales, Product Manager |
 | Experience | Student, 0-2 years, 3-5 years |
 | Korean Level | None, TOPIK 3, TOPIK 4, TOPIK 5+ |
 
@@ -75,19 +71,12 @@ Combine study cost and job market analysis into a personalised decision report. 
 
 **Output:** Overall recommendation card, budget gap chart, risk profile bar chart, cost breakdown, salary info, 3-month action plan, TXT/Markdown/JSON export.
 
-### V1 Legacy Modules
-
-- **Comparison Lab** — Benchmark Korea against 5 East Asian economies across 6 dimensions.
-- **Perception Survey** — Submit a 6-dimension Korea perception profile.
-- **AI Perception Report** — Generate structured AI reports with dual provider fallback.
-- **Community Insights** — Explore category averages, profile distributions, and recent voices.
-
 ## Demo Flow
 
 The home page guides you through 4 steps:
 
 1. **📚 Calculate Study Cost** — Enter city, school, housing, and lifestyle → see pie chart, bar chart, and AI summary
-2. **💻 Analyze Job Market** — Select role, experience, and Korean level → see salary range, skills matrix, and preparation plan
+2. **💻 Analyze Career Market** — Select role, experience, and Korean level → see salary range, skills matrix, and preparation plan
 3. **🧭 Generate Decision Report** — Combine cost + career data → see recommendation card, risk chart, and 3-month action plan
 4. **📰 Check News & Policy** — Search by keyword and category → see relevance-ranked results with charts and trend summary
 
@@ -164,7 +153,7 @@ The original V2 implementation plan is kept as [KOREA_ANALYSIS_V2.md](KOREA_ANAL
 ## Portfolio Highlights
 
 - FastAPI REST API with modular routers (8 routers, 12+ endpoints)
-- Streamlit multi-page product interface (7 pages, 4 V2 modules + 3 V1 legacy)
+- Streamlit multi-page product interface focused on 4 V2 modules
 - Plotly charts: pie, bar, radar, horizontal bar, donut, grouped bar
 - CSV, TXT, Markdown, and JSON export across all modules
 - Structured decision report engine with 4-dimensional risk scoring
@@ -187,12 +176,14 @@ south_korea_perception_analysis/
 |-- news_policy_config.py             # compatibility shim
 |-- pages/
 |   |-- 1_Study_Cost.py
-|   |-- 1_Comparison_Lab.py
 |   |-- 2_Job_Market.py
-|   |-- 2_Perception_Survey.py
 |   |-- 3_Decision_Report.py
-|   |-- 4_News_Policy.py
-|   `-- 3_Community_Insights.py
+|   `-- 4_News_Policy.py
+|-- legacy/
+|   `-- v1_archive/
+|       |-- 1_Comparison_Lab.py
+|       |-- 2_Perception_Survey.py
+|       `-- 3_Community_Insights.py
 |-- backend/
 |   |-- requirements.txt
 |   `-- app/
@@ -284,7 +275,7 @@ When the key is missing or the provider fails, Korea Analysis automatically uses
 | `GET` | `/api/v1/perception-surveys/community-summary` | Community analytics |
 | `POST` | `/api/v1/study-cost/calculate` | Calculate study costs with breakdown |
 | `GET` | `/api/v1/study-cost/history` | Study cost calculation history |
-| `POST` | `/api/v1/job-market/analyze` | Analyse IT job market for a role |
+| `POST` | `/api/v1/job-market/analyze` | Analyse career and job market data for a role |
 | `GET` | `/api/v1/job-market/history` | Job market analysis history |
 | `POST` | `/api/v1/decision-report/generate` | Generate personalised decision report |
 | `GET` | `/api/v1/decision-report/history` | Decision report history |

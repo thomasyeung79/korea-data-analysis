@@ -15,7 +15,19 @@ VALID_CITIES = ["Seoul", "Busan", "Daejeon", "Daegu", "Other"]
 VALID_SCHOOLS = ["Language School", "Undergraduate", "Graduate School", "Not Applicable"]
 VALID_HOUSING = ["Dormitory", "Shared Apartment", "Studio Apartment", "Not Applicable"]
 VALID_LIFESTYLES = ["Budget", "Standard", "Premium"]
-VALID_ROLES = ["Data Analyst", "Backend Developer", "AI Product Manager", "AI Engineer", "Not Applicable"]
+VALID_ROLES = [
+    "Data Analyst",
+    "Backend Developer",
+    "AI Product Manager",
+    "AI Engineer",
+    "Marketing Specialist",
+    "Business Analyst",
+    "Operations Specialist",
+    "Customer Support Specialist",
+    "International Sales",
+    "Product Manager",
+    "Not Applicable",
+]
 VALID_EXPERIENCE = ["Student", "0-2 years", "3-5 years"]
 VALID_KOREAN = ["None", "TOPIK 3", "TOPIK 4", "TOPIK 5+"]
 

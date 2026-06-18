@@ -1,5 +1,5 @@
 """
-Job Market Analyzer — configurable salary, skills, and recommendation data.
+Career & Job Market Analyzer — configurable salary, skills, and recommendation data.
 
 All amounts in KRW (annual). Based on published salary surveys and job postings analysis.
 Sources: LinkedIn Salary, Glassdoor Korea, Startup Jobs Korea, Wanted.co.kr, JobKorea.
@@ -13,6 +13,12 @@ ROLES = [
     "Backend Developer",
     "AI Product Manager",
     "AI Engineer",
+    "Marketing Specialist",
+    "Business Analyst",
+    "Operations Specialist",
+    "Customer Support Specialist",
+    "International Sales",
+    "Product Manager",
 ]
 
 EXPERIENCE_LEVELS = ["Student", "0-2 years", "3-5 years"]
@@ -24,6 +30,12 @@ CITIES_BY_ROLE = {
     "Backend Developer": ["Seoul", "Seongnam (Pangyo)", "Busan", "Daejeon"],
     "AI Product Manager": ["Seoul", "Seongnam (Pangyo)"],
     "AI Engineer": ["Seoul", "Seongnam (Pangyo)", "Daejeon"],
+    "Marketing Specialist": ["Seoul", "Busan", "Incheon"],
+    "Business Analyst": ["Seoul", "Seongnam (Pangyo)", "Busan"],
+    "Operations Specialist": ["Seoul", "Incheon", "Busan"],
+    "Customer Support Specialist": ["Seoul", "Busan", "Daegu"],
+    "International Sales": ["Seoul", "Incheon", "Busan"],
+    "Product Manager": ["Seoul", "Seongnam (Pangyo)", "Busan"],
 }
 
 # salary_grid[role][experience] = (min_annual_krw, max_annual_krw)
@@ -48,6 +60,36 @@ SALARY_GRID: dict[str, dict[str, tuple[int, int]]] = {
         "0-2 years": (45_000_000, 65_000_000),
         "3-5 years": (65_000_000, 100_000_000),
     },
+    "Marketing Specialist": {
+        "Student": (20_000_000, 28_000_000),
+        "0-2 years": (30_000_000, 42_000_000),
+        "3-5 years": (42_000_000, 60_000_000),
+    },
+    "Business Analyst": {
+        "Student": (22_000_000, 32_000_000),
+        "0-2 years": (34_000_000, 48_000_000),
+        "3-5 years": (48_000_000, 70_000_000),
+    },
+    "Operations Specialist": {
+        "Student": (20_000_000, 30_000_000),
+        "0-2 years": (32_000_000, 45_000_000),
+        "3-5 years": (45_000_000, 62_000_000),
+    },
+    "Customer Support Specialist": {
+        "Student": (18_000_000, 27_000_000),
+        "0-2 years": (28_000_000, 38_000_000),
+        "3-5 years": (38_000_000, 52_000_000),
+    },
+    "International Sales": {
+        "Student": (22_000_000, 32_000_000),
+        "0-2 years": (35_000_000, 52_000_000),
+        "3-5 years": (52_000_000, 78_000_000),
+    },
+    "Product Manager": {
+        "Student": (24_000_000, 35_000_000),
+        "0-2 years": (38_000_000, 55_000_000),
+        "3-5 years": (55_000_000, 82_000_000),
+    },
 }
 
 # Korean language requirements by role
@@ -56,6 +98,12 @@ KOREAN_REQUIREMENTS: dict[str, str] = {
     "Backend Developer": "TOPIK 3 minimum. Strong English alternatives exist at tech startups and global firms.",
     "AI Product Manager": "TOPIK 5+ strongly recommended. Heavy Korean-language stakeholder communication.",
     "AI Engineer": "TOPIK 3 minimum. Many R&D labs operate in English. TOPIK 4 preferred for collaboration.",
+    "Marketing Specialist": "TOPIK 4+ recommended. Korean copy, market research, and agency coordination are common.",
+    "Business Analyst": "TOPIK 4 recommended. English-friendly roles exist, but Korean stakeholder interviews are common.",
+    "Operations Specialist": "TOPIK 4+ recommended for vendor, logistics, and internal process communication.",
+    "Customer Support Specialist": "TOPIK 4+ usually required for Korean customer-facing support teams.",
+    "International Sales": "TOPIK 3-4 recommended. English plus another language can offset lower Korean in global accounts.",
+    "Product Manager": "TOPIK 4-5 recommended. Cross-functional coordination often requires Korean documentation and meetings.",
 }
 
 # Language gap: what missing Korean means
@@ -128,6 +176,96 @@ SKILL_REQUIREMENTS: dict[str, dict[str, list[str]]] = {
             "Experience with large Korean datasets",
         ],
     },
+    "Marketing Specialist": {
+        "must_have": [
+            "Campaign planning",
+            "Content marketing",
+            "Market research",
+            "Google Analytics / GA4",
+            "Korean consumer trend awareness",
+        ],
+        "nice_to_have": [
+            "Naver Ads / Kakao Ads",
+            "SEO / ASO",
+            "CRM tools",
+            "Korean language (TOPIK 4+)",
+        ],
+    },
+    "Business Analyst": {
+        "must_have": [
+            "Excel / Google Sheets",
+            "SQL basics",
+            "Process mapping",
+            "Dashboarding",
+            "Stakeholder communication",
+        ],
+        "nice_to_have": [
+            "Tableau / Power BI",
+            "Korean market research",
+            "Consulting experience",
+            "Korean language (TOPIK 4+)",
+        ],
+    },
+    "Operations Specialist": {
+        "must_have": [
+            "Process operations",
+            "Vendor coordination",
+            "Excel / reporting",
+            "SOP documentation",
+            "Problem solving",
+        ],
+        "nice_to_have": [
+            "Logistics / supply chain experience",
+            "ERP tools",
+            "Project coordination",
+            "Korean language (TOPIK 4+)",
+        ],
+    },
+    "Customer Support Specialist": {
+        "must_have": [
+            "Customer communication",
+            "Ticketing systems",
+            "Product troubleshooting",
+            "Documentation",
+            "Empathy and escalation handling",
+        ],
+        "nice_to_have": [
+            "Zendesk / Intercom",
+            "Bilingual support experience",
+            "SaaS product knowledge",
+            "Korean language (TOPIK 4+)",
+        ],
+    },
+    "International Sales": {
+        "must_have": [
+            "B2B sales process",
+            "Lead generation",
+            "Pipeline management",
+            "Presentation skills",
+            "Cross-cultural communication",
+        ],
+        "nice_to_have": [
+            "CRM tools",
+            "Export / trade knowledge",
+            "Negotiation experience",
+            "Korean language (TOPIK 3+)",
+        ],
+    },
+    "Product Manager": {
+        "must_have": [
+            "Product discovery",
+            "Roadmapping",
+            "User research",
+            "Metrics and experimentation",
+            "Cross-functional communication",
+        ],
+        "nice_to_have": [
+            "Figma / prototyping",
+            "SQL / analytics",
+            "Korean market experience",
+            "Korean language (TOPIK 4+)",
+        ],
+    },
 }
 
 # Competitiveness scores (1-10) by role and experience
@@ -136,6 +274,12 @@ COMPETITIVENESS: dict[str, dict[str, int]] = {
     "Backend Developer": {"Student": 8, "0-2 years": 7, "3-5 years": 5},
     "AI Product Manager": {"Student": 6, "0-2 years": 5, "3-5 years": 4},
     "AI Engineer": {"Student": 7, "0-2 years": 6, "3-5 years": 4},
+    "Marketing Specialist": {"Student": 7, "0-2 years": 6, "3-5 years": 5},
+    "Business Analyst": {"Student": 7, "0-2 years": 6, "3-5 years": 5},
+    "Operations Specialist": {"Student": 6, "0-2 years": 5, "3-5 years": 4},
+    "Customer Support Specialist": {"Student": 6, "0-2 years": 5, "3-5 years": 4},
+    "International Sales": {"Student": 6, "0-2 years": 5, "3-5 years": 4},
+    "Product Manager": {"Student": 7, "0-2 years": 6, "3-5 years": 5},
 }
 
 COMPETITIVENESS_LABELS = {

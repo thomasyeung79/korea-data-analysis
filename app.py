@@ -52,56 +52,15 @@ st.markdown(
 
 language_selector("home_language")
 
-# ── Dynamic KPIs ──
-
+col1, col2, col3, col4 = st.columns(4)
+col1.metric(t("home.metric.modules"), "4")
+col2.metric(t("home.metric.focus"), "Korea")
+col3.metric(t("home.metric.exports"), "CSV/TXT/MD/JSON")
 try:
-    scores = api.get_country_scores()
-    all_countries = sorted(set(s["country"] for s in scores))
-    all_categories = sorted(set(s["category"] for s in scores))
-
-    col1, col2, col3, col4 = st.columns(4)
-    col1.metric(t("home.metric.data_points"), len(scores))
-    col2.metric(t("home.metric.countries"), len(all_countries))
-    col3.metric(t("home.metric.categories"), len(all_categories))
+    api.health()
     col4.metric(t("home.metric.api"), t("home.api_online"))
-except Exception as e:
-    st.warning(t("home.backend_unreachable", error=e))
-    st.info(t("common.api_start"))
-    scores = []
-    all_countries = ["Korea", "Japan", "China", "Singapore", "Vietnam", "Thailand"]
-    all_categories = [
-        "Economy", "Technology", "Education",
-        "Culture", "Global Influence", "Quality of Life",
-    ]
-
-st.divider()
-
-# ── Country Cards ──
-
-st.markdown(f'<div class="section-label">{t("home.regional_context")}</div>', unsafe_allow_html=True)
-st.markdown(f"## {t('home.context_heading')}")
-st.caption(t("home.context_caption"))
-
-FLAGS = {
-    "Korea": "🇰🇷", "Japan": "🇯🇵", "China": "🇨🇳",
-    "Singapore": "🇸🇬", "Vietnam": "🇻🇳", "Thailand": "🇹🇭",
-}
-
-cols = st.columns(3)
-for i, country in enumerate(all_countries):
-    flag = FLAGS.get(country, "🌏")
-    with cols[i % 3]:
-        count = sum(1 for s in scores if s["country"] == country) if scores else 0
-        st.markdown(
-            f"""
-        <div class="module-card" style="min-height:120px;">
-            <div class="module-tag">{flag} {country}</div>
-            <h3 style="font-size:1.5rem;margin:0.5rem 0;">{country}</h3>
-            <p>{t("home.country_points", count=count)}</p>
-        </div>
-            """,
-            unsafe_allow_html=True,
-        )
+except Exception:
+    col4.metric(t("home.metric.api"), t("home.api_offline"))
 
 st.divider()
 
@@ -198,23 +157,6 @@ with r4:
     )
     if st.button(t("home.open_news"), use_container_width=True, key="nav_news"):
         st.switch_page("pages/4_News_Policy.py")
-
-st.markdown(f'<div class="section-label">{t("home.legacy_label")}</div>', unsafe_allow_html=True)
-st.markdown(f"## {t('home.legacy_heading')}")
-
-legacy1, legacy2, legacy3, legacy4 = st.columns(4)
-with legacy1:
-    if st.button(t("legacy.comparison.title"), use_container_width=True):
-        st.switch_page("pages/1_Comparison_Lab.py")
-with legacy2:
-    if st.button(f"🧭 {t('survey.heading')}", use_container_width=True):
-        st.switch_page("pages/2_Perception_Survey.py")
-with legacy3:
-    if st.button(f"✨ {t('survey.ai_label')}", use_container_width=True):
-        st.switch_page("pages/2_Perception_Survey.py")
-with legacy4:
-    if st.button(f"👥 {t('community.heading')}", use_container_width=True):
-        st.switch_page("pages/3_Community_Insights.py")
 
 st.markdown(f'<div class="section-label">{t("home.dev_label")}</div>', unsafe_allow_html=True)
 dev1, dev2 = st.columns([1, 2])
