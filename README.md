@@ -91,6 +91,36 @@ The home page guides you through 4 steps:
 3. **🧭 Generate Decision Report** — Combine cost + career data → see recommendation card, risk chart, and 3-month action plan
 4. **📰 Check News & Policy** — Search by keyword and category → see relevance-ranked results with charts and trend summary
 
+## Data Provenance
+
+### Sources
+
+This project provides educational and informational guidance for users interested in studying, working, or living in South Korea.
+
+Data used in this project is derived from publicly available sources, including:
+
+* South Korean government agencies
+* University websites
+* Public visa information
+* Job market reports
+* News articles and industry publications
+
+### Assumptions
+
+* Cost estimates are directional estimates based on typical student lifestyles.
+* Salary ranges are approximate market observations and may vary by company, role, experience, and language proficiency.
+* Policy summaries may become outdated as regulations change.
+
+### Update Cadence
+
+Data should be reviewed and updated quarterly.
+
+### Disclaimer
+
+Users should verify all important decisions using official sources before making study, employment, or immigration decisions.
+
+This project does not provide legal, immigration, financial, or professional advice.
+
 ## Architecture
 
 ```mermaid
