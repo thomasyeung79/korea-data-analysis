@@ -1,9 +1,10 @@
 import streamlit as st
 import json
 import plotly.graph_objects as go
+from locales.i18n import language_selector, t
 
 st.set_page_config(
-    page_title="AI Decision Report",
+    page_title=t("decision.page_title"),
     page_icon="🧭",
     layout="wide",
 )
@@ -16,23 +17,21 @@ apply_product_style()
 api = APIClient()
 
 st.markdown(
-    """
+    f"""
 <div class="product-hero">
     <section class="hero-panel">
-        <div class="brand-row"><span class="brand-dot"></span>V2 · MODULE 3</div>
-        <h1>AI Decision Report</h1>
+        <div class="brand-row"><span class="brand-dot"></span>{t("decision.brand")}</div>
+        <h1>{t("decision.heading")}</h1>
         <p>
-            Should you study, work, or live in Korea? Tell us about yourself and get a
-            personalised report combining cost analysis, career insights, risk assessment,
-            and a 3-month action plan.
+            {t("decision.subtitle")}
         </p>
     </section>
     <aside class="hero-aside">
         <div>
-            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>Rule-based engine</div>
-            <h3 style="margin-top:1.2rem;">Combines 4 risk dimensions</h3>
+            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>{t("decision.aside_tag")}</div>
+            <h3 style="margin-top:1.2rem;">{t("decision.aside_title")}</h3>
             <p style="color:#cbd5e1;">
-                Financial · Language · Career · Visa & Living
+                {t("decision.aside_desc")}
             </p>
         </div>
     </aside>
@@ -41,38 +40,40 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-if st.button("🏠 Back to Home"):
+language_selector("decision_language")
+
+if st.button(f"🏠 {t('common.back_home')}"):
     st.switch_page("app.py")
 
 st.divider()
 
 # ── Form ──
 
-st.markdown('<div class="section-label">YOUR PROFILE</div>', unsafe_allow_html=True)
-st.markdown("## Tell us about your Korea plan")
+st.markdown(f'<div class="section-label">{t("common.your_profile")}</div>', unsafe_allow_html=True)
+st.markdown(f"## {t('decision.form_heading')}")
 
 col1, col2 = st.columns(2)
 
 with col1:
-    goal = st.selectbox("Goal", ["Study", "Work", "Live"])
-    target_city = st.selectbox("Target City", ["Seoul", "Busan", "Daejeon", "Daegu", "Other"])
-    school_type = st.selectbox("School Type", ["Not Applicable", "Language School", "Undergraduate", "Graduate School"])
-    housing_type = st.selectbox("Housing Type", ["Not Applicable", "Dormitory", "Shared Apartment", "Studio Apartment"])
+    goal = st.selectbox(t("decision.goal"), ["Study", "Work", "Live"])
+    target_city = st.selectbox(t("decision.target_city"), ["Seoul", "Busan", "Daejeon", "Daegu", "Other"])
+    school_type = st.selectbox(t("study.school_type"), ["Not Applicable", "Language School", "Undergraduate", "Graduate School"])
+    housing_type = st.selectbox(t("study.housing_type"), ["Not Applicable", "Dormitory", "Shared Apartment", "Studio Apartment"])
 
 with col2:
-    lifestyle_level = st.selectbox("Lifestyle Level", ["Budget", "Standard", "Premium"])
-    target_role = st.selectbox("Target Role", ["Not Applicable", "Data Analyst", "Backend Developer", "AI Product Manager", "AI Engineer"])
-    experience_level = st.selectbox("Experience Level", ["Student", "0-2 years", "3-5 years"])
-    korean_level = st.selectbox("Korean Language Level", ["None", "TOPIK 3", "TOPIK 4", "TOPIK 5+"])
+    lifestyle_level = st.selectbox(t("study.lifestyle_level"), ["Budget", "Standard", "Premium"])
+    target_role = st.selectbox(t("job.target_role"), ["Not Applicable", "Data Analyst", "Backend Developer", "AI Product Manager", "AI Engineer"])
+    experience_level = st.selectbox(t("job.experience"), ["Student", "0-2 years", "3-5 years"])
+    korean_level = st.selectbox(t("job.korean_level"), ["None", "TOPIK 3", "TOPIK 4", "TOPIK 5+"])
 
 monthly_budget = st.number_input(
-    "Monthly Budget (KRW)",
+    t("decision.monthly_budget"),
     min_value=0, max_value=15_000_000, value=1_500_000, step=100_000,
     format="%d",
-    help="Your estimated monthly budget in Korean Won (tuition + living expenses).",
+    help=t("decision.budget_help"),
 )
 
-generate_clicked = st.button("Generate Decision Report", use_container_width=True, type="primary")
+generate_clicked = st.button(t("decision.generate"), use_container_width=True, type="primary")
 
 st.divider()
 
@@ -94,14 +95,14 @@ if generate_clicked:
         result = api.generate_decision_report(payload)
         st.session_state["decision_report"] = result
     except Exception as e:
-        st.error(f"Failed to generate report: {e}")
+        st.error(t("decision.failed", error=e))
         st.session_state.pop("decision_report", None)
 
 if "decision_report" in st.session_state:
     r = st.session_state["decision_report"]
 
     # ── 1. Recommendation Card ──
-    st.markdown('<div class="section-label">RECOMMENDATION</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="section-label">{t("decision.recommendation")}</div>', unsafe_allow_html=True)
 
     rec_colors = {
         "strongly_recommended": "#0f9f6e",
@@ -116,7 +117,7 @@ if "decision_report" in st.session_state:
     <div style="text-align:center; padding:2rem; border:3px solid {color};
                 border-radius:12px; margin:1rem 0; background:#f8fafc;">
         <div style="font-size:0.85rem; color:#64748b; text-transform:uppercase; font-weight:700;">
-            OVERALL RECOMMENDATION
+            {t("decision.overall")}
         </div>
         <div style="font-size:2rem; font-weight:800; color:{color}; margin-top:0.5rem;">
             {r['recommendation_label']}
@@ -132,13 +133,13 @@ if "decision_report" in st.session_state:
     st.divider()
 
     # ── 2. Financial Fit ──
-    st.markdown("## 💰 Financial Fit")
+    st.markdown(t("decision.financial_fit"))
 
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Est. Monthly Cost", f"{r['monthly_cost_estimate']:,} ₩")
-    c2.metric("Est. Annual Cost", f"{r['annual_cost_estimate']:,} ₩")
-    c3.metric("Budget Gap", f"{r['budget_gap']:+,} ₩", delta_color="inverse")
-    c4.metric("Financial Risk", r["financial_risk"])
+    c1.metric(t("decision.est_monthly"), f"{r['monthly_cost_estimate']:,} ₩")
+    c2.metric(t("decision.est_annual"), f"{r['annual_cost_estimate']:,} ₩")
+    c3.metric(t("decision.budget_gap"), f"{r['budget_gap']:+,} ₩", delta_color="inverse")
+    c4.metric(t("decision.financial_risk"), r["financial_risk"])
 
     fin_colors = {"Low": "#0f9f6e", "Medium": "#f59e0b", "High": "#d7263d"}
     st.markdown(f'<div style="height:6px; background:{fin_colors.get(r["financial_risk"], "#ccc")}; border-radius:3px; margin:0.5rem 0 1rem;"></div>',
@@ -147,44 +148,44 @@ if "decision_report" in st.session_state:
     # Budget gap chart
     fig_budget = go.Figure()
     fig_budget.add_trace(go.Bar(
-        x=["Budget", "Est. Cost"],
+        x=[t("decision.budget"), t("decision.est_cost")],
         y=[r['monthly_cost_estimate'] + max(r['budget_gap'], 0), r['monthly_cost_estimate']],
         marker_color=["#0f9f6e" if r['budget_gap'] >= 0 else "#d7263d", "#123c9c"],
         text=[f"{r['monthly_cost_estimate'] + max(r['budget_gap'], 0):,} KRW", f"{r['monthly_cost_estimate']:,} KRW"],
         textposition="outside",
     ))
     fig_budget.update_layout(height=300, showlegend=False, margin=dict(l=20, r=20, t=10, b=20),
-                              title="Monthly Budget vs Estimated Cost")
+                              title=t("decision.budget_chart"))
     fig_budget.update_yaxes(tickformat=",")
     st.plotly_chart(fig_budget, use_container_width=True)
 
     st.divider()
 
     # ── 3. Career Fit ──
-    st.markdown("## 💻 Career Fit")
+    st.markdown(t("decision.career_fit"))
 
     if target_role != "Not Applicable":
         c1, c2, c3 = st.columns(3)
-        c1.metric("Salary Range", f"{r['salary_min']:,} - {r['salary_max']:,} ₩")
-        c2.metric("Competitiveness", f"{r['competitiveness']}/10")
-        c3.metric("Career Risk", r["career_risk"])
+        c1.metric(t("decision.salary_range"), f"{r['salary_min']:,} - {r['salary_max']:,} ₩")
+        c2.metric(t("job.competitiveness"), f"{r['competitiveness']}/10")
+        c3.metric(t("decision.career_risk"), r["career_risk"])
 
-        st.markdown(f"**Required Skills:** {', '.join(r['required_skills'][:5])}")
+        st.markdown(t("decision.required_skills", skills=", ".join(r["required_skills"][:5])))
         if r.get("korean_language_requirement"):
             st.info(f"🗣️ {r['korean_language_requirement']}")
     else:
-        st.info("Career assessment not applicable to your current goal.")
+        st.info(t("decision.career_na"))
 
     st.divider()
 
     # ── 4. Risk Factors ──
-    st.markdown("## ⚠️ Risk Assessment")
+    st.markdown(t("decision.risk_assessment"))
 
     risk_data = [
-        ("Financial", r["financial_risk"], f"Budget gap: {r['budget_gap']:+,} KRW"),
-        ("Language", r["language_risk"], r.get("language_risk_detail", "")),
-        ("Career", r["career_risk"], r.get("career_risk_detail", "")),
-        ("Visa & Living", r["visa_living_risk"], r.get("visa_living_risk_detail", "")),
+        (t("decision.risk_financial"), r["financial_risk"], t("decision.risk_budget_gap", gap=r["budget_gap"])),
+        (t("decision.risk_language"), r["language_risk"], r.get("language_risk_detail", "")),
+        (t("decision.risk_career"), r["career_risk"], r.get("career_risk_detail", "")),
+        (t("decision.risk_visa"), r["visa_living_risk"], r.get("visa_living_risk_detail", "")),
     ]
 
     for label, level, detail in risk_data:
@@ -203,19 +204,19 @@ if "decision_report" in st.session_state:
         textposition="outside",
     )])
     fig_risk.update_layout(height=220, showlegend=False, margin=dict(l=20, r=20, t=10, b=20),
-                           title="Risk Profile (3=Low, 1=High)", xaxis=dict(range=[0, 3.5], tickvals=[1, 2, 3]))
+                           title=t("decision.risk_chart"), xaxis=dict(range=[0, 3.5], tickvals=[1, 2, 3]))
     st.plotly_chart(fig_risk, use_container_width=True)
 
     st.divider()
 
     # ── 5. Action Plan ──
-    st.markdown("## 📋 3-Month Action Plan")
+    st.markdown(t("decision.action_plan"))
     st.markdown(r["action_plan"])
 
     st.divider()
 
     # ── Export ──
-    st.markdown("## 📥 Export")
+    st.markdown(t("decision.export"))
     col_e1, col_e2, col_e3 = st.columns(3)
     with col_e1:
         summary_txt = (
@@ -232,7 +233,7 @@ if "decision_report" in st.session_state:
             f"Visa Risk: {r['visa_living_risk']}\n"
         )
         st.download_button(
-            "📥 Download Summary (TXT)",
+            t("decision.download_summary"),
             data=summary_txt,
             file_name="korea_decision_report.txt",
             use_container_width=True,
@@ -256,7 +257,7 @@ if "decision_report" in st.session_state:
             f"## Action Plan\n{r['action_plan']}\n"
         )
         st.download_button(
-            "📥 Download Markdown",
+            t("decision.download_md"),
             data=md_out,
             file_name="korea_decision_report.md",
             mime="text/markdown",
@@ -265,14 +266,14 @@ if "decision_report" in st.session_state:
     with col_e3:
         json_str = json.dumps(r, indent=2, ensure_ascii=False)
         st.download_button(
-            "📥 Download Full Report (JSON)",
+            t("decision.download_json"),
             data=json_str,
             file_name="korea_decision_report.json",
             use_container_width=True,
         )
 
 elif "decision_report" not in st.session_state:
-    st.info("Fill in your profile above and click **Generate Decision Report** to see your personalised report.")
+    st.info(t("decision.empty"))
 
 st.divider()
-st.caption("Korea Study & Career Decision Agent · AI Decision Report v1.0")
+st.caption(t("decision.footer"))

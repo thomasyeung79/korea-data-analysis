@@ -2,10 +2,11 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from api_client import APIClient
+from locales.i18n import language_selector, t
 from ui_style import apply_product_style
 
 st.set_page_config(
-    page_title="Korea Perception Survey",
+    page_title=t("survey.page_title"),
     page_icon="🧭",
     layout="wide",
 )
@@ -32,6 +33,19 @@ FALLBACK_BASELINE = {
     "Quality of Life": 7,
 }
 
+CATEGORY_DISPLAY_KEYS = {
+    "Economy": "survey.economy",
+    "Technology": "survey.technology",
+    "Education": "survey.education",
+    "Culture": "survey.culture",
+    "Global Influence": "survey.global_influence",
+    "Quality of Life": "survey.quality_of_life",
+}
+
+
+def category_label(category):
+    return t(CATEGORY_DISPLAY_KEYS.get(category, category))
+
 
 def score_summary(survey):
     values = [survey[field] for _, field in CATEGORIES]
@@ -44,10 +58,11 @@ def score_summary(survey):
 
 def radar_chart(user_scores, baseline):
     labels = [label for label, _ in CATEGORIES]
+    display_labels = [category_label(label) for label in labels]
     user_values = [user_scores[label] for label in labels]
     baseline_values = [baseline.get(label, FALLBACK_BASELINE[label]) for label in labels]
 
-    labels_closed = labels + [labels[0]]
+    labels_closed = display_labels + [display_labels[0]]
     user_closed = user_values + [user_values[0]]
     baseline_closed = baseline_values + [baseline_values[0]]
 
@@ -57,7 +72,7 @@ def radar_chart(user_scores, baseline):
             r=user_closed,
             theta=labels_closed,
             fill="toself",
-            name="Your perception",
+            name=t("survey.your_perception"),
             line_color="#d7263d",
         )
     )
@@ -66,7 +81,7 @@ def radar_chart(user_scores, baseline):
             r=baseline_closed,
             theta=labels_closed,
             fill="toself",
-            name="Korea baseline",
+            name=t("survey.korea_baseline"),
             line_color="#123c9c",
             opacity=0.72,
         )
@@ -92,17 +107,17 @@ def ai_scores_from_survey(survey):
 
 
 def render_ai_report(report):
-    provider_label = "Generated with AI provider" if report.get("provider") == "openai" else "Generated with local template"
+    provider_label = t("survey.provider_openai") if report.get("provider") == "openai" else t("survey.provider_local")
 
-    st.markdown('<div class="section-label">AI INSIGHT</div>', unsafe_allow_html=True)
-    st.markdown("## Structured perception report")
+    st.markdown(f'<div class="section-label">{t("survey.ai_label")}</div>', unsafe_allow_html=True)
+    st.markdown(f"## {t('survey.structured_report')}")
     st.caption(provider_label)
 
     st.markdown(
         f"""
 <div class="insight-card">
     <div class="module-tag">{report["profile_label"]}</div>
-    <h3>Perception Summary</h3>
+    <h3>{t("survey.summary")}</h3>
     <p>{report["perception_summary"]}</p>
 </div>
         """,
@@ -111,49 +126,48 @@ def render_ai_report(report):
 
     col_a, col_b = st.columns(2)
     with col_a:
-        st.markdown("### Strongest Associations")
+        st.markdown(t("survey.associations"))
         for item in report["strongest_associations"]:
             st.success(item)
 
-        st.markdown("### Korea Baseline Comparison")
+        st.markdown(t("survey.baseline_comparison"))
         st.info(report["korea_baseline_comparison"])
 
     with col_b:
-        st.markdown("### Concerns / Gaps")
+        st.markdown(t("survey.gaps"))
         for item in report["concerns_or_gaps"]:
             st.warning(item)
 
-        st.markdown("### Community Average Comparison")
+        st.markdown(t("survey.community_comparison"))
         st.info(report["community_average_comparison"])
 
-    st.markdown("### Interpretation Profile")
+    st.markdown(t("survey.interpretation"))
     st.write(report["interpretation_profile"])
 
-    st.markdown("### Suggested Next Question")
+    st.markdown(t("survey.next_question"))
     st.success(report["suggested_next_question"])
 
 
 st.markdown(
-    """
+    f"""
 <div class="product-hero">
     <section class="hero-panel">
-        <div class="brand-row"><span class="brand-dot"></span>DAY 3 · PERCEPTION ENGINE</div>
-        <h1>Korea Perception Survey</h1>
+        <div class="brand-row"><span class="brand-dot"></span>{t("survey.hero_tag")}</div>
+        <h1>{t("survey.heading")}</h1>
         <p>
-            Capture how people perceive Korea across six dimensions, compare each response
-            with the platform baseline, and turn community perception into a live product signal.
+            {t("survey.subtitle")}
         </p>
     </section>
     <aside class="hero-aside">
         <div>
-            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>Interactive product layer</div>
-            <h3 style="margin-top:1.2rem;">From benchmark data to user perception</h3>
+            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>{t("survey.aside_tag")}</div>
+            <h3 style="margin-top:1.2rem;">{t("survey.aside_title")}</h3>
             <p style="color:#cbd5e1;">
-                Repeated submissions are allowed. No login, no authentication, no paid APIs.
+                {t("survey.aside_desc")}
             </p>
         </div>
         <div class="insight-card" style="background:#111c33;border-color:#26344f;">
-            <p style="margin:0;color:#dbeafe;">Scores use a 1–10 scale. Default slider values are valid.</p>
+            <p style="margin:0;color:#dbeafe;">{t("survey.scale_note")}</p>
         </div>
     </aside>
 </div>
@@ -161,43 +175,45 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+language_selector("survey_language")
+
 try:
     stats = api.get_survey_stats()
     api_available = True
 except Exception as exc:
     stats = None
     api_available = False
-    st.warning(f"Perception Survey API unavailable: {exc}")
-    st.info("Start the backend: `cd backend && uvicorn app.main:app --reload`")
+    st.warning(t("survey.api_unavailable", error=exc))
+    st.info(t("common.api_start"))
 
 baseline = (stats or {}).get("korea_baseline") or FALLBACK_BASELINE
 
-st.markdown('<div class="section-label">SURVEY INPUT</div>', unsafe_allow_html=True)
-st.markdown("## Submit a perception response")
+st.markdown(f'<div class="section-label">{t("survey.input_label")}</div>', unsafe_allow_html=True)
+st.markdown(f"## {t('survey.submit_heading')}")
 
 with st.form("perception_survey_form"):
-    display_name = st.text_input("Display name / nickname", value="")
+    display_name = st.text_input(t("survey.display_name"), value="")
 
     col1, col2 = st.columns(2)
     with col1:
-        economy_score = st.slider("Economy", 1, 10, 5)
-        technology_score = st.slider("Technology", 1, 10, 5)
-        education_score = st.slider("Education", 1, 10, 5)
+        economy_score = st.slider(t("survey.economy"), 1, 10, 5)
+        technology_score = st.slider(t("survey.technology"), 1, 10, 5)
+        education_score = st.slider(t("survey.education"), 1, 10, 5)
     with col2:
-        culture_score = st.slider("Culture", 1, 10, 5)
-        global_influence_score = st.slider("Global Influence", 1, 10, 5)
-        quality_of_life_score = st.slider("Quality of Life", 1, 10, 5)
+        culture_score = st.slider(t("survey.culture"), 1, 10, 5)
+        global_influence_score = st.slider(t("survey.global_influence"), 1, 10, 5)
+        quality_of_life_score = st.slider(t("survey.quality_of_life"), 1, 10, 5)
 
     comment = st.text_area(
-        "What shaped your perception of Korea?",
-        placeholder="Optional: media, travel, school, friends, K-pop, work, news...",
+        t("survey.comment"),
+        placeholder=t("survey.comment_placeholder"),
     )
 
-    submitted = st.form_submit_button("Submit perception survey", use_container_width=True)
+    submitted = st.form_submit_button(t("survey.submit"), use_container_width=True)
 
 if submitted:
     if not api_available:
-        st.warning("Cannot submit yet because the backend API is unavailable.")
+        st.warning(t("survey.cannot_submit"))
     else:
         try:
             result = api.submit_survey(
@@ -211,11 +227,11 @@ if submitted:
                 comment=comment,
             )
             st.session_state["latest_survey"] = result
-            st.success("Survey submitted.")
+            st.success(t("survey.submitted"))
             stats = api.get_survey_stats()
             baseline = stats.get("korea_baseline") or FALLBACK_BASELINE
         except Exception as exc:
-            st.warning(f"Survey submission failed: {exc}")
+            st.warning(t("survey.submit_failed", error=exc))
 
 latest_survey = st.session_state.get("latest_survey")
 if not latest_survey and api_available and stats and stats.get("total_submissions", 0) > 0:
@@ -230,19 +246,19 @@ if not latest_survey and api_available and stats and stats.get("total_submission
 if latest_survey:
     score, strongest, weakest, category_scores = score_summary(latest_survey)
 
-    st.markdown('<div class="section-label">YOUR RESULT</div>', unsafe_allow_html=True)
-    st.markdown("## Your Korea perception profile")
+    st.markdown(f'<div class="section-label">{t("survey.result_label")}</div>', unsafe_allow_html=True)
+    st.markdown(f"## {t('survey.profile_heading')}")
 
     r1, r2, r3 = st.columns(3)
-    r1.metric("Your Korea Perception Score", score)
-    r2.metric("Strongest category", strongest)
-    r3.metric("Weakest category", weakest)
+    r1.metric(t("survey.score"), score)
+    r2.metric(t("survey.strongest"), category_label(strongest))
+    r3.metric(t("survey.weakest"), category_label(weakest))
 
     st.plotly_chart(radar_chart(category_scores, baseline), use_container_width=True)
 
-    if st.button("Generate AI Insight", use_container_width=True):
+    if st.button(t("survey.generate_ai"), use_container_width=True):
         if not api_available:
-            st.warning("Cannot generate report because the backend API is unavailable.")
+            st.warning(t("survey.cannot_ai"))
         else:
             try:
                 report_payload = {
@@ -256,39 +272,39 @@ if latest_survey:
                 report = api.generate_perception_report(report_payload)
                 st.session_state["latest_ai_report"] = report
             except Exception as exc:
-                st.warning(f"AI insight generation failed: {exc}")
+                st.warning(t("survey.ai_failed", error=exc))
 
     if st.session_state.get("latest_ai_report"):
         render_ai_report(st.session_state["latest_ai_report"])
 else:
-    st.info("Submit a survey to see your result card and radar comparison.")
+    st.info(t("survey.empty"))
 
-st.markdown('<div class="section-label">COMMUNITY STATS</div>', unsafe_allow_html=True)
-st.markdown("## Community perception snapshot")
+st.markdown(f'<div class="section-label">{t("survey.stats_label")}</div>', unsafe_allow_html=True)
+st.markdown(f"## {t('survey.stats_heading')}")
 
 if not api_available:
-    st.warning("Community stats are unavailable until the backend is running.")
+    st.warning(t("survey.stats_unavailable"))
 elif not stats or stats.get("total_submissions", 0) == 0:
-    st.info("No community submissions yet. Be the first to create the perception baseline.")
+    st.info(t("survey.no_submissions"))
 else:
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Total submissions", stats["total_submissions"])
-    c2.metric("Average perception score", stats["average_score"])
-    c3.metric("Strongest perceived category", stats["strongest_category"])
-    c4.metric("Weakest perceived category", stats["weakest_category"])
+    c1.metric(t("survey.total"), stats["total_submissions"])
+    c2.metric(t("survey.average"), stats["average_score"])
+    c3.metric(t("survey.strongest_perceived"), category_label(stats["strongest_category"]))
+    c4.metric(t("survey.weakest_perceived"), category_label(stats["weakest_category"]))
 
     averages = stats.get("average_by_category") or {}
     st.dataframe(
         [
             {
-                "Category": category,
-                "Community average": averages.get(category),
-                "Korea baseline": baseline.get(category),
+                t("common.category"): category_label(category),
+                t("survey.community_average"): averages.get(category),
+                t("survey.korea_baseline"): baseline.get(category),
             }
             for category, _ in CATEGORIES
         ],
         use_container_width=True,
     )
 
-if st.button("Back to Home", use_container_width=True):
+if st.button(t("common.back_home"), use_container_width=True):
     st.switch_page("app.py")

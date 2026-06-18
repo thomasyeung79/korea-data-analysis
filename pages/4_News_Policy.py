@@ -1,9 +1,10 @@
 import streamlit as st
 import plotly.graph_objects as go
 from collections import Counter
+from locales.i18n import language_selector, t
 
 st.set_page_config(
-    page_title="News & Policy",
+    page_title=t("news.page_title"),
     page_icon="📰",
     layout="wide",
 )
@@ -16,23 +17,21 @@ apply_product_style()
 api = APIClient()
 
 st.markdown(
-    """
+    f"""
 <div class="product-hero">
     <section class="hero-panel">
-        <div class="brand-row"><span class="brand-dot"></span>V2 · MODULE 4</div>
-        <h1>Korea News & Policy</h1>
+        <div class="brand-row"><span class="brand-dot"></span>{t("news.brand")}</div>
+        <h1>{t("news.heading")}</h1>
         <p>
-            Recent developments in Korea that affect your study, work, visa, economy,
-            and technology decisions. Based on curated sources — updated periodically.
+            {t("news.subtitle")}
         </p>
     </section>
     <aside class="hero-aside">
         <div>
-            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>Mock data · MVP</div>
-            <h3 style="margin-top:1.2rem;">15 curated items</h3>
+            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>{t("news.aside_tag")}</div>
+            <h3 style="margin-top:1.2rem;">{t("news.aside_title")}</h3>
             <p style="color:#cbd5e1;">
-                Covers study, work, visa, economy, and technology categories.
-                Live news API integration planned for future release.
+                {t("news.aside_desc")}
             </p>
         </div>
     </aside>
@@ -41,28 +40,30 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-if st.button("🏠 Back to Home"):
+language_selector("news_language")
+
+if st.button(f"🏠 {t('common.back_home')}"):
     st.switch_page("app.py")
 
 st.divider()
 
 # ── Search Form ──
 
-st.markdown('<div class="section-label">SEARCH</div>', unsafe_allow_html=True)
-st.markdown("## Find relevant news")
+st.markdown(f'<div class="section-label">{t("news.search_label")}</div>', unsafe_allow_html=True)
+st.markdown(f"## {t('news.find_heading')}")
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    keyword = st.text_input("Keyword", placeholder="e.g. visa, AI, scholarship, TOPIK...")
+    keyword = st.text_input(t("news.keyword"), placeholder=t("news.placeholder"))
 
 with col2:
-    category = st.selectbox("Category", ["All", "Study", "Work", "Visa", "Economy", "Technology"])
+    category = st.selectbox(t("news.category"), ["All", "Study", "Work", "Visa", "Economy", "Technology"])
 
 with col3:
-    time_range = st.selectbox("Time Range", ["Last 7 days", "Last 30 days", "Last 90 days"])
+    time_range = st.selectbox(t("news.time_range"), ["Last 7 days", "Last 30 days", "Last 90 days"])
 
-search_clicked = st.button("Search News & Policy", use_container_width=True, type="primary")
+search_clicked = st.button(t("news.search_button"), use_container_width=True, type="primary")
 
 st.divider()
 
@@ -78,7 +79,7 @@ if search_clicked:
         st.session_state["news_result"] = result
         st.session_state["news_count"] = result.get("result_count", 0)
     except Exception as e:
-        st.error(f"Search failed: {e}")
+        st.error(t("news.failed", error=e))
         st.session_state.pop("news_result", None)
 
 if "news_result" in st.session_state:
@@ -87,14 +88,14 @@ if "news_result" in st.session_state:
 
     # ── Overview stats ──
     c1, c2, c3 = st.columns(3)
-    c1.metric("Results found", count)
-    c2.metric("AI Summary", "Generated")
-    c3.metric("Suggestions", len(result.get("action_suggestions", [])))
+    c1.metric(t("news.results_found"), count)
+    c2.metric(t("news.ai_summary"), t("common.generated"))
+    c3.metric(t("news.suggestions"), len(result.get("action_suggestions", [])))
 
     st.divider()
 
     # ── AI Trend Summary ──
-    st.markdown("### 📈 AI Trend Summary")
+    st.markdown(t("news.trend"))
     with st.container():
         st.markdown(
             f"""
@@ -110,7 +111,7 @@ if "news_result" in st.session_state:
     # ── Action Suggestions ──
     suggestions = result.get("action_suggestions", [])
     if suggestions:
-        st.markdown("### 💡 Action Suggestions")
+        st.markdown(t("news.action"))
         for s in suggestions:
             st.markdown(f"- ✅ {s}")
 
@@ -127,7 +128,7 @@ if "news_result" in st.session_state:
                 textinfo="label+count",
                 hole=0.4,
             )])
-            fig_cat.update_layout(height=280, margin=dict(l=20, r=20, t=10, b=20), title="Category Distribution")
+            fig_cat.update_layout(height=280, margin=dict(l=20, r=20, t=10, b=20), title=t("news.category_distribution"))
             st.plotly_chart(fig_cat, use_container_width=True)
         with col_chart2:
             scores = [item.get("relevance_score", 0) for item in results_list]
@@ -138,7 +139,7 @@ if "news_result" in st.session_state:
                 text=scores,
                 textposition="outside",
             )])
-            fig_score.update_layout(height=280, margin=dict(l=20, r=20, t=10, b=60), title="Relevance Scores",
+            fig_score.update_layout(height=280, margin=dict(l=20, r=20, t=10, b=60), title=t("news.relevance_scores"),
                                      xaxis_tickangle=-45)
             st.plotly_chart(fig_score, use_container_width=True)
 
@@ -148,9 +149,9 @@ if "news_result" in st.session_state:
     results_list = result.get("results", [])
 
     if not results_list:
-        st.info("No items match your search criteria. Try broadening your keywords or time range.")
+        st.info(t("news.no_items"))
     else:
-        st.markdown(f"### 📄 Results ({count})")
+        st.markdown(t("news.results_heading", count=count))
 
         for item in results_list:
             score = item.get("relevance_score", 0)
@@ -174,10 +175,10 @@ if "news_result" in st.session_state:
                     <p style="color:#475569;">{item['summary']}</p>
                     <details>
                         <summary style="cursor:pointer; color:#123c9c; font-weight:600;">
-                            Impact analysis
+                            {t("news.impact")}
                         </summary>
-                        <p style="margin-top:0.5rem;"><strong>For students:</strong> {item['impact_for_students']}</p>
-                        <p><strong>For job seekers:</strong> {item['impact_for_job_seekers']}</p>
+                        <p style="margin-top:0.5rem;"><strong>{t("news.for_students")}</strong> {item['impact_for_students']}</p>
+                        <p><strong>{t("news.for_job_seekers")}</strong> {item['impact_for_job_seekers']}</p>
                     </details>
                 </div>
                     """,
@@ -198,14 +199,14 @@ if "news_result" in st.session_state:
         summary_text += f"- [{item['category']}] {item['title']} ({item['published_at']})\n  {item['summary'][:120]}...\n\n"
 
     st.download_button(
-        "📥 Download Results (TXT)",
+        t("news.download"),
         data=summary_text,
         file_name="korea_news_search.txt",
         use_container_width=True,
     )
 
 else:
-    st.info("Enter a keyword and click **Search News & Policy** to see results.")
+    st.info(t("news.empty"))
 
 st.divider()
-st.caption("Korea Study & Career Decision Agent · News & Policy v1.0 (mock data)")
+st.caption(t("news.footer"))

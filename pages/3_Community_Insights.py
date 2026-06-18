@@ -4,10 +4,11 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from api_client import APIClient
+from locales.i18n import language_selector, t
 from ui_style import apply_product_style
 
 st.set_page_config(
-    page_title="Community Insights",
+    page_title=t("community.page_title"),
     page_icon="👥",
     layout="wide",
 )
@@ -24,6 +25,25 @@ CATEGORY_LABELS = {
     "quality_of_life": "Quality of Life",
 }
 
+CATEGORY_DISPLAY_KEYS = {
+    "Economy": "survey.economy",
+    "Technology": "survey.technology",
+    "Education": "survey.education",
+    "Culture": "survey.culture",
+    "Global Influence": "survey.global_influence",
+    "Quality of Life": "survey.quality_of_life",
+    "economy": "survey.economy",
+    "technology": "survey.technology",
+    "education": "survey.education",
+    "culture": "survey.culture",
+    "global_influence": "survey.global_influence",
+    "quality_of_life": "survey.quality_of_life",
+}
+
+
+def category_label(category):
+    return t(CATEGORY_DISPLAY_KEYS.get(category, category))
+
 
 def category_ranking_chart(category_averages):
     ranked = sorted(
@@ -34,7 +54,7 @@ def category_ranking_chart(category_averages):
     fig = go.Figure(
         go.Bar(
             x=[value for _, value in ranked],
-            y=[CATEGORY_LABELS[key] for key, _ in ranked],
+            y=[category_label(key) for key, _ in ranked],
             orientation="h",
             text=[f"{value:.2f}" for _, value in ranked],
             textposition="outside",
@@ -42,7 +62,7 @@ def category_ranking_chart(category_averages):
         )
     )
     fig.update_layout(
-        xaxis=dict(range=[0, 10], title="Average score"),
+        xaxis=dict(range=[0, 10], title=t("community.average_score")),
         yaxis=dict(autorange="reversed"),
         height=400,
         margin=dict(l=20, r=40, t=20, b=40),
@@ -53,14 +73,14 @@ def category_ranking_chart(category_averages):
 
 def community_radar_chart(category_averages):
     keys = list(CATEGORY_LABELS)
-    labels = [CATEGORY_LABELS[key] for key in keys]
+    labels = [category_label(key) for key in keys]
     values = [category_averages[key] for key in keys]
     fig = go.Figure(
         go.Scatterpolar(
             r=values + [values[0]],
             theta=labels + [labels[0]],
             fill="toself",
-            name="Community average",
+            name=t("community.average_trace"),
             line_color="#d7263d",
         )
     )
@@ -92,26 +112,25 @@ def profile_distribution_chart(distribution):
 
 
 st.markdown(
-    """
+    f"""
 <div class="product-hero">
     <section class="hero-panel">
-        <div class="brand-row"><span class="brand-dot"></span>STEP K5 · COMMUNITY ANALYTICS</div>
-        <h1>Community Insights</h1>
+        <div class="brand-row"><span class="brand-dot"></span>{t("community.hero_tag")}</div>
+        <h1>{t("community.heading")}</h1>
         <p>
-            See how the community perceives Korea across six dimensions, which interpretation
-            profiles are emerging, and what respondents say shaped their views.
+            {t("community.subtitle")}
         </p>
     </section>
     <aside class="hero-aside">
         <div>
-            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>Live survey intelligence</div>
-            <h3 style="margin-top:1.2rem;">From individual answers to shared signals</h3>
+            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>{t("community.aside_tag")}</div>
+            <h3 style="margin-top:1.2rem;">{t("community.aside_title")}</h3>
             <p style="color:#cbd5e1;">
-                Every survey response updates this page automatically.
+                {t("community.aside_desc")}
             </p>
         </div>
         <div class="insight-card" style="background:#111c33;border-color:#26344f;">
-            <p style="margin:0;color:#dbeafe;">No authentication or account data is used.</p>
+            <p style="margin:0;color:#dbeafe;">{t("community.no_auth")}</p>
         </div>
     </aside>
 </div>
@@ -119,63 +138,65 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+language_selector("community_language")
+
 try:
     summary = api.get_community_summary()
 except Exception as exc:
-    st.warning(f"Community Insights API unavailable: {exc}")
-    st.info("Start the backend: `cd backend && uvicorn app.main:app --reload`")
+    st.warning(t("community.api_unavailable", error=exc))
+    st.info(t("common.api_start"))
     summary = None
 
 if not summary:
     st.stop()
 
 if summary["total_responses"] == 0:
-    st.info("Be the first participant in the Korea Perception Survey.")
-    if st.button("Take Perception Survey", use_container_width=True):
+    st.info(t("community.first"))
+    if st.button(t("community.take_survey"), use_container_width=True):
         st.switch_page("pages/2_Perception_Survey.py")
-    if st.button("Back to Home", use_container_width=True):
+    if st.button(t("common.back_home"), use_container_width=True):
         st.switch_page("app.py")
     st.stop()
 
-st.markdown('<div class="section-label">COMMUNITY SNAPSHOT</div>', unsafe_allow_html=True)
-st.markdown("## Community Snapshot")
+st.markdown(f'<div class="section-label">{t("community.snapshot_label")}</div>', unsafe_allow_html=True)
+st.markdown(f"## {t('community.snapshot')}")
 
 m1, m2, m3, m4 = st.columns(4)
-m1.metric("Total Responses", summary["total_responses"])
-m2.metric("Average Score", summary["average_score"])
-m3.metric("Strongest Category", CATEGORY_LABELS[summary["strongest_category"]])
-m4.metric("Weakest Category", CATEGORY_LABELS[summary["weakest_category"]])
+m1.metric(t("community.total"), summary["total_responses"])
+m2.metric(t("community.average"), summary["average_score"])
+m3.metric(t("community.strongest"), category_label(summary["strongest_category"]))
+m4.metric(t("community.weakest"), category_label(summary["weakest_category"]))
 
 category_averages = summary["category_averages"]
 
 left, right = st.columns(2)
 with left:
-    st.markdown("## Category Ranking")
+    st.markdown(f"## {t('community.ranking')}")
     st.plotly_chart(
         category_ranking_chart(category_averages),
         use_container_width=True,
     )
 
 with right:
-    st.markdown("## Community Radar")
+    st.markdown(f"## {t('community.radar')}")
     st.plotly_chart(
         community_radar_chart(category_averages),
         use_container_width=True,
     )
 
-st.markdown('<div class="section-label">COMMUNITY PROFILES</div>', unsafe_allow_html=True)
-st.markdown("## Profile Distribution")
+st.markdown(f'<div class="section-label">{t("community.profiles_label")}</div>', unsafe_allow_html=True)
+st.markdown(f"## {t('community.profile_distribution')}")
 st.plotly_chart(
     profile_distribution_chart(summary["profile_distribution"]),
     use_container_width=True,
 )
 
-st.markdown('<div class="section-label">RECENT VOICES</div>', unsafe_allow_html=True)
-st.markdown("## Recent Voices")
+st.markdown(f'<div class="section-label">{t("community.voices_label")}</div>', unsafe_allow_html=True)
+st.markdown(f"## {t('community.voices')}")
 
 comments = summary.get("recent_comments", [])[:20]
 if not comments:
-    st.info("No comments available yet.")
+    st.info(t("community.no_comments"))
 else:
     for comment in comments:
         st.markdown(
@@ -187,5 +208,5 @@ else:
             unsafe_allow_html=True,
         )
 
-if st.button("Back to Home", use_container_width=True):
+if st.button(t("common.back_home"), use_container_width=True):
     st.switch_page("app.py")

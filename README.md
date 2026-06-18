@@ -121,6 +121,13 @@ Users should verify all important decisions using official sources before making
 
 This project does not provide legal, immigration, financial, or professional advice.
 
+## Internationalization
+
+* English and Simplified Chinese UI support
+* UI text only
+* Business data remains language-neutral
+* API and database values remain unchanged
+
 ## Architecture
 
 ```mermaid

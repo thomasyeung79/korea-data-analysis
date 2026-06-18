@@ -2,9 +2,10 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+from locales.i18n import language_selector, t
 
 st.set_page_config(
-    page_title="Comparison Lab",
+    page_title=t("legacy.comparison.title"),
     page_icon="📊",
     layout="wide",
 )
@@ -16,15 +17,14 @@ apply_product_style()
 
 api = APIClient()
 
-st.title("📊 East Asia Comparison Lab")
+st.title(t("legacy.comparison.title"))
 
-if st.button("🏠 Back to Home"):
+language_selector("comparison_language")
+
+if st.button(f"🏠 {t('common.back_home')}"):
     st.switch_page("app.py")
 
-st.caption(
-    "Compare six countries across six dimensions. "
-    "All scores are normalised to a 0–10 scale."
-)
+st.caption(t("legacy.comparison.caption"))
 
 st.divider()
 
@@ -33,12 +33,12 @@ st.divider()
 try:
     scores = api.get_country_scores()
 except Exception as e:
-    st.error(f"Cannot connect to backend: {e}")
-    st.info("Run: `cd backend && uvicorn app.main:app --reload`")
+    st.error(t("legacy.comparison.backend", error=e))
+    st.info(t("common.run_backend"))
     st.stop()
 
 if not scores:
-    st.info("No data available.")
+    st.info(t("common.no_data"))
     st.stop()
 
 df = pd.DataFrame(scores)
@@ -47,10 +47,10 @@ COUNTRIES = ["Korea", "Japan", "China", "Singapore", "Vietnam", "Thailand"]
 
 # ── Radar Chart ──
 
-st.subheader("🕸️ Radar Comparison")
+st.subheader(t("legacy.comparison.radar"))
 
 selected_radar = st.multiselect(
-    "Select countries to compare",
+    t("legacy.comparison.select_countries"),
     options=COUNTRIES,
     default=["Korea", "Japan", "China"],
 )
@@ -95,15 +95,15 @@ if selected_radar:
 
     st.plotly_chart(fig, use_container_width=True)
 else:
-    st.info("Select at least one country to show the radar chart.")
+    st.info(t("legacy.comparison.select_one"))
 
 st.divider()
 
 # ── Bar Chart Comparison ──
 
-st.subheader("📊 Category Breakdown")
+st.subheader(t("legacy.comparison.breakdown"))
 
-sel_cat = st.selectbox("Select a category", options=CATEGORIES)
+sel_cat = st.selectbox(t("legacy.comparison.select_category"), options=CATEGORIES)
 
 cat_df = df[df["category"] == sel_cat].copy()
 if not cat_df.empty:
@@ -117,7 +117,7 @@ if not cat_df.empty:
         text="score",
         color="country",
         color_discrete_sequence=colors[: len(cat_df)],
-        labels={"score": "Score (0–10)", "country": ""},
+        labels={"score": t("legacy.comparison.score"), "country": ""},
         range_x=[0, 10],
     )
     fig_bar.update_layout(
@@ -128,19 +128,19 @@ if not cat_df.empty:
     fig_bar.update_traces(textposition="outside")
     st.plotly_chart(fig_bar, use_container_width=True)
 else:
-    st.info(f"No data for category: {sel_cat}")
+    st.info(t("legacy.comparison.no_category", category=sel_cat))
 
 st.divider()
 
 # ── Full Data Table ──
 
-st.subheader("📋 Raw Data")
+st.subheader(t("legacy.comparison.raw"))
 
 col_f1, col_f2 = st.columns(2)
 with col_f1:
-    filter_country = st.multiselect("Country", options=COUNTRIES, default=COUNTRIES)
+    filter_country = st.multiselect(t("legacy.comparison.country"), options=COUNTRIES, default=COUNTRIES)
 with col_f2:
-    filter_cat = st.multiselect("Category", options=CATEGORIES, default=CATEGORIES)
+    filter_cat = st.multiselect(t("common.category"), options=CATEGORIES, default=CATEGORIES)
 
 filtered = df[
     df["country"].isin(filter_country) &

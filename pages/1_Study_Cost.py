@@ -3,9 +3,10 @@ import csv
 import io
 import plotly.express as px
 import plotly.graph_objects as go
+from locales.i18n import language_selector, t
 
 st.set_page_config(
-    page_title="Study Cost Calculator",
+    page_title=t("study.page_title"),
     page_icon="📚",
     layout="wide",
 )
@@ -18,23 +19,21 @@ apply_product_style()
 api = APIClient()
 
 st.markdown(
-    """
+    f"""
 <div class="product-hero">
     <section class="hero-panel">
-        <div class="brand-row"><span class="brand-dot"></span>V2 · MODULE 1</div>
-        <h1>Korea Study Cost Calculator</h1>
+        <div class="brand-row"><span class="brand-dot"></span>{t("study.brand")}</div>
+        <h1>{t("study.heading")}</h1>
         <p>
-            Estimate your monthly and annual costs for studying in Korea.
-            Covers tuition, housing, food, transport, insurance, and miscellaneous expenses.
+            {t("study.subtitle")}
         </p>
     </section>
     <aside class="hero-aside">
         <div>
-            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>Directional estimates</div>
-            <h3 style="margin-top:1.2rem;">All amounts in KRW</h3>
+            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>{t("common.directional_estimates")}</div>
+            <h3 style="margin-top:1.2rem;">{t("study.aside_title")}</h3>
             <p style="color:#cbd5e1;">
-                Based on published data from Korean Ministry of Education, Numbeo,
-                and university international offices. Actual costs may vary ±20%.
+                {t("study.aside_desc")}
             </p>
         </div>
     </aside>
@@ -43,28 +42,30 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-if st.button("🏠 Back to Home"):
+language_selector("study_language")
+
+if st.button(f"🏠 {t('common.back_home')}"):
     st.switch_page("app.py")
 
 st.divider()
 
 # ── Form ──
 
-st.markdown('<div class="section-label">YOUR PROFILE</div>', unsafe_allow_html=True)
-st.markdown("## Tell us about your study plan")
+st.markdown(f'<div class="section-label">{t("common.your_profile")}</div>', unsafe_allow_html=True)
+st.markdown(f"## {t('study.form_heading')}")
 
 col1, col2 = st.columns(2)
 
 with col1:
-    city = st.selectbox("City", ["Seoul", "Busan", "Daejeon", "Daegu", "Other"])
-    school_type = st.selectbox("School Type", ["Language School", "Undergraduate", "Graduate School"])
+    city = st.selectbox(t("study.city"), ["Seoul", "Busan", "Daejeon", "Daegu", "Other"])
+    school_type = st.selectbox(t("study.school_type"), ["Language School", "Undergraduate", "Graduate School"])
 
 with col2:
-    housing_type = st.selectbox("Housing Type", ["Dormitory", "Shared Apartment", "Studio Apartment"])
-    lifestyle_level = st.selectbox("Lifestyle Level", ["Budget", "Standard", "Premium"],
-        help="Budget = frugal student living. Standard = average. Premium = comfortable.")
+    housing_type = st.selectbox(t("study.housing_type"), ["Dormitory", "Shared Apartment", "Studio Apartment"])
+    lifestyle_level = st.selectbox(t("study.lifestyle_level"), ["Budget", "Standard", "Premium"],
+        help=t("study.lifestyle_help"))
 
-calculate_clicked = st.button("Calculate Cost", use_container_width=True, type="primary")
+calculate_clicked = st.button(t("study.calculate"), use_container_width=True, type="primary")
 
 st.divider()
 
@@ -86,29 +87,29 @@ if calculate_clicked:
             "lifestyle_level": lifestyle_level,
         }
     except Exception as e:
-        st.error(f"Calculation failed: {e}")
+        st.error(t("study.calculation_failed", error=e))
         st.session_state.pop("last_cost_result", None)
 
 if "last_cost_result" in st.session_state:
     result = st.session_state["last_cost_result"]
     inputs = st.session_state.get("last_cost_inputs", {})
 
-    st.markdown('<div class="section-label">YOUR ESTIMATE</div>', unsafe_allow_html=True)
-    st.markdown(f"## Cost estimate for {inputs.get('city', 'Seoul')}")
+    st.markdown(f'<div class="section-label">{t("study.estimate_label")}</div>', unsafe_allow_html=True)
+    st.markdown(f"## {t('study.estimate_heading', city=inputs.get('city', 'Seoul'))}")
 
     # ── Summary cards ──
     c1, c2, c3 = st.columns(3)
     monthly_usd = round(result["monthly_cost"] / 1200)
     annual_usd = round(result["annual_cost"] / 1200)
-    c1.metric("Monthly (KRW)", f"{result['monthly_cost']:,} ₩")
-    c2.metric("Annual (KRW)", f"{result['annual_cost']:,} ₩")
-    c3.metric("≈ Monthly (USD)", f"${monthly_usd:,}")
+    c1.metric(t("study.monthly_krw"), f"{result['monthly_cost']:,} ₩")
+    c2.metric(t("study.annual_krw"), f"{result['annual_cost']:,} ₩")
+    c3.metric(t("study.monthly_usd"), f"${monthly_usd:,}")
 
     st.divider()
 
     # ── Pie chart ──
-    st.markdown('<div class="section-label">BREAKDOWN</div>', unsafe_allow_html=True)
-    st.markdown("## Where your money goes")
+    st.markdown(f'<div class="section-label">{t("study.breakdown")}</div>', unsafe_allow_html=True)
+    st.markdown(f"## {t('study.money_heading')}")
 
     breakdown = result["breakdown"]
     labels = list(breakdown.keys())
@@ -135,7 +136,7 @@ if "last_cost_result" in st.session_state:
     # ── Monthly vs Annual bar ──
     col_ch1, col_ch2 = st.columns(2)
     with col_ch1:
-        st.caption("**Monthly vs Annual comparison**")
+        st.caption(t("study.monthly_annual"))
         fig_comp = go.Figure()
         fig_comp.add_trace(go.Bar(
             x=["Monthly", "Annual"],
@@ -148,7 +149,7 @@ if "last_cost_result" in st.session_state:
         fig_comp.update_yaxes(tickformat=",")
         st.plotly_chart(fig_comp, use_container_width=True)
     with col_ch2:
-        st.caption("**Category breakdown amounts**")
+        st.caption(t("study.category_amounts"))
         fig_cat = go.Figure()
         cat_names = list(breakdown.keys())
         cat_vals = list(breakdown.values())
@@ -163,18 +164,18 @@ if "last_cost_result" in st.session_state:
         st.plotly_chart(fig_cat, use_container_width=True)
 
     # ── Detail table ──
-    st.subheader("Monthly detail")
+    st.subheader(t("study.monthly_detail"))
     detail_rows = []
     for cat, amount in breakdown.items():
         pct = round(amount / result["monthly_cost"] * 100)
-        detail_rows.append({"Category": cat, "Amount (KRW)": f"{amount:,}", "%": f"{pct}%"})
+        detail_rows.append({t("common.category"): cat, t("common.amount_krw"): f"{amount:,}", "%": f"{pct}%"})
     st.dataframe(detail_rows, use_container_width=True, hide_index=True)
 
     st.divider()
 
     # ── AI Explanation ──
-    st.markdown('<div class="section-label">AI EXPLANATION</div>', unsafe_allow_html=True)
-    st.markdown("## Understanding your estimate")
+    st.markdown(f'<div class="section-label">{t("study.ai_explanation")}</div>', unsafe_allow_html=True)
+    st.markdown(f"## {t('study.understanding')}")
 
     with st.container():
         st.markdown(
@@ -189,7 +190,7 @@ if "last_cost_result" in st.session_state:
     st.divider()
 
     # ── Share / Export ──
-    st.markdown('<div class="section-label">EXPORT</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="section-label">{t("common.export")}</div>', unsafe_allow_html=True)
     col_e1, col_e2, col_e3 = st.columns(3)
     with col_e1:
         summary_text = (
@@ -202,7 +203,7 @@ if "last_cost_result" in st.session_state:
             f"Annual: {result['annual_cost']:,} KRW\n"
         )
         st.download_button(
-            "📥 Download Summary (TXT)",
+            t("study.download_summary"),
             data=summary_text,
             file_name="korea_study_cost_estimate.txt",
             use_container_width=True,
@@ -217,19 +218,19 @@ if "last_cost_result" in st.session_state:
         csv_w.writerow(["Total Monthly", result["monthly_cost"], "100%"])
         csv_w.writerow(["Total Annual", result["annual_cost"], ""])
         st.download_button(
-            "📥 Download CSV",
+            t("common.download_csv"),
             data=csv_out.getvalue(),
             file_name="korea_study_cost.csv",
             mime="text/csv",
             use_container_width=True,
         )
     with col_e3:
-        if st.button("🔄 Recalculate", use_container_width=True):
+        if st.button(t("study.recalculate"), use_container_width=True):
             st.session_state.pop("last_cost_result", None)
             st.rerun()
 
 else:
-    st.info("Fill in your study profile above and click **Calculate Cost** to see your estimate.")
+    st.info(t("study.empty"))
 
 st.divider()
-st.caption("Korea Study & Career Decision Agent · Study Cost Calculator v1.0")
+st.caption(t("study.footer"))
