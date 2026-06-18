@@ -126,7 +126,66 @@ class APIClient:
     def get_community_summary(self) -> dict:
         return self._request("GET", "/api/v1/perception-surveys/community-summary")
 
+    # ── Job Market Analyzer ──
+
+    def analyze_job_market(self, role: str, experience_level: str, korean_level: str) -> dict:
+        return self._request(
+            "POST",
+            "/api/v1/job-market/analyze",
+            json={
+                "role": role,
+                "experience_level": experience_level,
+                "korean_level": korean_level,
+            },
+        )
+
+    def get_job_market_history(self, limit: int = 10) -> list[dict]:
+        return self._request("GET", "/api/v1/job-market/history", params={"limit": limit})
+
+    # ── News & Policy ──
+
+    def search_news_policy(self, keyword: str = "", category: str = "All",
+                           time_range: str = "Last 30 days") -> dict:
+        return self._request(
+            "POST",
+            "/api/v1/news-policy/search",
+            json={
+                "keyword": keyword,
+                "category": category,
+                "time_range": time_range,
+            },
+        )
+
+    def get_news_policy_history(self, limit: int = 10) -> list[dict]:
+        return self._request("GET", "/api/v1/news-policy/history", params={"limit": limit})
+
+    # ── Decision Report ──
+
+    def generate_decision_report(self, payload: dict) -> dict:
+        return self._request("POST", "/api/v1/decision-report/generate", json=payload)
+
+    def get_decision_report_history(self, limit: int = 10) -> list[dict]:
+        return self._request("GET", "/api/v1/decision-report/history", params={"limit": limit})
+
     # ── AI reports ──
 
     def generate_perception_report(self, payload: dict) -> dict:
         return self._request("POST", "/api/v1/ai/perception-report", json=payload)
+
+    # ── Study Cost Calculator ──
+
+    def calculate_study_cost(self, city: str, school_type: str,
+                              housing_type: str, lifestyle_level: str) -> dict:
+        return self._request(
+            "POST",
+            "/api/v1/study-cost/calculate",
+            json={
+                "city": city,
+                "school_type": school_type,
+                "housing_type": housing_type,
+                "lifestyle_level": lifestyle_level,
+            },
+        )
+
+    def get_study_cost_history(self, limit: int = 10) -> list[dict]:
+        return self._request("GET", "/api/v1/study-cost/history", params={"limit": limit})

@@ -1,56 +1,69 @@
-# Korea Analysis
+# Korea Study & Career Decision Agent
 
-> Understanding Korea Through Data
+> *Should I study, work, or live in Korea?*
 
-Korea Analysis is an interactive data product for exploring how Korea is measured and perceived. It combines regional benchmarking, a public perception survey, structured AI reports, and aggregated community insights in one Streamlit and FastAPI application.
+A practical decision assistant for international students and job seekers considering Korea. Estimate study costs, analyse job markets, catch up on visa/news updates, and receive personalised AI decision reports.
 
-## Screenshots
+## Modules
 
-### Home
+### 📚 Study Cost Calculator *(V2 · New)*
 
-![Korea Analysis home](docs/screenshots/01-home.png)
+Estimate monthly and annual costs for studying in Korea. Select your city, school type, housing, and lifestyle to get a detailed cost breakdown with interactive Plotly charts and AI-generated explanations.
 
-### Comparison Lab
+| Input | Options |
+|-------|---------|
+| City | Seoul, Busan, Daejeon, Daegu, Other |
+| School Type | Language School, Undergraduate, Graduate School |
+| Housing | Dormitory, Shared Apartment, Studio Apartment |
+| Lifestyle | Budget, Standard, Premium |
 
-![Comparison Lab](docs/screenshots/02-comparison-lab.png)
+**Output:** Monthly cost, annual cost, breakdown pie chart, monthly vs annual bar chart, AI summary, CSV export, history persistence.
 
-### Perception Survey
+### 💻 IT Job Market Analyzer *(V2 · New)*
 
-![Perception Survey](docs/screenshots/03-survey.png)
+Analyse salary ranges, skill requirements, and visa pathways for 4 tech roles in Korea. Get a personalised 3-month preparation plan based on your experience and Korean language level.
 
-### AI Perception Report
+| Input | Options |
+|-------|---------|
+| Role | Data Analyst, Backend Developer, AI Product Manager, AI Engineer |
+| Experience | Student, 0-2 years, 3-5 years |
+| Korean Level | None, TOPIK 3, TOPIK 4, TOPIK 5+ |
 
-![AI report](docs/screenshots/04-ai-report.png)
+**Output:** Salary range bar chart, skills matrix, language gap analysis, competitiveness score, visa pathway, 3-month action plan, CSV export.
 
-### Community Insights
+### 📰 News & Policy *(V2 · New)*
 
-![Community Insights](docs/screenshots/05-community-insights.png)
+Search recent Korea-related news and policy developments across Study, Work, Visa, Economy, and Technology categories. Get AI-generated trend summaries and practical action suggestions based on curated mock news data.
 
-## Features
+| Input | Options |
+|-------|---------|
+| Keyword | Free text search |
+| Category | Study, Work, Visa, Economy, Technology, All |
+| Time Range | Last 7 days, Last 30 days, Last 90 days |
 
-### Compare
+**Output:** Category distribution chart, relevance score chart, result cards with impact analysis, AI trend summary, action suggestions, TXT export.
 
-- Benchmark Korea against Japan, China, Singapore, Vietnam, and Thailand.
-- Explore Economy, Technology, Education, Culture, Global Influence, and Quality of Life.
-- Use radar charts, category rankings, and filterable data tables.
+### 🧭 AI Decision Report *(V2 · New)*
 
-### Perceive
+Combine study cost and job market analysis into a personalised decision report. Assess financial fit, career fit, language requirements, and visa pathways — with a 3-month action plan.
 
-- Submit a six-dimension Korea perception survey.
-- Compare individual scores with the Korea platform baseline.
-- Store repeated anonymous or nickname-based submissions.
+**Output:** Overall recommendation card, budget gap chart, risk profile bar chart, cost breakdown, salary info, 3-month action plan, TXT/Markdown/JSON export.
 
-### Analyze
+### V1 Legacy Modules
 
-- Generate structured perception reports from survey results.
-- Use `gpt-4o-mini` when an OpenAI API key is available.
-- Fall back automatically to a deterministic local report provider.
+- **Comparison Lab** — Benchmark Korea against 5 East Asian economies across 6 dimensions.
+- **Perception Survey** — Submit a 6-dimension Korea perception profile.
+- **AI Perception Report** — Generate structured AI reports with dual provider fallback.
+- **Community Insights** — Explore category averages, profile distributions, and recent voices.
 
-### Understand
+## Demo Flow
 
-- View community category averages and rankings.
-- Explore interpretation profile distribution.
-- Read recent respondent comments without account data.
+The home page guides you through 4 steps:
+
+1. **📚 Calculate Study Cost** — Enter city, school, housing, and lifestyle → see pie chart, bar chart, and AI summary
+2. **💻 Analyze Job Market** — Select role, experience, and Korean level → see salary range, skills matrix, and preparation plan
+3. **🧭 Generate Decision Report** — Combine cost + career data → see recommendation card, risk chart, and 3-month action plan
+4. **📰 Check News & Policy** — Search by keyword and category → see relevance-ranked results with charts and trend summary
 
 ## Architecture
 
@@ -84,15 +97,15 @@ Detailed architecture and request flows are documented in [docs/architecture.md]
 
 ## Portfolio Highlights
 
-- FastAPI REST API with modular routers
-- Streamlit multi-page product interface
-- Plotly radar, bar, and profile distribution visualizations
-- Validated perception survey workflow
-- Structured AI-generated reports
-- OpenAI provider with automatic local fallback
-- Community analytics and comment aggregation
-- SQLite persistence with SQLAlchemy
-- Automated endpoint and business-rule testing
+- FastAPI REST API with modular routers (8 routers, 12+ endpoints)
+- Streamlit multi-page product interface (7 pages, 4 V2 modules + 3 V1 legacy)
+- Plotly charts: pie, bar, radar, horizontal bar, donut, grouped bar
+- CSV, TXT, Markdown, and JSON export across all modules
+- Structured decision report engine with 4-dimensional risk scoring
+- Dual AI provider architecture (OpenAI + deterministic fallback)
+- 15+ curated news items with relevance scoring and category filtering
+- SQLite persistence with SQLAlchemy (7 tables, model-first design)
+- 86 automated endpoint and business-rule tests
 
 ## Project Structure
 
@@ -102,9 +115,17 @@ south_korea_perception_analysis/
 |-- api_client.py
 |-- ui_style.py
 |-- requirements.txt
+|-- study_cost_config.py
+|-- job_market_config.py
+|-- decision_report_config.py
+|-- news_policy_config.py
 |-- pages/
+|   |-- 1_Study_Cost.py
 |   |-- 1_Comparison_Lab.py
+|   |-- 2_Job_Market.py
 |   |-- 2_Perception_Survey.py
+|   |-- 3_Decision_Report.py
+|-- 4_News_Policy.py
 |   `-- 3_Community_Insights.py
 |-- backend/
 |   |-- requirements.txt
@@ -190,6 +211,14 @@ When the key is missing or the provider fails, Korea Analysis automatically uses
 | `GET` | `/api/v1/perception-surveys` | Latest survey submissions |
 | `GET` | `/api/v1/perception-surveys/stats` | Survey statistics and Korea baseline |
 | `GET` | `/api/v1/perception-surveys/community-summary` | Community analytics |
+| `POST` | `/api/v1/study-cost/calculate` | Calculate study costs with breakdown |
+| `GET` | `/api/v1/study-cost/history` | Study cost calculation history |
+| `POST` | `/api/v1/job-market/analyze` | Analyse IT job market for a role |
+| `GET` | `/api/v1/job-market/history` | Job market analysis history |
+| `POST` | `/api/v1/decision-report/generate` | Generate personalised decision report |
+| `GET` | `/api/v1/decision-report/history` | Decision report history |
+| `POST` | `/api/v1/news-policy/search` | Search news and policy items |
+| `GET` | `/api/v1/news-policy/history` | News search history |
 | `POST` | `/api/v1/ai/perception-report` | Structured perception report |
 
 ## Testing

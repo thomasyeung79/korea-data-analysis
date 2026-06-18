@@ -75,6 +75,165 @@ class PerceptionSurveyStats(BaseModel):
     korea_baseline: Dict[str, float]
 
 
+class StudyCostRequest(BaseModel):
+    city: str
+    school_type: str
+    housing_type: str
+    lifestyle_level: str
+
+
+class StudyCostResponse(BaseModel):
+    monthly_cost: float
+    annual_cost: float
+    breakdown: Dict[str, float]
+    ai_summary: str
+
+
+class StudyCostHistoryResponse(BaseModel):
+    id: int
+    city: str
+    school_type: str
+    housing_type: str
+    lifestyle_level: str
+    monthly_cost: float
+    annual_cost: float
+    cost_breakdown_json: Optional[str] = None
+    created_at: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+
+class JobMarketRequest(BaseModel):
+    role: str
+    experience_level: str
+    korean_level: str
+
+
+class JobMarketResponse(BaseModel):
+    salary_min: float
+    salary_max: float
+    recommended_cities: List[str]
+    required_skills: List[str]
+    nice_to_have_skills: List[str]
+    korean_language_requirement: str
+    korean_language_gap: str
+    competitiveness: int
+    competitiveness_label: str
+    visa_pathway: str
+    ai_plan: str
+    currency: str
+
+
+class JobMarketHistoryResponse(BaseModel):
+    id: int
+    role: str
+    experience_level: str
+    korean_level: str
+    salary_min: float
+    salary_max: float
+    competitiveness: int
+    recommended_skills_json: Optional[str] = None
+    ai_plan: Optional[str] = None
+    created_at: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+
+class DecisionReportRequest(BaseModel):
+    goal: str
+    target_city: str
+    school_type: str
+    housing_type: str
+    lifestyle_level: str
+    target_role: str
+    experience_level: str
+    korean_level: str
+    monthly_budget: float
+
+
+class DecisionReportResponse(BaseModel):
+    recommendation: str
+    recommendation_label: str
+    monthly_cost_estimate: float
+    annual_cost_estimate: float
+    cost_breakdown: Dict[str, float]
+    budget_gap: float
+    budget_gap_pct: float
+    financial_risk: str
+    language_risk: str
+    language_risk_detail: str
+    career_risk: str
+    career_risk_detail: str
+    visa_living_risk: str
+    visa_living_risk_detail: str
+    salary_min: float
+    salary_max: float
+    required_skills: List[str]
+    korean_language_requirement: str
+    competitiveness: int
+    action_plan: str
+    summary: str
+    currency: str
+
+
+class DecisionReportHistoryResponse(BaseModel):
+    id: int
+    goal: str
+    target_city: str
+    monthly_budget: float
+    recommendation: str
+    financial_risk: str
+    career_risk: str
+    language_risk: str
+    report_json: Optional[str] = None
+    created_at: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+
+class NewsPolicyRequest(BaseModel):
+    keyword: str = ""
+    category: str = "All"
+    time_range: str = "Last 30 days"
+
+
+class NewsItem(BaseModel):
+    title: str
+    category: str
+    source_name: str
+    published_at: str
+    summary: str
+    impact_for_students: str
+    impact_for_job_seekers: str
+    relevance_score: float
+    source_url: str
+    tags: List[str]
+
+
+class NewsPolicyResponse(BaseModel):
+    results: List[NewsItem]
+    ai_summary: str
+    action_suggestions: List[str]
+    result_count: int
+
+
+class NewsPolicyHistoryResponse(BaseModel):
+    id: int
+    keyword: Optional[str] = None
+    category: str
+    time_range: str
+    result_count: int
+    ai_summary: Optional[str] = None
+    results_json: Optional[str] = None
+    created_at: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+
 class PerceptionScores(BaseModel):
     economy: int = Field(..., ge=1, le=10)
     technology: int = Field(..., ge=1, le=10)

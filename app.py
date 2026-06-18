@@ -19,30 +19,29 @@ st.markdown(
     """
 <div class="product-hero">
     <section class="hero-panel">
-        <div class="brand-row"><span class="brand-dot"></span>KOREA ANALYSIS</div>
-        <h1>Understanding Korea Through Data</h1>
+        <div class="brand-row"><span class="brand-dot"></span>KOREA STUDY & CAREER DECISION AGENT</div>
+        <h1>Should I study, work, or live in Korea?</h1>
         <p>
-            An interactive product for comparing regional benchmarks, measuring public perception,
-            generating structured insights, and discovering community views of Korea.
+            A practical decision assistant for international students and job seekers considering Korea.
+            Estimate costs, analyse job markets, and get personalised AI reports.
         </p>
         <div class="hero-kpi">
-            <div class="kpi-card"><strong>Compare</strong><span>Regional benchmarks</span></div>
-            <div class="kpi-card"><strong>Perceive</strong><span>Interactive survey</span></div>
-            <div class="kpi-card"><strong>Understand</strong><span>AI and community insights</span></div>
+            <div class="kpi-card"><strong>V2</strong><span>Study Cost Calculator</span></div>
+            <div class="kpi-card"><strong>V2+</strong><span>Job Market Analyzer</span></div>
+            <div class="kpi-card"><strong>V2+</strong><span>AI Decision Report</span></div>
         </div>
     </section>
     <aside class="hero-aside">
         <div>
-            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>PORTFOLIO RELEASE · K6</div>
-            <h3 style="margin-top:1.2rem;">A complete data product workflow</h3>
+            <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>V2 · ISSUE #2</div>
+            <h3 style="margin-top:1.2rem;">Study Cost Calculator</h3>
             <p style="color:#cbd5e1;">
-                Explore benchmark data, submit a perception profile, generate a structured report,
-                and see how your view compares with the community.
+                Curated data · Plotly charts · AI explanations · Persistent history
             </p>
         </div>
         <div class="insight-card" style="background:#111c33;border-color:#26344f;">
             <p style="margin:0;color:#dbeafe;">
-                Streamlit · FastAPI · SQLite · Plotly · OpenAI-compatible fallback architecture
+                Streamlit · FastAPI · SQLite · Plotly · Dual AI provider
             </p>
         </div>
     </aside>
@@ -104,67 +103,115 @@ for i, country in enumerate(all_countries):
 
 st.divider()
 
+# ── Demo Flow ──
+
+st.markdown('<div class="section-label">PORTFOLIO DEMO FLOW</div>', unsafe_allow_html=True)
+st.markdown("## Try the full workflow in 4 steps")
+
+flow_cols = st.columns(4)
+flow_steps = [
+    ("1", "📚", "Calculate Study Cost", "Estimate monthly and annual costs for your Korea study plan."),
+    ("2", "💻", "Analyze Job Market", "See salary ranges, required skills, and visa pathways for tech roles."),
+    ("3", "🧭", "Generate Decision Report", "Combine cost + career into a personalised recommendation with action plan."),
+    ("4", "📰", "Check News & Policy", "Search recent Korea visa, study, work, and tech policy updates."),
+]
+for i, (num, icon, title, desc) in enumerate(flow_steps):
+    with flow_cols[i]:
+        st.markdown(
+            f"""
+        <div style="text-align:center; padding:1rem; border:1px solid #dbe3ef; border-radius:8px;
+                    background:#ffffff; min-height:180px;">
+            <div style="width:36px; height:36px; border-radius:50%; background:#123c9c; color:white;
+                        display:flex; align-items:center; justify-content:center; margin:0 auto 0.5rem;
+                        font-weight:800;">{num}</div>
+            <div style="font-size:1.5rem; margin-bottom:0.3rem;">{icon}</div>
+            <div style="font-weight:700; font-size:0.95rem; margin-bottom:0.3rem;">{title}</div>
+            <div style="color:#64748b; font-size:0.85rem;">{desc}</div>
+        </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+st.divider()
+
 # ── Navigation ──
 
-st.markdown('<div class="section-label">PRODUCT WORKFLOW</div>', unsafe_allow_html=True)
-st.markdown("## Compare. Perceive. Analyze. Understand.")
+st.markdown('<div class="section-label">TOOLS</div>', unsafe_allow_html=True)
+st.markdown("## Decision modules")
 
-nav1, nav2, nav3, nav4 = st.columns(4)
+r1, r2, r3, r4 = st.columns(4)
 
-with nav1:
+with r1:
     st.markdown(
         """
     <div class="module-card">
-        <div class="module-tag">01 · COMPARE</div>
-        <h3>📊 Comparison Lab</h3>
-        <p>Benchmark Korea against five East Asian economies across six shared dimensions.</p>
+        <div class="module-tag">V2 · NEW</div>
+        <h3>📚 Study Cost Calculator</h3>
+        <p>Estimate your monthly and annual costs for studying in Korea across different cities and lifestyles.</p>
     </div>
         """,
         unsafe_allow_html=True,
     )
-    if st.button("Open Comparison Lab", use_container_width=True):
+    if st.button("Open Calculator", use_container_width=True, key="nav_study"):
+        st.switch_page("pages/1_Study_Cost.py")
+
+with r2:
+    st.markdown(
+        """
+    <div class="module-card">
+        <div class="module-tag">V2 · NEW</div>
+        <h3>💻 IT Job Market Analyzer</h3>
+        <p>Analyze Korean tech job requirements, salary ranges, and visa pathways.</p>
+    </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    if st.button("Open Analyzer", use_container_width=True, key="nav_job"):
+        st.switch_page("pages/2_Job_Market.py")
+
+with r3:
+    st.markdown(
+        """
+    <div class="module-card">
+        <div class="module-tag">V2 · NEW</div>
+        <h3>🧭 AI Decision Report</h3>
+        <p>Get a personalised report on studying, working, or living in Korea.</p>
+    </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    if st.button("Open Report", use_container_width=True, key="nav_decision"):
+        st.switch_page("pages/3_Decision_Report.py")
+
+with r4:
+    st.markdown(
+        """
+    <div class="module-card">
+        <div class="module-tag">V2 · NEW</div>
+        <h3>📰 News & Policy</h3>
+        <p>Recent Korea study, work, visa, economy, and technology developments.</p>
+    </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    if st.button("Open News", use_container_width=True, key="nav_news"):
+        st.switch_page("pages/4_News_Policy.py")
+
+st.markdown('<div class="section-label">LEGACY MODULES</div>', unsafe_allow_html=True)
+st.markdown("## V1 features (still active)")
+
+legacy1, legacy2, legacy3, legacy4 = st.columns(4)
+with legacy1:
+    if st.button("📊 Comparison Lab", use_container_width=True):
         st.switch_page("pages/1_Comparison_Lab.py")
-
-with nav2:
-    st.markdown(
-        """
-    <div class="module-card">
-        <div class="module-tag">02 · PERCEIVE</div>
-        <h3>🧭 Perception Survey</h3>
-        <p>Measure your view of Korea and compare it with the platform baseline.</p>
-    </div>
-        """,
-        unsafe_allow_html=True,
-    )
-    if st.button("Take Perception Survey", use_container_width=True):
+with legacy2:
+    if st.button("🧭 Perception Survey", use_container_width=True):
         st.switch_page("pages/2_Perception_Survey.py")
-
-with nav3:
-    st.markdown(
-        """
-    <div class="module-card">
-        <div class="module-tag">03 · ANALYZE</div>
-        <h3>✨ AI Insight</h3>
-        <p>Generate a structured perception report with OpenAI or the local fallback provider.</p>
-    </div>
-        """,
-        unsafe_allow_html=True,
-    )
-    if st.button("Open Survey & AI Insight", use_container_width=True):
+with legacy3:
+    if st.button("✨ AI Insight", use_container_width=True):
         st.switch_page("pages/2_Perception_Survey.py")
-
-with nav4:
-    st.markdown(
-        """
-    <div class="module-card">
-        <div class="module-tag">04 · UNDERSTAND</div>
-        <h3>👥 Community Insights</h3>
-        <p>Explore category averages, perception profiles, and recent community voices.</p>
-    </div>
-        """,
-        unsafe_allow_html=True,
-    )
-    if st.button("Open Community Insights", use_container_width=True):
+with legacy4:
+    if st.button("👥 Community Insights", use_container_width=True):
         st.switch_page("pages/3_Community_Insights.py")
 
 st.markdown('<div class="section-label">DEVELOPER ACCESS</div>', unsafe_allow_html=True)

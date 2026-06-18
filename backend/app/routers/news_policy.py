@@ -1,0 +1,80 @@
+import json
+
+from fastapi import APIRouter, Depends, Query
+from sqlalchemy.orm import Session
+
+from ..database import get_db
+from ..models import NewsPolicyHistory
+from ..schemas import NewsPolicyRequest, NewsPolicyResponse, NewsPolicyHistoryResponse
+from news_policy_config import search_items, generate_trend_summary, generate_action_suggestions, CATEGORIES, TIME_RANGES
+
+router = APIRouter(prefix="/api/v1/news-policy", tags=["news & policy"])
+
+
+@router.post("/search", response_model=NewsPolicyResponse)
+def search_news_policy(
+    request: NewsPolicyRequest,
+    db: Session = Depends(get_db),
+):
+    category = request.category if request.category in CATEGORIES or request.category == "All" else "All"
+    time_range = request.time_range if request.time_range in TIME_RANGES else "Last 30 days"
+
+    results = search_items(
+        keyword=request.keyword,
+        category=category,
+        time_range=time_range,
+    )
+
+    ai_summary = generate_trend_summary(results, request.keyword)
+    action_suggestions = generate_action_suggestions(results, request.keyword)
+
+    # Serialise for history
+    results_serialisable = []
+    for r in results:
+        r_copy = dict(r)
+        r_copy["relevance_score"] = float(r_copy.get("relevance_score", 0))
+        results_serialisable.append(r_copy)
+
+    history = NewsPolicyHistory(
+        keyword=request.keyword or None,
+        category=category,
+        time_range=time_range,
+        result_count=len(results),
+        ai_summary=ai_summary,
+        results_json=json.dumps(results_serialisable, ensure_ascii=False),
+    )
+    db.add(history)
+    db.commit()
+
+    return NewsPolicyResponse(
+        results=results_serialisable,
+        ai_summary=ai_summary,
+        action_suggestions=action_suggestions,
+        result_count=len(results),
+    )
+
+
+@router.get("/history", response_model=list[NewsPolicyHistoryResponse])
+def list_news_policy_history(
+    limit: int = Query(10, ge=1, le=50),
+    db: Session = Depends(get_db),
+):
+    records = (
+        db.query(NewsPolicyHistory)
+        .order_by(NewsPolicyHistory.created_at.desc())
+        .limit(limit)
+        .all()
+    )
+    return [
+        NewsPolicyHistoryResponse(
+            id=r.id,
+            keyword=r.keyword,
+            category=r.category,
+            time_range=r.time_range,
+            result_count=r.result_count,
+            ai_summary=r.ai_summary,
+            results_json=r.results_json,
+            created_at=r.created_at.isoformat() if r.created_at else None,
+        )
+        for r in records
+    ]
