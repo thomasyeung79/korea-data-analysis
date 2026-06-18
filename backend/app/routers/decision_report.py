@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from ..database import get_db
 from ..models import DecisionReportHistory
 from ..schemas import DecisionReportRequest, DecisionReportResponse, DecisionReportHistoryResponse
-from decision_report_config import generate_decision_report
+from ..services.decision_report_config import generate_decision_report
 
 router = APIRouter(prefix="/api/v1/decision-report", tags=["decision report"])
 

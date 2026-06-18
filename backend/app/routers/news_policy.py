@@ -6,7 +6,13 @@ from sqlalchemy.orm import Session
 from ..database import get_db
 from ..models import NewsPolicyHistory
 from ..schemas import NewsPolicyRequest, NewsPolicyResponse, NewsPolicyHistoryResponse
-from news_policy_config import search_items, generate_trend_summary, generate_action_suggestions, CATEGORIES, TIME_RANGES
+from ..services.news_policy_config import (
+    CATEGORIES,
+    TIME_RANGES,
+    generate_action_suggestions,
+    generate_trend_summary,
+    search_items,
+)
 
 router = APIRouter(prefix="/api/v1/news-policy", tags=["news & policy"])
 

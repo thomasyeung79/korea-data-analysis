@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from ..database import get_db
 from ..models import StudyCostHistory
 from ..schemas import StudyCostRequest, StudyCostResponse, StudyCostHistoryResponse
-from study_cost_config import calculate_costs, generate_cost_explanation
+from ..services.study_cost_config import calculate_costs, generate_cost_explanation
 
 router = APIRouter(prefix="/api/v1/study-cost", tags=["study cost"])
 

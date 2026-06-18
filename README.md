@@ -181,17 +181,17 @@ south_korea_perception_analysis/
 |-- api_client.py
 |-- ui_style.py
 |-- requirements.txt
-|-- study_cost_config.py
-|-- job_market_config.py
-|-- decision_report_config.py
-|-- news_policy_config.py
+|-- study_cost_config.py              # compatibility shim
+|-- job_market_config.py              # compatibility shim
+|-- decision_report_config.py         # compatibility shim
+|-- news_policy_config.py             # compatibility shim
 |-- pages/
 |   |-- 1_Study_Cost.py
 |   |-- 1_Comparison_Lab.py
 |   |-- 2_Job_Market.py
 |   |-- 2_Perception_Survey.py
 |   |-- 3_Decision_Report.py
-|-- 4_News_Policy.py
+|   |-- 4_News_Policy.py
 |   `-- 3_Community_Insights.py
 |-- backend/
 |   |-- requirements.txt
@@ -205,6 +205,11 @@ south_korea_perception_analysis/
 |       |   |-- report_engine.py
 |       |   |-- openai_provider.py
 |       |   `-- local_provider.py
+|       |-- services/
+|       |   |-- study_cost_config.py
+|       |   |-- job_market_config.py
+|       |   |-- decision_report_config.py
+|       |   `-- news_policy_config.py
 |       `-- routers/
 |           |-- health.py
 |           |-- countries.py

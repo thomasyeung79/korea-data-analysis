@@ -6,7 +6,13 @@ from sqlalchemy.orm import Session
 from ..database import get_db
 from ..models import JobMarketHistory
 from ..schemas import JobMarketRequest, JobMarketResponse, JobMarketHistoryResponse
-from job_market_config import analyze_job_market, generate_preparation_plan, ROLES, EXPERIENCE_LEVELS, KOREAN_LEVELS
+from ..services.job_market_config import (
+    EXPERIENCE_LEVELS,
+    KOREAN_LEVELS,
+    ROLES,
+    analyze_job_market,
+    generate_preparation_plan,
+)
 
 router = APIRouter(prefix="/api/v1/job-market", tags=["job market"])
 
