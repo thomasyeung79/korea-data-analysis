@@ -4,6 +4,32 @@
 
 A practical decision assistant for international students and job seekers considering Korea. Estimate study costs, analyse job markets, catch up on visa/news updates, and receive personalised AI decision reports.
 
+## Screenshots
+
+### Home — 4-Step Demo Flow
+
+![V2 Home](docs/screenshots/01-home.png)
+
+### Study Cost Calculator
+
+![Study Cost](docs/screenshots/06-study-cost.png)
+
+### IT Job Market Analyzer
+
+![Job Market](docs/screenshots/07-job-market.png)
+
+### AI Decision Report
+
+![Decision Report](docs/screenshots/08-decision-report.png)
+
+### News & Policy
+
+![News & Policy](docs/screenshots/09-news-policy.png)
+
+### V1 Legacy — Comparison Lab
+
+![Comparison Lab](docs/screenshots/02-comparison-lab.png)
+
 ## Modules
 
 ### 📚 Study Cost Calculator *(V2 · New)*

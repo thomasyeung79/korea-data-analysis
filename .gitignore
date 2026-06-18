@@ -12,3 +12,6 @@ Thumbs.db
 *.log
 *.jpg
 *.png
+
+# Allow screenshots
+!docs/screenshots/
