@@ -1,40 +1,36 @@
 # Changelog
 
-## Day 5 — Community Insights
+All notable changes to Korea Study & Career Decision Agent are documented here.
 
-- Added community summary aggregation endpoint.
-- Added category averages, strongest and weakest dimensions.
-- Added perception profile distribution.
-- Added recent respondent voices with comment filtering.
-- Added the Community Insights dashboard with Plotly visualizations.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project uses semantic versioning for portfolio releases.
 
-## Day 4 — AI Perception Report
+## [2.0.0] - 2026-06-18
 
-- Added a structured AI perception report endpoint.
-- Added OpenAI-compatible `gpt-4o-mini` provider support.
-- Added a deterministic local fallback provider.
-- Added perception profile classification and comparison narratives.
-- Embedded AI Insight generation in the survey result workflow.
+### Added
+- Repositioned the product as a Korea study and career decision assistant.
+- Added Study Cost Calculator with city, school type, housing, lifestyle, cost breakdown charts, export, and persisted history.
+- Added IT Job Market Analyzer with role, experience, Korean level, salary range, skill requirements, visa pathway, competitiveness score, and preparation plan.
+- Added AI Decision Report pipeline combining study cost and job market inputs into recommendation, budget gap, risk profile, and 3-month action plan outputs.
+- Added News & Policy search with category filtering, relevance scoring, impact summaries, charts, and action suggestions.
+- Added V2 Streamlit pages, API client methods, FastAPI routers, Pydantic schemas, and SQLite persistence for the new decision modules.
+- Added V2 README positioning, screenshots, data provenance, and decision-use disclaimer.
 
-## Day 3 — Perception Survey Engine
+### Changed
+- Promoted V2 decision modules as the main demo flow.
+- Reframed V1 comparison, survey, AI perception report, and community insights as supporting legacy modules.
+- Updated portfolio messaging around traceable decision support rather than general country perception analytics.
 
-- Added persistent perception survey submissions.
-- Added six validated perception dimensions.
-- Added Korea baseline comparison and individual radar charts.
-- Added survey statistics and recent submission endpoints.
-- Added the Perception Survey Streamlit page.
+### Documentation
+- The original V2 implementation plan remains in `KOREA_ANALYSIS_V2.md` as an implemented planning reference.
 
-## Day 2 — Comparison Engine
+## [1.0.0] - 2026-06-11
 
-- Added six-country and six-category benchmark data.
-- Added the Comparison Lab with radar and category charts.
-- Added country score API endpoints and filters.
-- Added the shared frontend API client.
-
-## Day 1 — Product Foundation
-
-- Created the Streamlit frontend and FastAPI backend.
+### Added
+- Created Streamlit frontend and FastAPI backend.
 - Added SQLite, SQLAlchemy, configuration, and health checks.
-- Established the multi-page product structure and shared visual system.
-- Seeded the initial Korea and East Asia comparison dataset.
-
+- Added six-country and six-category benchmark data.
+- Added Comparison Lab with radar and category charts.
+- Added persistent perception survey submissions and community summary aggregation.
+- Added structured AI perception report endpoint with OpenAI-compatible provider and deterministic local fallback.
+- Added shared frontend API client and visual system.

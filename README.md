@@ -136,6 +136,8 @@ flowchart LR
 
 Detailed architecture and request flows are documented in [docs/architecture.md](docs/architecture.md).
 
+The original V2 implementation plan is kept as [KOREA_ANALYSIS_V2.md](KOREA_ANALYSIS_V2.md) for traceability; its core V2 modules are implemented in the current release.
+
 ## Tech Stack
 
 | Layer | Technology |
