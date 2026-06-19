@@ -217,7 +217,9 @@ south_korea_perception_analysis/
 `-- CHANGELOG.md
 ```
 
-## Local Setup
+## Running Locally
+
+Korea Analysis is a two-service app. The Streamlit frontend calls the FastAPI backend, so both services must be running for calculators, reports, and analysis pages to work.
 
 ### 1. Clone and enter the project
 
@@ -236,7 +238,7 @@ pip install -r requirements.txt
 ### 3. Start the API
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload --port 8000
 ```
 
 The API is available at `http://localhost:8000` and the interactive documentation at `http://localhost:8000/docs`.
@@ -252,6 +254,23 @@ streamlit run app.py
 ```
 
 The frontend is available at `http://localhost:8501`.
+
+If the frontend shows `Backend API is not available`, start the FastAPI backend first and then restart Streamlit.
+
+## Streamlit Cloud Note
+
+Streamlit Cloud runs the Streamlit frontend only. It does not automatically run the FastAPI backend at `localhost:8000`.
+
+For cloud deployment:
+
+1. Deploy the FastAPI backend separately.
+2. Add the backend URL to Streamlit Secrets:
+
+```toml
+API_BASE_URL = "https://your-fastapi-backend.example.com"
+```
+
+The app also supports the same value as an environment variable named `API_BASE_URL`.
 
 ### Optional OpenAI configuration
 

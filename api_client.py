@@ -6,7 +6,32 @@ from typing import Any, Optional
 import os
 import requests as _requests
 
-API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000")
+
+def _get_api_base_url() -> str:
+    if os.getenv("API_BASE_URL"):
+        return os.environ["API_BASE_URL"]
+    try:
+        import streamlit as st
+
+        return str(st.secrets.get("API_BASE_URL", "http://localhost:8000"))
+    except Exception:
+        return "http://localhost:8000"
+
+
+API_BASE_URL = _get_api_base_url()
+
+BACKEND_UNAVAILABLE_MESSAGE = """Backend API is not available.
+
+For local development, start the FastAPI backend first:
+
+cd backend
+uvicorn app.main:app --reload --port 8000
+
+Then restart the Streamlit frontend:
+
+streamlit run app.py
+
+For cloud deployment, deploy the FastAPI backend separately and set API_BASE_URL in Streamlit Secrets."""
 
 
 class APIClient:
@@ -21,10 +46,7 @@ class APIClient:
                 **kwargs,
             )
         except _requests.ConnectionError:
-            raise ConnectionError(
-                f"Cannot connect to {API_BASE_URL}. "
-                "Make sure the backend is running."
-            )
+            raise ConnectionError(BACKEND_UNAVAILABLE_MESSAGE)
 
         if resp.status_code >= 400:
             detail = resp.text
