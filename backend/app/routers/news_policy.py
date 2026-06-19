@@ -11,6 +11,7 @@ from ..services.news_policy_config import (
     TIME_RANGES,
     generate_action_suggestions,
     generate_trend_summary,
+    localize_items,
     search_items,
 )
 
@@ -36,8 +37,9 @@ def search_news_policy(
     action_suggestions = generate_action_suggestions(results, request.keyword, language=language)
 
     # Serialise for history
+    display_results = localize_items(results, language=language)
     results_serialisable = []
-    for r in results:
+    for r in display_results:
         r_copy = dict(r)
         r_copy["relevance_score"] = float(r_copy.get("relevance_score", 0))
         results_serialisable.append(r_copy)

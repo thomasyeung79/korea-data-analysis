@@ -34,6 +34,114 @@ ZH_CATEGORY_LABELS = {
     "Technology": "科技",
 }
 
+ZH_NEWS_ITEMS = {
+    "D-10 Job Seeker Visa Extended to 12 Months for STEM Graduates": {
+        "title": "STEM 毕业生 D-10 求职签证延长至 12 个月",
+        "source_name": "韩国出入境管理局",
+        "summary": "韩国法务部将 STEM 领域毕业生的 D-10 求职签证期限从 6 个月延长至 12 个月。申请人需持有韩国大学本科或以上学历。",
+        "impact_for_students": "STEM 毕业生毕业后有更充足的时间寻找工作，可降低求职期压力。",
+        "impact_for_job_seekers": "非 STEM 毕业生仍为 6 个月。可考虑补充资格证书或韩语培训，以提升签证与就业竞争力。",
+    },
+    "2026 GKS Scholarship Applications Open — 2,000 International Slots": {
+        "title": "2026 年 GKS 奖学金开放申请：面向国际学生 2,000 个名额",
+        "source_name": "韩国教育部",
+        "summary": "Global Korea Scholarship（GKS）宣布为 2027 学年本科和研究生国际学生提供 2,000 个名额。申请截止至 2026 年 10 月，福利包括全额学费、月度生活补贴、机票和韩语培训。",
+        "impact_for_students": "这是重要的资助机会。建议尽早准备推荐信、成绩单和申请材料。",
+        "impact_for_job_seekers": "对求职者不直接适用，但 GKS 校友在韩国政府相关机构中通常更具认可度。",
+    },
+    "Topik 4 Now Mandatory for E-7 Visa Sponsorship at SMEs": {
+        "title": "中小企业 E-7 签证担保将强制要求 TOPIK 4",
+        "source_name": "韩国法务部",
+        "summary": "自 2026 年 7 月起，为外籍员工担保 E-7 签证的韩国中小企业需确认申请人达到 TOPIK 4 或以上。此前部分中小企业可接受 TOPIK 3，大型企业已普遍要求 TOPIK 4+。",
+        "impact_for_students": "应提前规划韩语学习，即使当前签证暂不要求，也建议把 TOPIK 4 作为最低目标。",
+        "impact_for_job_seekers": "中小企业就业门槛提高。多数担保类工作签证现在基本需要 TOPIK 4，建议预留 6-12 个月学习时间。",
+    },
+    "NVIDIA and Samsung Partner on AI Semiconductor Research Hub in Seoul": {
+        "title": "NVIDIA 与三星将在首尔共建 AI 半导体研究中心",
+        "source_name": "Korea Herald",
+        "summary": "NVIDIA 与三星电子宣布在首尔江南区建立联合 AI 半导体研究中心。该中心将雇用 300 多名研究人员，聚焦 AI 芯片设计、LLM 优化和存储架构，招聘预计于 2026 年第三季度开始。",
+        "impact_for_students": "工程和计算机专业学生将获得新的实习与研究助理机会，可考虑聚焦 AI/ML 硬件方向。",
+        "impact_for_job_seekers": "这释放出 AI 硬件和半导体岗位增长信号。三星与 NVIDIA 将在首尔争夺高端人才，预计研发环境对英语更友好。",
+    },
+    "Seoul Metropolitan Area Housing Costs Rise 8% Year-on-Year": {
+        "title": "首都圈住房成本同比上涨 8%",
+        "source_name": "KB 国民银行研究院",
+        "summary": "首尔平均月租较 2025 年第一季度上涨 8%。热门区域单间公寓月租约 75-90 万韩元，考试院价格相对稳定在 30-50 万韩元，全租押金也上涨约 5%。",
+        "impact_for_students": "相比去年，每月预算建议增加 5-10 万韩元。可考虑考试院或合租公寓降低成本。",
+        "impact_for_job_seekers": "住房成本会影响薪资谈判和迁居预算。可考虑盆唐或仁川等较低成本区域。",
+    },
+    "Korean Government Invests 2.3 Trillion KRW in AI Education Programs": {
+        "title": "韩国政府将投入 2.3 万亿韩元发展 AI 教育项目",
+        "source_name": "韩国教育部",
+        "summary": "韩国宣布未来 5 年向 AI 教育投入 2.3 万亿韩元，包括在 100 多所大学建设 AI 课程、为国际学生提供免费在线 AI 课程，并设立 10,000 个 AI 奖学金名额。",
+        "impact_for_students": "对 AI 方向学生是良好时机。国际申请者可关注免费课程和奖学金机会。",
+        "impact_for_job_seekers": "韩国 AI 人才池扩大可能增加竞争，同时也说明产业需求强劲。韩国 AI 教育背景将更受认可。",
+    },
+    "Korea IT Hiring Growth: 22% Increase in Foreign Tech Worker Permits": {
+        "title": "韩国 IT 招聘增长：外籍技术人员许可同比增加 22%",
+        "source_name": "韩国雇佣劳动部",
+        "summary": "2026 年第一季度，面向 IT 专业人士的 E-7 签证发放量同比增长 22%。软件开发者和 AI 工程师占最大类别，平均处理时间从 45 天缩短至 30 天。",
+        "impact_for_students": "IT 毕业生就业信号强劲。软件工程或 AI 方向仍是就业能力最高的选择之一。",
+        "impact_for_job_seekers": "签证处理更快、配额增长。有经验开发者薪资竞争力较强，Python 和 Java 仍是高需求技能。",
+    },
+    "New TOPIK Speaking Test to Launch in 2027": {
+        "title": "TOPIK 将于 2027 年新增口语考试",
+        "source_name": "国立国际教育院",
+        "summary": "TOPIK 将从 2027 年起加入强制口语部分。口语考试采用机考，并与听读写分开评分。现有 TOPIK 证书仍有效，当前 1-6 级结构不变。",
+        "impact_for_students": "如有可能，可在 2027 年前参加现行 TOPIK。口语部分对自学者可能更具挑战。",
+        "impact_for_job_seekers": "雇主可能从 2027 年起更重视口语分数。即使短期不需要，也建议提前练习韩语会话。",
+    },
+    "Korea Minimum Wage Set at 10,560 KRW for 2027": {
+        "title": "韩国 2027 年最低时薪定为 10,560 韩元",
+        "source_name": "最低工资委员会",
+        "summary": "2027 年最低工资定为每小时 10,560 韩元，较 2026 年上涨 3.2%。兼职和季节性劳动者适用。D-2 学生签证持有人学期中每周最多可工作 25 小时。",
+        "impact_for_students": "更高兼职工资有助于缓解生活成本。每周工作 20 小时的学生月收入约 84.5 万韩元。",
+        "impact_for_job_seekers": "最低工资上涨可能影响入门薪资底线。专业全职岗位通常显著高于最低工资。",
+    },
+    "Kakao and Naver Expand AI Assistant Offerings for International Users": {
+        "title": "Kakao 与 Naver 面向国际用户扩展 AI 助手服务",
+        "source_name": "TechCrunch Korea",
+        "summary": "Kakao 和 Naver 均推出英文版 AI 助手。Kakao i 支持英韩双语对话，Naver CLOVA X 发布面向第三方集成的开发者 API，双方都在与全球 AI 平台竞争。",
+        "impact_for_students": "英文友好的 AI 工具可降低国际学生语言门槛，可用于翻译、学习辅助和日常生活。",
+        "impact_for_job_seekers": "AI 生态扩张为英语 PM 和工程师创造机会。韩国科技公司正加速产品国际化。",
+    },
+    "Foreign Resident Registration (ARC) Now Digital — No In-Person Visit Required": {
+        "title": "外国人登陆证（ARC）登记全面数字化，无需现场办理",
+        "source_name": "韩国出入境管理局",
+        "summary": "自 2026 年 6 月起，外国居民可通过 HiKorea 门户在线完成 ARC 登记与续签。生物识别信息可在全国 50 个自助终端提交，处理时间由 3 周缩短至 5 个工作日。",
+        "impact_for_students": "便利性显著提升，无需在出入境办公室长时间排队。建议抵达后尽快登记。",
+        "impact_for_job_seekers": "简化签证续签与行政流程，尤其有利于 E-7 雇主转换期间的求职者。",
+    },
+    "AII Hubs Opening in Busan and Daejeon — 500+ Tech Jobs Expected": {
+        "title": "釜山和大田将开放 AI 创新中心，预计创造 500+ 科技岗位",
+        "source_name": "科学技术信息通信部",
+        "summary": "韩国政府将釜山和大田指定为新的 AI 创新中心，并为在这些城市设立办公室的外资科技公司提供税收激励。预计未来 2 年创造 500 多个科技岗位。",
+        "impact_for_students": "首尔以外的就业机会增加。较低生活成本使这些城市对毕业生更有吸引力。",
+        "impact_for_job_seekers": "可把釜山和大田作为首尔以外的选择。政府激励可能带来相对当地生活成本更高的起薪。",
+    },
+    "Korea-USA Digital Partnership Expanded — Remote Work Visas for Tech Workers": {
+        "title": "韩美数字伙伴关系扩展：科技工作者远程工作签证上线",
+        "source_name": "韩国外交部",
+        "summary": "在扩展后的韩美数字伙伴关系下，新远程工作签证允许美国科技工作者在韩国停留最长 2 年。韩国科技工作者赴美也将获得更便利的 E 类签证流程，申请预计 2026 年第三季度开放。",
+        "impact_for_students": "对学生不直接适用，但显示韩美科技合作深化，韩美合资企业实习机会可能增加。",
+        "impact_for_job_seekers": "为数字游民和远程工作者提供新路径，尤其适合拥有美国客户或雇主的软件工程师。",
+    },
+    "University Tuition Freeze Extended for 5th Consecutive Year": {
+        "title": "韩国大学学费连续第 5 年冻结",
+        "source_name": "韩国大学教育协会",
+        "summary": "韩国主要大学连续第 5 年延长学费冻结政策，将 2027 年学费维持在 2022 年水平。该政策适用于 40 多所参与大学的本地和国际学生，包括 SKY 大学。",
+        "impact_for_students": "学费稳定有助于财务规划。结合奖学金机会，韩国相较美国、澳洲和英国仍具价格竞争力。",
+        "impact_for_job_seekers": "不直接适用，但稳定教育成本意味着更多毕业生不会背负极高债务进入就业市场。",
+    },
+    "Korean Semiconductor Industry Faces Talent Shortage — 5,000 New Roles Unfilled": {
+        "title": "韩国半导体行业面临人才短缺：5,000 个新岗位空缺",
+        "source_name": "韩国半导体产业协会",
+        "summary": "韩国半导体行业报告称，设计、制造和封装环节共有 5,000 个岗位空缺。三星和 SK 海力士正在扩大外籍工程师招聘，研发中心提供英文岗位。",
+        "impact_for_students": "半导体和电气工程学生就业前景强劲，可关注全球领先企业的实习机会。",
+        "impact_for_job_seekers": "经验丰富的半导体工程师需求极高。具备相关经验的外籍人才可期待有竞争力的 offer 和签证支持。",
+    },
+}
+
 
 def _language(language: str) -> str:
     return "zh" if language == "zh" else "en"
@@ -256,6 +364,21 @@ def search_items(keyword: str, category: str, time_range: str) -> list[dict]:
 
     results.sort(key=lambda x: x["relevance_score"], reverse=True)
     return results
+
+
+def localize_items(results: list[dict], language: str = "en") -> list[dict]:
+    """Return display-localized news items without changing search keys."""
+    if _language(language) != "zh":
+        return [dict(item) for item in results]
+
+    localized = []
+    for item in results:
+        item_copy = dict(item)
+        zh = ZH_NEWS_ITEMS.get(item["title"])
+        if zh:
+            item_copy.update(zh)
+        localized.append(item_copy)
+    return localized
 
 
 def generate_trend_summary(results: list[dict], keyword: str, language: str = "en") -> str:

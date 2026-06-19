@@ -134,6 +134,7 @@ class APIClient:
                 TIME_RANGES,
                 generate_action_suggestions,
                 generate_trend_summary,
+                localize_items,
                 search_items,
             )
 
@@ -146,8 +147,9 @@ class APIClient:
                 time_range = "Last 30 days"
             keyword = payload.get("keyword", "")
             results = search_items(keyword=keyword, category=category, time_range=time_range)
+            display_results = localize_items(results, language=language)
             serialisable = []
-            for item in results:
+            for item in display_results:
                 item_copy = dict(item)
                 item_copy["relevance_score"] = float(item_copy.get("relevance_score", 0))
                 serialisable.append(item_copy)

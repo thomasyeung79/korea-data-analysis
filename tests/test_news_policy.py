@@ -71,6 +71,20 @@ class TestKeywordFiltering:
         assert "关键观察" in data["ai_summary"]
         assert any("签证" in suggestion for suggestion in data["action_suggestions"])
 
+    def test_chinese_news_results_are_localized(self):
+        resp = client.post("/api/v1/news-policy/search", json={
+            "keyword": "visa",
+            "category": "All",
+            "time_range": "Last 90 days",
+            "language": "zh",
+        })
+        assert resp.status_code == 200
+        data = resp.json()
+        text = " ".join(item["title"] + " " + item["summary"] for item in data["results"])
+        assert "求职签证" in text
+        assert "韩国法务部" in text
+        assert "Job Seeker Visa Extended" not in text
+
     def test_language_omitted_defaults_to_english_news_summary(self):
         resp = client.post("/api/v1/news-policy/search", json={
             "keyword": "visa",
@@ -79,6 +93,7 @@ class TestKeywordFiltering:
         })
         assert resp.status_code == 200
         assert "Found" in resp.json()["ai_summary"]
+        assert "Job Seeker Visa Extended" in " ".join(item["title"] for item in resp.json()["results"])
 
 
 # ─── Category Filtering ───

@@ -94,3 +94,5 @@ def test_streamlit_fallback_news_policy(monkeypatch):
     assert "results" in result
     assert "ai_summary" in result
     assert isinstance(result["action_suggestions"], list)
+    assert any("签证" in item["title"] for item in result["results"])
+    assert not any("Job Seeker Visa Extended" in item["title"] for item in result["results"])
