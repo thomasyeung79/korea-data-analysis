@@ -1,6 +1,13 @@
 import streamlit as st
+import sys
+from pathlib import Path
 import plotly.graph_objects as go
 from collections import Counter
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from locales.i18n import display_news_category, display_time_range, get_language, language_selector, t, translate_option
 
 st.set_page_config(
