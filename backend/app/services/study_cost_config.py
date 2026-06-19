@@ -140,11 +140,11 @@ ZH_LABELS = {
     "Standard": "标准型",
     "Premium": "高品质",
     "Tuition": "学费",
-    "Housing": "住房",
+    "Housing": "住宿",
     "Food": "饮食",
     "Transportation": "交通",
     "Insurance": "保险",
-    "Miscellaneous": "杂项",
+    "Miscellaneous": "其他",
 }
 
 
@@ -170,7 +170,7 @@ def generate_cost_explanation(city: str, school_type: str, housing_type: str,
             "",
             f"最大支出项是 **{_zh(max_cat)}**，约 {b[max_cat]:,} KRW/月，占总成本 {pct}%。",
             "",
-            "### 月度成本拆分",
+            "## 月度费用明细",
         ]
         for cat, amount in b.items():
             p = round(amount / result["monthly_cost"] * 100)
@@ -178,10 +178,10 @@ def generate_cost_explanation(city: str, school_type: str, housing_type: str,
 
         lines.extend([
             "",
-            "### 年度估算",
+            "## 年度费用估算",
             f"预计每年约 **{result['annual_cost']:,} KRW**（约 {result['annual_cost'] // 1200:,} USD）。",
             "",
-            "### 提醒",
+            "## 温馨提示",
             "- 学费会因大学、专业和奖学金情况明显变化。",
             "- 住房成本受押金、地段和入住季节影响较大。",
             "- 国际学生通常需要加入韩国健康保险。",

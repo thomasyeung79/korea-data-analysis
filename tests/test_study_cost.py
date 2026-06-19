@@ -276,6 +276,36 @@ class TestAIExplanation:
         assert "annual" in resp["ai_summary"].lower()
         assert "KRW" in resp["ai_summary"]
 
+    def test_chinese_ai_summary_headings_and_categories_are_localized(self):
+        resp = client.post("/api/v1/study-cost/calculate", json={
+            "city": "Seoul", "school_type": "Language School",
+            "housing_type": "Dormitory", "lifestyle_level": "Standard",
+            "language": "zh",
+        }).json()
+        summary = resp["ai_summary"]
+
+        assert "## 月度费用明细" in summary
+        assert "## 年度费用估算" in summary
+        assert "## 温馨提示" in summary
+        for label in ["学费", "住宿", "饮食", "交通", "保险", "其他"]:
+            assert label in summary
+
+        english_fragments = [
+            "Your estimated monthly cost",
+            "The largest expense is",
+            "Monthly breakdown",
+            "Annual estimate",
+            "Notes",
+            "Tuition",
+            "Housing",
+            "Food",
+            "Transportation",
+            "Insurance",
+            "Miscellaneous",
+        ]
+        for fragment in english_fragments:
+            assert fragment not in summary
+
 
 # ─────────────────────────────────────────────────────────
 # Note: Total test count = 20
