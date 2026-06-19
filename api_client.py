@@ -46,7 +46,7 @@ class APIClient:
                 **kwargs,
             )
         except _requests.ConnectionError:
-            raise ConnectionError(BACKEND_UNAVAILABLE_MESSAGE)
+            return self._local_request(method, path, **kwargs)
 
         if resp.status_code >= 400:
             detail = resp.text
@@ -59,6 +59,105 @@ class APIClient:
         if resp.status_code == 204:
             return None
         return resp.json()
+
+    def _local_request(self, method: str, path: str, **kwargs) -> Any:
+        """Run Streamlit Cloud without a separate FastAPI process."""
+        payload = kwargs.get("json") or {}
+        params = kwargs.get("params") or {}
+
+        if method == "GET" and path == "/api/v1/health":
+            return {
+                "status": "ok",
+                "version": "2.0.0",
+                "service": "Korea Study & Career Decision Agent",
+                "mode": "streamlit-local",
+            }
+
+        if method == "POST" and path == "/api/v1/study-cost/calculate":
+            from backend.app.services.study_cost_config import calculate_costs, generate_cost_explanation
+
+            city = payload.get("city", "Seoul")
+            school_type = payload.get("school_type", "Undergraduate")
+            housing_type = payload.get("housing_type", "Shared Apartment")
+            lifestyle = payload.get("lifestyle_level", "Standard")
+            language = "zh" if payload.get("language") == "zh" else "en"
+            result = calculate_costs(city, school_type, housing_type, lifestyle)
+            return {
+                "monthly_cost": result["monthly_cost"],
+                "annual_cost": result["annual_cost"],
+                "breakdown": result["breakdown"],
+                "ai_summary": generate_cost_explanation(
+                    city, school_type, housing_type, lifestyle, result, language=language
+                ),
+            }
+
+        if method == "POST" and path == "/api/v1/job-market/analyze":
+            from backend.app.services.job_market_config import (
+                EXPERIENCE_LEVELS,
+                KOREAN_LEVELS,
+                ROLES,
+                analyze_job_market,
+                generate_preparation_plan,
+            )
+
+            language = "zh" if payload.get("language") == "zh" else "en"
+            role = payload.get("role") if payload.get("role") in ROLES else "Backend Developer"
+            exp = payload.get("experience_level") if payload.get("experience_level") in EXPERIENCE_LEVELS else "0-2 years"
+            kl = payload.get("korean_level") if payload.get("korean_level") in KOREAN_LEVELS else "None"
+            result = analyze_job_market(role, exp, kl, language=language)
+            result["ai_plan"] = generate_preparation_plan(role, exp, kl, language=language)
+            return result
+
+        if method == "POST" and path == "/api/v1/decision-report/generate":
+            from backend.app.services.decision_report_config import generate_decision_report
+
+            return generate_decision_report(
+                goal=payload.get("goal", "Study"),
+                target_city=payload.get("target_city", "Seoul"),
+                school_type=payload.get("school_type", "Not Applicable"),
+                housing_type=payload.get("housing_type", "Not Applicable"),
+                lifestyle_level=payload.get("lifestyle_level", "Standard"),
+                target_role=payload.get("target_role", "Not Applicable"),
+                experience_level=payload.get("experience_level", "0-2 years"),
+                korean_level=payload.get("korean_level", "None"),
+                monthly_budget=max(int(payload.get("monthly_budget", 0)), 0),
+                language="zh" if payload.get("language") == "zh" else "en",
+            )
+
+        if method == "POST" and path == "/api/v1/news-policy/search":
+            from backend.app.services.news_policy_config import (
+                CATEGORIES,
+                TIME_RANGES,
+                generate_action_suggestions,
+                generate_trend_summary,
+                search_items,
+            )
+
+            language = "zh" if payload.get("language") == "zh" else "en"
+            category = payload.get("category", "All")
+            if category not in CATEGORIES and category != "All":
+                category = "All"
+            time_range = payload.get("time_range", "Last 30 days")
+            if time_range not in TIME_RANGES:
+                time_range = "Last 30 days"
+            keyword = payload.get("keyword", "")
+            results = search_items(keyword=keyword, category=category, time_range=time_range)
+            serialisable = []
+            for item in results:
+                item_copy = dict(item)
+                item_copy["relevance_score"] = float(item_copy.get("relevance_score", 0))
+                serialisable.append(item_copy)
+            return {
+                "results": serialisable,
+                "ai_summary": generate_trend_summary(results, keyword, language=language),
+                "action_suggestions": generate_action_suggestions(results, keyword, language=language),
+                "result_count": len(serialisable),
+            }
+
+        if method == "GET" and path.endswith("/history"):
+            return []
+
+        raise ConnectionError(BACKEND_UNAVAILABLE_MESSAGE)
 
     # ── Health ──
 

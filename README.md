@@ -219,7 +219,7 @@ south_korea_perception_analysis/
 
 ## Running Locally
 
-Korea Analysis is a two-service app. The Streamlit frontend calls the FastAPI backend, so both services must be running for calculators, reports, and analysis pages to work.
+Korea Analysis can run in two modes. For full-stack local development, run both the FastAPI backend and Streamlit frontend. If the backend is unavailable, the Streamlit app falls back to the same local Python service functions so the main product features still work.
 
 ### 1. Clone and enter the project
 
@@ -255,13 +255,13 @@ streamlit run app.py
 
 The frontend is available at `http://localhost:8501`.
 
-If the frontend shows `Backend API is not available`, start the FastAPI backend first and then restart Streamlit.
+If you want to test the REST API layer, start the FastAPI backend first and then restart Streamlit.
 
 ## Streamlit Cloud Note
 
-Streamlit Cloud runs the Streamlit frontend only. It does not automatically run the FastAPI backend at `localhost:8000`.
+Streamlit Cloud runs the Streamlit frontend only. Korea Analysis includes a local service fallback so Study Cost, Career & Job Market, AI Decision Report, and News & Policy can run on Streamlit Cloud without a separate FastAPI process.
 
-For cloud deployment:
+For a production-style cloud deployment with a separate backend:
 
 1. Deploy the FastAPI backend separately.
 2. Add the backend URL to Streamlit Secrets:
@@ -270,7 +270,7 @@ For cloud deployment:
 API_BASE_URL = "https://your-fastapi-backend.example.com"
 ```
 
-The app also supports the same value as an environment variable named `API_BASE_URL`.
+The app also supports the same value as an environment variable named `API_BASE_URL`. When `API_BASE_URL` is not set or the backend is unreachable, Streamlit uses the local fallback mode.
 
 ### Optional OpenAI configuration
 
