@@ -198,6 +198,108 @@ class TestSkillsAndLanguage:
             assert data["recommended_cities"]
 
 
+# ─── New career roles ───
+
+class TestNewCareerRoles:
+    """Verify newly added non-IT career roles work correctly."""
+
+    NEW_ROLES = [
+        "Accountant",
+        "English Teacher",
+        "Chinese Teacher",
+        "Registered Nurse",
+        "Care Worker",
+        "Mechanical Engineer",
+        "Electrical Engineer",
+    ]
+
+    def test_all_new_roles_return_valid_results(self):
+        for role in self.NEW_ROLES:
+            resp = client.post("/api/v1/job-market/analyze", json={
+                "role": role,
+                "experience_level": "0-2 years",
+                "korean_level": "TOPIK 4",
+            })
+            assert resp.status_code == 200, f"{role} failed: {resp.status_code}"
+            data = resp.json()
+            assert data["salary_min"] > 0, f"{role} missing salary_min"
+            assert data["salary_max"] > data["salary_min"], f"{role} invalid salary range"
+            assert len(data["required_skills"]) > 0, f"{role} missing skills"
+            assert len(data["recommended_cities"]) > 0, f"{role} missing cities"
+            assert 1 <= data["competitiveness"] <= 10, f"{role} invalid competitiveness"
+
+    def test_new_roles_chinese_mode(self):
+        for role in self.NEW_ROLES:
+            resp = client.post("/api/v1/job-market/analyze", json={
+                "role": role,
+                "experience_level": "Student",
+                "korean_level": "None",
+                "language": "zh",
+            })
+            assert resp.status_code == 200, f"{role} zh failed"
+            data = resp.json()
+            assert data["salary_min"] > 0
+            assert data["competitiveness_label"] != ""
+
+    def test_new_roles_have_cities_outside_seoul(self):
+        for role in self.NEW_ROLES:
+            resp = client.post("/api/v1/job-market/analyze", json={
+                "role": role,
+                "experience_level": "3-5 years",
+                "korean_level": "TOPIK 5+",
+            }).json()
+            cities = resp["recommended_cities"]
+            assert len(cities) >= 1
+            # At least some roles should have cities beyond just Seoul
+            assert any(c != "Seoul" for c in cities), f"{role} only has Seoul"
+
+    def test_accountant_salary_reasonable(self):
+        resp = client.post("/api/v1/job-market/analyze", json={
+            "role": "Accountant", "experience_level": "3-5 years", "korean_level": "TOPIK 5+",
+        }).json()
+        assert 40_000_000 <= resp["salary_min"] <= 50_000_000
+        assert resp["salary_max"] >= resp["salary_min"]
+
+    def test_nurse_has_medical_skills(self):
+        resp = client.post("/api/v1/job-market/analyze", json={
+            "role": "Registered Nurse", "experience_level": "0-2 years", "korean_level": "TOPIK 4",
+        }).json()
+        skills_text = " ".join(resp["required_skills"]).lower()
+        assert "patient" in skills_text or "nurse" in skills_text or "clinical" in skills_text
+
+    def test_engineer_has_technical_skills(self):
+        for role in ["Mechanical Engineer", "Electrical Engineer"]:
+            resp = client.post("/api/v1/job-market/analyze", json={
+                "role": role, "experience_level": "0-2 years", "korean_level": "TOPIK 3",
+            }).json()
+            skills_text = " ".join(resp["required_skills"]).lower()
+            assert "design" in skills_text or "cad" in skills_text or "circuit" in skills_text
+
+    def test_teacher_has_certification_skills(self):
+        for role in ["English Teacher", "Chinese Teacher"]:
+            resp = client.post("/api/v1/job-market/analyze", json={
+                "role": role, "experience_level": "0-2 years", "korean_level": "TOPIK 3",
+            }).json()
+            skills_text = " ".join(resp["required_skills"]).lower()
+            assert "lesson" in skills_text or "classroom" in skills_text or "teaching" in skills_text or "certification" in skills_text
+
+    def test_care_worker_salary_lower_range(self):
+        resp = client.post("/api/v1/job-market/analyze", json={
+            "role": "Care Worker", "experience_level": "Student", "korean_level": "None",
+        }).json()
+        assert resp["salary_min"] < 30_000_000  # Entry-level care work is lower paid
+        assert resp["salary_max"] >= resp["salary_min"]
+
+    def test_it_roles_still_work_after_expansion(self):
+        for role in ["Data Analyst", "Backend Developer", "AI Engineer", "AI Product Manager"]:
+            resp = client.post("/api/v1/job-market/analyze", json={
+                "role": role, "experience_level": "3-5 years", "korean_level": "TOPIK 5+",
+            })
+            assert resp.status_code == 200
+            data = resp.json()
+            assert data["salary_min"] > 0
+
+
 # ─── Database Persistence ───
 
 class TestDatabasePersistence:

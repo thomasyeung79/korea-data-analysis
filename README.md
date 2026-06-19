@@ -47,7 +47,7 @@ Analyse salary ranges, skill requirements, and visa pathways for technology, bus
 
 | Input | Options |
 |-------|---------|
-| Role | Data Analyst, Backend Developer, AI Product Manager, AI Engineer, Marketing Specialist, Business Analyst, Operations Specialist, Customer Support Specialist, International Sales, Product Manager |
+| Role | 17 roles across IT, Business, Education, Medical, and Engineering |
 | Experience | Student, 0-2 years, 3-5 years |
 | Korean Level | None, TOPIK 3, TOPIK 4, TOPIK 5+ |
 

@@ -18,16 +18,28 @@ api = APIClient()
 
 TARGET_ROLE_OPTIONS = [
     "Not Applicable",
+    # IT
     "Data Analyst",
     "Backend Developer",
     "AI Product Manager",
     "AI Engineer",
+    # Business
     "Marketing Specialist",
+    "Accountant",
     "Business Analyst",
     "Operations Specialist",
     "Customer Support Specialist",
     "International Sales",
     "Product Manager",
+    # Education
+    "English Teacher",
+    "Chinese Teacher",
+    # Medical
+    "Registered Nurse",
+    "Care Worker",
+    # Engineering
+    "Mechanical Engineer",
+    "Electrical Engineer",
 ]
 
 st.markdown(

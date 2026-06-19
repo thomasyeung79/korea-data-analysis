@@ -9,16 +9,28 @@ Salary ranges are directional estimates for foreign hires at Korean companies.
 from typing import Any
 
 ROLES = [
+    # IT (keep existing)
     "Data Analyst",
     "Backend Developer",
     "AI Product Manager",
     "AI Engineer",
+    # Business (keep existing + new)
     "Marketing Specialist",
+    "Accountant",
     "Business Analyst",
     "Operations Specialist",
     "Customer Support Specialist",
     "International Sales",
     "Product Manager",
+    # Education (new)
+    "English Teacher",
+    "Chinese Teacher",
+    # Medical (new)
+    "Registered Nurse",
+    "Care Worker",
+    # Engineering (new)
+    "Mechanical Engineer",
+    "Electrical Engineer",
 ]
 
 EXPERIENCE_LEVELS = ["Student", "0-2 years", "3-5 years"]
@@ -36,6 +48,13 @@ CITIES_BY_ROLE = {
     "Customer Support Specialist": ["Seoul", "Busan", "Daegu"],
     "International Sales": ["Seoul", "Incheon", "Busan"],
     "Product Manager": ["Seoul", "Seongnam (Pangyo)", "Busan"],
+    "Accountant": ["Seoul", "Busan", "Daegu"],
+    "English Teacher": ["Seoul", "Busan", "Daegu", "Daejeon"],
+    "Chinese Teacher": ["Seoul", "Busan", "Daegu"],
+    "Registered Nurse": ["Seoul", "Busan", "Daegu", "Daejeon", "Incheon"],
+    "Care Worker": ["Seoul", "Busan", "Daegu", "Daejeon", "Incheon"],
+    "Mechanical Engineer": ["Seoul", "Busan", "Daegu", "Daejeon", "Ulsan"],
+    "Electrical Engineer": ["Seoul", "Busan", "Daegu", "Daejeon", "Ulsan"],
 }
 
 # salary_grid[role][experience] = (min_annual_krw, max_annual_krw)
@@ -90,6 +109,41 @@ SALARY_GRID: dict[str, dict[str, tuple[int, int]]] = {
         "0-2 years": (38_000_000, 55_000_000),
         "3-5 years": (55_000_000, 82_000_000),
     },
+    "Accountant": {
+        "Student": (22_000_000, 30_000_000),
+        "0-2 years": (32_000_000, 45_000_000),
+        "3-5 years": (45_000_000, 65_000_000),
+    },
+    "English Teacher": {
+        "Student": (20_000_000, 28_000_000),
+        "0-2 years": (25_000_000, 35_000_000),
+        "3-5 years": (32_000_000, 45_000_000),
+    },
+    "Chinese Teacher": {
+        "Student": (20_000_000, 28_000_000),
+        "0-2 years": (25_000_000, 35_000_000),
+        "3-5 years": (32_000_000, 45_000_000),
+    },
+    "Registered Nurse": {
+        "Student": (22_000_000, 30_000_000),
+        "0-2 years": (30_000_000, 42_000_000),
+        "3-5 years": (40_000_000, 55_000_000),
+    },
+    "Care Worker": {
+        "Student": (18_000_000, 25_000_000),
+        "0-2 years": (24_000_000, 32_000_000),
+        "3-5 years": (30_000_000, 42_000_000),
+    },
+    "Mechanical Engineer": {
+        "Student": (24_000_000, 34_000_000),
+        "0-2 years": (35_000_000, 50_000_000),
+        "3-5 years": (50_000_000, 72_000_000),
+    },
+    "Electrical Engineer": {
+        "Student": (24_000_000, 34_000_000),
+        "0-2 years": (36_000_000, 52_000_000),
+        "3-5 years": (52_000_000, 75_000_000),
+    },
 }
 
 # Korean language requirements by role
@@ -104,6 +158,13 @@ KOREAN_REQUIREMENTS: dict[str, str] = {
     "Customer Support Specialist": "TOPIK 4+ usually required for Korean customer-facing support teams.",
     "International Sales": "TOPIK 3-4 recommended. English plus another language can offset lower Korean in global accounts.",
     "Product Manager": "TOPIK 4-5 recommended. Cross-functional coordination often requires Korean documentation and meetings.",
+    "Accountant": "TOPIK 5+ generally required for Korean accounting certifications and tax work. Some foreign firms may accept TOPIK 4.",
+    "English Teacher": "TOPIK 3 minimum. Native English proficiency is the primary requirement. Korean ability helps with school communication.",
+    "Chinese Teacher": "TOPIK 3 minimum. Native Chinese proficiency is the primary requirement. Korean ability helps with school communication.",
+    "Registered Nurse": "TOPIK 5+ typically required for Korean nursing license and patient communication. English-only roles very limited.",
+    "Care Worker": "TOPIK 4+ recommended for daily care communication. Demand growing due to aging population policy.",
+    "Mechanical Engineer": "TOPIK 3 minimum. English-friendly R&D roles exist at chaebols. TOPIK 4 preferred for production coordination.",
+    "Electrical Engineer": "TOPIK 3 minimum. English-friendly R&D roles exist at chaebols. TOPIK 4 preferred for production coordination.",
 }
 
 # Language gap: what missing Korean means
@@ -266,6 +327,111 @@ SKILL_REQUIREMENTS: dict[str, dict[str, list[str]]] = {
             "Korean language (TOPIK 4+)",
         ],
     },
+    "Accountant": {
+        "must_have": [
+            "Financial accounting",
+            "Tax reporting",
+            "Excel / ERP systems",
+            "Korean accounting standards (K-IFRS)",
+            "Detail-oriented documentation",
+        ],
+        "nice_to_have": [
+            "CPA / AICPA / Korean tax accountant license",
+            "Audit experience",
+            "SAP / Oracle Financials",
+            "Korean language (TOPIK 5+)",
+        ],
+    },
+    "English Teacher": {
+        "must_have": [
+            "Native English proficiency",
+            "TEFL / TESOL / CELTA certification",
+            "Lesson planning",
+            "Classroom management",
+            "Cross-cultural communication",
+        ],
+        "nice_to_have": [
+            "Experience with Korean students",
+            "Kindergarten or adult education experience",
+            "Curriculum development",
+            "Korean language (TOPIK 3+)",
+        ],
+    },
+    "Chinese Teacher": {
+        "must_have": [
+            "Native Chinese proficiency (Putonghua)",
+            "Chinese language teaching certification",
+            "Lesson planning",
+            "Classroom management",
+            "Cross-cultural communication",
+        ],
+        "nice_to_have": [
+            "Experience with Korean students",
+            "HSK / TCSOL certification",
+            "Curriculum development",
+            "Korean language (TOPIK 3+)",
+        ],
+    },
+    "Registered Nurse": {
+        "must_have": [
+            "Registered Nurse license (eligible for Korean reciprocity)",
+            "Patient care experience",
+            "Clinical documentation",
+            "Medical terminology",
+            "Emergency response skills",
+        ],
+        "nice_to_have": [
+            "Korean nursing license (Korean exam required)",
+            "ICU / ER / surgical experience",
+            "Bilingual medical communication",
+            "Korean language (TOPIK 5+)",
+        ],
+    },
+    "Care Worker": {
+        "must_have": [
+            "Caregiving experience",
+            "Elderly or disability care",
+            "Daily living support",
+            "Basic first aid",
+            "Patience and empathy",
+        ],
+        "nice_to_have": [
+            "Korean Care Worker certification (Yoyangbohosa)",
+            "Korean language (TOPIK 4+)",
+            "Driving license (Korean or international)",
+            "Experience with Korean elderly",
+        ],
+    },
+    "Mechanical Engineer": {
+        "must_have": [
+            "CAD / SolidWorks / CATIA",
+            "Mechanical design principles",
+            "Manufacturing process knowledge",
+            "FEA / simulation tools",
+            "Technical documentation",
+        ],
+        "nice_to_have": [
+            "Automotive or semiconductor equipment experience",
+            "Korean engineering standards (KS)",
+            "Project management (PMP)",
+            "Korean language (TOPIK 3+)",
+        ],
+    },
+    "Electrical Engineer": {
+        "must_have": [
+            "Circuit design",
+            "PCB layout / Altium / OrCAD",
+            "Embedded systems",
+            "Signal integrity analysis",
+            "Technical documentation",
+        ],
+        "nice_to_have": [
+            "Semiconductor or display industry experience",
+            "Korean engineering standards (KS)",
+            "PLC / automation experience",
+            "Korean language (TOPIK 3+)",
+        ],
+    },
 }
 
 # Competitiveness scores (1-10) by role and experience
@@ -280,6 +446,13 @@ COMPETITIVENESS: dict[str, dict[str, int]] = {
     "Customer Support Specialist": {"Student": 6, "0-2 years": 5, "3-5 years": 4},
     "International Sales": {"Student": 6, "0-2 years": 5, "3-5 years": 4},
     "Product Manager": {"Student": 7, "0-2 years": 6, "3-5 years": 5},
+    "Accountant": {"Student": 7, "0-2 years": 6, "3-5 years": 5},
+    "English Teacher": {"Student": 6, "0-2 years": 5, "3-5 years": 4},
+    "Chinese Teacher": {"Student": 5, "0-2 years": 4, "3-5 years": 4},
+    "Registered Nurse": {"Student": 8, "0-2 years": 7, "3-5 years": 6},
+    "Care Worker": {"Student": 6, "0-2 years": 5, "3-5 years": 4},
+    "Mechanical Engineer": {"Student": 7, "0-2 years": 6, "3-5 years": 5},
+    "Electrical Engineer": {"Student": 7, "0-2 years": 6, "3-5 years": 5},
 }
 
 COMPETITIVENESS_LABELS = {
@@ -313,6 +486,13 @@ ZH_ROLE_LABELS = {
     "Customer Support Specialist": "客户支持专员",
     "International Sales": "国际销售",
     "Product Manager": "产品经理",
+    "Accountant": "会计师",
+    "English Teacher": "英语教师",
+    "Chinese Teacher": "中文教师",
+    "Registered Nurse": "注册护士",
+    "Care Worker": "护理员",
+    "Mechanical Engineer": "机械工程师",
+    "Electrical Engineer": "电气工程师",
 }
 
 ZH_EXPERIENCE_LABELS = {
@@ -328,6 +508,7 @@ ZH_CITY_LABELS = {
     "Daejeon": "大田",
     "Daegu": "大邱",
     "Seongnam (Pangyo)": "城南（板桥）",
+    "Ulsan": "蔚山",
 }
 
 ZH_COMPETITIVENESS_LABELS = {
@@ -376,6 +557,13 @@ def _localize_job_text(role: str, experience: str, korean_level: str, language: 
         "Customer Support Specialist": "面向韩国客户的支持岗位通常需要 TOPIK 4+。",
         "International Sales": "建议 TOPIK 3-4。英语或第三语言能力可弥补部分韩语不足。",
         "Product Manager": "建议 TOPIK 4-5，跨团队协作通常需要韩文文档和会议能力。",
+        "Accountant": "会计类岗位通常需要 TOPIK 5+ 才能应对韩语会计认证和税务工作，部分外资企业可接受 TOPIK 4。",
+        "English Teacher": "以母语英语能力为主，建议 TOPIK 3 以上，便于与学校沟通和日常生活。",
+        "Chinese Teacher": "以母语中文能力为主，建议 TOPIK 3 以上，便于与学校沟通和日常生活。",
+        "Registered Nurse": "护士岗位通常需要 TOPIK 5+，以获得韩国护士执照并与患者有效沟通。英语岗位非常有限。",
+        "Care Worker": "建议 TOPIK 4+，日常护理需要与老人和家属顺畅沟通。韩国养老护理需求持续增长。",
+        "Mechanical Engineer": "建议 TOPIK 3 起步，大型企业研发岗位有英语环境。TOPIK 4 更有利于生产管理岗位。",
+        "Electrical Engineer": "建议 TOPIK 3 起步，大型企业研发岗位有英语环境。TOPIK 4 更有利于生产管理岗位。",
     }.get(role, f"{role_label} 岗位建议具备可工作的韩语沟通能力。")
 
     gap = {

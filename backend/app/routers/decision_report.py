@@ -21,11 +21,18 @@ VALID_ROLES = [
     "AI Product Manager",
     "AI Engineer",
     "Marketing Specialist",
+    "Accountant",
     "Business Analyst",
     "Operations Specialist",
     "Customer Support Specialist",
     "International Sales",
     "Product Manager",
+    "English Teacher",
+    "Chinese Teacher",
+    "Registered Nurse",
+    "Care Worker",
+    "Mechanical Engineer",
+    "Electrical Engineer",
     "Not Applicable",
 ]
 VALID_EXPERIENCE = ["Student", "0-2 years", "3-5 years"]
