@@ -7,15 +7,16 @@ import os
 import requests as _requests
 
 
-def _get_api_base_url() -> str:
+def _get_api_base_url() -> Optional[str]:
     if os.getenv("API_BASE_URL"):
         return os.environ["API_BASE_URL"]
     try:
         import streamlit as st
 
-        return str(st.secrets.get("API_BASE_URL", "http://localhost:8000"))
+        configured_url = st.secrets.get("API_BASE_URL")
+        return str(configured_url) if configured_url else None
     except Exception:
-        return "http://localhost:8000"
+        return None
 
 
 API_BASE_URL = _get_api_base_url()
@@ -38,6 +39,9 @@ class APIClient:
     """Minimal API client. Stateless — no auth for V0.1."""
 
     def _request(self, method: str, path: str, **kwargs) -> Any:
+        if not API_BASE_URL:
+            return self._local_request(method, path, **kwargs)
+
         url = f"{API_BASE_URL}{path}"
         try:
             resp = _requests.request(
@@ -45,7 +49,7 @@ class APIClient:
                 headers={"Content-Type": "application/json"},
                 **kwargs,
             )
-        except _requests.ConnectionError:
+        except _requests.RequestException:
             return self._local_request(method, path, **kwargs)
 
         if resp.status_code >= 400:

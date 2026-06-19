@@ -16,6 +16,18 @@ def test_streamlit_fallback_health(monkeypatch):
     assert result["mode"] == "streamlit-local"
 
 
+def test_streamlit_fallback_skips_http_when_api_base_url_missing(monkeypatch):
+    def fail_if_called(*args, **kwargs):
+        raise AssertionError("HTTP request should not be called without API_BASE_URL")
+
+    monkeypatch.setattr(api_client, "API_BASE_URL", None)
+    monkeypatch.setattr(api_client._requests, "request", fail_if_called)
+
+    result = api_client.APIClient().health()
+
+    assert result["mode"] == "streamlit-local"
+
+
 def test_streamlit_fallback_study_cost(monkeypatch):
     monkeypatch.setattr(api_client._requests, "request", _offline_request)
 

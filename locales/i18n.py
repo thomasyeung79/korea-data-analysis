@@ -209,6 +209,10 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
         "en": "FastAPI exposes study cost estimates, career analysis, decision reports, and news/policy search endpoints.",
         "zh": "FastAPI 提供留学成本估算、职业分析、决策报告和新闻政策搜索接口。",
     },
+    "home.api_fallback_caption": {
+        "en": "Streamlit Cloud is running in local fallback mode. FastAPI docs are available only when API_BASE_URL is configured.",
+        "zh": "Streamlit Cloud 正在使用本地 fallback 模式。只有配置 API_BASE_URL 后才会显示 FastAPI 文档。",
+    },
 
     "study.page_title": {"en": "Study Cost Calculator", "zh": "留学成本计算器"},
     "study.brand": {"en": "V2 · MODULE 1", "zh": "V2 · 模块 1"},

@@ -7,6 +7,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from locales.i18n import language_selector, t
+from api_client import API_BASE_URL
 
 st.set_page_config(
     page_title=t("home.page_title"),
@@ -15,8 +16,6 @@ st.set_page_config(
 )
 
 from ui_style import apply_product_style
-from api_client import APIClient
-
 apply_product_style()
 
 api = APIClient()
@@ -168,8 +167,11 @@ with r4:
 st.markdown(f'<div class="section-label">{t("home.dev_label")}</div>', unsafe_allow_html=True)
 dev1, dev2 = st.columns([1, 2])
 with dev1:
-    st.link_button(t("home.api_docs"), "http://localhost:8000/docs", use_container_width=True)
+    if API_BASE_URL:
+        st.link_button(t("home.api_docs"), f"{API_BASE_URL}/docs", use_container_width=True)
+    else:
+        st.button(t("home.api_docs"), use_container_width=True, disabled=True)
 with dev2:
     st.caption(
-        t("home.api_caption")
+        t("home.api_caption") if API_BASE_URL else t("home.api_fallback_caption")
     )
