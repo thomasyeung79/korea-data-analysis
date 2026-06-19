@@ -3,7 +3,7 @@ import csv
 import io
 import plotly.express as px
 import plotly.graph_objects as go
-from locales.i18n import language_selector, t
+from locales.i18n import language_selector, t, translate_option
 
 st.set_page_config(
     page_title=t("study.page_title"),
@@ -57,13 +57,16 @@ st.markdown(f"## {t('study.form_heading')}")
 col1, col2 = st.columns(2)
 
 with col1:
-    city = st.selectbox(t("study.city"), ["Seoul", "Busan", "Daejeon", "Daegu", "Other"])
-    school_type = st.selectbox(t("study.school_type"), ["Language School", "Undergraduate", "Graduate School"])
+    city = st.selectbox(t("study.city"), ["Seoul", "Busan", "Daejeon", "Daegu", "Other"],
+                        format_func=lambda value: translate_option("city", value))
+    school_type = st.selectbox(t("study.school_type"), ["Language School", "Undergraduate", "Graduate School"],
+                               format_func=lambda value: translate_option("school_type", value))
 
 with col2:
-    housing_type = st.selectbox(t("study.housing_type"), ["Dormitory", "Shared Apartment", "Studio Apartment"])
+    housing_type = st.selectbox(t("study.housing_type"), ["Dormitory", "Shared Apartment", "Studio Apartment"],
+                                format_func=lambda value: translate_option("housing_type", value))
     lifestyle_level = st.selectbox(t("study.lifestyle_level"), ["Budget", "Standard", "Premium"],
-        help=t("study.lifestyle_help"))
+        format_func=lambda value: translate_option("lifestyle", value), help=t("study.lifestyle_help"))
 
 calculate_clicked = st.button(t("study.calculate"), use_container_width=True, type="primary")
 
@@ -95,7 +98,7 @@ if "last_cost_result" in st.session_state:
     inputs = st.session_state.get("last_cost_inputs", {})
 
     st.markdown(f'<div class="section-label">{t("study.estimate_label")}</div>', unsafe_allow_html=True)
-    st.markdown(f"## {t('study.estimate_heading', city=inputs.get('city', 'Seoul'))}")
+    st.markdown(f"## {t('study.estimate_heading', city=translate_option('city', inputs.get('city', 'Seoul')))}")
 
     # ── Summary cards ──
     c1, c2, c3 = st.columns(3)
@@ -112,7 +115,7 @@ if "last_cost_result" in st.session_state:
     st.markdown(f"## {t('study.money_heading')}")
 
     breakdown = result["breakdown"]
-    labels = list(breakdown.keys())
+    labels = [translate_option("cost_category", key) for key in breakdown]
     values = list(breakdown.values())
 
     colors = ["#123c9c", "#d7263d", "#0f9f6e", "#f59e0b", "#8b5cf6", "#ec4899"]
@@ -139,7 +142,7 @@ if "last_cost_result" in st.session_state:
         st.caption(t("study.monthly_annual"))
         fig_comp = go.Figure()
         fig_comp.add_trace(go.Bar(
-            x=["Monthly", "Annual"],
+            x=[translate_option("period", "Monthly"), translate_option("period", "Annual")],
             y=[result["monthly_cost"], result["annual_cost"]],
             marker_color=["#123c9c", "#d7263d"],
             text=[f"{result['monthly_cost']:,} KRW", f"{result['annual_cost']:,} KRW"],
@@ -151,7 +154,7 @@ if "last_cost_result" in st.session_state:
     with col_ch2:
         st.caption(t("study.category_amounts"))
         fig_cat = go.Figure()
-        cat_names = list(breakdown.keys())
+        cat_names = [translate_option("cost_category", key) for key in breakdown]
         cat_vals = list(breakdown.values())
         fig_cat = go.Figure(data=[go.Bar(
             x=cat_vals, y=cat_names, orientation="h",
@@ -168,7 +171,7 @@ if "last_cost_result" in st.session_state:
     detail_rows = []
     for cat, amount in breakdown.items():
         pct = round(amount / result["monthly_cost"] * 100)
-        detail_rows.append({t("common.category"): cat, t("common.amount_krw"): f"{amount:,}", "%": f"{pct}%"})
+        detail_rows.append({t("common.category"): translate_option("cost_category", cat), t("common.amount_krw"): f"{amount:,}", "%": f"{pct}%"})
     st.dataframe(detail_rows, use_container_width=True, hide_index=True)
 
     st.divider()

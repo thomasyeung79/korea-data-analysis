@@ -3,7 +3,7 @@ import csv
 import io
 import plotly.express as px
 import plotly.graph_objects as go
-from locales.i18n import display_role, language_selector, t
+from locales.i18n import display_role, language_selector, t, translate_option, translate_result_label
 
 st.set_page_config(
     page_title=t("job.page_title"),
@@ -73,10 +73,12 @@ with col1:
     role = st.selectbox(t("job.target_role"), ROLE_OPTIONS, format_func=display_role)
 
 with col2:
-    experience = st.selectbox(t("job.experience"), ["Student", "0-2 years", "3-5 years"])
+    experience = st.selectbox(t("job.experience"), ["Student", "0-2 years", "3-5 years"],
+                              format_func=lambda value: translate_option("experience", value))
 
 with col3:
-    korean_level = st.selectbox(t("job.korean_level"), ["None", "TOPIK 3", "TOPIK 4", "TOPIK 5+"])
+    korean_level = st.selectbox(t("job.korean_level"), ["None", "TOPIK 3", "TOPIK 4", "TOPIK 5+"],
+                                format_func=lambda value: translate_option("korean_level", value))
 
 analyze_clicked = st.button(t("job.analyze"), use_container_width=True, type="primary")
 
@@ -117,7 +119,7 @@ if "last_job_result" in st.session_state:
     c3.metric(t("job.competitiveness"), f"{result['competitiveness']}/10")
     c4.metric(t("job.currency"), result["currency"])
 
-    st.caption(t("job.note", note=result["competitiveness_label"]))
+    st.caption(t("job.note", note=translate_result_label(result["competitiveness_label"])))
 
     st.divider()
 
@@ -126,7 +128,7 @@ if "last_job_result" in st.session_state:
 
     fig_salary = go.Figure()
     fig_salary.add_trace(go.Bar(
-        x=["Salary Range"],
+        x=[t("job.salary_range_name")],
         y=[result["salary_max"] - result["salary_min"]],
         base=result["salary_min"],
         marker_color="#0f9f6e",
@@ -145,7 +147,7 @@ if "last_job_result" in st.session_state:
 
     # ── Recommended cities ──
     st.subheader(t("job.recommended_cities"))
-    st.write(", ".join(result["recommended_cities"]))
+    st.write(", ".join(translate_option("city", city) for city in result["recommended_cities"]))
 
     st.divider()
 

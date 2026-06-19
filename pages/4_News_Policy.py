@@ -1,7 +1,7 @@
 import streamlit as st
 import plotly.graph_objects as go
 from collections import Counter
-from locales.i18n import display_news_category, display_time_range, language_selector, t
+from locales.i18n import display_news_category, display_time_range, language_selector, t, translate_option
 
 st.set_page_config(
     page_title=t("news.page_title"),
@@ -130,7 +130,7 @@ if "news_result" in st.session_state:
         with col_chart1:
             cat_counts = Counter(item["category"] for item in results_list)
             fig_cat = go.Figure(data=[go.Pie(
-                labels=list(cat_counts.keys()),
+                labels=[translate_option("news_category", category) for category in cat_counts.keys()],
                 values=list(cat_counts.values()),
                 marker=dict(colors=["#123c9c", "#d7263d", "#0f9f6e", "#f59e0b", "#8b5cf6"]),
                 textinfo="label+value",
@@ -172,7 +172,7 @@ if "news_result" in st.session_state:
                 <div class="card" style="margin-bottom:1rem;">
                     <div style="display:flex; justify-content:space-between;">
                         <div>
-                            <span class="module-tag">{item['category']}</span>
+                            <span class="module-tag">{translate_option('news_category', item['category'])}</span>
                             <span style="color:#94a3b8; font-size:0.85rem; margin-left:0.5rem;">
                                 {item['source_name']} · {item['published_at']}
                             </span>

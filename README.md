@@ -112,10 +112,10 @@ This project does not provide legal, immigration, financial, or professional adv
 
 ## Internationalization
 
-* English and Simplified Chinese UI support
-* UI text only
-* Business data remains language-neutral
-* API and database values remain unchanged
+* English and Simplified Chinese UI support.
+* Chinese mode translates user-facing labels, options, result cards, and chart labels where practical.
+* Internal API and database values remain stable English identifiers for compatibility.
+* Source URLs, filenames, API paths, code identifiers, and technical terms remain unchanged where appropriate.
 * Detailed i18n design: [docs/KOREA_ANALYSIS_I18N.md](docs/KOREA_ANALYSIS_I18N.md)
 
 ## Architecture

@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 import plotly.graph_objects as go
-from locales.i18n import display_goal, display_role, language_selector, t
+from locales.i18n import display_goal, display_role, language_selector, t, translate_option, translate_result_label
 
 st.set_page_config(
     page_title=t("decision.page_title"),
@@ -70,15 +70,21 @@ col1, col2 = st.columns(2)
 
 with col1:
     goal = st.selectbox(t("decision.goal"), ["Study", "Work", "Live"], format_func=display_goal)
-    target_city = st.selectbox(t("decision.target_city"), ["Seoul", "Busan", "Daejeon", "Daegu", "Other"])
-    school_type = st.selectbox(t("study.school_type"), ["Not Applicable", "Language School", "Undergraduate", "Graduate School"])
-    housing_type = st.selectbox(t("study.housing_type"), ["Not Applicable", "Dormitory", "Shared Apartment", "Studio Apartment"])
+    target_city = st.selectbox(t("decision.target_city"), ["Seoul", "Busan", "Daejeon", "Daegu", "Other"],
+                               format_func=lambda value: translate_option("city", value))
+    school_type = st.selectbox(t("study.school_type"), ["Not Applicable", "Language School", "Undergraduate", "Graduate School"],
+                               format_func=lambda value: translate_option("school_type", value))
+    housing_type = st.selectbox(t("study.housing_type"), ["Not Applicable", "Dormitory", "Shared Apartment", "Studio Apartment"],
+                                format_func=lambda value: translate_option("housing_type", value))
 
 with col2:
-    lifestyle_level = st.selectbox(t("study.lifestyle_level"), ["Budget", "Standard", "Premium"])
+    lifestyle_level = st.selectbox(t("study.lifestyle_level"), ["Budget", "Standard", "Premium"],
+                                   format_func=lambda value: translate_option("lifestyle", value))
     target_role = st.selectbox(t("job.target_role"), TARGET_ROLE_OPTIONS, format_func=display_role)
-    experience_level = st.selectbox(t("job.experience"), ["Student", "0-2 years", "3-5 years"])
-    korean_level = st.selectbox(t("job.korean_level"), ["None", "TOPIK 3", "TOPIK 4", "TOPIK 5+"])
+    experience_level = st.selectbox(t("job.experience"), ["Student", "0-2 years", "3-5 years"],
+                                    format_func=lambda value: translate_option("experience", value))
+    korean_level = st.selectbox(t("job.korean_level"), ["None", "TOPIK 3", "TOPIK 4", "TOPIK 5+"],
+                                format_func=lambda value: translate_option("korean_level", value))
 
 monthly_budget = st.number_input(
     t("decision.monthly_budget"),
@@ -134,7 +140,7 @@ if "decision_report" in st.session_state:
             {t("decision.overall")}
         </div>
         <div style="font-size:2rem; font-weight:800; color:{color}; margin-top:0.5rem;">
-            {r['recommendation_label']}
+            {translate_result_label(r['recommendation_label'])}
         </div>
         <div style="margin-top:1rem; color:#334155; max-width:600px; margin-left:auto; margin-right:auto;">
             {r['summary']}
@@ -153,7 +159,7 @@ if "decision_report" in st.session_state:
     c1.metric(t("decision.est_monthly"), f"{r['monthly_cost_estimate']:,} ₩")
     c2.metric(t("decision.est_annual"), f"{r['annual_cost_estimate']:,} ₩")
     c3.metric(t("decision.budget_gap"), f"{r['budget_gap']:+,} ₩", delta_color="inverse")
-    c4.metric(t("decision.financial_risk"), r["financial_risk"])
+    c4.metric(t("decision.financial_risk"), translate_result_label(r["financial_risk"]))
 
     fin_colors = {"Low": "#0f9f6e", "Medium": "#f59e0b", "High": "#d7263d"}
     st.markdown(f'<div style="height:6px; background:{fin_colors.get(r["financial_risk"], "#ccc")}; border-radius:3px; margin:0.5rem 0 1rem;"></div>',
@@ -182,7 +188,7 @@ if "decision_report" in st.session_state:
         c1, c2, c3 = st.columns(3)
         c1.metric(t("decision.salary_range"), f"{r['salary_min']:,} - {r['salary_max']:,} ₩")
         c2.metric(t("job.competitiveness"), f"{r['competitiveness']}/10")
-        c3.metric(t("decision.career_risk"), r["career_risk"])
+        c3.metric(t("decision.career_risk"), translate_result_label(r["career_risk"]))
 
         st.markdown(t("decision.required_skills", skills=", ".join(r["required_skills"][:5])))
         if r.get("korean_language_requirement"):
@@ -204,7 +210,7 @@ if "decision_report" in st.session_state:
 
     for label, level, detail in risk_data:
         dot = {"Low": "🟢", "Medium": "🟡", "High": "🔴"}.get(level, "⚪")
-        st.markdown(f"**{dot} {label}: {level}**")
+        st.markdown(f"**{dot} {label}: {translate_result_label(level)}**")
         st.caption(detail)
 
     # Risk chart
@@ -214,7 +220,7 @@ if "decision_report" in st.session_state:
     fig_risk = go.Figure(data=[go.Bar(
         x=risk_values, y=risk_labels, orientation="h",
         marker_color=risk_colors,
-        text=[d[1] for d in risk_data],
+        text=[translate_result_label(d[1]) for d in risk_data],
         textposition="outside",
     )])
     fig_risk.update_layout(height=220, showlegend=False, margin=dict(l=20, r=20, t=10, b=20),

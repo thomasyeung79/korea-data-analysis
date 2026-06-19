@@ -9,39 +9,116 @@ SUPPORTED_LANGUAGES = {
 
 _LANGUAGE_BY_LABEL = {label: code for code, label in SUPPORTED_LANGUAGES.items()}
 
-ROLE_DISPLAY_LABELS = {
-    "Data Analyst": {"en": "Data Analyst", "zh": "数据分析师"},
-    "Backend Developer": {"en": "Backend Developer", "zh": "后端开发工程师"},
-    "AI Product Manager": {"en": "AI Product Manager", "zh": "AI 产品经理"},
-    "AI Engineer": {"en": "AI Engineer", "zh": "AI 工程师"},
-    "Marketing Specialist": {"en": "Marketing Specialist", "zh": "市场专员"},
-    "Business Analyst": {"en": "Business Analyst", "zh": "商业分析师"},
-    "Operations Specialist": {"en": "Operations Specialist", "zh": "运营专员"},
-    "Customer Support Specialist": {"en": "Customer Support Specialist", "zh": "客户支持专员"},
-    "International Sales": {"en": "International Sales", "zh": "国际销售"},
-    "Product Manager": {"en": "Product Manager", "zh": "产品经理"},
-    "Not Applicable": {"en": "Not Applicable", "zh": "不适用"},
+OPTION_LABELS: dict[str, dict[str, dict[str, str]]] = {
+    "role": {
+        "Data Analyst": {"en": "Data Analyst", "zh": "数据分析师"},
+        "Backend Developer": {"en": "Backend Developer", "zh": "后端开发工程师"},
+        "AI Product Manager": {"en": "AI Product Manager", "zh": "AI 产品经理"},
+        "AI Engineer": {"en": "AI Engineer", "zh": "AI 工程师"},
+        "Marketing Specialist": {"en": "Marketing Specialist", "zh": "市场营销专员"},
+        "Business Analyst": {"en": "Business Analyst", "zh": "商业分析师"},
+        "Operations Specialist": {"en": "Operations Specialist", "zh": "运营专员"},
+        "Customer Support Specialist": {"en": "Customer Support Specialist", "zh": "客户支持专员"},
+        "International Sales": {"en": "International Sales", "zh": "国际销售"},
+        "Product Manager": {"en": "Product Manager", "zh": "产品经理"},
+        "Not Applicable": {"en": "Not Applicable", "zh": "不适用"},
+    },
+    "experience": {
+        "Student": {"en": "Student", "zh": "学生"},
+        "0-2 years": {"en": "0-2 years", "zh": "0-2 年经验"},
+        "3-5 years": {"en": "3-5 years", "zh": "3-5 年经验"},
+    },
+    "korean_level": {
+        "None": {"en": "None", "zh": "无"},
+        "TOPIK 3": {"en": "TOPIK 3", "zh": "TOPIK 3"},
+        "TOPIK 4": {"en": "TOPIK 4", "zh": "TOPIK 4"},
+        "TOPIK 5+": {"en": "TOPIK 5+", "zh": "TOPIK 5+"},
+    },
+    "city": {
+        "Seoul": {"en": "Seoul", "zh": "首尔"},
+        "Busan": {"en": "Busan", "zh": "釜山"},
+        "Incheon": {"en": "Incheon", "zh": "仁川"},
+        "Daejeon": {"en": "Daejeon", "zh": "大田"},
+        "Daegu": {"en": "Daegu", "zh": "大邱"},
+        "Other": {"en": "Other", "zh": "其他"},
+    },
+    "school_type": {
+        "Language School": {"en": "Language School", "zh": "语言学校"},
+        "Undergraduate": {"en": "Undergraduate", "zh": "本科"},
+        "Graduate School": {"en": "Graduate School", "zh": "研究生院"},
+        "Not Applicable": {"en": "Not Applicable", "zh": "不适用"},
+    },
+    "housing_type": {
+        "Dormitory": {"en": "Dormitory", "zh": "宿舍"},
+        "Shared Apartment": {"en": "Shared Apartment", "zh": "合租公寓"},
+        "Studio Apartment": {"en": "Studio Apartment", "zh": "单间公寓"},
+        "Not Applicable": {"en": "Not Applicable", "zh": "不适用"},
+    },
+    "lifestyle": {
+        "Budget": {"en": "Budget", "zh": "节省型"},
+        "Standard": {"en": "Standard", "zh": "标准型"},
+        "Premium": {"en": "Premium", "zh": "高品质"},
+    },
+    "goal": {
+        "Study": {"en": "Study", "zh": "留学"},
+        "Work": {"en": "Work", "zh": "工作"},
+        "Live": {"en": "Live", "zh": "生活"},
+    },
+    "news_category": {
+        "All": {"en": "All", "zh": "全部"},
+        "Study": {"en": "Study", "zh": "留学"},
+        "Work": {"en": "Work", "zh": "工作"},
+        "Visa": {"en": "Visa", "zh": "签证"},
+        "Economy": {"en": "Economy", "zh": "经济"},
+        "Technology": {"en": "Technology", "zh": "科技"},
+    },
+    "time_range": {
+        "Last 7 days": {"en": "Last 7 days", "zh": "过去 7 天"},
+        "Last 30 days": {"en": "Last 30 days", "zh": "过去 30 天"},
+        "Last 90 days": {"en": "Last 90 days", "zh": "过去 90 天"},
+    },
+    "cost_category": {
+        "Tuition": {"en": "Tuition", "zh": "学费"},
+        "Housing": {"en": "Housing", "zh": "住房"},
+        "Food": {"en": "Food", "zh": "饮食"},
+        "Transportation": {"en": "Transportation", "zh": "交通"},
+        "Insurance": {"en": "Insurance", "zh": "保险"},
+        "Miscellaneous": {"en": "Miscellaneous", "zh": "杂项"},
+    },
+    "period": {
+        "Monthly": {"en": "Monthly", "zh": "月度"},
+        "Annual": {"en": "Annual", "zh": "年度"},
+    },
 }
 
-GOAL_DISPLAY_LABELS = {
-    "Study": {"en": "Study", "zh": "留学"},
-    "Work": {"en": "Work", "zh": "工作"},
-    "Live": {"en": "Live", "zh": "生活"},
-}
-
-NEWS_CATEGORY_DISPLAY_LABELS = {
-    "All": {"en": "All", "zh": "全部"},
-    "Study": {"en": "Study", "zh": "留学"},
-    "Work": {"en": "Work", "zh": "工作"},
-    "Visa": {"en": "Visa", "zh": "签证"},
-    "Economy": {"en": "Economy", "zh": "经济"},
-    "Technology": {"en": "Technology", "zh": "科技"},
-}
-
-TIME_RANGE_DISPLAY_LABELS = {
-    "Last 7 days": {"en": "Last 7 days", "zh": "过去 7 天"},
-    "Last 30 days": {"en": "Last 30 days", "zh": "过去 30 天"},
-    "Last 90 days": {"en": "Last 90 days", "zh": "过去 90 天"},
+RESULT_LABELS: dict[str, dict[str, str]] = {
+    "Strongly Recommended": {"en": "Strongly Recommended", "zh": "强烈推荐"},
+    "Strongly Recommended ✅": {"en": "Strongly Recommended ✅", "zh": "强烈推荐 ✅"},
+    "Recommended with Preparation": {"en": "Recommended with Preparation", "zh": "准备充分后推荐"},
+    "Recommended with Preparation ⚠️": {"en": "Recommended with Preparation ⚠️", "zh": "准备充分后推荐 ⚠️"},
+    "Risky": {"en": "Risky", "zh": "有一定风险"},
+    "Risky ❓": {"en": "Risky ❓", "zh": "有一定风险 ❓"},
+    "Not Recommended Yet": {"en": "Not Recommended Yet", "zh": "暂不推荐"},
+    "Not Recommended Yet ❌": {"en": "Not Recommended Yet ❌", "zh": "暂不推荐 ❌"},
+    "Low": {"en": "Low", "zh": "低"},
+    "Medium": {"en": "Medium", "zh": "中"},
+    "High": {"en": "High", "zh": "高"},
+    "Very Low — strong demand, few qualified candidates": {
+        "en": "Very Low — strong demand, few qualified candidates",
+        "zh": "很低：需求强，合格候选人较少",
+    },
+    "Low": {"en": "Low", "zh": "低"},
+    "Below Average": {"en": "Below Average", "zh": "低于平均"},
+    "Average — competitive but achievable with right skills": {
+        "en": "Average — competitive but achievable with right skills",
+        "zh": "中等：有竞争，但技能匹配即可争取",
+    },
+    "Above Average": {"en": "Above Average", "zh": "高于平均"},
+    "Moderately High": {"en": "Moderately High", "zh": "较高"},
+    "High — requires differentiation": {"en": "High — requires differentiation", "zh": "较高：需要差异化优势"},
+    "Very High": {"en": "Very High", "zh": "很高"},
+    "Extremely Competitive": {"en": "Extremely Competitive", "zh": "竞争极高"},
+    "Saturated": {"en": "Saturated", "zh": "趋于饱和"},
 }
 
 
@@ -138,7 +215,7 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
     "study.school_type": {"en": "School Type", "zh": "学校类型"},
     "study.housing_type": {"en": "Housing Type", "zh": "住房类型"},
     "study.lifestyle_level": {"en": "Lifestyle Level", "zh": "生活方式"},
-    "study.lifestyle_help": {"en": "Budget = frugal student living. Standard = average. Premium = comfortable.", "zh": "Budget = 节俭学生生活。Standard = 普通。Premium = 更舒适。"},
+    "study.lifestyle_help": {"en": "Budget = frugal student living. Standard = average. Premium = comfortable.", "zh": "节省型 = 节俭学生生活。标准型 = 普通。高品质 = 更舒适。"},
     "study.calculate": {"en": "Calculate Cost", "zh": "计算成本"},
     "study.calculation_failed": {"en": "Calculation failed: {error}", "zh": "计算失败：{error}"},
     "study.estimate_label": {"en": "YOUR ESTIMATE", "zh": "你的估算"},
@@ -411,20 +488,37 @@ def _display_value(labels: dict[str, dict[str, str]], value: str) -> str:
     return entry.get(get_language()) or entry.get("en") or value
 
 
+def translate_option(category: str, value: str) -> str:
+    return _display_value(OPTION_LABELS.get(category, {}), value)
+
+
+def option_value_from_label(category: str, label: str) -> str:
+    labels = OPTION_LABELS.get(category, {})
+    language = get_language()
+    for value, entry in labels.items():
+        if label in (entry.get(language), entry.get("en")):
+            return value
+    return label
+
+
+def translate_result_label(value: str) -> str:
+    return _display_value(RESULT_LABELS, value)
+
+
 def display_role(role: str) -> str:
-    return _display_value(ROLE_DISPLAY_LABELS, role)
+    return translate_option("role", role)
 
 
 def display_goal(goal: str) -> str:
-    return _display_value(GOAL_DISPLAY_LABELS, goal)
+    return translate_option("goal", goal)
 
 
 def display_news_category(category: str) -> str:
-    return _display_value(NEWS_CATEGORY_DISPLAY_LABELS, category)
+    return translate_option("news_category", category)
 
 
 def display_time_range(time_range: str) -> str:
-    return _display_value(TIME_RANGE_DISPLAY_LABELS, time_range)
+    return translate_option("time_range", time_range)
 
 
 def translation_key_count() -> int:
