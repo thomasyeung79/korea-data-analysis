@@ -7,7 +7,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from locales.i18n import language_selector, t
-from api_client import API_BASE_URL
+from api_client import API_BASE_URL, APIClient
 
 st.set_page_config(
     page_title=t("home.page_title"),
