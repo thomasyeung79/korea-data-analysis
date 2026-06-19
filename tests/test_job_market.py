@@ -72,6 +72,27 @@ class TestSalaryCalculation:
             assert resp["salary_min"] > 0
             assert resp["salary_max"] > resp["salary_min"]
 
+    def test_chinese_preparation_plan(self):
+        resp = client.post("/api/v1/job-market/analyze", json={
+            "role": "Backend Developer",
+            "experience_level": "Student",
+            "korean_level": "None",
+            "language": "zh",
+        })
+        assert resp.status_code == 200
+        data = resp.json()
+        assert "3 个月准备计划" in data["ai_plan"]
+        assert "后端开发工程师" in data["ai_plan"]
+        assert "你目前更适合" in data["korean_language_gap"]
+
+    def test_language_omitted_defaults_to_english_plan(self):
+        data = client.post("/api/v1/job-market/analyze", json={
+            "role": "Backend Developer",
+            "experience_level": "Student",
+            "korean_level": "None",
+        }).json()
+        assert "3-Month Preparation Plan" in data["ai_plan"]
+
     def test_competitiveness_score_range(self):
         for role in ROLES:
             for exp in ["Student", "0-2 years", "3-5 years"]:

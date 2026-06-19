@@ -21,6 +21,45 @@ RECOMMENDATION_LABELS = {
     "not_recommended": "Not Recommended Yet ❌",
 }
 
+RECOMMENDATION_LABELS_ZH = {
+    "strongly_recommended": "强烈推荐 ✅",
+    "recommended_with_prep": "准备充分后推荐 ⚠️",
+    "risky": "有一定风险 ❓",
+    "not_recommended": "暂不推荐 ❌",
+}
+
+ZH_GOAL_LABELS = {"Study": "留学", "Work": "工作", "Live": "生活"}
+ZH_CITY_LABELS = {"Seoul": "首尔", "Busan": "釜山", "Daejeon": "大田", "Daegu": "大邱", "Other": "其他城市"}
+ZH_ROLE_LABELS = {
+    "Data Analyst": "数据分析师",
+    "Backend Developer": "后端开发工程师",
+    "AI Product Manager": "AI 产品经理",
+    "AI Engineer": "AI 工程师",
+    "Marketing Specialist": "市场营销专员",
+    "Business Analyst": "商业分析师",
+    "Operations Specialist": "运营专员",
+    "Customer Support Specialist": "客户支持专员",
+    "International Sales": "国际销售",
+    "Product Manager": "产品经理",
+    "Not Applicable": "不适用",
+}
+
+
+def _language(language: str) -> str:
+    return "zh" if language == "zh" else "en"
+
+
+def _zh_goal(goal: str) -> str:
+    return ZH_GOAL_LABELS.get(goal, goal)
+
+
+def _zh_city(city: str) -> str:
+    return ZH_CITY_LABELS.get(city, city)
+
+
+def _zh_role(role: str) -> str:
+    return ZH_ROLE_LABELS.get(role, role)
+
 
 def _financial_risk(monthly_cost: int, monthly_budget: int) -> tuple[str, int, int]:
     """Calculate financial risk and gap."""
@@ -36,16 +75,23 @@ def _financial_risk(monthly_cost: int, monthly_budget: int) -> tuple[str, int, i
     return "High", gap, deficit_pct
 
 
-def _language_risk(korean_level: str, goal: str) -> tuple[str, str]:
+def _language_risk(korean_level: str, goal: str, language: str = "en") -> tuple[str, str]:
     """Assess language risk based on goal and current level."""
     level_map = {"None": 0, "TOPIK 3": 3, "TOPIK 4": 4, "TOPIK 5+": 5}
     level = level_map.get(korean_level, 0)
 
-    thresholds = {
-        "Study": {"required": 3, "label": "Most university programs require TOPIK 3-4 for Korean-track studies."},
-        "Work": {"required": 4, "label": "Most professional roles require TOPIK 4+ for team integration."},
-        "Live": {"required": 2, "label": "Daily life is manageable with basic Korean (TOPIK 2-3)."},
-    }
+    if _language(language) == "zh":
+        thresholds = {
+            "Study": {"required": 3, "label": "多数韩语授课项目通常需要 TOPIK 3-4。"},
+            "Work": {"required": 4, "label": "多数专业岗位需要 TOPIK 4+ 才能更好融入团队。"},
+            "Live": {"required": 2, "label": "日常生活具备基础韩语（TOPIK 2-3）会更稳妥。"},
+        }
+    else:
+        thresholds = {
+            "Study": {"required": 3, "label": "Most university programs require TOPIK 3-4 for Korean-track studies."},
+            "Work": {"required": 4, "label": "Most professional roles require TOPIK 4+ for team integration."},
+            "Live": {"required": 2, "label": "Daily life is manageable with basic Korean (TOPIK 2-3)."},
+        }
     info = thresholds.get(goal, thresholds["Live"])
 
     if level >= info["required"]:
@@ -53,32 +99,44 @@ def _language_risk(korean_level: str, goal: str) -> tuple[str, str]:
     elif level >= info["required"] - 1:
         return "Medium", info["label"]
     else:
+        if _language(language) == "zh":
+            return "High", f"{info['label']} 你当前的韩语水平（{korean_level}）低于建议门槛。"
         return "High", f"{info['label']} Your current level ({korean_level}) is below the recommended threshold."
 
 
-def _career_risk(role: str, competitiveness: int) -> tuple[str, str]:
+def _career_risk(role: str, competitiveness: int, language: str = "en") -> tuple[str, str]:
     """Assess career risk based on competitiveness score."""
     if role == "Not Applicable" or not role:
+        if _language(language) == "zh":
+            return "Low", "你的当前目标不需要职业风险评估。"
         return "Low", "Career assessment not applicable to your goal."
     if competitiveness <= 5:
+        if _language(language) == "zh":
+            return "Low", f"竞争强度 {competitiveness}/10，岗位市场相对友好。"
         return "Low", f"Competitiveness score {competitiveness}/10 — favourable job market conditions."
     elif competitiveness <= 7:
+        if _language(language) == "zh":
+            return "Medium", f"竞争强度 {competitiveness}/10，建议强化简历差异化。"
         return "Medium", f"Competitiveness score {competitiveness}/10 — resume differentiation recommended."
     else:
+        if _language(language) == "zh":
+            return "High", f"竞争强度 {competitiveness}/10，需要更强准备和人脉拓展。"
         return "High", f"Competitiveness score {competitiveness}/10 — requires strong preparation and networking."
 
 
-def _visa_living_risk(goal: str, monthly_budget: int, monthly_cost: int) -> tuple[str, str]:
+def _visa_living_risk(goal: str, monthly_budget: int, monthly_cost: int, language: str = "en") -> tuple[str, str]:
     """Assess visa and living risk."""
     gap = monthly_budget - monthly_cost
     factors = []
     if gap < 0:
-        factors.append("Monthly budget is below estimated living costs.")
+        factors.append("月度预算低于估算生活成本。" if _language(language) == "zh" else "Monthly budget is below estimated living costs.")
     if goal == "Work":
-        factors.append("E-7 visa requires employer sponsorship. Job search can take 3-6 months.")
+        factors.append("E-7 签证需要雇主担保，求职周期可能需要 3-6 个月。" if _language(language) == "zh" else "E-7 visa requires employer sponsorship. Job search can take 3-6 months.")
     elif goal == "Study":
-        factors.append("D-2 visa requires proof of funds (typically $20,000+ in bank account).")
+        factors.append("D-2 学生签证通常需要资金证明（常见要求约 20,000 美元以上）。" if _language(language) == "zh" else "D-2 visa requires proof of funds (typically $20,000+ in bank account).")
     if len(factors) == 0:
+        if _language(language) == "zh":
+            return "Low", "签证和生活安排看起来较可控。"
         return "Low", "Visa and living requirements appear manageable."
     elif len(factors) == 1:
         return "Medium", " ".join(factors)
@@ -113,6 +171,7 @@ def generate_decision_report(
     experience_level: str,
     korean_level: str,
     monthly_budget: int,
+    language: str = "en",
 ) -> dict:
     """Generate a full decision report combining cost + career analysis."""
 
@@ -139,21 +198,21 @@ def generate_decision_report(
     language_req = career_result["korean_language_requirement"] if career_result else ""
 
     # ── 3. Risk assessment ──
-    lang_risk, lang_detail = _language_risk(korean_level, goal)
-    car_risk, car_detail = _career_risk(target_role, competitiveness)
-    visa_risk, visa_detail = _visa_living_risk(goal, monthly_budget, monthly_cost)
+    lang_risk, lang_detail = _language_risk(korean_level, goal, language)
+    car_risk, car_detail = _career_risk(target_role, competitiveness, language)
+    visa_risk, visa_detail = _visa_living_risk(goal, monthly_budget, monthly_cost, language)
 
     overall = _recommendation_classifier(fin_risk, lang_risk, car_risk, visa_risk, monthly_budget, monthly_cost)
 
     # ── 4. Action plan ──
-    action_plan = _generate_action_plan(goal, fin_risk, lang_risk, korean_level, target_role)
+    action_plan = _generate_action_plan(goal, fin_risk, lang_risk, korean_level, target_role, language)
 
     # ── 5. Final summary ──
-    summary = _generate_summary(overall, goal, target_city, monthly_cost, monthly_budget, korean_level)
+    summary = _generate_summary(overall, goal, target_city, monthly_cost, monthly_budget, korean_level, language)
 
     return {
         "recommendation": overall,
-        "recommendation_label": RECOMMENDATION_LABELS[overall],
+        "recommendation_label": RECOMMENDATION_LABELS_ZH[overall] if _language(language) == "zh" else RECOMMENDATION_LABELS[overall],
         "monthly_cost_estimate": monthly_cost,
         "annual_cost_estimate": annual_cost,
         "cost_breakdown": breakdown,
@@ -177,8 +236,51 @@ def generate_decision_report(
     }
 
 
-def _generate_action_plan(goal: str, fin_risk: str, lang_risk: str, korean_level: str, target_role: str) -> str:
+def _generate_action_plan(goal: str, fin_risk: str, lang_risk: str, korean_level: str, target_role: str, language: str = "en") -> str:
     """Generate a structured 3-month action plan."""
+    if _language(language) == "zh":
+        lines = ["### 第 1 个月：打好基础"]
+        month1 = []
+        if fin_risk == "High":
+            month1.append("建立详细预算，优先研究 GKS、大学奖学金或其他资助机会。")
+            month1.append("如果符合签证条件，了解兼职规则和可行收入。")
+        else:
+            month1.append("确认预算覆盖主要支出，并预留押金、机票和初始安置费用。")
+        if lang_risk == "High":
+            month1.append("开始高强度韩语学习，目标是在 3 个月内达到 TOPIK 2-3。")
+        elif lang_risk == "Medium":
+            month1.append("报名韩语课程或 TOPIK 备考班，补齐沟通短板。")
+        if target_role and target_role != "Not Applicable":
+            month1.append(f"研究{_zh_role(target_role)}岗位市场，整理目标公司和技能要求。")
+        month1.append("调研目标城市住房选择，如考试院、one-room、合租或宿舍。")
+        lines.append("\n".join(f"- {item}" for item in month1))
+
+        lines.append("\n### 第 2 个月：集中准备")
+        month2 = [
+            "如果目标是留学，准备成绩单、个人陈述、推荐信和奖学金材料。",
+            "研究签证要求：D-2（留学）、E-7（工作）或 D-10（求职）。",
+            "估算第一年总成本，包括机票、押金、保险和初始生活用品。",
+        ]
+        if goal == "Work":
+            month2.insert(1, "打磨中英文简历和作品集，准备 LinkedIn、Wanted 或项目链接。")
+            month2.insert(2, "通过校友、行业活动或线上社群建立韩国求职人脉。")
+        lines.append("\n".join(f"- {item}" for item in month2))
+
+        lines.append("\n### 第 3 个月：执行落地")
+        month3 = []
+        if goal == "Study":
+            month3.append("提交大学申请，并同步申请奖学金。")
+        elif goal == "Work":
+            month3.append("开始投递岗位，准备韩国式面试和自我介绍。")
+            month3.append("如果韩语达到 TOPIK 4+，可考虑大型企业或本土团队岗位。")
+        else:
+            month3.append("完善居住、医保、手机、银行和长期预算安排。")
+        month3.append("确认住宿、健康保险和签证材料时间表。")
+        month3.append("准备抵达后 3 个月清单：ARC 登记、电话卡、银行账户和生活服务。")
+        lines.append("\n".join(f"- {item}" for item in month3))
+        return "\n".join(lines)
+
+    lines = []
     lines = []
 
     # Month 1
@@ -227,8 +329,35 @@ def _generate_action_plan(goal: str, fin_risk: str, lang_risk: str, korean_level
     return "\n".join(lines)
 
 
-def _generate_summary(rec: str, goal: str, city: str, monthly_cost: int, budget: int, korean_level: str) -> str:
+def _generate_summary(rec: str, goal: str, city: str, monthly_cost: int, budget: int, korean_level: str, language: str = "en") -> str:
     """Generate a readable final summary."""
+    if _language(language) == "zh":
+        goal_label = _zh_goal(goal)
+        city_label = _zh_city(city)
+        summary_map = {
+            "strongly_recommended": (
+                f"韩国与你的{goal_label}目标高度匹配。你的预算 {budget:,} KRW "
+                f"能够覆盖{city_label}约 {monthly_cost:,} KRW/月的估算成本。"
+                f"建议继续准备并稳步推进。"
+            ),
+            "recommended_with_prep": (
+                f"韩国对你的{goal_label}目标是可行选择，但仍有一些准备项需要加强。"
+                f"你的预算 {budget:,} KRW 接近估算月成本 {monthly_cost:,} KRW。"
+                f"建议先处理风险较高的部分，再做最终决定。"
+            ),
+            "risky": (
+                f"韩国仍可能适合你的{goal_label}目标，但当前存在明显风险。"
+                f"你的预算 {budget:,} KRW 可能不足以覆盖约 {monthly_cost:,} KRW/月的成本。"
+                f"建议提高预算、调整城市/住房预期，或延长准备周期。"
+            ),
+            "not_recommended": (
+                f"目前暂不建议立即推进韩国{goal_label}计划。"
+                f"你的预算 {budget:,} KRW 低于{city_label}约 {monthly_cost:,} KRW/月的估算成本，"
+                f"且多个风险项偏高。建议条件改善后再重新评估。"
+            ),
+        }
+        return summary_map.get(rec, "请检查你的资料后重新生成报告。")
+
     summary_map = {
         "strongly_recommended": (
             f"Korea is a strong match for your {goal.lower()} goal. Your budget of {budget:,} KRW "

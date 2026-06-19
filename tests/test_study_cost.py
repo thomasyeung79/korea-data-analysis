@@ -72,6 +72,26 @@ class TestCostCalculation:
         }).json()
         assert seoul["monthly_cost"] > busan["monthly_cost"]
 
+    def test_chinese_ai_summary(self):
+        resp = client.post("/api/v1/study-cost/calculate", json={
+            "city": "Seoul", "school_type": "Undergraduate",
+            "housing_type": "Dormitory", "lifestyle_level": "Standard",
+            "language": "zh",
+        })
+        assert resp.status_code == 200
+        data = resp.json()
+        assert "预计月度总成本" in data["ai_summary"]
+        assert "首尔" in data["ai_summary"]
+        assert "KRW" in data["ai_summary"]
+
+    def test_language_omitted_defaults_to_english_summary(self):
+        resp = client.post("/api/v1/study-cost/calculate", json={
+            "city": "Seoul", "school_type": "Undergraduate",
+            "housing_type": "Dormitory", "lifestyle_level": "Standard",
+        })
+        assert resp.status_code == 200
+        assert "Your estimated monthly cost" in resp.json()["ai_summary"]
+
     def test_premium_vs_budget_significant_difference(self):
         premium = client.post("/api/v1/study-cost/calculate", json={
             "city": "Seoul", "school_type": "Undergraduate",

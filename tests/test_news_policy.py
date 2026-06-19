@@ -58,6 +58,28 @@ class TestKeywordFiltering:
         assert resp["result_count"] == 0
         assert len(resp["results"]) == 0
 
+    def test_chinese_news_summary_and_suggestions(self):
+        resp = client.post("/api/v1/news-policy/search", json={
+            "keyword": "visa",
+            "category": "All",
+            "time_range": "Last 90 days",
+            "language": "zh",
+        })
+        assert resp.status_code == 200
+        data = resp.json()
+        assert "找到" in data["ai_summary"]
+        assert "关键观察" in data["ai_summary"]
+        assert any("签证" in suggestion for suggestion in data["action_suggestions"])
+
+    def test_language_omitted_defaults_to_english_news_summary(self):
+        resp = client.post("/api/v1/news-policy/search", json={
+            "keyword": "visa",
+            "category": "All",
+            "time_range": "Last 90 days",
+        })
+        assert resp.status_code == 200
+        assert "Found" in resp.json()["ai_summary"]
+
 
 # ─── Category Filtering ───
 

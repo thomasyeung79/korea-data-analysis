@@ -81,6 +81,28 @@ class TestRecommendation:
         assert "Month 2" in plan
         assert "Month 3" in plan
 
+    def test_chinese_decision_report_summary_and_plan(self):
+        payload = dict(MIN_BUDGET)
+        payload["language"] = "zh"
+        resp = client.post("/api/v1/decision-report/generate", json=payload)
+        assert resp.status_code == 200
+        data = resp.json()
+        assert "韩国" in data["summary"]
+        assert "第 1 个月" in data["action_plan"]
+        assert data["recommendation_label"] in (
+            "强烈推荐 ✅",
+            "准备充分后推荐 ⚠️",
+            "有一定风险 ❓",
+            "暂不推荐 ❌",
+        )
+
+    def test_language_omitted_defaults_to_english_decision_report(self):
+        resp = client.post("/api/v1/decision-report/generate", json=MIN_BUDGET)
+        assert resp.status_code == 200
+        data = resp.json()
+        assert "Month 1" in data["action_plan"]
+        assert "Korea" in data["summary"]
+
 
 # ─── Budget Gap Calculation ───
 

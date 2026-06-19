@@ -128,7 +128,7 @@ class APIClient:
 
     # ── Job Market Analyzer ──
 
-    def analyze_job_market(self, role: str, experience_level: str, korean_level: str) -> dict:
+    def analyze_job_market(self, role: str, experience_level: str, korean_level: str, language: str = "en") -> dict:
         return self._request(
             "POST",
             "/api/v1/job-market/analyze",
@@ -136,6 +136,7 @@ class APIClient:
                 "role": role,
                 "experience_level": experience_level,
                 "korean_level": korean_level,
+                "language": language,
             },
         )
 
@@ -145,7 +146,7 @@ class APIClient:
     # ── News & Policy ──
 
     def search_news_policy(self, keyword: str = "", category: str = "All",
-                           time_range: str = "Last 30 days") -> dict:
+                           time_range: str = "Last 30 days", language: str = "en") -> dict:
         return self._request(
             "POST",
             "/api/v1/news-policy/search",
@@ -153,6 +154,7 @@ class APIClient:
                 "keyword": keyword,
                 "category": category,
                 "time_range": time_range,
+                "language": language,
             },
         )
 
@@ -175,7 +177,7 @@ class APIClient:
     # ── Study Cost Calculator ──
 
     def calculate_study_cost(self, city: str, school_type: str,
-                              housing_type: str, lifestyle_level: str) -> dict:
+                              housing_type: str, lifestyle_level: str, language: str = "en") -> dict:
         return self._request(
             "POST",
             "/api/v1/study-cost/calculate",
@@ -184,6 +186,7 @@ class APIClient:
                 "school_type": school_type,
                 "housing_type": housing_type,
                 "lifestyle_level": lifestyle_level,
+                "language": language,
             },
         )
 

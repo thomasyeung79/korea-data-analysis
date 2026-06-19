@@ -80,6 +80,7 @@ class StudyCostRequest(BaseModel):
     school_type: str
     housing_type: str
     lifestyle_level: str
+    language: str = "en"
 
 
 class StudyCostResponse(BaseModel):
@@ -108,6 +109,7 @@ class JobMarketRequest(BaseModel):
     role: str
     experience_level: str
     korean_level: str
+    language: str = "en"
 
 
 class JobMarketResponse(BaseModel):
@@ -151,6 +153,7 @@ class DecisionReportRequest(BaseModel):
     experience_level: str
     korean_level: str
     monthly_budget: float
+    language: str = "en"
 
 
 class DecisionReportResponse(BaseModel):
@@ -198,6 +201,7 @@ class NewsPolicyRequest(BaseModel):
     keyword: str = ""
     category: str = "All"
     time_range: str = "Last 30 days"
+    language: str = "en"
 
 
 class NewsItem(BaseModel):

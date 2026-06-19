@@ -1,7 +1,7 @@
 import streamlit as st
 import plotly.graph_objects as go
 from collections import Counter
-from locales.i18n import display_news_category, display_time_range, language_selector, t, translate_option
+from locales.i18n import display_news_category, display_time_range, get_language, language_selector, t, translate_option
 
 st.set_page_config(
     page_title=t("news.page_title"),
@@ -83,6 +83,7 @@ if search_clicked:
             keyword=keyword,
             category=category,
             time_range=time_range,
+            language=get_language(),
         )
         st.session_state["news_result"] = result
         st.session_state["news_count"] = result.get("result_count", 0)

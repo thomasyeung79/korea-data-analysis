@@ -21,6 +21,7 @@ def calculate_study_cost(
     request: StudyCostRequest,
     db: Session = Depends(get_db),
 ):
+    language = "zh" if request.language == "zh" else "en"
     # Validate inputs
     if request.city not in VALID_CITIES:
         request.city = "Other"
@@ -46,6 +47,7 @@ def calculate_study_cost(
         housing_type=request.housing_type,
         lifestyle=request.lifestyle_level,
         result=result,
+        language=language,
     )
 
     # Save to history

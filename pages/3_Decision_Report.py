@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 import plotly.graph_objects as go
-from locales.i18n import display_goal, display_role, language_selector, t, translate_option, translate_result_label
+from locales.i18n import display_goal, display_role, get_language, language_selector, t, translate_option, translate_result_label
 
 st.set_page_config(
     page_title=t("decision.page_title"),
@@ -110,6 +110,7 @@ if generate_clicked:
         "experience_level": experience_level,
         "korean_level": korean_level,
         "monthly_budget": monthly_budget,
+        "language": get_language(),
     }
     try:
         result = api.generate_decision_report(payload)

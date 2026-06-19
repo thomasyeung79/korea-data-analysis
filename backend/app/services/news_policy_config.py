@@ -26,6 +26,22 @@ TIME_RANGES = {
     "Last 90 days": 90,
 }
 
+ZH_CATEGORY_LABELS = {
+    "Study": "留学",
+    "Work": "工作",
+    "Visa": "签证",
+    "Economy": "经济",
+    "Technology": "科技",
+}
+
+
+def _language(language: str) -> str:
+    return "zh" if language == "zh" else "en"
+
+
+def _zh_category(category: str) -> str:
+    return ZH_CATEGORY_LABELS.get(category, category)
+
 # Base date for mock items
 BASE_DATE = datetime(2026, 6, 1)
 
@@ -242,9 +258,11 @@ def search_items(keyword: str, category: str, time_range: str) -> list[dict]:
     return results
 
 
-def generate_trend_summary(results: list[dict], keyword: str) -> str:
+def generate_trend_summary(results: list[dict], keyword: str, language: str = "en") -> str:
     """Generate a readable trend summary based on search results."""
     if not results:
+        if _language(language) == "zh":
+            return f"在所选时间范围内未找到{'与“' + keyword + '”相关的' if keyword else ''}新闻条目。"
         return f"No news items found{' for "' + keyword + '"' if keyword else ''} in the selected period."
 
     categories_found = {}
@@ -254,6 +272,20 @@ def generate_trend_summary(results: list[dict], keyword: str) -> str:
 
     top_cat = max(categories_found, key=categories_found.get) if categories_found else ""
     recent_count = sum(1 for r in results if (BASE_DATE - datetime.strptime(r["published_at"], "%Y-%m-%d")).days <= 7)
+
+    if _language(language) == "zh":
+        lines = [f"找到 **{len(results)}** 条相关新闻"]
+        if keyword:
+            lines.append(f"与 **“{keyword}”** 相关")
+        lines.append(f"覆盖 {len(categories_found)} 个类别。")
+        lines.append("")
+        lines.append(f"最活跃类别：**{_zh_category(top_cat)}**（{categories_found.get(top_cat, 0)} 条）。")
+        if recent_count > 0:
+            lines.append(f"其中 {recent_count} 条发布于最近 7 天。")
+        lines.append("")
+        lines.append("**关键观察：** 韩国的科技、签证和教育政策仍是影响国际学生与求职者决策的高动态领域。")
+        lines.append("AI、半导体、数字基础设施和签证便利化相关更新值得持续关注。")
+        return "\n".join(lines)
 
     lines = [
         f"Found **{len(results)}** relevant news items",
@@ -273,26 +305,26 @@ def generate_trend_summary(results: list[dict], keyword: str) -> str:
     return "\n".join(lines)
 
 
-def generate_action_suggestions(results: list[dict], keyword: str) -> list[str]:
+def generate_action_suggestions(results: list[dict], keyword: str, language: str = "en") -> list[str]:
     """Generate practical action suggestions based on search results."""
     suggestions = set()
 
     for r in results:
         cat = r["category"]
         if cat == "Visa":
-            suggestions.add("Review your visa type and check if recent policy changes affect your status.")
-            suggestions.add("Bookmark the HiKorea portal for digital visa and ARC services.")
+            suggestions.add("检查你的签证类型，确认近期政策变化是否影响你的申请或居留状态。" if _language(language) == "zh" else "Review your visa type and check if recent policy changes affect your status.")
+            suggestions.add("收藏 HiKorea 门户，用于签证、ARC 和在线办理服务。" if _language(language) == "zh" else "Bookmark the HiKorea portal for digital visa and ARC services.")
         if cat == "Study":
-            suggestions.add("Check GKS and university-specific scholarship deadlines.")
-            suggestions.add("Begin TOPIK preparation early — TOPIK 4 is the minimum for most programs.")
+            suggestions.add("检查 GKS 和目标大学奖学金截止日期。" if _language(language) == "zh" else "Check GKS and university-specific scholarship deadlines.")
+            suggestions.add("尽早准备 TOPIK；多数项目至少应以 TOPIK 4 为目标。" if _language(language) == "zh" else "Begin TOPIK preparation early — TOPIK 4 is the minimum for most programs.")
         if cat == "Work":
-            suggestions.add("Update your LinkedIn and Wanted.co.kr profile for Korean recruiters.")
-            suggestions.add("Research target companies' visa sponsorship policies before applying.")
+            suggestions.add("更新 LinkedIn 和 Wanted.co.kr 资料，方便韩国招聘方了解你的背景。" if _language(language) == "zh" else "Update your LinkedIn and Wanted.co.kr profile for Korean recruiters.")
+            suggestions.add("申请前先确认目标公司是否支持签证担保。" if _language(language) == "zh" else "Research target companies' visa sponsorship policies before applying.")
         if cat == "Technology":
-            suggestions.add("Align your skill development with in-demand areas: AI, semiconductors, software engineering.")
-            suggestions.add("Attend Korean tech meetups or conferences for networking.")
+            suggestions.add("把技能学习对齐高需求方向：AI、半导体、软件工程。" if _language(language) == "zh" else "Align your skill development with in-demand areas: AI, semiconductors, software engineering.")
+            suggestions.add("参加韩国技术 meetup 或会议，建立行业人脉。" if _language(language) == "zh" else "Attend Korean tech meetups or conferences for networking.")
         if cat == "Economy":
-            suggestions.add("Factor recent cost-of-living changes into your budget planning.")
-            suggestions.add("Compare salary offers against city-specific living costs.")
+            suggestions.add("把近期生活成本变化纳入预算规划。" if _language(language) == "zh" else "Factor recent cost-of-living changes into your budget planning.")
+            suggestions.add("比较 offer 时，要结合不同城市的实际生活成本。" if _language(language) == "zh" else "Compare salary offers against city-specific living costs.")
 
     return list(suggestions)[:6]

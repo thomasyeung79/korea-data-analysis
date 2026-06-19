@@ -22,6 +22,7 @@ def search_news_policy(
     request: NewsPolicyRequest,
     db: Session = Depends(get_db),
 ):
+    language = "zh" if request.language == "zh" else "en"
     category = request.category if request.category in CATEGORIES or request.category == "All" else "All"
     time_range = request.time_range if request.time_range in TIME_RANGES else "Last 30 days"
 
@@ -31,8 +32,8 @@ def search_news_policy(
         time_range=time_range,
     )
 
-    ai_summary = generate_trend_summary(results, request.keyword)
-    action_suggestions = generate_action_suggestions(results, request.keyword)
+    ai_summary = generate_trend_summary(results, request.keyword, language=language)
+    action_suggestions = generate_action_suggestions(results, request.keyword, language=language)
 
     # Serialise for history
     results_serialisable = []

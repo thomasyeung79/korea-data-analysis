@@ -124,12 +124,70 @@ def calculate_costs(city: str, school_type: str, housing_type: str, lifestyle: s
     }
 
 
+ZH_LABELS = {
+    "Seoul": "首尔",
+    "Busan": "釜山",
+    "Daejeon": "大田",
+    "Daegu": "大邱",
+    "Other": "其他城市",
+    "Language School": "语言学校",
+    "Undergraduate": "本科",
+    "Graduate School": "研究生院",
+    "Dormitory": "宿舍",
+    "Shared Apartment": "合租公寓",
+    "Studio Apartment": "单间公寓",
+    "Budget": "节省型",
+    "Standard": "标准型",
+    "Premium": "高品质",
+    "Tuition": "学费",
+    "Housing": "住房",
+    "Food": "饮食",
+    "Transportation": "交通",
+    "Insurance": "保险",
+    "Miscellaneous": "杂项",
+}
+
+
+def _language(language: str) -> str:
+    return "zh" if language == "zh" else "en"
+
+
+def _zh(value: str) -> str:
+    return ZH_LABELS.get(value, value)
+
+
 def generate_cost_explanation(city: str, school_type: str, housing_type: str,
-                               lifestyle: str, result: dict) -> str:
+                               lifestyle: str, result: dict, language: str = "en") -> str:
     """Generate a human-readable explanation of the cost estimate."""
     b = result["breakdown"]
     max_cat = max(b, key=b.get)
     pct = round(b[max_cat] / result["monthly_cost"] * 100)
+
+    if _language(language) == "zh":
+        lines = [
+            f"你在{_zh(city)}选择{_zh(school_type)}、{_zh(housing_type)}和{_zh(lifestyle)}生活方式时，",
+            f"预计月度总成本为 **{result['monthly_cost']:,} KRW**（约 {result['monthly_cost'] // 1200:,} USD）。",
+            "",
+            f"最大支出项是 **{_zh(max_cat)}**，约 {b[max_cat]:,} KRW/月，占总成本 {pct}%。",
+            "",
+            "### 月度成本拆分",
+        ]
+        for cat, amount in b.items():
+            p = round(amount / result["monthly_cost"] * 100)
+            lines.append(f"- **{_zh(cat)}**：{amount:,} KRW（{p}%）")
+
+        lines.extend([
+            "",
+            "### 年度估算",
+            f"预计每年约 **{result['annual_cost']:,} KRW**（约 {result['annual_cost'] // 1200:,} USD）。",
+            "",
+            "### 提醒",
+            "- 学费会因大学、专业和奖学金情况明显变化。",
+            "- 住房成本受押金、地段和入住季节影响较大。",
+            "- 国际学生通常需要加入韩国健康保险。",
+            "- 以上为方向性估算，实际成本可能上下浮动约 20%。",
+        ])
+        return "\n".join(lines)
 
     lines = [
         f"Your estimated monthly cost for {school_type.lower()} in {city} "

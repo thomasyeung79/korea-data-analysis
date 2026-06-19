@@ -114,6 +114,7 @@ This project does not provide legal, immigration, financial, or professional adv
 
 * English and Simplified Chinese UI support.
 * Chinese mode translates user-facing labels, options, result cards, and chart labels where practical.
+* AI-generated report content follows the selected UI language for study cost explanations, career preparation plans, decision reports, and news/policy summaries.
 * Internal API and database values remain stable English identifiers for compatibility.
 * Source URLs, filenames, API paths, code identifiers, and technical terms remain unchanged where appropriate.
 * Detailed i18n design: [docs/KOREA_ANALYSIS_I18N.md](docs/KOREA_ANALYSIS_I18N.md)

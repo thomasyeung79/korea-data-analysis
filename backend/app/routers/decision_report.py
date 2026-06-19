@@ -41,6 +41,7 @@ def generate_decision_report_endpoint(
     request: DecisionReportRequest,
     db: Session = Depends(get_db),
 ):
+    language = "zh" if request.language == "zh" else "en"
     goal = _clamp(request.goal, VALID_GOALS, "Study")
     city = _clamp(request.target_city, VALID_CITIES, "Seoul")
     school = _clamp(request.school_type, VALID_SCHOOLS, "Not Applicable")
@@ -61,6 +62,7 @@ def generate_decision_report_endpoint(
         experience_level=exp,
         korean_level=kl,
         monthly_budget=budget,
+        language=language,
     )
 
     history = DecisionReportHistory(

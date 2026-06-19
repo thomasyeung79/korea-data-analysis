@@ -3,7 +3,7 @@ import csv
 import io
 import plotly.express as px
 import plotly.graph_objects as go
-from locales.i18n import language_selector, t, translate_option
+from locales.i18n import get_language, language_selector, t, translate_option
 
 st.set_page_config(
     page_title=t("study.page_title"),
@@ -81,6 +81,7 @@ if calculate_clicked:
             school_type=school_type,
             housing_type=housing_type,
             lifestyle_level=lifestyle_level,
+            language=get_language(),
         )
         st.session_state["last_cost_result"] = result
         st.session_state["last_cost_inputs"] = {

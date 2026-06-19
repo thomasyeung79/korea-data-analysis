@@ -3,7 +3,7 @@ import csv
 import io
 import plotly.express as px
 import plotly.graph_objects as go
-from locales.i18n import display_role, language_selector, t, translate_option, translate_result_label
+from locales.i18n import display_role, get_language, language_selector, t, translate_option, translate_result_label
 
 st.set_page_config(
     page_title=t("job.page_title"),
@@ -94,6 +94,7 @@ if analyze_clicked:
             role=role,
             experience_level=experience,
             korean_level=korean_level,
+            language=get_language(),
         )
         st.session_state["last_job_result"] = result
         st.session_state["last_job_inputs"] = {

@@ -22,12 +22,13 @@ def analyze_job_market_endpoint(
     request: JobMarketRequest,
     db: Session = Depends(get_db),
 ):
+    language = "zh" if request.language == "zh" else "en"
     role = request.role if request.role in ROLES else "Backend Developer"
     exp = request.experience_level if request.experience_level in EXPERIENCE_LEVELS else "0-2 years"
     kl = request.korean_level if request.korean_level in KOREAN_LEVELS else "None"
 
-    result = analyze_job_market(role, exp, kl)
-    plan = generate_preparation_plan(role, exp, kl)
+    result = analyze_job_market(role, exp, kl, language=language)
+    plan = generate_preparation_plan(role, exp, kl, language=language)
 
     history = JobMarketHistory(
         role=role,
