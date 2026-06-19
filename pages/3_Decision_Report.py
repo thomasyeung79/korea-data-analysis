@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 import plotly.graph_objects as go
-from locales.i18n import language_selector, t
+from locales.i18n import display_goal, display_role, language_selector, t
 
 st.set_page_config(
     page_title=t("decision.page_title"),
@@ -15,6 +15,20 @@ from api_client import APIClient
 apply_product_style()
 
 api = APIClient()
+
+TARGET_ROLE_OPTIONS = [
+    "Not Applicable",
+    "Data Analyst",
+    "Backend Developer",
+    "AI Product Manager",
+    "AI Engineer",
+    "Marketing Specialist",
+    "Business Analyst",
+    "Operations Specialist",
+    "Customer Support Specialist",
+    "International Sales",
+    "Product Manager",
+]
 
 st.markdown(
     f"""
@@ -55,26 +69,14 @@ st.markdown(f"## {t('decision.form_heading')}")
 col1, col2 = st.columns(2)
 
 with col1:
-    goal = st.selectbox(t("decision.goal"), ["Study", "Work", "Live"])
+    goal = st.selectbox(t("decision.goal"), ["Study", "Work", "Live"], format_func=display_goal)
     target_city = st.selectbox(t("decision.target_city"), ["Seoul", "Busan", "Daejeon", "Daegu", "Other"])
     school_type = st.selectbox(t("study.school_type"), ["Not Applicable", "Language School", "Undergraduate", "Graduate School"])
     housing_type = st.selectbox(t("study.housing_type"), ["Not Applicable", "Dormitory", "Shared Apartment", "Studio Apartment"])
 
 with col2:
     lifestyle_level = st.selectbox(t("study.lifestyle_level"), ["Budget", "Standard", "Premium"])
-    target_role = st.selectbox(t("job.target_role"), [
-        "Not Applicable",
-        "Data Analyst",
-        "Backend Developer",
-        "AI Product Manager",
-        "AI Engineer",
-        "Marketing Specialist",
-        "Business Analyst",
-        "Operations Specialist",
-        "Customer Support Specialist",
-        "International Sales",
-        "Product Manager",
-    ])
+    target_role = st.selectbox(t("job.target_role"), TARGET_ROLE_OPTIONS, format_func=display_role)
     experience_level = st.selectbox(t("job.experience"), ["Student", "0-2 years", "3-5 years"])
     korean_level = st.selectbox(t("job.korean_level"), ["None", "TOPIK 3", "TOPIK 4", "TOPIK 5+"])
 

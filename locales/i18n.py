@@ -9,6 +9,41 @@ SUPPORTED_LANGUAGES = {
 
 _LANGUAGE_BY_LABEL = {label: code for code, label in SUPPORTED_LANGUAGES.items()}
 
+ROLE_DISPLAY_LABELS = {
+    "Data Analyst": {"en": "Data Analyst", "zh": "数据分析师"},
+    "Backend Developer": {"en": "Backend Developer", "zh": "后端开发工程师"},
+    "AI Product Manager": {"en": "AI Product Manager", "zh": "AI 产品经理"},
+    "AI Engineer": {"en": "AI Engineer", "zh": "AI 工程师"},
+    "Marketing Specialist": {"en": "Marketing Specialist", "zh": "市场专员"},
+    "Business Analyst": {"en": "Business Analyst", "zh": "商业分析师"},
+    "Operations Specialist": {"en": "Operations Specialist", "zh": "运营专员"},
+    "Customer Support Specialist": {"en": "Customer Support Specialist", "zh": "客户支持专员"},
+    "International Sales": {"en": "International Sales", "zh": "国际销售"},
+    "Product Manager": {"en": "Product Manager", "zh": "产品经理"},
+    "Not Applicable": {"en": "Not Applicable", "zh": "不适用"},
+}
+
+GOAL_DISPLAY_LABELS = {
+    "Study": {"en": "Study", "zh": "留学"},
+    "Work": {"en": "Work", "zh": "工作"},
+    "Live": {"en": "Live", "zh": "生活"},
+}
+
+NEWS_CATEGORY_DISPLAY_LABELS = {
+    "All": {"en": "All", "zh": "全部"},
+    "Study": {"en": "Study", "zh": "留学"},
+    "Work": {"en": "Work", "zh": "工作"},
+    "Visa": {"en": "Visa", "zh": "签证"},
+    "Economy": {"en": "Economy", "zh": "经济"},
+    "Technology": {"en": "Technology", "zh": "科技"},
+}
+
+TIME_RANGE_DISPLAY_LABELS = {
+    "Last 7 days": {"en": "Last 7 days", "zh": "过去 7 天"},
+    "Last 30 days": {"en": "Last 30 days", "zh": "过去 30 天"},
+    "Last 90 days": {"en": "Last 90 days", "zh": "过去 90 天"},
+}
+
 
 _TRANSLATIONS: dict[str, dict[str, str]] = {
     "common.language": {"en": "Language", "zh": "语言"},
@@ -82,8 +117,8 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
     "home.dev_label": {"en": "DEVELOPER ACCESS", "zh": "开发者入口"},
     "home.api_docs": {"en": "Open API Documentation", "zh": "打开 API 文档"},
     "home.api_caption": {
-        "en": "FastAPI exposes country benchmarks, survey submissions, community summaries, and structured perception reports.",
-        "zh": "FastAPI 提供国家基准、调查提交、社区摘要和结构化感知报告接口。",
+        "en": "FastAPI exposes study cost estimates, career analysis, decision reports, and news/policy search endpoints.",
+        "zh": "FastAPI 提供留学成本估算、职业分析、决策报告和新闻政策搜索接口。",
     },
 
     "study.page_title": {"en": "Study Cost Calculator", "zh": "留学成本计算器"},
@@ -215,7 +250,7 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
     "news.search_label": {"en": "SEARCH", "zh": "搜索"},
     "news.find_heading": {"en": "Find relevant news", "zh": "查找相关新闻"},
     "news.keyword": {"en": "Keyword", "zh": "关键词"},
-    "news.placeholder": {"en": "e.g. visa, AI, scholarship, TOPIK...", "zh": "例如：visa, AI, scholarship, TOPIK..."},
+    "news.placeholder": {"en": "e.g. visa, AI, scholarship, TOPIK...", "zh": "例如：签证、AI、奖学金、TOPIK..."},
     "news.category": {"en": "Category", "zh": "类别"},
     "news.time_range": {"en": "Time Range", "zh": "时间范围"},
     "news.search_button": {"en": "Search News & Policy", "zh": "搜索新闻与政策"},
@@ -369,6 +404,27 @@ def language_selector(key: str = "language_selector") -> str:
         set_language(selected_language)
         st.rerun()
     return selected_language
+
+
+def _display_value(labels: dict[str, dict[str, str]], value: str) -> str:
+    entry = labels.get(value, {})
+    return entry.get(get_language()) or entry.get("en") or value
+
+
+def display_role(role: str) -> str:
+    return _display_value(ROLE_DISPLAY_LABELS, role)
+
+
+def display_goal(goal: str) -> str:
+    return _display_value(GOAL_DISPLAY_LABELS, goal)
+
+
+def display_news_category(category: str) -> str:
+    return _display_value(NEWS_CATEGORY_DISPLAY_LABELS, category)
+
+
+def display_time_range(time_range: str) -> str:
+    return _display_value(TIME_RANGE_DISPLAY_LABELS, time_range)
 
 
 def translation_key_count() -> int:

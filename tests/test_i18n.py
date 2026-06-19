@@ -52,3 +52,28 @@ def test_parameter_interpolation(monkeypatch):
     i18n.set_language("en")
 
     assert i18n.t("study.estimate_heading", city="Seoul") == "Cost estimate for Seoul"
+
+
+def test_chinese_role_display_mapping(monkeypatch):
+    reset_language_state(monkeypatch)
+    i18n.set_language("zh")
+
+    assert i18n.display_role("Data Analyst") == "数据分析师"
+    assert i18n.display_role("Backend Developer") == "后端开发工程师"
+    assert i18n.display_role("Marketing Specialist") == "市场专员"
+    assert i18n.display_role("Product Manager") == "产品经理"
+
+
+def test_english_role_display_mapping(monkeypatch):
+    reset_language_state(monkeypatch)
+    i18n.set_language("en")
+
+    assert i18n.display_role("AI Engineer") == "AI Engineer"
+
+
+def test_display_mapping_unknown_value_falls_back_to_raw(monkeypatch):
+    reset_language_state(monkeypatch)
+    i18n.set_language("zh")
+
+    assert i18n.display_role("Research Fellow") == "Research Fellow"
+    assert i18n.display_news_category("Unknown") == "Unknown"

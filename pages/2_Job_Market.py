@@ -3,7 +3,7 @@ import csv
 import io
 import plotly.express as px
 import plotly.graph_objects as go
-from locales.i18n import language_selector, t
+from locales.i18n import display_role, language_selector, t
 
 st.set_page_config(
     page_title=t("job.page_title"),
@@ -17,6 +17,19 @@ from api_client import APIClient
 apply_product_style()
 
 api = APIClient()
+
+ROLE_OPTIONS = [
+    "Data Analyst",
+    "Backend Developer",
+    "AI Product Manager",
+    "AI Engineer",
+    "Marketing Specialist",
+    "Business Analyst",
+    "Operations Specialist",
+    "Customer Support Specialist",
+    "International Sales",
+    "Product Manager",
+]
 
 st.markdown(
     f"""
@@ -57,18 +70,7 @@ st.markdown(f"## {t('job.form_heading')}")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    role = st.selectbox(t("job.target_role"), [
-        "Data Analyst",
-        "Backend Developer",
-        "AI Product Manager",
-        "AI Engineer",
-        "Marketing Specialist",
-        "Business Analyst",
-        "Operations Specialist",
-        "Customer Support Specialist",
-        "International Sales",
-        "Product Manager",
-    ])
+    role = st.selectbox(t("job.target_role"), ROLE_OPTIONS, format_func=display_role)
 
 with col2:
     experience = st.selectbox(t("job.experience"), ["Student", "0-2 years", "3-5 years"])
@@ -82,10 +84,8 @@ st.divider()
 
 # ── Results ──
 
-VALID_ROLES = ["Data Analyst", "Backend Developer", "AI Product Manager", "AI Engineer"]
-
 if analyze_clicked:
-    if role not in VALID_ROLES:
+    if role not in ROLE_OPTIONS:
         role = "Backend Developer"
     try:
         result = api.analyze_job_market(
@@ -108,7 +108,7 @@ if "last_job_result" in st.session_state:
     inputs = st.session_state["last_job_inputs"]
 
     st.markdown(f'<div class="section-label">{t("job.analysis_label")}</div>', unsafe_allow_html=True)
-    st.markdown(f"## {t('job.analysis_heading', role=inputs['role'])}")
+    st.markdown(f"## {t('job.analysis_heading', role=display_role(inputs['role']))}")
 
     # ── Salary cards ──
     c1, c2, c3, c4 = st.columns(4)

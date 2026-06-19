@@ -10,7 +10,7 @@ and this project uses semantic versioning for portfolio releases.
 ### Added
 - Repositioned the product as a Korea study and career decision assistant.
 - Added Study Cost Calculator with city, school type, housing, lifestyle, cost breakdown charts, export, and persisted history.
-- Added IT Job Market Analyzer with role, experience, Korean level, salary range, skill requirements, visa pathway, competitiveness score, and preparation plan.
+- Added Career & Job Market Analyzer with role, experience, Korean level, salary range, skill requirements, visa pathway, competitiveness score, and preparation plan.
 - Added AI Decision Report pipeline combining study cost and job market inputs into recommendation, budget gap, risk profile, and 3-month action plan outputs.
 - Added News & Policy search with category filtering, relevance scoring, impact summaries, charts, and action suggestions.
 - Added V2 Streamlit pages, API client methods, FastAPI routers, Pydantic schemas, and SQLite persistence for the new decision modules.

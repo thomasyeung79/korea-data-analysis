@@ -1,7 +1,7 @@
 import streamlit as st
 import plotly.graph_objects as go
 from collections import Counter
-from locales.i18n import language_selector, t
+from locales.i18n import display_news_category, display_time_range, language_selector, t
 
 st.set_page_config(
     page_title=t("news.page_title"),
@@ -58,10 +58,18 @@ with col1:
     keyword = st.text_input(t("news.keyword"), placeholder=t("news.placeholder"))
 
 with col2:
-    category = st.selectbox(t("news.category"), ["All", "Study", "Work", "Visa", "Economy", "Technology"])
+    category = st.selectbox(
+        t("news.category"),
+        ["All", "Study", "Work", "Visa", "Economy", "Technology"],
+        format_func=display_news_category,
+    )
 
 with col3:
-    time_range = st.selectbox(t("news.time_range"), ["Last 7 days", "Last 30 days", "Last 90 days"])
+    time_range = st.selectbox(
+        t("news.time_range"),
+        ["Last 7 days", "Last 30 days", "Last 90 days"],
+        format_func=display_time_range,
+    )
 
 search_clicked = st.button(t("news.search_button"), use_container_width=True, type="primary")
 
@@ -125,7 +133,7 @@ if "news_result" in st.session_state:
                 labels=list(cat_counts.keys()),
                 values=list(cat_counts.values()),
                 marker=dict(colors=["#123c9c", "#d7263d", "#0f9f6e", "#f59e0b", "#8b5cf6"]),
-                textinfo="label+count",
+                textinfo="label+value",
                 hole=0.4,
             )])
             fig_cat.update_layout(height=280, margin=dict(l=20, r=20, t=10, b=20), title=t("news.category_distribution"))
