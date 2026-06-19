@@ -43,7 +43,7 @@ Estimate monthly and annual costs for studying in Korea. Select your city, schoo
 
 ### 💻 Career & Job Market Analyzer *(V2 · New)*
 
-Analyse salary ranges, skill requirements, and visa pathways for technology, business, operations, support, sales, and product roles in Korea. Get a personalised 3-month preparation plan based on your experience and Korean language level.
+Analyse salary ranges, role-specific skill requirements, recommended cities, and visa pathways for technology, business, education, healthcare, and engineering roles in Korea. Get a personalised 3-month preparation plan based on your experience and Korean language level.
 
 | Input | Options |
 |-------|---------|
@@ -113,7 +113,7 @@ This project does not provide legal, immigration, financial, or professional adv
 ## Internationalization
 
 * English and Simplified Chinese UI support.
-* Chinese mode translates user-facing labels, options, result cards, and chart labels where practical.
+* Chinese mode translates user-facing labels, options, result cards, role-specific skill matrices, recommended city labels, and chart labels where practical.
 * AI-generated report content follows the selected UI language for study cost explanations, career preparation plans, decision reports, and news/policy summaries.
 * Internal API and database values remain stable English identifiers for compatibility.
 * Source URLs, filenames, API paths, code identifiers, and technical terms remain unchanged where appropriate.

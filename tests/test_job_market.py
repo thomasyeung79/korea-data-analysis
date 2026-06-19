@@ -15,7 +15,7 @@ from fastapi.testclient import TestClient
 
 from backend.app.database import Base, engine
 from backend.app.main import app
-from backend.app.services.job_market_config import ROLES
+from backend.app.services.job_market_config import ROLES, ZH_CITY_LABELS
 
 client = TestClient(app)
 
@@ -175,7 +175,21 @@ class TestSkillsAndLanguage:
                 "role": role, "experience_level": "3-5 years", "korean_level": "TOPIK 5+",
             }).json()
             assert len(resp["recommended_cities"]) >= 1
-            assert "Seoul" in resp["recommended_cities"]
+
+    def test_role_specific_city_groups(self):
+        marketing = client.post("/api/v1/job-market/analyze", json={
+            "role": "Marketing Specialist", "experience_level": "3-5 years", "korean_level": "TOPIK 5+",
+        }).json()
+        nurse = client.post("/api/v1/job-market/analyze", json={
+            "role": "Registered Nurse", "experience_level": "3-5 years", "korean_level": "TOPIK 5+",
+        }).json()
+        engineer = client.post("/api/v1/job-market/analyze", json={
+            "role": "Mechanical Engineer", "experience_level": "3-5 years", "korean_level": "TOPIK 5+",
+        }).json()
+        assert "Incheon" in marketing["recommended_cities"]
+        assert "Gwangju" in nurse["recommended_cities"]
+        assert "Changwon" in engineer["recommended_cities"]
+        assert "Seoul" not in engineer["recommended_cities"]
 
     def test_non_it_roles_are_supported(self):
         for role in [
@@ -196,6 +210,76 @@ class TestSkillsAndLanguage:
             assert data["salary_min"] > 0
             assert data["required_skills"]
             assert data["recommended_cities"]
+
+    def test_marketing_skills_are_not_backend_template(self):
+        resp = client.post("/api/v1/job-market/analyze", json={
+            "role": "Marketing Specialist", "experience_level": "0-2 years", "korean_level": "TOPIK 4",
+        }).json()
+        skills_text = " ".join(resp["required_skills"] + resp["nice_to_have_skills"])
+        assert "Digital marketing" in skills_text
+        assert "Content strategy" in skills_text
+        assert "REST API" not in skills_text
+        assert "Microservices" not in skills_text
+
+    def test_registered_nurse_skills_are_not_backend_template(self):
+        resp = client.post("/api/v1/job-market/analyze", json={
+            "role": "Registered Nurse", "experience_level": "0-2 years", "korean_level": "TOPIK 4",
+        }).json()
+        skills_text = " ".join(resp["required_skills"] + resp["nice_to_have_skills"])
+        assert "Patient care" in skills_text
+        assert "Clinical documentation" in skills_text
+        assert "Python" not in skills_text
+        assert "REST API" not in skills_text
+
+    def test_english_teacher_skills_are_teaching_specific(self):
+        resp = client.post("/api/v1/job-market/analyze", json={
+            "role": "English Teacher", "experience_level": "0-2 years", "korean_level": "TOPIK 3",
+        }).json()
+        skills_text = " ".join(resp["required_skills"] + resp["nice_to_have_skills"])
+        assert "Lesson planning" in skills_text
+        assert "Classroom management" in skills_text
+        assert "TESOL / TEFL" in skills_text
+
+    @pytest.mark.parametrize(
+        ("role", "expected"),
+        [
+            ("Backend Developer", "数据库设计"),
+            ("Marketing Specialist", "数字营销"),
+            ("Registered Nurse", "患者护理"),
+            ("English Teacher", "课程设计"),
+        ],
+    )
+    def test_chinese_mode_localizes_skill_matrix(self, role, expected):
+        resp = client.post("/api/v1/job-market/analyze", json={
+            "role": role,
+            "experience_level": "0-2 years",
+            "korean_level": "TOPIK 4",
+            "language": "zh",
+        }).json()
+        skills_text = " ".join(resp["required_skills"] + resp["nice_to_have_skills"])
+        assert expected in skills_text
+
+    def test_chinese_city_labels_are_available_for_recommended_cities(self):
+        resp = client.post("/api/v1/job-market/analyze", json={
+            "role": "Mechanical Engineer",
+            "experience_level": "3-5 years",
+            "korean_level": "TOPIK 5+",
+            "language": "zh",
+        }).json()
+        display_cities = [ZH_CITY_LABELS[city] for city in resp["recommended_cities"]]
+        assert "昌原" in display_cities
+        assert "浦项" in display_cities
+
+    def test_english_mode_keeps_english_skill_matrix(self):
+        resp = client.post("/api/v1/job-market/analyze", json={
+            "role": "Backend Developer",
+            "experience_level": "0-2 years",
+            "korean_level": "TOPIK 4",
+            "language": "en",
+        }).json()
+        skills_text = " ".join(resp["required_skills"] + resp["nice_to_have_skills"])
+        assert "Database design (PostgreSQL / MySQL)" in skills_text
+        assert "数据库设计" not in skills_text
 
 
 # ─── New career roles ───

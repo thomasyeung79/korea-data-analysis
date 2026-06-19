@@ -37,24 +37,30 @@ EXPERIENCE_LEVELS = ["Student", "0-2 years", "3-5 years"]
 
 KOREAN_LEVELS = ["None", "TOPIK 3", "TOPIK 4", "TOPIK 5+"]
 
+IT_AI_CITIES = ["Seoul", "Seongnam (Pangyo)", "Daejeon", "Busan"]
+BUSINESS_CITIES = ["Seoul", "Incheon", "Busan", "Daegu"]
+EDUCATION_CITIES = ["Seoul", "Busan", "Incheon", "Gwangju", "Daegu"]
+HEALTHCARE_CITIES = ["Seoul", "Busan", "Daegu", "Daejeon", "Gwangju"]
+ENGINEERING_CITIES = ["Ulsan", "Changwon", "Pohang", "Daejeon", "Busan"]
+
 CITIES_BY_ROLE = {
-    "Data Analyst": ["Seoul", "Seongnam (Pangyo)", "Busan"],
-    "Backend Developer": ["Seoul", "Seongnam (Pangyo)", "Busan", "Daejeon"],
-    "AI Product Manager": ["Seoul", "Seongnam (Pangyo)"],
-    "AI Engineer": ["Seoul", "Seongnam (Pangyo)", "Daejeon"],
-    "Marketing Specialist": ["Seoul", "Busan", "Incheon"],
-    "Business Analyst": ["Seoul", "Seongnam (Pangyo)", "Busan"],
-    "Operations Specialist": ["Seoul", "Incheon", "Busan"],
-    "Customer Support Specialist": ["Seoul", "Busan", "Daegu"],
-    "International Sales": ["Seoul", "Incheon", "Busan"],
-    "Product Manager": ["Seoul", "Seongnam (Pangyo)", "Busan"],
-    "Accountant": ["Seoul", "Busan", "Daegu"],
-    "English Teacher": ["Seoul", "Busan", "Daegu", "Daejeon"],
-    "Chinese Teacher": ["Seoul", "Busan", "Daegu"],
-    "Registered Nurse": ["Seoul", "Busan", "Daegu", "Daejeon", "Incheon"],
-    "Care Worker": ["Seoul", "Busan", "Daegu", "Daejeon", "Incheon"],
-    "Mechanical Engineer": ["Seoul", "Busan", "Daegu", "Daejeon", "Ulsan"],
-    "Electrical Engineer": ["Seoul", "Busan", "Daegu", "Daejeon", "Ulsan"],
+    "Data Analyst": IT_AI_CITIES,
+    "Backend Developer": IT_AI_CITIES,
+    "AI Product Manager": IT_AI_CITIES,
+    "AI Engineer": IT_AI_CITIES,
+    "Marketing Specialist": BUSINESS_CITIES,
+    "Business Analyst": BUSINESS_CITIES,
+    "Operations Specialist": BUSINESS_CITIES,
+    "Customer Support Specialist": BUSINESS_CITIES,
+    "International Sales": BUSINESS_CITIES,
+    "Product Manager": BUSINESS_CITIES,
+    "Accountant": BUSINESS_CITIES,
+    "English Teacher": EDUCATION_CITIES,
+    "Chinese Teacher": EDUCATION_CITIES,
+    "Registered Nurse": HEALTHCARE_CITIES,
+    "Care Worker": HEALTHCARE_CITIES,
+    "Mechanical Engineer": ENGINEERING_CITIES,
+    "Electrical Engineer": ENGINEERING_CITIES,
 }
 
 # salary_grid[role][experience] = (min_annual_krw, max_annual_krw)
@@ -239,13 +245,14 @@ SKILL_REQUIREMENTS: dict[str, dict[str, list[str]]] = {
     },
     "Marketing Specialist": {
         "must_have": [
-            "Campaign planning",
-            "Content marketing",
+            "Digital marketing",
+            "Content strategy",
+            "Social media campaigns",
             "Market research",
-            "Google Analytics / GA4",
-            "Korean consumer trend awareness",
+            "Google Analytics / Meta Ads",
         ],
         "nice_to_have": [
+            "Korean consumer trends",
             "Naver Ads / Kakao Ads",
             "SEO / ASO",
             "CRM tools",
@@ -329,30 +336,31 @@ SKILL_REQUIREMENTS: dict[str, dict[str, list[str]]] = {
     },
     "Accountant": {
         "must_have": [
-            "Financial accounting",
-            "Tax reporting",
+            "Financial reporting",
+            "Tax compliance",
             "Excel / ERP systems",
-            "Korean accounting standards (K-IFRS)",
-            "Detail-oriented documentation",
+            "Bookkeeping",
+            "Korean accounting standards",
         ],
         "nice_to_have": [
+            "K-IFRS familiarity",
             "CPA / AICPA / Korean tax accountant license",
             "Audit experience",
-            "SAP / Oracle Financials",
             "Korean language (TOPIK 5+)",
         ],
     },
     "English Teacher": {
         "must_have": [
-            "Native English proficiency",
-            "TEFL / TESOL / CELTA certification",
             "Lesson planning",
             "Classroom management",
-            "Cross-cultural communication",
+            "TESOL / TEFL",
+            "Student assessment",
+            "Korean school culture",
         ],
         "nice_to_have": [
+            "Native English proficiency",
+            "Cross-cultural communication",
             "Experience with Korean students",
-            "Kindergarten or adult education experience",
             "Curriculum development",
             "Korean language (TOPIK 3+)",
         ],
@@ -374,17 +382,17 @@ SKILL_REQUIREMENTS: dict[str, dict[str, list[str]]] = {
     },
     "Registered Nurse": {
         "must_have": [
-            "Registered Nurse license (eligible for Korean reciprocity)",
-            "Patient care experience",
+            "Patient care",
             "Clinical documentation",
-            "Medical terminology",
-            "Emergency response skills",
+            "Infection control",
+            "Korean medical terminology",
+            "Licensing pathway",
         ],
         "nice_to_have": [
+            "Registered Nurse license (eligible for Korean reciprocity)",
             "Korean nursing license (Korean exam required)",
             "ICU / ER / surgical experience",
             "Bilingual medical communication",
-            "Korean language (TOPIK 5+)",
         ],
     },
     "Care Worker": {
@@ -508,7 +516,10 @@ ZH_CITY_LABELS = {
     "Daejeon": "大田",
     "Daegu": "大邱",
     "Seongnam (Pangyo)": "城南（板桥）",
+    "Gwangju": "光州",
     "Ulsan": "蔚山",
+    "Changwon": "昌原",
+    "Pohang": "浦项",
 }
 
 ZH_COMPETITIVENESS_LABELS = {
@@ -524,6 +535,142 @@ ZH_COMPETITIVENESS_LABELS = {
     10: "趋于饱和",
 }
 
+ZH_SKILL_LABELS = {
+    "SQL": "SQL",
+    "Python (Pandas, NumPy)": "Python（Pandas、NumPy）",
+    "Data visualisation (Tableau / Looker / Matplotlib)": "数据可视化（Tableau / Looker / Matplotlib）",
+    "Statistical analysis": "统计分析",
+    "Excel / Google Sheets": "Excel / Google Sheets",
+    "Airflow / ETL pipelines": "Airflow / ETL 数据管道",
+    "BigQuery / Snowflake": "BigQuery / Snowflake",
+    "Machine learning basics": "机器学习基础",
+    "Python (Django / FastAPI) or Java (Spring Boot)": "Python（Django / FastAPI）或 Java（Spring Boot）",
+    "REST API design": "REST API 设计",
+    "Database design (PostgreSQL / MySQL)": "数据库设计（PostgreSQL / MySQL）",
+    "Git / GitHub Actions / CI-CD": "Git / GitHub Actions / CI-CD",
+    "Docker / Kubernetes basics": "Docker / Kubernetes 基础",
+    "Cloud (AWS / GCP)": "云服务（AWS / GCP）",
+    "Message queues (Kafka / RabbitMQ)": "消息队列（Kafka / RabbitMQ）",
+    "Microservices architecture": "微服务架构",
+    "Product management experience (3+ years)": "产品管理经验（3 年以上）",
+    "Understanding of ML / AI lifecycle": "理解机器学习 / AI 生命周期",
+    "Data-driven decision-making (A/B testing, metrics)": "数据驱动决策（A/B 测试、指标）",
+    "Stakeholder management": "利益相关方管理",
+    "English + Korean bilingual (TOPIK 5+)": "英语 + 韩语双语能力（TOPIK 5+）",
+    "Technical background (CS degree or equivalent)": "技术背景（计算机相关学历或同等经验）",
+    "Experience with Korean tech ecosystem": "韩国科技生态经验",
+    "JIRA / Confluence / Notion": "JIRA / Confluence / Notion",
+    "Figma / product design tools": "Figma / 产品设计工具",
+    "Python (PyTorch / TensorFlow)": "Python（PyTorch / TensorFlow）",
+    "Machine learning fundamentals": "机器学习基础",
+    "Deep learning (NLP / CV / LLMs)": "深度学习（NLP / CV / LLMs）",
+    "SQL and data pipeline basics": "SQL 与数据管道基础",
+    "Git, Linux, cloud basics": "Git、Linux、云服务基础",
+    "Published research or open-source contributions": "论文发表或开源贡献",
+    "Kubernetes / MLOps (MLflow, Kubeflow)": "Kubernetes / MLOps（MLflow、Kubeflow）",
+    "Experience with large Korean datasets": "韩国大型数据集经验",
+    "Digital marketing": "数字营销",
+    "Content strategy": "内容策略",
+    "Social media campaigns": "社交媒体运营",
+    "Market research": "市场调研",
+    "Google Analytics / Meta Ads": "Google Analytics / Meta Ads",
+    "Korean consumer trends": "韩国消费者趋势",
+    "Naver Ads / Kakao Ads": "Naver Ads / Kakao Ads",
+    "SEO / ASO": "SEO / ASO",
+    "CRM tools": "CRM 工具",
+    "SQL basics": "SQL 基础",
+    "Process mapping": "流程梳理",
+    "Dashboarding": "仪表盘制作",
+    "Stakeholder communication": "利益相关方沟通",
+    "Tableau / Power BI": "Tableau / Power BI",
+    "Korean market research": "韩国市场调研",
+    "Consulting experience": "咨询经验",
+    "Process operations": "流程运营",
+    "Vendor coordination": "供应商协调",
+    "Excel / reporting": "Excel / 报告",
+    "SOP documentation": "SOP 文档",
+    "Problem solving": "问题解决",
+    "Logistics / supply chain experience": "物流 / 供应链经验",
+    "ERP tools": "ERP 工具",
+    "Project coordination": "项目协调",
+    "Customer communication": "客户沟通",
+    "Ticketing systems": "工单系统",
+    "Product troubleshooting": "产品问题排查",
+    "Documentation": "文档编写",
+    "Empathy and escalation handling": "同理心与升级处理",
+    "Zendesk / Intercom": "Zendesk / Intercom",
+    "Bilingual support experience": "双语客服经验",
+    "SaaS product knowledge": "SaaS 产品知识",
+    "B2B sales process": "B2B 销售流程",
+    "Lead generation": "潜在客户开发",
+    "Pipeline management": "销售管道管理",
+    "Presentation skills": "演示表达能力",
+    "Cross-cultural communication": "跨文化沟通",
+    "Export / trade knowledge": "出口 / 贸易知识",
+    "Negotiation experience": "谈判经验",
+    "Product discovery": "产品发现",
+    "Roadmapping": "路线图规划",
+    "User research": "用户研究",
+    "Metrics and experimentation": "指标与实验",
+    "Cross-functional communication": "跨职能沟通",
+    "Figma / prototyping": "Figma / 原型设计",
+    "SQL / analytics": "SQL / 数据分析",
+    "Korean market experience": "韩国市场经验",
+    "Financial reporting": "财务报告",
+    "Tax compliance": "税务合规",
+    "Excel / ERP systems": "Excel / ERP 系统",
+    "Bookkeeping": "账务处理",
+    "Korean accounting standards": "韩国会计准则",
+    "K-IFRS familiarity": "K-IFRS 熟悉度",
+    "CPA / AICPA / Korean tax accountant license": "CPA / AICPA / 韩国税务师证书",
+    "Audit experience": "审计经验",
+    "Lesson planning": "课程设计",
+    "Classroom management": "课堂管理",
+    "TESOL / TEFL": "TESOL / TEFL",
+    "Student assessment": "学生评估",
+    "Korean school culture": "韩国学校文化",
+    "Native English proficiency": "英语母语能力",
+    "Experience with Korean students": "韩国学生教学经验",
+    "Curriculum development": "课程开发",
+    "Native Chinese proficiency (Putonghua)": "中文母语能力（普通话）",
+    "Chinese language teaching certification": "中文教学资格",
+    "HSK / TCSOL certification": "HSK / TCSOL 认证",
+    "Patient care": "患者护理",
+    "Clinical documentation": "临床记录",
+    "Infection control": "感染控制",
+    "Korean medical terminology": "韩国医疗术语",
+    "Licensing pathway": "执照认证路径",
+    "Registered Nurse license (eligible for Korean reciprocity)": "注册护士执照（可评估韩国互认路径）",
+    "Korean nursing license (Korean exam required)": "韩国护士执照（需参加韩语考试）",
+    "ICU / ER / surgical experience": "ICU / 急诊 / 外科经验",
+    "Bilingual medical communication": "双语医疗沟通",
+    "Caregiving experience": "护理照护经验",
+    "Elderly or disability care": "老人或残障照护",
+    "Daily living support": "日常生活支持",
+    "Basic first aid": "基础急救",
+    "Patience and empathy": "耐心与同理心",
+    "Korean Care Worker certification (Yoyangbohosa)": "韩国护理员认证（疗养保护师）",
+    "Driving license (Korean or international)": "驾照（韩国或国际）",
+    "Experience with Korean elderly": "韩国老人照护经验",
+    "CAD / SolidWorks / CATIA": "CAD / SolidWorks / CATIA",
+    "Mechanical design principles": "机械设计原理",
+    "Manufacturing process knowledge": "制造工艺知识",
+    "FEA / simulation tools": "有限元 / 仿真工具",
+    "Technical documentation": "技术文档",
+    "Automotive or semiconductor equipment experience": "汽车或半导体设备经验",
+    "Korean engineering standards (KS)": "韩国工程标准（KS）",
+    "Project management (PMP)": "项目管理（PMP）",
+    "Circuit design": "电路设计",
+    "PCB layout / Altium / OrCAD": "PCB 布局 / Altium / OrCAD",
+    "Embedded systems": "嵌入式系统",
+    "Signal integrity analysis": "信号完整性分析",
+    "Semiconductor or display industry experience": "半导体或显示行业经验",
+    "PLC / automation experience": "PLC / 自动化经验",
+    "Korean language (TOPIK 3+)": "韩语能力（TOPIK 3+）",
+    "Korean language (TOPIK 4+)": "韩语能力（TOPIK 4+）",
+    "Korean language (TOPIK 5+)": "韩语能力（TOPIK 5+）",
+}
+
 
 def _language(language: str) -> str:
     return "zh" if language == "zh" else "en"
@@ -537,12 +684,64 @@ def _zh_exp(experience: str) -> str:
     return ZH_EXPERIENCE_LABELS.get(experience, experience)
 
 
+def _localize_skills(skills: list[str], language: str) -> list[str]:
+    if _language(language) != "zh":
+        return skills
+    return [ZH_SKILL_LABELS.get(skill, skill) for skill in skills]
+
+
+def _role_group(role: str) -> str:
+    if role in {"Data Analyst", "Backend Developer", "AI Product Manager", "AI Engineer"}:
+        return "it"
+    if role in {
+        "Marketing Specialist",
+        "Accountant",
+        "Business Analyst",
+        "Operations Specialist",
+        "Customer Support Specialist",
+        "International Sales",
+        "Product Manager",
+    }:
+        return "business"
+    if role in {"English Teacher", "Chinese Teacher"}:
+        return "education"
+    if role in {"Registered Nurse", "Care Worker"}:
+        return "healthcare"
+    if role in {"Mechanical Engineer", "Electrical Engineer"}:
+        return "engineering"
+    return "business"
+
+
+def _visa_pathway(role: str, experience: str, language: str) -> str:
+    group = _role_group(role)
+    if _language(language) == "zh":
+        if group == "education":
+            return "常见路径：教师岗位通常关注 E-2 语言教学签证或学校担保路径。国际学校和部分专门岗位可能走 E-7，需提前确认雇主资质。"
+        if group == "healthcare":
+            return "常见路径：护理和照护岗位通常需要先确认执照、韩语与雇主担保条件，再规划 E-7 或相关工作签证路径。"
+        if group == "engineering":
+            return "常见路径：工程岗位通常通过制造业、汽车、半导体或研发企业担保 E-7。具备项目经验和韩语沟通能力会提升通过率。"
+        if group == "it":
+            return "常见路径：科技岗位多由雇主担保 E-7。学生可先走 D-2 → D-10 → E-7；有经验者可同步评估 F-2 积分制。"
+        return "常见路径：商业岗位通常由韩国企业或外资韩国办公室担保 E-7。客户沟通类岗位通常更看重 TOPIK 4+。"
+
+    if group == "education":
+        return "Typical pathway: E-2 language teaching visa or school-sponsored route. International schools and specialised roles may use E-7 depending on employer eligibility."
+    if group == "healthcare":
+        return "Typical pathway: confirm licensing, Korean-language requirements, and employer sponsorship first, then plan an E-7 or related healthcare work route."
+    if group == "engineering":
+        return "Typical pathway: E-7 sponsorship through manufacturing, automotive, semiconductor, or R&D employers. Project experience and Korean communication help."
+    if group == "it":
+        return "Typical pathway: employer-sponsored E-7 for tech roles. Students often move D-2 → D-10 → E-7; experienced candidates can also assess F-2 points."
+    return VISA_INFO.get(experience, VISA_INFO["0-2 years"])
+
+
 def _localize_job_text(role: str, experience: str, korean_level: str, language: str) -> tuple[str, str, str]:
     if _language(language) != "zh":
         return (
             KOREAN_REQUIREMENTS.get(role, KOREAN_REQUIREMENTS["Backend Developer"]),
             KOREAN_GAP.get(korean_level, KOREAN_GAP["None"]),
-            VISA_INFO.get(experience, VISA_INFO["0-2 years"]),
+            _visa_pathway(role, experience, language),
         )
 
     role_label = _zh_role(role)
@@ -573,11 +772,7 @@ def _localize_job_text(role: str, experience: str, korean_level: str, language: 
         "TOPIK 5+": "你的韩语能力较强，可竞争大型企业、产品管理和客户沟通类岗位。",
     }.get(korean_level, "建议根据目标岗位补齐韩语沟通能力。")
 
-    visa = {
-        "Student": "常见路径：D-2 学生签证 → D-10 求职签证 → E-7 特定活动签证。D-10 可提供毕业后的求职缓冲期。",
-        "0-2 years": "常见路径：由雇主担保 E-7 特定活动签证。多数公司偏好 TOPIK 4+，之后可考虑 F-2 积分制居留。",
-        "3-5 years": "常见路径：E-7 或 F-2 积分制居留。F-2 通常提供更高的就业流动性，长期可规划 F-5。",
-    }.get(experience, "建议提前确认目标岗位是否支持签证担保。")
+    visa = _visa_pathway(role, experience, language)
     return requirement, gap, visa
 
 
@@ -605,8 +800,8 @@ def analyze_job_market(role: str, experience: str, korean_level: str, language: 
         "salary_min": sal_min,
         "salary_max": sal_max,
         "recommended_cities": cities,
-        "required_skills": skills["must_have"],
-        "nice_to_have_skills": skills["nice_to_have"],
+        "required_skills": _localize_skills(skills["must_have"], language),
+        "nice_to_have_skills": _localize_skills(skills["nice_to_have"], language),
         "korean_language_requirement": korean_req,
         "korean_language_gap": korean_gap,
         "competitiveness": competitiveness,
@@ -614,6 +809,183 @@ def analyze_job_market(role: str, experience: str, korean_level: str, language: 
         "visa_pathway": visa_info,
         "currency": "KRW",
     }
+
+
+ROLE_PLAN_STEPS_EN = {
+    "Data Analyst": [
+        "Build one SQL + Python analysis using Korean public datasets.",
+        "Create a dashboard in Tableau, Looker, or Plotly and document business insights.",
+        "Prepare analytics case interviews and apply to data teams in Seoul and Pangyo.",
+    ],
+    "Backend Developer": [
+        "Complete a FastAPI or Spring Boot backend project.",
+        "Add database design, authentication, tests, Docker, and CI/CD.",
+        "Deploy the project and prepare backend system-design interviews.",
+    ],
+    "AI Product Manager": [
+        "Write an AI product brief with metrics, user problem, and model constraints.",
+        "Build a roadmap and experiment plan for one Korea-relevant AI product.",
+        "Prepare stakeholder interview stories and portfolio case studies.",
+    ],
+    "AI Engineer": [
+        "Train or fine-tune one ML model and document evaluation metrics.",
+        "Add data pipeline, experiment tracking, and deployment notes.",
+        "Prepare ML theory, coding, and MLOps interview practice.",
+    ],
+    "Marketing Specialist": [
+        "Build a Korea market case library across Naver, Kakao, Instagram, and YouTube.",
+        "Create one social media campaign portfolio with budget, audience, and metrics.",
+        "Prepare marketing interviews for Korean consumer brands and agencies.",
+    ],
+    "Accountant": [
+        "Review Korean accounting standards, tax calendar, and reporting workflows.",
+        "Prepare Excel / ERP samples for bookkeeping, reconciliation, and reporting.",
+        "Target accounting roles in foreign firms or Korean SMEs with sponsorship readiness.",
+    ],
+    "Business Analyst": [
+        "Map a business process and define KPI, dashboard, and stakeholder questions.",
+        "Build one SQL or spreadsheet analysis for a Korean market scenario.",
+        "Prepare consulting-style case interviews and business communication stories.",
+    ],
+    "Operations Specialist": [
+        "Document an SOP and process improvement case with measurable impact.",
+        "Prepare vendor, logistics, and reporting examples for Korea-based operations.",
+        "Apply to operations teams in Seoul, Incheon, Busan, and Daegu.",
+    ],
+    "Customer Support Specialist": [
+        "Prepare Korean customer support scripts and escalation scenarios.",
+        "Practice ticket triage, product troubleshooting, and documentation examples.",
+        "Target bilingual support teams in SaaS, travel, ecommerce, and consumer products.",
+    ],
+    "International Sales": [
+        "Build a target-account list and Korea-facing sales pitch.",
+        "Prepare CRM pipeline examples, outreach scripts, and negotiation stories.",
+        "Apply to export, SaaS, and cross-border business development roles.",
+    ],
+    "Product Manager": [
+        "Write a product discovery brief with user interviews and problem framing.",
+        "Create a roadmap, metrics tree, and launch plan for a Korea market product.",
+        "Prepare PM interviews covering prioritisation, tradeoffs, and stakeholder alignment.",
+    ],
+    "English Teacher": [
+        "Prepare TESOL/TEFL materials and a teaching-focused resume.",
+        "Create a demo lesson with lesson plan, activities, and student assessment.",
+        "Apply to EPIK, hagwon, and international school opportunities.",
+    ],
+    "Chinese Teacher": [
+        "Prepare Chinese teaching credentials and a teaching-focused resume.",
+        "Create a demo lesson for Korean learners of Mandarin.",
+        "Apply to schools, language institutes, and culture education programs.",
+    ],
+    "Registered Nurse": [
+        "Research Korean nursing license and language requirements.",
+        "Prepare medical Korean vocabulary and licensing documents.",
+        "Contact hospitals, agencies, schools, or bridge-program pathways.",
+    ],
+    "Care Worker": [
+        "Review care worker certification and Korean caregiving expectations.",
+        "Prepare daily care, first aid, and family communication examples.",
+        "Contact care facilities, agencies, and training programs in major cities.",
+    ],
+    "Mechanical Engineer": [
+        "Prepare a CAD or manufacturing project portfolio.",
+        "Document design, simulation, and production coordination experience.",
+        "Apply to automotive, shipbuilding, machinery, and semiconductor equipment firms.",
+    ],
+    "Electrical Engineer": [
+        "Prepare a circuit, embedded, or automation project portfolio.",
+        "Document PCB, PLC, or semiconductor/display experience.",
+        "Apply to electronics, semiconductor, display, and industrial automation firms.",
+    ],
+}
+
+ROLE_PLAN_STEPS_ZH = {
+    "Data Analyst": [
+        "完成 1 个韩国公开数据的 SQL + Python 分析项目。",
+        "制作 Tableau、Looker 或 Plotly 仪表盘，并写清业务洞察。",
+        "准备数据分析案例面试，优先申请首尔和板桥的数据团队。",
+    ],
+    "Backend Developer": [
+        "完成 FastAPI / Spring Boot 后端项目。",
+        "添加数据库、认证、测试、Docker 和 CI/CD。",
+        "部署项目并准备后端系统设计面试。",
+    ],
+    "AI Product Manager": [
+        "撰写 1 份 AI 产品方案，包含指标、用户问题和模型限制。",
+        "为 1 个韩国场景 AI 产品制作路线图和实验计划。",
+        "准备 stakeholder 沟通案例和产品作品集。",
+    ],
+    "AI Engineer": [
+        "训练或微调 1 个机器学习模型，并记录评估指标。",
+        "补齐数据管道、实验追踪和部署说明。",
+        "准备机器学习理论、编码和 MLOps 面试。",
+    ],
+    "Marketing Specialist": [
+        "建立韩国市场案例库，覆盖 Naver、Kakao、Instagram 和 YouTube。",
+        "做 1 个社媒营销策划作品集，包含预算、受众和指标。",
+        "准备韩企消费品牌或代理商营销岗位面试。",
+    ],
+    "Accountant": [
+        "梳理韩国会计准则、税务日历和财务报告流程。",
+        "准备 Excel / ERP 的账务、对账和报表示例。",
+        "优先申请外资企业韩国办公室或可担保签证的韩国中小企业。",
+    ],
+    "Business Analyst": [
+        "完成 1 个业务流程梳理案例，定义 KPI、仪表盘和访谈问题。",
+        "制作 1 个韩国市场场景的 SQL 或表格分析作品。",
+        "准备咨询式 case interview 和业务沟通案例。",
+    ],
+    "Operations Specialist": [
+        "整理 1 个 SOP 或流程优化案例，并量化影响。",
+        "准备供应商、物流和运营报表相关案例。",
+        "申请首尔、仁川、釜山和大邱的运营团队岗位。",
+    ],
+    "Customer Support Specialist": [
+        "准备韩语客户沟通话术和升级处理场景。",
+        "练习工单分流、产品排查和知识库文档案例。",
+        "申请 SaaS、旅游、电商和消费产品的双语支持岗位。",
+    ],
+    "International Sales": [
+        "建立目标客户清单和面向韩国市场的销售 pitch。",
+        "准备 CRM 管道、外联话术和谈判案例。",
+        "申请出口贸易、SaaS 和跨境业务拓展岗位。",
+    ],
+    "Product Manager": [
+        "完成 1 份产品发现文档，包含用户访谈和问题定义。",
+        "制作面向韩国市场的路线图、指标树和上线计划。",
+        "准备优先级、取舍和跨团队协作相关 PM 面试。",
+    ],
+    "English Teacher": [
+        "准备 TESOL/TEFL 和教学简历。",
+        "制作 Demo Lesson，包含教案、课堂活动和学生评估。",
+        "申请 EPIK、hagwon 和国际学校岗位。",
+    ],
+    "Chinese Teacher": [
+        "准备中文教学资质和教学简历。",
+        "制作面向韩国学习者的中文 Demo Lesson。",
+        "申请学校、语言机构和文化教育项目。",
+    ],
+    "Registered Nurse": [
+        "研究韩国护士执照与语言要求。",
+        "准备医疗韩语和执照材料。",
+        "联系医院、中介、学校或衔接课程路径。",
+    ],
+    "Care Worker": [
+        "研究韩国护理员认证和照护岗位要求。",
+        "准备日常照护、基础急救和家属沟通案例。",
+        "联系养老机构、中介和培训项目。",
+    ],
+    "Mechanical Engineer": [
+        "准备 CAD 或制造工艺相关项目作品集。",
+        "整理机械设计、仿真和生产协调案例。",
+        "申请汽车、造船、机械和半导体设备企业。",
+    ],
+    "Electrical Engineer": [
+        "准备电路、嵌入式或自动化项目作品集。",
+        "整理 PCB、PLC、半导体或显示行业经验。",
+        "申请电子、半导体、显示和工业自动化企业。",
+    ],
+}
 
 
 def generate_preparation_plan(role: str, experience: str, korean_level: str, language: str = "en") -> str:
@@ -627,56 +999,18 @@ def generate_preparation_plan(role: str, experience: str, korean_level: str, lan
             f"### 当前韩语水平：{korean_level}",
             "",
         ]
-        if korean_level == "None":
-            lines += [
-                "**第 1 个月：** 启动 TOPIK 学习，报名线上或线下韩语课程。",
-                "  - 重点：韩文字母、基础语法、日常会话（约 60 小时）。",
-                "  - 目标：达到 TOPIK 1-2 的基础水平。",
-                "",
-                "**第 2 个月：** 继续语言学习，同时开始准备岗位相关作品集。",
-                "  - 完成 2-3 个与韩国场景相关的项目或案例。",
-                "  - 把项目整理到 GitHub、Notion 或个人作品集中。",
-                "",
-                "**第 3 个月：** 打磨简历并优先申请英语友好岗位。",
-                "  - 目标：首尔英语优先创业公司、外资企业或国际团队。",
-                "  - 渠道：LinkedIn、Wanted、RocketPunch 等。",
-                "",
-            ]
-        elif korean_level in ("TOPIK 3", "TOPIK 4"):
-            lines += [
-                "**第 1 个月：** 强化岗位相关韩语表达，并更新面向韩国市场的简历。",
-                "  - 准备韩文简历或让母语者审阅。",
-                "  - 熟悉韩国面试和岗位沟通常见表达。",
-                f"  - {'准备冲刺 TOPIK 4' if korean_level == 'TOPIK 3' else '可以考虑继续冲刺 TOPIK 5+'}。",
-                "",
-                "**第 2 个月：** 主动建立人脉并补齐技能差距。",
-                "  - 参加韩国行业活动、线上社群或校友网络。",
-                "  - 对照目标公司的岗位要求补齐 1-2 个关键技能。",
-                "  - 整理目标公司名单和申请节奏。",
-                "",
-                "**第 3 个月：** 开始投递并准备面试。",
-                "  - 通过 Wanted.co.kr、LinkedIn Korea、JobKorea 等渠道申请。",
-                "  - 练习韩语自我介绍和岗位相关问答。",
-                "  - 如果已在韩国，可关注 D-10 求职签证时间安排。",
-                "",
-            ]
-        else:
-            lines += [
-                "**第 1 个月：** 打磨韩语表达和高价值人脉。",
-                "  - 参加行业活动、技术分享或产品/商业社群。",
-                "  - 准备韩语版作品集介绍。",
-                "",
-                "**第 2 个月：** 定向申请一线公司和高匹配岗位。",
-                "  - 关注大型企业、头部创业公司和国际化团队。",
-                "  - 请韩语母语者审阅简历和申请材料。",
-                "  - 准备多轮面试：技能、业务理解、团队协作。",
-                "",
-                "**第 3 个月：** 比较 offer 并准备落地事项。",
-                "  - 评估薪资、奖金、住房支持和签证担保。",
-                "  - 确认 E-7 或 F-2 等签证路径。",
-                "  - 规划住房、银行、医保和入职手续。",
-                "",
-            ]
+        steps = ROLE_PLAN_STEPS_ZH.get(role, ROLE_PLAN_STEPS_ZH["Business Analyst"])
+        lines += [
+            f"**第 1 个月：** {steps[0]}",
+            f"  - 韩语重点：{'从 TOPIK 基础开始，先建立日常沟通能力。' if korean_level == 'None' else '整理岗位相关韩语表达和面试自我介绍。'}",
+            "",
+            f"**第 2 个月：** {steps[1]}",
+            "  - 对照目标岗位补齐 1-2 个关键技能，并整理成作品集或案例。",
+            "",
+            f"**第 3 个月：** {steps[2]}",
+            "  - 同步准备简历、面试和签证担保材料。",
+            "",
+        ]
 
         lines += [
             "### 关键洞察",
@@ -694,57 +1028,18 @@ def generate_preparation_plan(role: str, experience: str, korean_level: str, lan
         "",
     ]
 
-    if korean_level == "None":
-        lines += [
-            "**Month 1:** Begin TOPIK preparation. Join a Korean language class (online or local).",
-            "  - Focus: Hangul, basic grammar, daily conversation (60 hours).",
-            "  - Goal: TOPIK 1-2 level proficiency.",
-            "",
-            "**Month 2:** Continue language study + start portfolio projects.",
-            "  - Build 2-3 Korean-relevant projects (e.g., Korean data analysis using public datasets).",
-            "  - Contribute to open-source projects visible to Korean companies.",
-            "",
-            "**Month 3:** Polish portfolio + apply to English-friendly roles.",
-            "  - Target: English-first startups in Seoul (e.g., Channel Talk, Sendbird).",
-            "  - Apply through LinkedIn, Wanted, and RocketPunch.",
-            "",
-        ]
-    elif korean_level in ("TOPIK 3", "TOPIK 4"):
-        lines += [
-            "**Month 1:** Strengthen Korean technical vocabulary + update resume for Korean market.",
-            "  - Translate resume/CV to Korean (professional review recommended).",
-            "  - Study Korean tech interview questions (available on Naver Blog, JobKorea).",
-            f"  - {'Prepare TOPIK 4 exam' if korean_level == 'TOPIK 3' else 'Consider TOPIK 5+ for chaebol eligibility'}.",
-            "",
-            "**Month 2:** Active networking + skills alignment.",
-            "  - Join Korean tech meetups (Seoul Global Center, Startup Alliance).",
-            "  - Complete 1-2 Korean-language technical courses (K-MOOC or Fast Campus).",
-            "  - Research target companies and their tech stacks.",
-            "",
-            "**Month 3:** Start applications + interview preparation.",
-            "  - Apply through Wanted.co.kr, LinkedIn Korea, JobKorea.",
-            "  - Practice Korean technical interviews with native speakers.",
-            "  - Leverage D-10 job seeker visa if already in Korea.",
-            "",
-        ]
-    else:  # TOPIK 5+
-        lines += [
-            "**Month 1:** Polish Korean fluency + high-value networking.",
-            "  - Join industry-specific groups (Naver D2, Kakao Tech Meetups).",
-            "  - Attend Korean tech conferences (DEVIEW, IF KAKAO, NVIDIA GTC Korea).",
-            "  - Prepare Korean-language portfolio presentation.",
-            "",
-            "**Month 2:** Targeted applications to tier-1 companies.",
-            "  - Apply to chaebols (Samsung, LG, SK, Naver, Kakao) and top startups.",
-            "  - Have a Korean speaker review all application materials.",
-            "  - Prepare for multi-round interviews (coding + culture + presentation).",
-            "",
-            "**Month 3:** Negotiate offers + prepare relocation.",
-            "  - Compare total compensation (housing, stock options, bonuses).",
-            "  - Secure visa sponsorship (E-7 or F-2 points-based).",
-            "  - Plan housing, banking, and healthcare setup in Seoul.",
-            "",
-        ]
+    steps = ROLE_PLAN_STEPS_EN.get(role, ROLE_PLAN_STEPS_EN["Business Analyst"])
+    lines += [
+        f"**Month 1:** {steps[0]}",
+        f"  - Korean focus: {'Start with TOPIK basics and daily communication.' if korean_level == 'None' else 'Prepare role-specific Korean interview phrases and self-introduction.'}",
+        "",
+        f"**Month 2:** {steps[1]}",
+        "  - Close 1-2 priority skill gaps and package your work as a portfolio or case study.",
+        "",
+        f"**Month 3:** {steps[2]}",
+        "  - Prepare resume, interviews, and visa sponsorship materials in parallel.",
+        "",
+    ]
 
     lines += [
         "### Key insights",
