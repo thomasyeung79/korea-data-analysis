@@ -36,11 +36,18 @@ ZH_ROLE_LABELS = {
     "AI Product Manager": "AI 产品经理",
     "AI Engineer": "AI 工程师",
     "Marketing Specialist": "市场营销专员",
+    "Accountant": "会计",
     "Business Analyst": "商业分析师",
     "Operations Specialist": "运营专员",
     "Customer Support Specialist": "客户支持专员",
     "International Sales": "国际销售",
     "Product Manager": "产品经理",
+    "English Teacher": "英语教师",
+    "Chinese Teacher": "中文教师",
+    "Registered Nurse": "注册护士",
+    "Care Worker": "护理员",
+    "Mechanical Engineer": "机械工程师",
+    "Electrical Engineer": "电气工程师",
     "Not Applicable": "不适用",
 }
 
