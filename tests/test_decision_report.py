@@ -199,6 +199,104 @@ class TestAPIValidation:
         assert resp.status_code == 422
 
 
+# ─── Chinese Localization Coverage ───
+
+class TestChineseLocalization:
+    """Verify all roles and labels are localized in Chinese decision reports."""
+
+    ALL_ROLES = [
+        "Data Analyst", "Backend Developer", "AI Product Manager", "AI Engineer",
+        "Marketing Specialist", "Accountant", "Business Analyst",
+        "Operations Specialist", "Customer Support Specialist", "International Sales",
+        "Product Manager", "English Teacher", "Chinese Teacher",
+        "Registered Nurse", "Care Worker", "Mechanical Engineer", "Electrical Engineer",
+        "Not Applicable",
+    ]
+
+    def test_all_roles_have_chinese_translations_in_config(self):
+        """Every valid role must have a Chinese translation in decision report config."""
+        from backend.app.services.decision_report_config import ZH_ROLE_LABELS, RECOMMENDATION_LABELS_ZH
+        for role in self.ALL_ROLES:
+            assert role in ZH_ROLE_LABELS, f"Missing ZH label for role '{role}'"
+            assert ZH_ROLE_LABELS[role], f"Empty ZH label for role '{role}'"
+            # Must not fall back to English (if translation equals the key, it's a fallback)
+            assert ZH_ROLE_LABELS[role] != role, f"ZH label for '{role}' is raw key fallback"
+
+    def test_all_roles_label_non_empty_in_zh_response(self):
+        """Chinese decision report returns role labels in Chinese."""
+        for role in self.ALL_ROLES[:6]:  # Sample representative roles
+            payload = {
+                "goal": "Work", "target_city": "Seoul",
+                "school_type": "Not Applicable", "housing_type": "Not Applicable",
+                "lifestyle_level": "Standard",
+                "target_role": role, "experience_level": "3-5 years",
+                "korean_level": "TOPIK 4", "monthly_budget": 3_000_000,
+                "language": "zh",
+            }
+            resp = client.post("/api/v1/decision-report/generate", json=payload)
+            assert resp.status_code == 200, f"{role} failed: {resp.status_code}"
+            data = resp.json()
+            assert "monthly_cost_estimate" in data, f"{role} missing cost data"
+
+    def test_all_recommendation_labels_have_chinese_translations(self):
+        """All 4 recommendation levels have Chinese labels."""
+        from backend.app.services.decision_report_config import RECOMMENDATION_LABELS_ZH
+        expected_labels = [
+            "强烈推荐 ✅",
+            "准备充分后推荐 ⚠️",
+            "有一定风险 ❓",
+            "暂不推荐 ❌",
+        ]
+        for expected in expected_labels:
+            assert expected in RECOMMENDATION_LABELS_ZH.values(), \
+                f"Missing ZH recommendation label: {expected}"
+
+    def test_zh_decision_report_includes_role_label_in_summary(self):
+        """Chinese decision report summary mentions the role in Chinese."""
+        payload = {
+            "goal": "Work", "target_city": "Seoul",
+            "school_type": "Not Applicable", "housing_type": "Not Applicable",
+            "lifestyle_level": "Standard",
+            "target_role": "Backend Developer", "experience_level": "3-5 years",
+            "korean_level": "TOPIK 5+", "monthly_budget": 3_000_000,
+            "language": "zh",
+        }
+        resp = client.post("/api/v1/decision-report/generate", json=payload)
+        assert resp.status_code == 200
+        data = resp.json()
+        # Career risk detail should reference the role name in Chinese
+        assert data.get("career_risk_detail", ""), "Missing career risk detail in Chinese report"
+
+    def test_chinese_city_labels_present(self):
+        """All cities that can appear in decision reports have Chinese labels."""
+        from backend.app.services.decision_report_config import ZH_CITY_LABELS
+        for city in ["Seoul", "Busan", "Daejeon", "Daegu", "Other"]:
+            assert city in ZH_CITY_LABELS, f"Missing ZH city label for {city}"
+            assert ZH_CITY_LABELS[city], f"Empty ZH city label for {city}"
+
+    def test_multiple_non_it_roles_return_zh_result(self):
+        """Non-IT career roles work in Chinese mode (regression for the 7 previously missing roles)."""
+        roles = [
+            "Accountant", "English Teacher", "Chinese Teacher",
+            "Registered Nurse", "Care Worker",
+            "Mechanical Engineer", "Electrical Engineer",
+        ]
+        for role in roles:
+            payload = {
+                "goal": "Work", "target_city": "Seoul",
+                "school_type": "Not Applicable", "housing_type": "Not Applicable",
+                "lifestyle_level": "Standard",
+                "target_role": role, "experience_level": "3-5 years",
+                "korean_level": "TOPIK 4", "monthly_budget": 3_000_000,
+                "language": "zh",
+            }
+            resp = client.post("/api/v1/decision-report/generate", json=payload)
+            assert resp.status_code == 200, f"{role} zh failed: {resp.status_code}"
+            data = resp.json()
+            assert "第 1 个月" in data["action_plan"], f"{role} action plan not in Chinese"
+            assert data["monthly_cost_estimate"] > 0, f"{role} missing cost data"
+
+
 # ─────────────────────────────────────────────────────────
-# Total: 18 tests
+# Total: 18 + 7 = 25 tests
 # ─────────────────────────────────────────────────────────

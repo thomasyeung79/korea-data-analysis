@@ -66,6 +66,52 @@ def test_chinese_role_display_mapping(monkeypatch):
     assert i18n.display_role("Product Manager") == "产品经理"
 
 
+ALL_ROLES_CAREER = [
+    ("Data Analyst", "数据分析师"),
+    ("Backend Developer", "后端开发工程师"),
+    ("AI Product Manager", "AI 产品经理"),
+    ("AI Engineer", "AI 工程师"),
+    ("Marketing Specialist", "市场营销专员"),
+    ("Business Analyst", "商业分析师"),
+    ("Operations Specialist", "运营专员"),
+    ("Customer Support Specialist", "客户支持专员"),
+    ("International Sales", "国际销售"),
+    ("Product Manager", "产品经理"),
+    ("Accountant", "会计师"),
+    ("English Teacher", "英语教师"),
+    ("Chinese Teacher", "中文教师"),
+    ("Registered Nurse", "注册护士"),
+    ("Care Worker", "护理员"),
+    ("Mechanical Engineer", "机械工程师"),
+    ("Electrical Engineer", "电气工程师"),
+    ("Not Applicable", "不适用"),
+]
+
+
+def test_all_chinese_role_display_mappings(monkeypatch):
+    """Every valid career role must have a non-identity Chinese translation."""
+    reset_language_state(monkeypatch)
+    i18n.set_language("zh")
+
+    for en_role, zh_expected in ALL_ROLES_CAREER:
+        translated = i18n.display_role(en_role)
+        assert translated == zh_expected, (
+            f"Role '{en_role}' translated as '{translated}', expected '{zh_expected}'"
+        )
+
+
+def test_no_chinese_role_falls_back_to_english(monkeypatch):
+    """No role should fall back to its English name in Chinese mode."""
+    reset_language_state(monkeypatch)
+    i18n.set_language("zh")
+
+    for en_role, _ in ALL_ROLES_CAREER:
+        translated = i18n.display_role(en_role)
+        assert translated != en_role, (
+            f"Role '{en_role}' fell back to English — translation missing"
+        )
+
+
 def test_english_role_display_mapping(monkeypatch):
     reset_language_state(monkeypatch)
     i18n.set_language("en")
