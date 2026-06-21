@@ -5,6 +5,16 @@ All notable changes to Korea Study & Career Decision Agent are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses semantic versioning for portfolio releases.
 
+## [2.2.0] - 2026-06-21
+
+### Added
+- Regression tests for Chinese role display mappings (all 18 career roles verified, no English fallbacks).
+- Decision report Chinese localization tests covering role labels, city labels, recommendation level labels, and non-IT career role paths.
+- Expanded test coverage from 136 to 144 tests.
+
+### Changed
+- Bumped version to 2.2.0 to reflect test and localization improvements.
+
 ## [2.0.0] - 2026-06-18
 
 ### Added

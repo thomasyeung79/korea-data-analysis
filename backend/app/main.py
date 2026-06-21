@@ -7,7 +7,7 @@ from .routers import ai, health, countries, surveys, study_cost, job_market, dec
 app = FastAPI(
     title="Korea Analysis System",
     description="A practical decision assistant for students and job seekers considering Korea.",
-    version="2.0.0",
+    version="2.2.0",
 )
 
 app.add_middleware(
