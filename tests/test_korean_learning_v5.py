@@ -1,4 +1,9 @@
+import sys
+from pathlib import Path
+
 from fastapi.testclient import TestClient
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.app.main import app
 from backend.app.schemas import (
@@ -21,6 +26,14 @@ def test_study_scenarios_service_and_schema():
     assert {"Classroom", "Professor", "Library", "Dormitory", "Campus", "Presentation"} <= scenarios
     assert parsed[0].useful_expressions
     assert parsed[0].vocabulary[0].korean
+
+
+def test_study_scenarios_chinese_situation_is_localized():
+    data = korean_learning.get_study_scenarios(language="zh")
+    classroom = next(item for item in data if item["scenario"] == "Classroom")
+
+    assert "参加课堂" in classroom["situation"]
+    assert "Joining class" not in classroom["situation"]
 
 
 def test_career_scenarios_service_and_schema():
@@ -71,6 +84,14 @@ def test_korean_learning_study_api():
     assert response.status_code == 200
     assert len(response.json()) >= 6
     assert response.json()[0]["scenario"] == "Classroom"
+
+
+def test_korean_learning_study_api_chinese_query():
+    response = client.get("/api/v1/korean-learning/study?language=zh")
+    assert response.status_code == 200
+    classroom = next(item for item in response.json() if item["scenario"] == "Classroom")
+    assert "参加课堂" in classroom["situation"]
+    assert "Joining class" not in classroom["situation"]
 
 
 def test_korean_learning_career_api():

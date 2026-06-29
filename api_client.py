@@ -163,13 +163,14 @@ class APIClient:
         if method == "GET" and path.startswith("/api/v1/explore/"):
             from backend.app.services import explore_service
 
+            language = "zh" if params.get("language") == "zh" else "en"
             explore_routes = {
-                "/api/v1/explore/overview": explore_service.get_overview,
-                "/api/v1/explore/cities": explore_service.get_cities,
-                "/api/v1/explore/culture": explore_service.get_culture,
-                "/api/v1/explore/history": explore_service.get_history,
+                "/api/v1/explore/overview": lambda: explore_service.get_overview(language),
+                "/api/v1/explore/cities": lambda: explore_service.get_cities(language),
+                "/api/v1/explore/culture": lambda: explore_service.get_culture(language),
+                "/api/v1/explore/history": lambda: explore_service.get_history(language),
                 "/api/v1/explore/living-cost": explore_service.get_living_cost,
-                "/api/v1/explore/quick-facts": explore_service.get_quick_facts,
+                "/api/v1/explore/quick-facts": lambda: explore_service.get_quick_facts(language),
             }
             if path in explore_routes:
                 return explore_routes[path]()
@@ -177,10 +178,11 @@ class APIClient:
         if method == "GET" and path.startswith("/api/v1/korean-learning/"):
             from backend.app.services import korean_learning
 
+            language = "zh" if params.get("language") == "zh" else "en"
             learning_routes = {
-                "/api/v1/korean-learning/study": korean_learning.get_study_scenarios,
-                "/api/v1/korean-learning/career": korean_learning.get_career_scenarios,
-                "/api/v1/korean-learning/living": korean_learning.get_living_scenarios,
+                "/api/v1/korean-learning/study": lambda: korean_learning.get_study_scenarios(language),
+                "/api/v1/korean-learning/career": lambda: korean_learning.get_career_scenarios(language),
+                "/api/v1/korean-learning/living": lambda: korean_learning.get_living_scenarios(language),
                 "/api/v1/korean-learning/topik": korean_learning.get_topik_planners,
             }
             if path in learning_routes:
@@ -421,34 +423,34 @@ class APIClient:
 
     # ── Explore Korea ──
 
-    def get_explore_overview(self) -> dict:
-        return self._request("GET", "/api/v1/explore/overview")
+    def get_explore_overview(self, language: str = "en") -> dict:
+        return self._request("GET", "/api/v1/explore/overview", params={"language": language})
 
-    def get_explore_cities(self) -> list[dict]:
-        return self._request("GET", "/api/v1/explore/cities")
+    def get_explore_cities(self, language: str = "en") -> list[dict]:
+        return self._request("GET", "/api/v1/explore/cities", params={"language": language})
 
-    def get_explore_culture(self) -> list[dict]:
-        return self._request("GET", "/api/v1/explore/culture")
+    def get_explore_culture(self, language: str = "en") -> list[dict]:
+        return self._request("GET", "/api/v1/explore/culture", params={"language": language})
 
-    def get_explore_history(self) -> list[dict]:
-        return self._request("GET", "/api/v1/explore/history")
+    def get_explore_history(self, language: str = "en") -> list[dict]:
+        return self._request("GET", "/api/v1/explore/history", params={"language": language})
 
     def get_explore_living_cost(self) -> list[dict]:
         return self._request("GET", "/api/v1/explore/living-cost")
 
-    def get_explore_quick_facts(self) -> list[dict]:
-        return self._request("GET", "/api/v1/explore/quick-facts")
+    def get_explore_quick_facts(self, language: str = "en") -> list[dict]:
+        return self._request("GET", "/api/v1/explore/quick-facts", params={"language": language})
 
     # ── Korean Learning Support ──
 
-    def get_korean_learning_study(self) -> list[dict]:
-        return self._request("GET", "/api/v1/korean-learning/study")
+    def get_korean_learning_study(self, language: str = "en") -> list[dict]:
+        return self._request("GET", "/api/v1/korean-learning/study", params={"language": language})
 
-    def get_korean_learning_career(self) -> list[dict]:
-        return self._request("GET", "/api/v1/korean-learning/career")
+    def get_korean_learning_career(self, language: str = "en") -> list[dict]:
+        return self._request("GET", "/api/v1/korean-learning/career", params={"language": language})
 
-    def get_korean_learning_living(self) -> list[dict]:
-        return self._request("GET", "/api/v1/korean-learning/living")
+    def get_korean_learning_living(self, language: str = "en") -> list[dict]:
+        return self._request("GET", "/api/v1/korean-learning/living", params={"language": language})
 
     def get_korean_learning_topik(self) -> list[dict]:
         return self._request("GET", "/api/v1/korean-learning/topik")

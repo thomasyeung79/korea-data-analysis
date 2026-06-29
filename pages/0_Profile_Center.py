@@ -8,7 +8,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from api_client import APIClient
-from locales.i18n import get_language, language_selector, t, translate_option, display_role
+from locales.i18n import get_language, language_selector, t, translate_option, display_role, profile_summary
 from ui_style import apply_product_style
 
 st.set_page_config(page_title="Profile Center", page_icon="🧩", layout="wide")
@@ -117,7 +117,16 @@ if st.button(label("Save Profile", "保存画像"), use_container_width=True, ty
     saved = api.create_profile(payload)
     st.session_state["compass_profile"] = payload
     st.success(label("Profile saved. You can now generate city recommendations and a Korea Life Plan.", "画像已保存。现在可以生成城市推荐和韩国生活规划。"))
-    st.json(saved)
+    st.markdown(f"## {t('profile.saved')}")
+    summary = profile_summary(payload)
+    cols = st.columns(3)
+    for col, (section, rows) in zip(cols, summary.items()):
+        with col:
+            st.markdown(f"### {section}")
+            for key, value in rows:
+                st.markdown(f"- **{key}：** {value}")
+    with st.expander(t("profile.raw_data"), expanded=False):
+        st.json(saved)
 
 if "compass_profile" in st.session_state:
     st.info(label("Current profile is ready for Korea Compass modules.", "当前画像已可用于 Korea Compass 模块。"))

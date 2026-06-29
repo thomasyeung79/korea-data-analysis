@@ -1,4 +1,9 @@
+import sys
+from pathlib import Path
+
 from fastapi.testclient import TestClient
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.app.main import app
 from backend.app.schemas import CityInfo, CultureSection, ExploreOverview, HistoryEvent, LivingCost, QuickFact
@@ -14,6 +19,17 @@ def test_explore_overview_service_and_schema():
     assert parsed.capital == "Seoul"
     assert "KRW" in parsed.currency
     assert parsed.language == "Korean"
+
+
+def test_explore_overview_chinese_content_is_localized():
+    data = explore_service.get_overview(language="zh")
+
+    assert "韩国是一个高度互联" in data["country_introduction"]
+    assert "South Korea is" not in data["country_introduction"]
+    assert data["population"] == "约 5170 万"
+    assert data["capital"] == "首尔"
+    assert data["currency"] == "韩元（KRW）"
+    assert data["language"] == "韩语"
 
 
 def test_explore_cities_service_has_required_cities_and_schema():
@@ -45,6 +61,14 @@ def test_explore_overview_api():
     response = client.get("/api/v1/explore/overview")
     assert response.status_code == 200
     assert response.json()["capital"] == "Seoul"
+
+
+def test_explore_overview_api_chinese_query():
+    response = client.get("/api/v1/explore/overview?language=zh")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["capital"] == "首尔"
+    assert "South Korea is" not in data["country_introduction"]
 
 
 def test_explore_cities_api():

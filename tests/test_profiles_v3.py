@@ -1,7 +1,14 @@
+import sys
+from pathlib import Path
+
 from fastapi.testclient import TestClient
+from types import SimpleNamespace
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.app.database import Base, engine
 from backend.app.main import app
+import locales.i18n as i18n
 
 client = TestClient(app)
 
@@ -64,3 +71,57 @@ def test_latest_profile_returns_most_recent_profile():
     response = client.get("/api/v1/profiles/latest")
     assert response.status_code == 200
     assert response.json()["display_name"] == "Latest User"
+
+
+def test_profile_summary_localizes_chinese_values(monkeypatch):
+    monkeypatch.setattr(i18n, "st", SimpleNamespace(session_state={}))
+    i18n.set_language("zh")
+    profile = sample_profile()
+    profile["display_name"] = "Compass User"
+    profile["study_profile"].update({
+        "nationality": "International",
+        "current_education_level": "High School",
+        "target_study_level": "Language School",
+        "target_major": "Computer Science",
+        "korean_level": "None",
+        "english_level": "Basic",
+        "preferred_city": "Seoul",
+    })
+    profile["career_profile"].update({
+        "target_role": "Data Analyst",
+        "work_experience": "Student",
+        "target_industry": "Technology",
+        "visa_goal": "D-2",
+    })
+    profile["living_profile"].update({
+        "lifestyle": "Budget",
+        "housing_preference": "Dormitory",
+        "transport_preference": "Public Transit",
+        "community_preference": "Student Area",
+    })
+
+    summary = i18n.profile_summary(profile)
+    flat_values = [value for rows in summary.values() for _, value in rows]
+
+    assert "国际学生" in flat_values
+    assert "高中" in flat_values
+    assert "语言学校" in flat_values
+    assert "计算机科学" in flat_values
+    assert "无" in flat_values
+    assert "首尔" in flat_values
+    assert "数据分析师" in flat_values
+    assert "学生" in flat_values
+    assert "科技" in flat_values
+    assert "宿舍" in flat_values
+
+
+def test_profile_summary_english_mode_stays_english(monkeypatch):
+    monkeypatch.setattr(i18n, "st", SimpleNamespace(session_state={}))
+    i18n.set_language("en")
+
+    summary = i18n.profile_summary(sample_profile())
+    flat_values = [value for rows in summary.values() for _, value in rows]
+
+    assert "Business Analyst" in flat_values
+    assert "Graduate School" in flat_values
+    assert "Busan" in flat_values

@@ -143,6 +143,18 @@ OPTION_LABELS: dict[str, dict[str, dict[str, str]]] = {
         "Work": {"en": "Work", "zh": "工作"},
         "Live": {"en": "Live", "zh": "生活"},
     },
+    "nationality": {
+        "International": {"en": "International", "zh": "国际学生"},
+        "Canada": {"en": "Canada", "zh": "加拿大"},
+        "China": {"en": "China", "zh": "中国"},
+        "United States": {"en": "United States", "zh": "美国"},
+        "Australia": {"en": "Australia", "zh": "澳大利亚"},
+    },
+    "major": {
+        "Computer Science": {"en": "Computer Science", "zh": "计算机科学"},
+        "Business Analytics": {"en": "Business Analytics", "zh": "商业分析"},
+        "Data Science": {"en": "Data Science", "zh": "数据科学"},
+    },
     "news_category": {
         "All": {"en": "All", "zh": "全部"},
         "Study": {"en": "Study", "zh": "留学"},
@@ -221,6 +233,30 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
     "common.export": {"en": "EXPORT", "zh": "导出"},
     "common.your_profile": {"en": "YOUR PROFILE", "zh": "你的资料"},
     "common.directional_estimates": {"en": "Directional estimates", "zh": "方向性估算"},
+
+    "profile.saved": {"en": "Profile saved", "zh": "个人画像已保存"},
+    "profile.study_summary": {"en": "Study Profile", "zh": "学习画像"},
+    "profile.career_summary": {"en": "Career Profile", "zh": "职业画像"},
+    "profile.living_summary": {"en": "Living Profile", "zh": "生活画像"},
+    "profile.nationality": {"en": "Nationality", "zh": "国籍"},
+    "profile.age": {"en": "Age", "zh": "年龄"},
+    "profile.current_education": {"en": "Current education", "zh": "当前学历"},
+    "profile.target_study": {"en": "Target study level", "zh": "目标学习阶段"},
+    "profile.target_major": {"en": "Target major", "zh": "目标专业"},
+    "profile.korean_level": {"en": "Korean level", "zh": "韩语水平"},
+    "profile.english_level": {"en": "English level", "zh": "英语水平"},
+    "profile.annual_budget": {"en": "Annual budget", "zh": "年预算"},
+    "profile.preferred_city": {"en": "Preferred city", "zh": "偏好城市"},
+    "profile.target_role": {"en": "Target role", "zh": "目标岗位"},
+    "profile.work_experience": {"en": "Work experience", "zh": "工作经验"},
+    "profile.skills": {"en": "Skills", "zh": "技能"},
+    "profile.target_industry": {"en": "Target industry", "zh": "目标行业"},
+    "profile.visa_goal": {"en": "Visa goal", "zh": "签证目标"},
+    "profile.lifestyle": {"en": "Lifestyle", "zh": "生活方式"},
+    "profile.housing": {"en": "Housing preference", "zh": "住宿偏好"},
+    "profile.transport": {"en": "Transport preference", "zh": "交通偏好"},
+    "profile.community": {"en": "Community preference", "zh": "社区偏好"},
+    "profile.raw_data": {"en": "View raw data", "zh": "查看原始数据"},
 
     "home.page_title": {"en": "Korea Compass", "zh": "韩国指南"},
     "home.brand": {"en": "KOREA COMPASS", "zh": "韩国指南"},
@@ -606,3 +642,36 @@ def display_time_range(time_range: str) -> str:
 
 def translation_key_count() -> int:
     return len(_TRANSLATIONS)
+
+
+def profile_summary(profile: dict) -> dict[str, list[tuple[str, str]]]:
+    study = profile.get("study_profile", {})
+    career = profile.get("career_profile", {})
+    living = profile.get("living_profile", {})
+    return {
+        t("profile.study_summary"): [
+            (t("profile.nationality"), translate_option("nationality", study.get("nationality", ""))),
+            (t("profile.age"), str(study.get("age", ""))),
+            (t("profile.current_education"), translate_option("education_level", study.get("current_education_level", ""))),
+            (t("profile.target_study"), translate_option("education_level", study.get("target_study_level", ""))),
+            (t("profile.target_major"), translate_option("major", study.get("target_major", ""))),
+            (t("profile.korean_level"), translate_option("korean_level", study.get("korean_level", ""))),
+            (t("profile.english_level"), translate_option("english_level", study.get("english_level", ""))),
+            (t("profile.annual_budget"), f"{float(study.get('annual_budget', 0)):,.0f} KRW"),
+            (t("profile.preferred_city"), translate_option("city", study.get("preferred_city", ""))),
+        ],
+        t("profile.career_summary"): [
+            (t("profile.target_role"), translate_option("role", career.get("target_role", ""))),
+            (t("profile.work_experience"), translate_option("experience", career.get("work_experience", ""))),
+            (t("profile.skills"), ", ".join(career.get("technical_skills", []) or [])),
+            (t("profile.target_industry"), translate_option("industry", career.get("target_industry", ""))),
+            (t("profile.visa_goal"), career.get("visa_goal", "")),
+        ],
+        t("profile.living_summary"): [
+            (t("profile.lifestyle"), translate_option("lifestyle", living.get("lifestyle", ""))),
+            (t("profile.housing"), translate_option("housing_type", living.get("housing_preference", ""))),
+            (t("profile.preferred_city"), translate_option("city", living.get("preferred_city", ""))),
+            (t("profile.transport"), translate_option("transport", living.get("transport_preference", ""))),
+            (t("profile.community"), translate_option("community", living.get("community_preference", ""))),
+        ],
+    }

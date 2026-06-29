@@ -57,12 +57,13 @@ st.markdown(
 )
 
 try:
-    overview = api.get_explore_overview()
-    cities = api.get_explore_cities()
-    culture = api.get_explore_culture()
-    history = api.get_explore_history()
+    language = get_language()
+    overview = api.get_explore_overview(language)
+    cities = api.get_explore_cities(language)
+    culture = api.get_explore_culture(language)
+    history = api.get_explore_history(language)
     living_cost = api.get_explore_living_cost()
-    quick_facts = api.get_explore_quick_facts()
+    quick_facts = api.get_explore_quick_facts(language)
 except Exception as exc:
     st.error(label(f"Explore Korea data is unavailable: {exc}", f"探索韩国数据暂不可用：{exc}"))
     st.stop()

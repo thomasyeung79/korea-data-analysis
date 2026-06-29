@@ -97,9 +97,10 @@ st.markdown(
 )
 
 try:
-    study_data = api.get_korean_learning_study()
-    career_data = api.get_korean_learning_career()
-    living_data = api.get_korean_learning_living()
+    language = get_language()
+    study_data = api.get_korean_learning_study(language)
+    career_data = api.get_korean_learning_career(language)
+    living_data = api.get_korean_learning_living(language)
     topik_data = api.get_korean_learning_topik()
 except Exception as exc:
     st.error(label(f"Korean Learning data is unavailable: {exc}", f"韩语学习支持数据暂不可用：{exc}"))
