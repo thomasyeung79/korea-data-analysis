@@ -3,226 +3,544 @@
     "source_name": "TOPIK / Korea Compass scenario dataset",
     "source_url": "https://www.topik.go.kr",
     "last_updated": "2026-06-29",
-    "language": "en",
-    "version": "1.0",
-    "confidence_level": "Medium",
-    "notes": "Scenario-based Korean support content; not official curriculum.",
-    "official_source": "TOPIK / Korea Compass Korean Learning Dataset",
+    "language": "bilingual",
+    "version": "2.0",
+    "notes": "Bilingual scenario-based Korean support content.",
+    "official_source": "Korea Compass Korean Learning Dataset",
     "official_url": "https://www.topik.go.kr",
-    "license": "Official website terms / educational sample content",
+    "license": "Educational sample content",
     "retrieved_at": "2026-06-29",
     "cache_expiry_days": 180,
-    "verification_status": "Verified"
+    "verification_status": "Verified",
+    "confidence_level": "Medium"
   },
   "items": [
     {
       "scenario": "Interview",
       "useful_expressions": [
-        "자기소개를 드리겠습니다.",
-        "제 강점은 문제 해결 능력입니다.",
-        "입사 후 빠르게 적응하겠습니다."
+        {
+          "ko": "자기소개를 드리겠습니다.",
+          "zh": "我来做自我介绍。",
+          "en": "I will introduce myself.",
+          "romanization": "jagisogaereul deurigessseumnida.",
+          "usage_zh": "面试开场时的自我介绍用语。",
+          "usage_en": "Used to start a self-introduction in an interview."
+        },
+        {
+          "ko": "제 강점은 문제 해결 능력입니다.",
+          "zh": "我的优势是问题解决能力。",
+          "en": "My strength is problem-solving ability.",
+          "romanization": "je gangjeomeun munje haegyeol neungnyeogimnida.",
+          "usage_zh": "在面试中说明自己的核心能力。",
+          "usage_en": "State your core competency during an interview."
+        },
+        {
+          "ko": "입사 후 빠르게 적응하겠습니다.",
+          "zh": "入职后会快速适应。",
+          "en": "I will adapt quickly after joining.",
+          "romanization": "ipsa hu ppareuge jeogeunghagessseumnida.",
+          "usage_zh": "展示积极的工作态度。",
+          "usage_en": "Show a proactive attitude toward your new role."
+        }
       ],
-      "interview_tips": [
+      "interview_tips_en": [
         "Prepare concise STAR examples.",
         "Use polite but confident endings.",
         "Connect your experience to the role."
+      ],
+      "interview_tips_zh": [
+        "准备简洁的 STAR 案例。",
+        "使用礼貌但自信的语句结尾。",
+        "把你的经验与岗位要求联系起来。"
       ],
       "business_vocabulary": [
         {
           "korean": "면접",
           "meaning": "interview",
-          "romanization": "myeonjeop"
+          "romanization": "myeonjeop",
+          "zh": "面试",
+          "note_zh": "韩国面试通常包括个人介绍、能力展示和行为问题。",
+          "note_en": "Korean interviews typically include self-introduction, competency demonstration, and behavioral questions."
         },
         {
           "korean": "강점",
           "meaning": "strength",
-          "romanization": "gangjeom"
+          "romanization": "gangjeom",
+          "zh": "优势",
+          "note_zh": "面试中常被问到 \"당신의 강점은 무엇인가요？\"",
+          "note_en": "Common interview question: 'What is your strength?'"
         },
         {
           "korean": "적응",
           "meaning": "adaptation",
-          "romanization": "jeogeung"
+          "romanization": "jeogeung",
+          "zh": "适应",
+          "note_zh": "入职后快速适应是韩国职场的重视品质。",
+          "note_en": "Quick adaptation is highly valued in Korean workplaces."
         }
       ],
       "sample_conversation": [
-        "면접관: 자기소개 부탁드립니다.",
-        "지원자: 안녕하세요. 데이터 분석 직무에 지원한 김민수입니다.",
-        "면접관: 이 직무에 관심을 가진 이유는 무엇인가요?"
+        {
+          "speaker": "面试官",
+          "ko": "자기소개 부탁드립니다.",
+          "zh": "请做个自我介绍。",
+          "en": "Please introduce yourself.",
+          "romanization": "jagisogae butakdeurimnida."
+        },
+        {
+          "speaker": "求职者",
+          "ko": "안녕하세요. 데이터 분석 직무에 지원한 김민수입니다.",
+          "zh": "您好，我是申请数据分析岗位的 Kim Minsu。",
+          "en": "Hello, I am Kim Minsu, applying for the data analyst position.",
+          "romanization": "annyeonghaseyo. deiteo bunseok jingmue jiwonhan Kim Minsuimnida."
+        },
+        {
+          "speaker": "面试官",
+          "ko": "이 직무에 관심을 가진 이유는 무엇인가요?",
+          "zh": "你对这个岗位感兴趣的原因是什么？",
+          "en": "What made you interested in this role?",
+          "romanization": "i jingmue gwansimeul gajin iyuneun mueos-ingayo?"
+        }
       ]
     },
     {
       "scenario": "Resume",
       "useful_expressions": [
-        "경력기술서를 첨부했습니다.",
-        "프로젝트 경험을 중심으로 작성했습니다.",
-        "관련 자격증을 보유하고 있습니다."
+        {
+          "ko": "경력기술서를 첨부했습니다.",
+          "zh": "我附上了工作经历说明。",
+          "en": "I have attached my career description.",
+          "romanization": "gyeongnyeok gisulseoreul cheombuhagessseumnida.",
+          "usage_zh": "发送简历和申请材料时使用。",
+          "usage_en": "Used when submitting your resume and career description."
+        },
+        {
+          "ko": "프로젝트 경험을 중심으로 작성했습니다.",
+          "zh": "我以项目经验为中心编写了简历。",
+          "en": "I wrote it focusing on my project experience.",
+          "romanization": "peurojekteu gyeongheomeul jungsimeuro jakseonghaessseumnida.",
+          "usage_zh": "说明简历内容侧重项目经历。",
+          "usage_en": "Explain that your resume emphasizes hands-on project experience."
+        },
+        {
+          "ko": "관련 자격증을 보유하고 있습니다.",
+          "zh": "我持有相关资格证书。",
+          "en": "I hold relevant certifications.",
+          "romanization": "gwanryeon jagyeokjeungeul boyuhago itseumnida.",
+          "usage_zh": "列出与岗位相关的资质证书。",
+          "usage_en": "List certifications relevant to the position."
+        }
       ],
-      "interview_tips": [
+      "interview_tips_en": [
         "Keep Korean resume bullets specific.",
         "Quantify outcomes where possible.",
         "Match keywords from the job description."
+      ],
+      "interview_tips_zh": [
+        "韩文简历的描述要具体。",
+        "尽量量化成果。",
+        "与岗位描述的关键词保持一致。"
       ],
       "business_vocabulary": [
         {
           "korean": "이력서",
           "meaning": "resume",
-          "romanization": "iryeokseo"
+          "romanization": "iryeokseo",
+          "zh": "简历",
+          "note_zh": "韩国简历通常包括照片和个人信息。",
+          "note_en": "Korean resumes typically include a photo and personal details."
         },
         {
           "korean": "경력기술서",
           "meaning": "career description document",
-          "romanization": "gyeongnyeok gisulseo"
+          "romanization": "gyeongnyeok gisulseo",
+          "zh": "工作经历说明",
+          "note_zh": "比简历更详细地描述每段工作经历。",
+          "note_en": "A detailed career description document, more thorough than a resume."
         },
         {
           "korean": "자격증",
           "meaning": "certificate",
-          "romanization": "jagyeokjeung"
+          "romanization": "jagyeokjeung",
+          "zh": "资格证书",
+          "note_zh": "韩国职场非常看重各类资格证。",
+          "note_en": "Certifications are highly valued in the Korean job market."
         }
       ],
       "sample_conversation": [
-        "지원자: 이력서와 경력기술서를 제출했습니다.",
-        "담당자: 포트폴리오도 함께 보내 주실 수 있나요?",
-        "지원자: 네, 오늘 중으로 보내드리겠습니다."
+        {
+          "speaker": "求职者",
+          "ko": "이력서와 경력기술서를 제출했습니다.",
+          "zh": "我已经提交了简历和工作经历说明。",
+          "en": "I have submitted my resume and career description.",
+          "romanization": "iryeokseowa gyeongnyeok gisulseoreul jechulhaessseumnida."
+        },
+        {
+          "speaker": "HR",
+          "ko": "포트폴리오도 함께 보내 주실 수 있나요?",
+          "zh": "能把作品集也一起发给我吗？",
+          "en": "Could you also send your portfolio?",
+          "romanization": "poteupolliodo hamkke bonae jusil su innayo?"
+        },
+        {
+          "speaker": "求职者",
+          "ko": "네, 오늘 중으로 보내드리겠습니다.",
+          "zh": "好的，今天之内发给您。",
+          "en": "Yes, I will send it to you by today.",
+          "romanization": "ne, oneul jung-euro bonae deurigessseumnida."
+        }
       ]
     },
     {
       "scenario": "Office",
       "useful_expressions": [
-        "확인 후 공유드리겠습니다.",
-        "회의실을 예약했습니다.",
-        "진행 상황을 업데이트하겠습니다."
+        {
+          "ko": "확인 후 공유드리겠습니다.",
+          "zh": "确认后会分享给您。",
+          "en": "I will share it after confirming.",
+          "romanization": "hwagin hu gongyu deurigessseumnida.",
+          "usage_zh": "表示需要先确认再回复。",
+          "usage_en": "Indicate you need to confirm before responding."
+        },
+        {
+          "ko": "회의실을 예약했습니다.",
+          "zh": "我已经预订了会议室。",
+          "en": "I have booked the meeting room.",
+          "romanization": "hoeuisireul yeyakhaessseumnida.",
+          "usage_zh": "通知同事会议室已预订。",
+          "usage_en": "Notify colleagues that the meeting room is booked."
+        },
+        {
+          "ko": "진행 상황을 업데이트하겠습니다.",
+          "zh": "我会更新进展情况。",
+          "en": "I will update the progress status.",
+          "romanization": "jinhaeng sanghwang-eul eopdeiteuhagessseumnida.",
+          "usage_zh": "在项目会议或定期汇报中使用。",
+          "usage_en": "Used in project meetings or regular status updates."
+        }
       ],
-      "interview_tips": [
+      "interview_tips_en": [
         "Use concise status updates.",
         "Confirm ownership and deadlines.",
         "Avoid overly casual phrasing at first."
+      ],
+      "interview_tips_zh": [
+        "状态更新要简洁。",
+        "明确责任人和截止时间。",
+        "初期避免过于随意的表达。"
       ],
       "business_vocabulary": [
         {
           "korean": "공유",
           "meaning": "sharing",
-          "romanization": "gongyu"
+          "romanization": "gongyu",
+          "zh": "共享",
+          "note_zh": "职场中常用于分享资料或信息。",
+          "note_en": "Commonly used in the workplace for sharing documents or information."
         },
         {
           "korean": "진행 상황",
           "meaning": "progress status",
-          "romanization": "jinhaeng sanghwang"
+          "romanization": "jinhaeng sanghwang",
+          "zh": "进展情况",
+          "note_zh": "汇报工作时常用的表达。",
+          "note_en": "Common expression when reporting on work progress."
         },
         {
           "korean": "회의실",
           "meaning": "meeting room",
-          "romanization": "hoeuisil"
+          "romanization": "hoeuisil",
+          "zh": "会议室",
+          "note_zh": "韩国公司通常需要提前预约会议室。",
+          "note_en": "Korean companies typically require advance booking for meeting rooms."
         }
       ],
       "sample_conversation": [
-        "동료: 자료 준비됐나요?",
-        "나: 확인 후 오후에 공유드리겠습니다.",
-        "동료: 감사합니다."
+        {
+          "speaker": "同事",
+          "ko": "자료 준비됐나요?",
+          "zh": "资料准备好了吗？",
+          "en": "Is the material ready?",
+          "romanization": "jaryo junbidaennayo?"
+        },
+        {
+          "speaker": "我",
+          "ko": "확인 후 오후에 공유드리겠습니다.",
+          "zh": "确认后下午分享给您。",
+          "en": "I'll confirm and share it this afternoon.",
+          "romanization": "hwagin hu ohu-e gongyu deurigessseumnida."
+        },
+        {
+          "speaker": "同事",
+          "ko": "감사합니다.",
+          "zh": "谢谢。",
+          "en": "Thank you.",
+          "romanization": "gamsahamnida."
+        }
       ]
     },
     {
       "scenario": "Meeting",
       "useful_expressions": [
-        "오늘 안건은 세 가지입니다.",
-        "제 의견을 말씀드리겠습니다.",
-        "결론을 정리하겠습니다."
+        {
+          "ko": "오늘 안건은 세 가지입니다.",
+          "zh": "今天的议题有三项。",
+          "en": "There are three agenda items today.",
+          "romanization": "oneul angeoneun se gaji-imnida.",
+          "usage_zh": "在会议开始时说明议程。",
+          "usage_en": "State the agenda at the beginning of a meeting."
+        },
+        {
+          "ko": "제 의견을 말씀드리겠습니다.",
+          "zh": "我来发表我的意见。",
+          "en": "I will share my opinion.",
+          "romanization": "je uigyeoneul malsseumdeurigessseumnida.",
+          "usage_zh": "在会议上礼貌地表达观点。",
+          "usage_en": "Politely express your opinion in a meeting."
+        },
+        {
+          "ko": "결론을 정리하겠습니다.",
+          "zh": "我来总结一下结论。",
+          "en": "I will summarize the conclusion.",
+          "romanization": "gyeolloneul jeongrihagessseumnida.",
+          "usage_zh": "在会议结束时进行总结。",
+          "usage_en": "Summarize the conclusion at the end of a meeting."
+        }
       ],
-      "interview_tips": [
+      "interview_tips_en": [
         "State agenda and conclusion clearly.",
         "Use soft disagreement forms.",
         "Summarize action items."
+      ],
+      "interview_tips_zh": [
+        "议程和结论要清晰。",
+        "有不同意见时可以委婉表达。",
+        "结尾总结行动项。"
       ],
       "business_vocabulary": [
         {
           "korean": "안건",
           "meaning": "agenda item",
-          "romanization": "angeon"
+          "romanization": "angeon",
+          "zh": "议题",
+          "note_zh": "韩国公司会议通常有书面议程。",
+          "note_en": "Korean company meetings typically have written agendas."
         },
         {
           "korean": "의견",
           "meaning": "opinion",
-          "romanization": "uigyeon"
+          "romanization": "uigyeon",
+          "zh": "意见",
+          "note_zh": "会议中常用 \"의견이 있으신가요？\" 询问意见。",
+          "note_en": "Common phrase: 'Does anyone have an opinion?'"
         },
         {
           "korean": "결론",
           "meaning": "conclusion",
-          "romanization": "gyeollon"
+          "romanization": "gyeollon",
+          "zh": "结论",
+          "note_zh": "会议结束时确认结论和行动项。",
+          "note_en": "Confirm conclusions and action items at the end of meetings."
         }
       ],
       "sample_conversation": [
-        "팀장: 의견 있으신가요?",
-        "나: 네, 제 의견을 말씀드리겠습니다.",
-        "팀장: 좋습니다. 다음 안건으로 넘어가겠습니다."
+        {
+          "speaker": "组长",
+          "ko": "의견 있으신가요?",
+          "zh": "大家有意见吗？",
+          "en": "Does anyone have any thoughts?",
+          "romanization": "uigyeon isseusin-gayo?"
+        },
+        {
+          "speaker": "我",
+          "ko": "네, 제 의견을 말씀드리겠습니다.",
+          "zh": "我有意见想说一下。",
+          "en": "Yes, I'd like to share my thoughts.",
+          "romanization": "ne, je uigyeoneul malsseumdeurigessseumnida."
+        },
+        {
+          "speaker": "组长",
+          "ko": "좋습니다. 다음 안건으로 넘어가겠습니다.",
+          "zh": "好的，我们进入下一个议题。",
+          "en": "Good. Let's move to the next item.",
+          "romanization": "jotsseumnida. da-eum angeoneuro neomeogagessseumnida."
+        }
       ]
     },
     {
       "scenario": "Email",
       "useful_expressions": [
-        "확인 부탁드립니다.",
-        "첨부파일을 확인해 주세요.",
-        "답변 기다리겠습니다."
+        {
+          "ko": "확인 부탁드립니다.",
+          "zh": "请确认。",
+          "en": "Please check.",
+          "romanization": "hwagin butakdeurimnida.",
+          "usage_zh": "邮件中请求对方确认某事。",
+          "usage_en": "A polite way to request confirmation in an email."
+        },
+        {
+          "ko": "첨부파일을 확인해 주세요.",
+          "zh": "请查收附件。",
+          "en": "Please check the attached file.",
+          "romanization": "cheombu pail-eul hwaginhae juseyo.",
+          "usage_zh": "邮件中提示对方查看附件。",
+          "usage_en": "Politely ask the recipient to check the attached file."
+        },
+        {
+          "ko": "답변 기다리겠습니다.",
+          "zh": "我等您的回复。",
+          "en": "I will wait for your reply.",
+          "romanization": "dapbyeon gidarigessseumnida.",
+          "usage_zh": "邮件结尾表示等待回复。",
+          "usage_en": "Polite email closing indicating you await a response."
+        }
       ],
-      "interview_tips": [
+      "interview_tips_en": [
         "Use clear subject lines.",
         "Place requests near the top.",
         "End with a polite closing."
+      ],
+      "interview_tips_zh": [
+        "邮件主题行要清晰。",
+        "请求放在靠前的位置。",
+        "结尾用礼貌的收尾语。"
       ],
       "business_vocabulary": [
         {
           "korean": "첨부파일",
           "meaning": "attachment",
-          "romanization": "cheombu pail"
+          "romanization": "cheombu pail",
+          "zh": "附件",
+          "note_zh": "韩国职场邮件中用 첨부 表示附件。",
+          "note_en": "In Korean workplace emails, '첨부' refers to an attachment."
         },
         {
           "korean": "확인",
-          "meaning": "confirmation / checking",
-          "romanization": "hwagin"
+          "meaning": "confirmation",
+          "romanization": "hwagin",
+          "zh": "确认",
+          "note_zh": "职场中最常用的词汇之一。",
+          "note_en": "One of the most commonly used words in the Korean workplace."
         },
         {
           "korean": "답변",
           "meaning": "reply",
-          "romanization": "dapbyeon"
+          "romanization": "dapbyeon",
+          "zh": "回复",
+          "note_zh": "期待回复可以说 \"답변 기다리겠습니다\"。",
+          "note_en": "'답변 기다리겠습니다' means 'I will wait for your reply'."
         }
       ],
       "sample_conversation": [
-        "나: 자료를 이메일로 보내드렸습니다.",
-        "상대방: 네, 확인 후 답변드리겠습니다.",
-        "나: 감사합니다."
+        {
+          "speaker": "我",
+          "ko": "자료를 이메일로 보내드렸습니다.",
+          "zh": "资料已通过邮件发送给您。",
+          "en": "I have sent the materials via email.",
+          "romanization": "jaryoreul imeillo bonaedeuryeossseumnida."
+        },
+        {
+          "speaker": "对方",
+          "ko": "네, 확인 후 답변드리겠습니다.",
+          "zh": "好的，确认后回复您。",
+          "en": "OK, I will confirm and get back to you.",
+          "romanization": "ne, hwagin hu dapbyeon deurigessseumnida."
+        },
+        {
+          "speaker": "我",
+          "ko": "감사합니다.",
+          "zh": "谢谢。",
+          "en": "Thank you.",
+          "romanization": "gamsahamnida."
+        }
       ]
     },
     {
       "scenario": "Business Phone",
       "useful_expressions": [
-        "지금 통화 가능하신가요?",
-        "담당자분 연결 부탁드립니다.",
-        "메시지를 남겨도 될까요?"
+        {
+          "ko": "지금 통화 가능하신가요?",
+          "zh": "现在方便通话吗？",
+          "en": "Is it convenient to talk now?",
+          "romanization": "jigeum tonghwa ganeunghasin-gayo?",
+          "usage_zh": "打电话先确认对方是否方便。",
+          "usage_en": "Ask if it's a good time to talk before starting the call."
+        },
+        {
+          "ko": "담당자분 연결 부탁드립니다.",
+          "zh": "请转接相关负责人。",
+          "en": "Please connect me to the person in charge.",
+          "romanization": "damdangjabun yeonggyeol butakdeurimnida.",
+          "usage_zh": "打电话到公司要求转接到相应部门。",
+          "usage_en": "Call a company and ask to be transferred to the relevant department."
+        },
+        {
+          "ko": "메시지를 남겨도 될까요?",
+          "zh": "可以留言吗？",
+          "en": "May I leave a message?",
+          "romanization": "mesijireul namgyeodo doeggyo?",
+          "usage_zh": "对方不在时请求留言。",
+          "usage_en": "Ask to leave a message when the person is unavailable."
+        }
       ],
-      "interview_tips": [
+      "interview_tips_en": [
         "Speak slowly and confirm names.",
         "Repeat numbers and times.",
         "Prepare opening and closing phrases."
+      ],
+      "interview_tips_zh": [
+        "语速放慢并确认姓名。",
+        "数字和时间再确认一遍。",
+        "准备好开场和结束用语。"
       ],
       "business_vocabulary": [
         {
           "korean": "통화",
           "meaning": "phone call",
-          "romanization": "tonghwa"
+          "romanization": "tonghwa",
+          "zh": "通话",
+          "note_zh": "韩国职场电话中常问 \"지금 통화 가능하세요？\"",
+          "note_en": "Common workplace phone phrase: 'Are you available to talk now?'"
         },
         {
           "korean": "담당자",
           "meaning": "person in charge",
-          "romanization": "damdangja"
+          "romanization": "damdangja",
+          "zh": "负责人",
+          "note_zh": "打电话到公司时常用请求词。",
+          "note_en": "Commonly used when calling a company."
         },
         {
           "korean": "연결",
           "meaning": "connection / transfer",
-          "romanization": "yeongyeol"
+          "romanization": "yeongyeol",
+          "zh": "连接 / 转接",
+          "note_zh": "请求转接到相应部门或人员。",
+          "note_en": "Request to be connected to the relevant department or person."
         }
       ],
       "sample_conversation": [
-        "나: 안녕하세요. 담당자분 연결 부탁드립니다.",
-        "직원: 어떤 일로 연락 주셨나요?",
-        "나: 채용 관련 문의입니다."
+        {
+          "speaker": "我",
+          "ko": "안녕하세요. 담당자분 연결 부탁드립니다.",
+          "zh": "您好，请转接相关负责人。",
+          "en": "Hello, please connect me to the person in charge.",
+          "romanization": "annyeonghaseyo. damdangjabun yeonggyeol butakdeurimnida."
+        },
+        {
+          "speaker": "职员",
+          "ko": "어떤 일로 연락 주셨나요?",
+          "zh": "请问您有什么事？",
+          "en": "May I ask what this is regarding?",
+          "romanization": "eotteon il-lo yeonrak jusyeonnayo?"
+        },
+        {
+          "speaker": "我",
+          "ko": "채용 관련 문의입니다.",
+          "zh": "是关于招聘的咨询。",
+          "en": "It's an inquiry about recruitment.",
+          "romanization": "chaeyong gwanlyeon munui-imnida."
+        }
       ]
     }
   ]

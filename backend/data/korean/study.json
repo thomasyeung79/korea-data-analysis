@@ -3,209 +3,509 @@
     "source_name": "TOPIK / Korea Compass scenario dataset",
     "source_url": "https://www.topik.go.kr",
     "last_updated": "2026-06-29",
-    "language": "en",
-    "version": "1.0",
-    "confidence_level": "Medium",
-    "notes": "Scenario-based Korean support content; not official curriculum.",
-    "official_source": "TOPIK / Korea Compass Korean Learning Dataset",
+    "language": "bilingual",
+    "version": "2.0",
+    "notes": "Bilingual scenario-based Korean support content.",
+    "official_source": "Korea Compass Korean Learning Dataset",
     "official_url": "https://www.topik.go.kr",
-    "license": "Official website terms / educational sample content",
+    "license": "Educational sample content",
     "retrieved_at": "2026-06-29",
     "cache_expiry_days": 180,
-    "verification_status": "Verified"
+    "verification_status": "Verified",
+    "confidence_level": "Medium"
   },
   "items": [
     {
       "scenario": "Classroom",
-      "situation": "Joining class, asking questions, and confirming assignments.",
+      "situation_en": "Joining class, asking questions, and confirming assignments.",
+      "situation_zh": "参加课堂、提问并确认作业要求。",
       "useful_expressions": [
-        "질문이 있습니다.",
-        "다시 설명해 주실 수 있을까요?",
-        "과제 제출일이 언제인가요?"
+        {
+          "ko": "질문이 있습니다.",
+          "zh": "我有一个问题。",
+          "en": "I have a question.",
+          "romanization": "jilmun-i itseumnida",
+          "usage_zh": "课堂上向老师提问时使用，语气礼貌。",
+          "usage_en": "Used politely when asking a teacher a question in class."
+        },
+        {
+          "ko": "다시 설명해 주실 수 있을까요?",
+          "zh": "可以再解释一遍吗？",
+          "en": "Could you explain it again?",
+          "romanization": "dasi seolmyeonghae jusil su isseulkkayo?",
+          "usage_zh": "没听懂课程内容时礼貌请求重复。",
+          "usage_en": "Used when you didn't understand and need a polite re-explanation."
+        },
+        {
+          "ko": "과제 제출일이 언제인가요?",
+          "zh": "作业提交日期是什么时候？",
+          "en": "When is the assignment deadline?",
+          "romanization": "gwaje jechuril-i eonje-in-gayo?",
+          "usage_zh": "询问作业截止日期时使用。",
+          "usage_en": "Used to ask about assignment due dates."
+        }
       ],
       "example_dialogue": [
-        "학생: 교수님, 질문이 있습니다.",
-        "교수님: 네, 말씀하세요.",
-        "학생: 과제 제출일이 다음 주 월요일인가요?"
+        {
+          "speaker": "学生",
+          "ko": "교수님, 질문이 있습니다.",
+          "zh": "教授，我有一个问题。",
+          "en": "Professor, I have a question.",
+          "romanization": "gyosunim, jilmun-i itseumnida."
+        },
+        {
+          "speaker": "教授",
+          "ko": "네, 말씀하세요.",
+          "zh": "好的，请说。",
+          "en": "Yes, go ahead.",
+          "romanization": "ne, malsseumhaseyo."
+        },
+        {
+          "speaker": "学生",
+          "ko": "과제 제출일이 다음 주 월요일인가요?",
+          "zh": "作业提交日期是下周一吗？",
+          "en": "Is the assignment deadline next Monday?",
+          "romanization": "gwaje jechuril-i daeum ju woryoil-ingayo?"
+        }
       ],
       "vocabulary": [
         {
           "korean": "질문",
           "meaning": "question",
-          "romanization": "jilmun"
+          "romanization": "jilmun",
+          "zh": "问题",
+          "note_zh": "常用于课堂、会议、面试等正式场景。",
+          "note_en": "Commonly used in class, meetings, and interviews."
         },
         {
           "korean": "과제",
           "meaning": "assignment",
-          "romanization": "gwaje"
+          "romanization": "gwaje",
+          "zh": "作业",
+          "note_zh": "泛指学生需要完成的课业任务。",
+          "note_en": "Refers to academic tasks or homework assigned to students."
         },
         {
           "korean": "제출일",
           "meaning": "deadline",
-          "romanization": "jechuril"
+          "romanization": "jechuril",
+          "zh": "提交日期",
+          "note_zh": "常用于提交作业、报告或申请材料。",
+          "note_en": "Used for assignment, report, or application submission dates."
         }
       ],
-      "ai_explanation": "Use polite endings like -습니다 or -실 수 있을까요 when speaking in class or to instructors."
+      "ai_explanation_en": "Use polite endings like -습니다 or -실 수 있을까요 when speaking in class or to instructors.",
+      "ai_explanation_zh": "课堂上或向讲师提问时，应使用 -습니다 或 -실 수 있을까요 等礼貌语尾。"
     },
     {
       "scenario": "Professor",
-      "situation": "Emailing or speaking to a professor about office hours and feedback.",
+      "situation_en": "Emailing or speaking to a professor about office hours and feedback.",
+      "situation_zh": "与教授预约面谈、说明问题并请求建议。",
       "useful_expressions": [
-        "면담 시간을 예약하고 싶습니다.",
-        "피드백을 받을 수 있을까요?",
-        "메일 확인 부탁드립니다."
+        {
+          "ko": "면담 시간을 예약하고 싶습니다.",
+          "zh": "我想预约面谈时间。",
+          "en": "I would like to schedule a meeting.",
+          "romanization": "myeondam sigan-eul yeyakago sipseumnida.",
+          "usage_zh": "用于向教授预约个别面谈。",
+          "usage_en": "Polite request to schedule an individual meeting with a professor."
+        },
+        {
+          "ko": "피드백을 받을 수 있을까요?",
+          "zh": "可以给我一些反馈吗？",
+          "en": "Could I receive some feedback?",
+          "romanization": "pideubaek-eul badeul su isseulkkayo?",
+          "usage_zh": "请求教授对作业或研究给予意见。",
+          "usage_en": "Ask a professor for feedback on your work or research."
+        },
+        {
+          "ko": "메일 확인 부탁드립니다.",
+          "zh": "请查收邮件。",
+          "en": "Please check your email.",
+          "romanization": "mail hwagin butakdeurimnida.",
+          "usage_zh": "提醒对方查看邮件时使用，语气非常礼貌。",
+          "usage_en": "Politely remind someone to check their email."
+        }
       ],
       "example_dialogue": [
-        "학생: 교수님, 면담 시간을 예약하고 싶습니다.",
-        "교수님: 이번 주 목요일 오후는 괜찮습니다.",
-        "학생: 감사합니다. 그때 찾아뵙겠습니다."
+        {
+          "speaker": "学生",
+          "ko": "교수님, 면담 시간을 예약하고 싶습니다.",
+          "zh": "教授，我想预约面谈时间。",
+          "en": "Professor, I would like to schedule a meeting.",
+          "romanization": "gyosunim, myeondam sigan-eul yeyakago sipseumnida."
+        },
+        {
+          "speaker": "教授",
+          "ko": "이번 주 목요일 오후는 괜찮습니다.",
+          "zh": "这周四下午可以。",
+          "en": "This Thursday afternoon works.",
+          "romanization": "ibeon ju mokyoil ohuneun gwaenchansseumnida."
+        },
+        {
+          "speaker": "学生",
+          "ko": "감사합니다. 그때 찾아뵙겠습니다.",
+          "zh": "谢谢，届时拜访您。",
+          "en": "Thank you. I will visit you then.",
+          "romanization": "gamsahamnida. geuttae chajaboepgessseumnida."
+        }
       ],
       "vocabulary": [
         {
           "korean": "면담",
           "meaning": "meeting / consultation",
-          "romanization": "myeondam"
+          "romanization": "myeondam",
+          "zh": "面谈",
+          "note_zh": "通常指与教授或上司的一对一会谈。",
+          "note_en": "One-on-one meeting, usually with a professor or supervisor."
         },
         {
           "korean": "피드백",
           "meaning": "feedback",
-          "romanization": "pideubaek"
+          "romanization": "pideubaek",
+          "zh": "反馈",
+          "note_zh": "常用于学术和工作场景。",
+          "note_en": "Commonly used in academic and professional settings."
         },
         {
           "korean": "예약",
           "meaning": "reservation / booking",
-          "romanization": "yeyak"
+          "romanization": "yeyak",
+          "zh": "预约",
+          "note_zh": "可用于预约面谈、餐厅或服务。",
+          "note_en": "Used for booking meetings, restaurants, or services."
         }
       ],
-      "ai_explanation": "When contacting professors, keep the message concise, formal, and clear about time and purpose."
+      "ai_explanation_en": "When contacting professors, keep the message concise, formal, and clear about time and purpose.",
+      "ai_explanation_zh": "联系教授时应简洁、正式，并明确时间和目的。"
     },
     {
       "scenario": "Library",
-      "situation": "Finding books, reserving study rooms, and asking about borrowing rules.",
+      "situation_en": "Finding books, reserving study rooms, and asking about borrowing rules.",
+      "situation_zh": "在图书馆咨询座位、借书、打印或学习空间。",
       "useful_expressions": [
-        "이 책을 빌릴 수 있나요?",
-        "스터디룸 예약은 어디에서 하나요?",
-        "반납일을 확인하고 싶습니다."
+        {
+          "ko": "이 책을 빌릴 수 있나요?",
+          "zh": "这本书可以借吗？",
+          "en": "Can I borrow this book?",
+          "romanization": "i chaek-eul billil su innayo?",
+          "usage_zh": "在图书馆借书时询问。",
+          "usage_en": "Used when borrowing a book from the library."
+        },
+        {
+          "ko": "스터디룸 예약은 어디에서 하나요?",
+          "zh": "在哪里预约自习室？",
+          "en": "Where can I reserve a study room?",
+          "romanization": "seutudirum yeyageun eodieseo hanayo?",
+          "usage_zh": "询问自习室预约地点或方式。",
+          "usage_en": "Ask where or how to book a study room."
+        },
+        {
+          "ko": "반납일을 확인하고 싶습니다.",
+          "zh": "我想确认归还日期。",
+          "en": "I would like to check the due date.",
+          "romanization": "bannapil-eul hwaginhago sipseumnida.",
+          "usage_zh": "确认借书到期的日期。",
+          "usage_en": "Check the return due date for borrowed materials."
+        }
       ],
       "example_dialogue": [
-        "학생: 이 책을 빌릴 수 있나요?",
-        "직원: 네, 학생증을 보여 주세요.",
-        "학생: 반납일은 언제인가요?"
+        {
+          "speaker": "学生",
+          "ko": "이 책을 빌릴 수 있나요?",
+          "zh": "这本书可以借吗？",
+          "en": "Can I borrow this book?",
+          "romanization": "i chaek-eul billil su innayo?"
+        },
+        {
+          "speaker": "职员",
+          "ko": "네, 학생증을 보여 주세요.",
+          "zh": "好的，请出示学生证。",
+          "en": "Yes, please show your student ID.",
+          "romanization": "ne, haksaengjeung-eul boyeo juseyo."
+        },
+        {
+          "speaker": "学生",
+          "ko": "반납일은 언제인가요?",
+          "zh": "归还日期是什么时候？",
+          "en": "When is the due date?",
+          "romanization": "bannapil-eun eonje-ingayo?"
+        }
       ],
       "vocabulary": [
         {
           "korean": "도서관",
           "meaning": "library",
-          "romanization": "doseogwan"
+          "romanization": "doseogwan",
+          "zh": "图书馆",
+          "note_zh": "韩国大学图书馆通常需要学生证进入。",
+          "note_en": "University libraries in Korea usually require a student ID for entry."
         },
         {
           "korean": "반납",
           "meaning": "returning borrowed items",
-          "romanization": "bannap"
+          "romanization": "bannap",
+          "zh": "归还",
+          "note_zh": "用于图书馆还书或归还借用品。",
+          "note_en": "Used for returning books or borrowed items."
         },
         {
           "korean": "학생증",
           "meaning": "student ID",
-          "romanization": "haksaengjeung"
+          "romanization": "haksaengjeung",
+          "zh": "学生证",
+          "note_zh": "在韩国校园中用途广泛，如借书、打印、食堂。",
+          "note_en": "Widely used on Korean campuses for library, printing, and cafeteria."
         }
       ],
-      "ai_explanation": "Library interactions are practical and direct. Student ID and reservation rules are common topics."
+      "ai_explanation_en": "Library interactions are practical and direct. Student ID and reservation rules are common topics.",
+      "ai_explanation_zh": "图书馆场景的表达实用直接，涉及学生证和预约规则。"
     },
     {
       "scenario": "Dormitory",
-      "situation": "Asking about dorm rules, maintenance, visitors, and quiet hours.",
+      "situation_en": "Asking about dorm rules, maintenance, visitors, and quiet hours.",
+      "situation_zh": "处理宿舍入住、设施问题、室友沟通和生活规则。",
       "useful_expressions": [
-        "기숙사 규칙을 확인하고 싶습니다.",
-        "수리 요청은 어디에 하나요?",
-        "방문객 출입 시간이 어떻게 되나요?"
+        {
+          "ko": "기숙사 규칙을 확인하고 싶습니다.",
+          "zh": "我想确认宿舍规则。",
+          "en": "I'd like to check the dorm rules.",
+          "romanization": "gisuksa gyuchik-eul hwaginhago sipseumnida.",
+          "usage_zh": "入住宿舍时了解管理规定。",
+          "usage_en": "When moving in, ask about dormitory regulations."
+        },
+        {
+          "ko": "수리 요청은 어디에 하나요?",
+          "zh": "在哪里报修？",
+          "en": "Where do I submit a repair request?",
+          "romanization": "suri yocheong-eun eodie hanayo?",
+          "usage_zh": "宿舍设施坏了时询问维修方法。",
+          "usage_en": "Ask where to report maintenance issues in the dorm."
+        },
+        {
+          "ko": "방문객 출입 시간이 어떻게 되나요?",
+          "zh": "访客出入时间是什么？",
+          "en": "What are the visitor hours?",
+          "romanization": "bangmun-gaek churip sigan-i eotteoke doenayo?",
+          "usage_zh": "确认宿舍访客政策。",
+          "usage_en": "Check dormitory visitor policies."
+        }
       ],
       "example_dialogue": [
-        "학생: 수리 요청은 어디에 하나요?",
-        "관리자: 사무실에 신청서를 제출해 주세요.",
-        "학생: 네, 감사합니다."
+        {
+          "speaker": "学生",
+          "ko": "수리 요청은 어디에 하나요?",
+          "zh": "在哪里报修？",
+          "en": "Where do I report a repair?",
+          "romanization": "suri yocheong-eun eodie hanayo?"
+        },
+        {
+          "speaker": "管理员",
+          "ko": "사무실에 신청서를 제출해 주세요.",
+          "zh": "请向办公室提交申请表。",
+          "en": "Please submit a form at the office.",
+          "romanization": "samusil-e sincheongseo-reul jechulhae juseyo."
+        },
+        {
+          "speaker": "学生",
+          "ko": "네, 감사합니다.",
+          "zh": "好的，谢谢。",
+          "en": "Okay, thank you.",
+          "romanization": "ne, gamsahamnida."
+        }
       ],
       "vocabulary": [
         {
           "korean": "기숙사",
           "meaning": "dormitory",
-          "romanization": "gisuksa"
+          "romanization": "gisuksa",
+          "zh": "宿舍",
+          "note_zh": "韩国的大学宿舍通常设施完善，有宵禁规定。",
+          "note_en": "Korean university dorms usually have curfews and good facilities."
         },
         {
           "korean": "규칙",
           "meaning": "rules",
-          "romanization": "gyuchik"
+          "romanization": "gyuchik",
+          "zh": "规则",
+          "note_zh": "指宿舍、学校或公司的规章制度。",
+          "note_en": "Refers to regulations at dorms, schools, or companies."
         },
         {
           "korean": "수리",
           "meaning": "repair",
-          "romanization": "suri"
+          "romanization": "suri",
+          "zh": "维修",
+          "note_zh": "用于报修或询问维修进度。",
+          "note_en": "Used when reporting issues or asking about repair status."
         }
       ],
-      "ai_explanation": "Dormitory Korean often involves rules and requests. Use polite request forms to sound cooperative."
+      "ai_explanation_en": "Dormitory Korean often involves rules and requests. Use polite request forms to sound cooperative.",
+      "ai_explanation_zh": "宿舍场景常涉及规则和请求，使用礼貌请求语气会让你显得更配合。"
     },
     {
       "scenario": "Campus",
-      "situation": "Finding buildings, student offices, clubs, and campus services.",
+      "situation_en": "Finding buildings, student offices, clubs, and campus services.",
+      "situation_zh": "在校园中问路、咨询办公室、参加活动或处理行政事项。",
       "useful_expressions": [
-        "학생지원센터가 어디에 있나요?",
-        "동아리에 가입하고 싶습니다.",
-        "이 건물은 어떻게 가나요?"
+        {
+          "ko": "학생지원센터가 어디에 있나요?",
+          "zh": "学生支援中心在哪里？",
+          "en": "Where is the student support center?",
+          "romanization": "haksaengjiwon senteo-ga eodie innayo?",
+          "usage_zh": "询问校园内服务机构的位置。",
+          "usage_en": "Ask about the location of a campus service office."
+        },
+        {
+          "ko": "동아리에 가입하고 싶습니다.",
+          "zh": "我想加入社团。",
+          "en": "I'd like to join a club.",
+          "romanization": "dongari-e gaiphago sipseumnida.",
+          "usage_zh": "表达加入学校社团的意愿。",
+          "usage_en": "Express interest in joining a school club or society."
+        },
+        {
+          "ko": "이 건물은 어떻게 가나요?",
+          "zh": "这个建筑怎么走？",
+          "en": "How do I get to this building?",
+          "romanization": "i geonmul-eun eotteoke ganayo?",
+          "usage_zh": "在校园内问路时使用。",
+          "usage_en": "Ask for directions to a building on campus."
+        }
       ],
       "example_dialogue": [
-        "학생: 학생지원센터가 어디에 있나요?",
-        "안내 직원: 도서관 옆 건물 2층에 있습니다.",
-        "학생: 감사합니다."
+        {
+          "speaker": "学生",
+          "ko": "학생지원센터가 어디에 있나요?",
+          "zh": "学生支援中心在哪里？",
+          "en": "Where is the student support center?",
+          "romanization": "haksaengjiwon senteo-ga eodie innayo?"
+        },
+        {
+          "speaker": "前台",
+          "ko": "도서관 옆 건물 2층에 있습니다.",
+          "zh": "在图书馆旁边的建筑二楼。",
+          "en": "It's on the second floor of the building next to the library.",
+          "romanization": "doseogwan yeop geonmul ichung-e itseumnida."
+        },
+        {
+          "speaker": "学生",
+          "ko": "감사합니다.",
+          "zh": "谢谢。",
+          "en": "Thank you.",
+          "romanization": "gamsahamnida."
+        }
       ],
       "vocabulary": [
         {
           "korean": "학생지원센터",
           "meaning": "student support center",
-          "romanization": "haksaengjiwon senteo"
+          "romanization": "haksaengjiwon senteo",
+          "zh": "学生支援中心",
+          "note_zh": "处理国际学生事务、签证咨询、生活支援。",
+          "note_en": "Handles international student affairs, visa consultation, and living support."
         },
         {
           "korean": "동아리",
           "meaning": "club / society",
-          "romanization": "dongari"
+          "romanization": "dongari",
+          "zh": "社团",
+          "note_zh": "韩国大学有丰富的社团文化，学期初招新。",
+          "note_en": "Korean universities have vibrant club cultures with recruitment at the start of each semester."
         },
         {
           "korean": "건물",
           "meaning": "building",
-          "romanization": "geonmul"
+          "romanization": "geonmul",
+          "zh": "建筑",
+          "note_zh": "校园问路时经常用到的基础词。",
+          "note_en": "Basic vocabulary for getting directions on campus."
         }
       ],
-      "ai_explanation": "Campus navigation phrases are useful early in the semester. Practice location words like 옆, 앞, 뒤, and 층."
+      "ai_explanation_en": "Campus navigation phrases are useful early in the semester. Practice location words like 옆, 앞, 뒤, and 층.",
+      "ai_explanation_zh": "学期初期校园导航表达非常实用，建议练习 옆（旁边）、앞（前面）、뒤（后面）、층（楼层）等词。"
     },
     {
       "scenario": "Presentation",
-      "situation": "Opening, transitioning, and closing a class presentation.",
+      "situation_en": "Opening, transitioning, and closing a class presentation.",
+      "situation_zh": "进行课堂展示、说明观点并回应问题。",
       "useful_expressions": [
-        "발표를 시작하겠습니다.",
-        "다음으로 넘어가겠습니다.",
-        "질문 있으시면 말씀해 주세요."
+        {
+          "ko": "발표를 시작하겠습니다.",
+          "zh": "我开始发表。",
+          "en": "I will begin my presentation.",
+          "romanization": "balpyo-reul sijakagessseumnida.",
+          "usage_zh": "展示或演讲时的开场用语。",
+          "usage_en": "Formal opening phrase for a presentation or speech."
+        },
+        {
+          "ko": "다음으로 넘어가겠습니다.",
+          "zh": "接下来我们进入下一部分。",
+          "en": "Next, I'll move on to the next part.",
+          "romanization": "da-eum-euro neomeogagessseumnida.",
+          "usage_zh": "展示中切换话题时使用。",
+          "usage_en": "Transition phrase when moving between sections of a presentation."
+        },
+        {
+          "ko": "질문 있으시면 말씀해 주세요.",
+          "zh": "如果有问题请提问。",
+          "en": "If you have questions, please let me know.",
+          "romanization": "jilmun isseusimyeon malsseumhae juseyo.",
+          "usage_zh": "展示结束后邀请听众提问。",
+          "usage_en": "Invite questions at the end of a presentation."
+        }
       ],
       "example_dialogue": [
-        "학생: 안녕하세요. 발표를 시작하겠습니다.",
-        "학생: 다음으로 연구 결과를 설명드리겠습니다.",
-        "학생: 질문 있으시면 말씀해 주세요."
+        {
+          "speaker": "学生",
+          "ko": "안녕하세요. 발표를 시작하겠습니다.",
+          "zh": "大家好，我开始发表。",
+          "en": "Hello everyone. I will begin my presentation.",
+          "romanization": "annyeonghaseyo. balpyo-reul sijakagessseumnida."
+        },
+        {
+          "speaker": "学生",
+          "ko": "다음으로 연구 결과를 설명드리겠습니다.",
+          "zh": "接下来我来说明研究结果。",
+          "en": "Next, I will explain the research results.",
+          "romanization": "da-eum-euro yeongu gyeolgwa-reul seolmyeongdeurigessseumnida."
+        },
+        {
+          "speaker": "学生",
+          "ko": "질문 있으시면 말씀해 주세요.",
+          "zh": "如果有问题请提问。",
+          "en": "If you have questions, please ask.",
+          "romanization": "jilmun isseusimyeon malsseumhae juseyo."
+        }
       ],
       "vocabulary": [
         {
           "korean": "발표",
           "meaning": "presentation",
-          "romanization": "balpyo"
+          "romanization": "balpyo",
+          "zh": "发表",
+          "note_zh": "韩国课堂中很常见，学生需定期做发表。",
+          "note_en": "Common in Korean classrooms; students give regular presentations."
         },
         {
           "korean": "연구 결과",
           "meaning": "research result",
-          "romanization": "yeongu gyeolgwa"
+          "romanization": "yeongu gyeolgwa",
+          "zh": "研究结果",
+          "note_zh": "学术报告和研究发表时的关键短语。",
+          "note_en": "Key phrase for academic reports and research presentations."
         },
         {
           "korean": "넘어가다",
           "meaning": "move on",
-          "romanization": "neomeogada"
+          "romanization": "neomeogada",
+          "zh": "进入下一环节",
+          "note_zh": "用于课堂展示时切换话题。",
+          "note_en": "Used to transition between topics in a presentation."
         }
       ],
-      "ai_explanation": "Presentation Korean benefits from clear signposting phrases. They help listeners follow structure."
+      "ai_explanation_en": "Presentation Korean benefits from clear signposting phrases. They help listeners follow structure.",
+      "ai_explanation_zh": "课堂展示中清晰的路标短语有助于听众跟上结构，是韩语课堂展示的关键技能。"
     }
   ]
 }

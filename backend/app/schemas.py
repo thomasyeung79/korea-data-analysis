@@ -526,34 +526,54 @@ class VocabularyItem(BaseModel):
     korean: str
     meaning: str
     romanization: Optional[str] = None
+    zh: Optional[str] = None
+    note_zh: Optional[str] = None
+    note_en: Optional[str] = None
+
+
+class ExpressionItem(BaseModel):
+    ko: str
+    zh: str = ""
+    en: str = ""
+    romanization: str = ""
+    usage_zh: str = ""
+    usage_en: str = ""
+
+
+class DialogueLine(BaseModel):
+    speaker: str = ""
+    ko: str
+    zh: str = ""
+    en: str = ""
+    romanization: str = ""
 
 
 class StudyScenario(BaseModel):
     metadata: Optional[KnowledgeMetadata] = None
     scenario: str
     situation: str
-    useful_expressions: List[str]
-    example_dialogue: List[str]
-    vocabulary: List[VocabularyItem]
-    ai_explanation: str
+    useful_expressions: List[ExpressionItem] = []
+    example_dialogue: List[DialogueLine] = []
+    vocabulary: List[VocabularyItem] = []
+    ai_explanation: str = ""
 
 
 class CareerScenario(BaseModel):
     metadata: Optional[KnowledgeMetadata] = None
     scenario: str
-    useful_expressions: List[str]
-    interview_tips: List[str]
-    business_vocabulary: List[VocabularyItem]
-    sample_conversation: List[str]
+    useful_expressions: List[ExpressionItem] = []
+    interview_tips: List[str] = []
+    business_vocabulary: List[VocabularyItem] = []
+    sample_conversation: List[DialogueLine] = []
 
 
 class LivingScenario(BaseModel):
     metadata: Optional[KnowledgeMetadata] = None
     scenario: str
-    useful_expressions: List[str]
-    common_questions: List[str]
-    sample_dialogue: List[str]
-    culture_tips: List[str]
+    useful_expressions: List[ExpressionItem] = []
+    common_questions: List[str] = []
+    sample_dialogue: List[DialogueLine] = []
+    culture_tips: List[str] = []
 
 
 class TOPIKPlanner(BaseModel):
@@ -577,10 +597,19 @@ class ExpressionExplanation(BaseModel):
     expression: str
     action: str
     explanation: str
+    explanation_zh: str = ""
+    explanation_en: str = ""
     natural_rewrite: str
     translation: str
-    grammar_notes: List[str]
-    culture_notes: List[str]
+    translation_zh: str = ""
+    translation_en: str = ""
+    grammar_notes: List[str] = []
+    grammar_notes_zh: List[str] = []
+    grammar_notes_en: List[str] = []
+    culture_notes: List[str] = []
+    culture_notes_zh: List[str] = []
+    culture_notes_en: List[str] = []
+    polite_level: str = ""
 
 
 class KnowledgeBaseCity(BaseModel):

@@ -3,24 +3,50 @@
     "source_name": "TOPIK / Korea Compass scenario dataset",
     "source_url": "https://www.topik.go.kr",
     "last_updated": "2026-06-29",
-    "language": "en",
-    "version": "1.0",
-    "confidence_level": "Medium",
-    "notes": "Scenario-based Korean support content; not official curriculum.",
-    "official_source": "TOPIK / Korea Compass Korean Learning Dataset",
+    "language": "bilingual",
+    "version": "2.0",
+    "notes": "Bilingual scenario-based Korean support content.",
+    "official_source": "Korea Compass Korean Learning Dataset",
     "official_url": "https://www.topik.go.kr",
-    "license": "Official website terms / educational sample content",
+    "license": "Educational sample content",
     "retrieved_at": "2026-06-29",
     "cache_expiry_days": 180,
-    "verification_status": "Verified"
+    "verification_status": "Verified",
+    "confidence_level": "Medium"
   },
   "items": [
     {
       "scenario": "Restaurant",
       "useful_expressions": [
-        "메뉴판 주세요.",
-        "이거 하나 주세요.",
-        "계산해 주세요."
+        {
+          "ko": "메뉴판 주세요.",
+          "zh": "请给我菜单。",
+          "en": "Please give me the menu.",
+          "romanization": "menyupan juseyo.",
+          "usage_zh": "入座后向服务员要菜单。",
+          "usage_en": "Asked when you need the menu after being seated."
+        },
+        {
+          "ko": "이거 하나 주세요.",
+          "zh": "请给我这个一份。",
+          "en": "One of these, please.",
+          "romanization": "igeo hana juseyo.",
+          "usage_zh": "点餐时指着菜单说。",
+          "usage_en": "Point at the menu to order one of a specific item."
+        },
+        {
+          "ko": "계산해 주세요.",
+          "zh": "请结账。",
+          "en": "Check, please.",
+          "romanization": "gyesanae juseyo.",
+          "usage_zh": "用餐结束后叫服务员结账。",
+          "usage_en": "Ask for the bill after finishing your meal."
+        }
+      ],
+      "common_questions_zh": [
+        "推荐菜是什么？",
+        "可以不放辣吗？",
+        "可以打包吗？"
       ],
       "common_questions": [
         "추천 메뉴가 뭐예요?",
@@ -28,9 +54,31 @@
         "포장 가능해요?"
       ],
       "sample_dialogue": [
-        "손님: 이거 하나 주세요.",
-        "직원: 매운맛 괜찮으세요?",
-        "손님: 조금만 맵게 해 주세요."
+        {
+          "speaker": "顾客",
+          "ko": "이거 하나 주세요.",
+          "zh": "请给我这个一份。",
+          "en": "One of these, please.",
+          "romanization": "igeo hana juseyo."
+        },
+        {
+          "speaker": "店员",
+          "ko": "매운맛 괜찮으세요?",
+          "zh": "辣的可以吗？",
+          "en": "Is spicy okay?",
+          "romanization": "maeunmat gwaenchaneuseyo?"
+        },
+        {
+          "speaker": "顾客",
+          "ko": "조금만 맵게 해 주세요.",
+          "zh": "请做微辣。",
+          "en": "Just a little spicy, please.",
+          "romanization": "jogeumman maepge hae juseyo."
+        }
+      ],
+      "culture_tips_zh": [
+        "水和小菜可能是自助的。",
+        "有些餐厅要求每人点一份。"
       ],
       "culture_tips": [
         "Water and side dishes may be self-service.",
@@ -40,9 +88,35 @@
     {
       "scenario": "Convenience Store",
       "useful_expressions": [
-        "봉투 필요하세요?",
-        "교통카드 충전해 주세요.",
-        "영수증 주세요."
+        {
+          "ko": "봉투 필요하세요?",
+          "zh": "需要袋子吗？",
+          "en": "Do you need a bag?",
+          "romanization": "bongtu piryohaseyo?",
+          "usage_zh": "店员常用的问句。",
+          "usage_en": "A common question from convenience store staff."
+        },
+        {
+          "ko": "교통카드 충전해 주세요.",
+          "zh": "请帮我充交通卡。",
+          "en": "Please charge my transit card.",
+          "romanization": "gyotongkadeu chungjeonhae juseyo.",
+          "usage_zh": "在便利店充值交通卡时使用。",
+          "usage_en": "Used when recharging your transit card at a convenience store."
+        },
+        {
+          "ko": "영수증 주세요.",
+          "zh": "请给我收据。",
+          "en": "Please give me the receipt.",
+          "romanization": "yeongsujeung juseyo.",
+          "usage_zh": "结账后索要收据。",
+          "usage_en": "Ask for a receipt after payment."
+        }
+      ],
+      "common_questions_zh": [
+        "可以帮我加热吗？",
+        "可以寄快递吗？",
+        "可以刷卡吗？"
       ],
       "common_questions": [
         "이거 데워 주실 수 있나요?",
@@ -50,9 +124,30 @@
         "카드 결제 되나요?"
       ],
       "sample_dialogue": [
-        "손님: 이거 데워 주실 수 있나요?",
-        "직원: 네, 전자레인지에 데워드릴게요.",
-        "손님: 감사합니다."
+        {
+          "speaker": "顾客",
+          "ko": "이거 데워 주실 수 있나요?",
+          "zh": "可以帮我加热吗？",
+          "en": "Can you heat this up?",
+          "romanization": "igeo dewo jusil su innayo?"
+        },
+        {
+          "speaker": "店员",
+          "ko": "네, 전자레인지에 데워드릴게요.",
+          "zh": "好的，我帮您用微波炉加热。",
+          "en": "Yes, I'll heat it in the microwave for you.",
+          "romanization": "ne, jeonjareinji-e dewo deurilgeyo."
+        },
+        {
+          "speaker": "顾客",
+          "ko": "감사합니다.",
+          "zh": "谢谢。",
+          "en": "Thank you.",
+          "romanization": "gamsahamnida."
+        }
+      ],
+      "culture_tips_zh": [
+        "韩国便利店通常可以寄快递、充交通卡、代缴水电费。"
       ],
       "culture_tips": [
         "Convenience stores often handle parcels, transport card charging, and simple meals."
@@ -61,9 +156,35 @@
     {
       "scenario": "Hospital",
       "useful_expressions": [
-        "진료 예약을 하고 싶습니다.",
-        "어디가 아프세요?",
-        "보험 적용되나요?"
+        {
+          "ko": "진료 예약을 하고 싶습니다.",
+          "zh": "我想预约诊疗。",
+          "en": "I'd like to book a medical appointment.",
+          "romanization": "jillyo yeyageul hago sipseumnida.",
+          "usage_zh": "打电话或到医院前台预约。",
+          "usage_en": "Used when booking a medical appointment by phone or in person."
+        },
+        {
+          "ko": "어디가 아프세요?",
+          "zh": "哪里不舒服？",
+          "en": "Where does it hurt?",
+          "romanization": "eodiga apeuseyo?",
+          "usage_zh": "医生或护士询问症状。",
+          "usage_en": "A doctor or nurse asking about your symptoms."
+        },
+        {
+          "ko": "보험 적용되나요?",
+          "zh": "可以用保险吗？",
+          "en": "Does insurance cover this?",
+          "romanization": "boheom jeok-yongdoenayo?",
+          "usage_zh": "就诊前询问费用能否走保险。",
+          "usage_en": "Ask whether your treatment is covered by insurance before receiving it."
+        }
+      ],
+      "common_questions_zh": [
+        "可以用护照登记吗？",
+        "有会说英语的医生吗？",
+        "可以开诊断书吗？"
       ],
       "common_questions": [
         "여권으로 접수할 수 있나요?",
@@ -71,9 +192,30 @@
         "진단서를 받을 수 있나요?"
       ],
       "sample_dialogue": [
-        "환자: 진료 예약을 하고 싶습니다.",
-        "직원: 어떤 증상이 있으세요?",
-        "환자: 목이 아프고 열이 납니다."
+        {
+          "speaker": "患者",
+          "ko": "진료 예약을 하고 싶습니다.",
+          "zh": "我想预约诊疗。",
+          "en": "I'd like to book an appointment.",
+          "romanization": "jillyo yeyageul hago sipseumnida."
+        },
+        {
+          "speaker": "职员",
+          "ko": "어떤 증상이 있으세요?",
+          "zh": "有什么症状？",
+          "en": "What symptoms are you experiencing?",
+          "romanization": "eotteon jeungsang-i isseuseyo?"
+        },
+        {
+          "speaker": "患者",
+          "ko": "목이 아프고 열이 납니다.",
+          "zh": "喉咙痛，发烧。",
+          "en": "I have a sore throat and a fever.",
+          "romanization": "mogi apeugo yeori namnida."
+        }
+      ],
+      "culture_tips_zh": [
+        "就诊时请携带身份证明、保险信息和既往处方。"
       ],
       "culture_tips": [
         "Bring ID, insurance details, and any previous prescriptions if possible."
@@ -82,9 +224,35 @@
     {
       "scenario": "Pharmacy",
       "useful_expressions": [
-        "감기약 주세요.",
-        "하루에 몇 번 먹어야 하나요?",
-        "부작용이 있나요?"
+        {
+          "ko": "감기약 주세요.",
+          "zh": "请给我感冒药。",
+          "en": "Please give me cold medicine.",
+          "romanization": "gamgiyak juseyo.",
+          "usage_zh": "在药店买感冒药时使用。",
+          "usage_en": "Used when purchasing cold medicine at a pharmacy."
+        },
+        {
+          "ko": "하루에 몇 번 먹어야 하나요?",
+          "zh": "一天吃几次？",
+          "en": "How many times a day should I take it?",
+          "romanization": "harue myeot beon meogeoya hanayo?",
+          "usage_zh": "询问药品用法和用量。",
+          "usage_en": "Ask about dosage instructions for medication."
+        },
+        {
+          "ko": "부작용이 있나요?",
+          "zh": "有副作用吗？",
+          "en": "Are there any side effects?",
+          "romanization": "bujagyong-i innayo?",
+          "usage_zh": "询问药品可能的副作用。",
+          "usage_en": "Ask about possible side effects of medication."
+        }
+      ],
+      "common_questions_zh": [
+        "需要处方吗？",
+        "是饭后吃吗？",
+        "会犯困吗？"
       ],
       "common_questions": [
         "처방전이 필요해요?",
@@ -92,9 +260,30 @@
         "졸릴 수 있나요?"
       ],
       "sample_dialogue": [
-        "손님: 감기약 주세요.",
-        "약사: 열도 있으세요?",
-        "손님: 네, 조금 있습니다."
+        {
+          "speaker": "顾客",
+          "ko": "감기약 주세요.",
+          "zh": "请给我感冒药。",
+          "en": "Please give me cold medicine.",
+          "romanization": "gamgiyak juseyo."
+        },
+        {
+          "speaker": "药剂师",
+          "ko": "열도 있으세요?",
+          "zh": "有发烧吗？",
+          "en": "Do you also have a fever?",
+          "romanization": "yeoldo isseuseyo?"
+        },
+        {
+          "speaker": "顾客",
+          "ko": "네, 조금 있습니다.",
+          "zh": "是的，有一点。",
+          "en": "Yes, a little.",
+          "romanization": "ne, jogeum itseumnida."
+        }
+      ],
+      "culture_tips_zh": [
+        "药剂师通常会快速说明用法用量。如有不清楚可请求重复。"
       ],
       "culture_tips": [
         "Pharmacists often explain dosage quickly. Ask them to repeat if needed."
@@ -103,9 +292,35 @@
     {
       "scenario": "Bank",
       "useful_expressions": [
-        "계좌를 개설하고 싶습니다.",
-        "외국인등록증이 필요하나요?",
-        "체크카드를 만들고 싶습니다."
+        {
+          "ko": "계좌를 개설하고 싶습니다.",
+          "zh": "我想开一个账户。",
+          "en": "I would like to open an account.",
+          "romanization": "gyejwareul gaeseolhago sipseumnida.",
+          "usage_zh": "去银行开户时的常用表达。",
+          "usage_en": "Used when opening a bank account."
+        },
+        {
+          "ko": "외국인등록증이 필요하나요?",
+          "zh": "需要外国人登录证吗？",
+          "en": "Is an Alien Registration Card needed?",
+          "romanization": "oegugin deungrokjeung-i piryohanayo?",
+          "usage_zh": "外国人开户时确认所需材料。",
+          "usage_en": "Confirm required documents as a foreigner opening an account."
+        },
+        {
+          "ko": "체크카드를 만들고 싶습니다.",
+          "zh": "我想办一张借记卡。",
+          "en": "I would like to get a check card.",
+          "romanization": "chekeukadeureul mandeulgo sipseumnida.",
+          "usage_zh": "申请借记卡时的常用表达。",
+          "usage_en": "Used when applying for a check/debit card."
+        }
+      ],
+      "common_questions_zh": [
+        "有手续费吗？",
+        "可以申请网银吗？",
+        "可以跨境汇款吗？"
       ],
       "common_questions": [
         "수수료가 있나요?",
@@ -113,9 +328,30 @@
         "해외 송금이 가능한가요?"
       ],
       "sample_dialogue": [
-        "고객: 계좌를 개설하고 싶습니다.",
-        "직원: 외국인등록증 있으신가요?",
-        "고객: 네, 여기 있습니다."
+        {
+          "speaker": "顾客",
+          "ko": "계좌를 개설하고 싶습니다.",
+          "zh": "我想开一个账户。",
+          "en": "I'd like to open an account.",
+          "romanization": "gyejwareul gaeseolhago sipseumnida."
+        },
+        {
+          "speaker": "职员",
+          "ko": "외국인등록증 있으신가요?",
+          "zh": "有外国人登录证吗？",
+          "en": "Do you have your ARC?",
+          "romanization": "oegugin deungrokjeung isseusin-gayo?"
+        },
+        {
+          "speaker": "顾客",
+          "ko": "네, 여기 있습니다.",
+          "zh": "是的，在这里。",
+          "en": "Yes, here it is.",
+          "romanization": "ne, yeogi itseumnida."
+        }
+      ],
+      "culture_tips_zh": [
+        "很多银行业务在拿到外国人登录证后才能办理。"
       ],
       "culture_tips": [
         "Many banking services become easier after receiving an Alien Registration Card."
@@ -124,9 +360,35 @@
     {
       "scenario": "Apartment",
       "useful_expressions": [
-        "보증금이 얼마인가요?",
-        "관리비가 포함되어 있나요?",
-        "계약 기간은 얼마나 되나요?"
+        {
+          "ko": "보증금이 얼마인가요?",
+          "zh": "保证金是多少？",
+          "en": "How much is the deposit?",
+          "romanization": "bojeunggeumi eolma-ingayo?",
+          "usage_zh": "租房时询问押金金额。",
+          "usage_en": "Ask about the deposit amount when renting."
+        },
+        {
+          "ko": "관리비가 포함되어 있나요?",
+          "zh": "管理费包含在内吗？",
+          "en": "Are maintenance fees included?",
+          "romanization": "gwallibi pohamdoeeo innayo?",
+          "usage_zh": "确认月租价格是否包含管理费。",
+          "usage_en": "Check if the monthly rent includes maintenance fees."
+        },
+        {
+          "ko": "계약 기간은 얼마나 되나요?",
+          "zh": "合同期是多久？",
+          "en": "How long is the contract period?",
+          "romanization": "gyeyak gigan-eun eolmana doenayo?",
+          "usage_zh": "确认租房合同周期。",
+          "usage_en": "Ask about the lease period."
+        }
+      ],
+      "common_questions_zh": [
+        "可以养宠物吗？",
+        "离地铁站多远？",
+        "包含哪些家具家电？"
       ],
       "common_questions": [
         "반려동물 가능해요?",
@@ -134,9 +396,30 @@
         "옵션이 포함되어 있나요?"
       ],
       "sample_dialogue": [
-        "세입자: 관리비가 포함되어 있나요?",
-        "중개인: 아니요, 별도입니다.",
-        "세입자: 한 달 평균 얼마인가요?"
+        {
+          "speaker": "租客",
+          "ko": "관리비가 포함되어 있나요?",
+          "zh": "管理费包含在内吗？",
+          "en": "Are maintenance fees included?",
+          "romanization": "gwallibi pohamdoeeo innayo?"
+        },
+        {
+          "speaker": "中介",
+          "ko": "아니요, 별도입니다.",
+          "zh": "不，是另外算的。",
+          "en": "No, it's separate.",
+          "romanization": "aniyo, byeoldoimnida."
+        },
+        {
+          "speaker": "租客",
+          "ko": "한 달 평균 얼마인가요?",
+          "zh": "一个月平均多少？",
+          "en": "How much is it on average per month?",
+          "romanization": "han dal pyeonggyun eolma-ingayo?"
+        }
+      ],
+      "culture_tips_zh": [
+        "仔细确认押金、管理费、合同期限和退房条件。"
       ],
       "culture_tips": [
         "Check deposit, maintenance fees, contract length, and move-out conditions carefully."
@@ -145,9 +428,35 @@
     {
       "scenario": "Subway",
       "useful_expressions": [
-        "이 역에서 갈아타야 하나요?",
-        "몇 번 출구로 나가야 하나요?",
-        "교통카드는 어디에서 충전하나요?"
+        {
+          "ko": "이 역에서 갈아타야 하나요?",
+          "zh": "需要在这个站换乘吗？",
+          "en": "Do I need to transfer at this station?",
+          "romanization": "i yeog-eseo garataya hanayo?",
+          "usage_zh": "询问是否需要在某站换乘。",
+          "usage_en": "Ask whether you need to transfer at a specific station."
+        },
+        {
+          "ko": "몇 번 출구로 나가야 하나요?",
+          "zh": "要从几号出口出站？",
+          "en": "Which exit should I use?",
+          "romanization": "myeot beon chulgu-ro nagaya hanayo?",
+          "usage_zh": "在地铁站问应该从哪个出口出去。",
+          "usage_en": "Ask which subway exit to use."
+        },
+        {
+          "ko": "교통카드는 어디에서 충전하나요?",
+          "zh": "在哪里充交通卡？",
+          "en": "Where can I recharge my transit card?",
+          "romanization": "gyotongkadeuneun eodieseo chungjeonhanayo?",
+          "usage_zh": "在地铁站询问交通卡充值地点。",
+          "usage_en": "Ask where to top up your transit card at the station."
+        }
+      ],
+      "common_questions_zh": [
+        "末班车是几点？",
+        "是快车吗？",
+        "这个方向对吗？"
       ],
       "common_questions": [
         "막차가 몇 시예요?",
@@ -155,20 +464,68 @@
         "이 방향이 맞나요?"
       ],
       "sample_dialogue": [
-        "승객: 홍대입구역은 어디에서 갈아타나요?",
-        "직원: 2호선으로 갈아타시면 됩니다.",
-        "승객: 감사합니다."
+        {
+          "speaker": "乘客",
+          "ko": "홍대입구역은 어디에서 갈아타나요?",
+          "zh": "弘大入口站在哪里换乘？",
+          "en": "Where do I transfer for Hongdae Station?",
+          "romanization": "hongdae ipguyeogeun eodieseo garatanayo?"
+        },
+        {
+          "speaker": "职员",
+          "ko": "2호선으로 갈아타시면 됩니다.",
+          "zh": "换乘 2 号线即可。",
+          "en": "You need to transfer to Line 2.",
+          "romanization": "ihoseoneuro garatasimyeon doemnida."
+        },
+        {
+          "speaker": "乘客",
+          "ko": "감사합니다.",
+          "zh": "谢谢。",
+          "en": "Thank you.",
+          "romanization": "gamsahamnida."
+        }
+      ],
+      "culture_tips_zh": [
+        "乘扶梯时请站在右侧，左侧留给急行的人。",
+        "请给老弱病残孕让座。"
       ],
       "culture_tips": [
-        "Stand on the correct side of escalators according to local flow and give seats to priority passengers."
+        "Stand on the right side of escalators. Give priority seats to those in need."
       ]
     },
     {
       "scenario": "Taxi",
       "useful_expressions": [
-        "이 주소로 가 주세요.",
-        "카드 결제 가능해요?",
-        "여기서 내려 주세요."
+        {
+          "ko": "이 주소로 가 주세요.",
+          "zh": "请去这个地址。",
+          "en": "Please take me to this address.",
+          "romanization": "i jusoro ga juseyo.",
+          "usage_zh": "上出租车后给司机看地址。",
+          "usage_en": "Show the driver an address when boarding a taxi."
+        },
+        {
+          "ko": "카드 결제 가능해요?",
+          "zh": "可以刷卡吗？",
+          "en": "Can I pay by card?",
+          "romanization": "kadeu gyeolje ganeunghaeyo?",
+          "usage_zh": "下车前询问是否可以用卡支付。",
+          "usage_en": "Ask if card payment is accepted before getting out."
+        },
+        {
+          "ko": "여기서 내려 주세요.",
+          "zh": "请在这里停车。",
+          "en": "Please stop here.",
+          "romanization": "yeogiseo naeryeo juseyo.",
+          "usage_zh": "到达目的地时请司机停车。",
+          "usage_en": "Tell the driver to stop when you arrive."
+        }
+      ],
+      "common_questions_zh": [
+        "大概需要多久？",
+        "走高速吗？",
+        "可以给我收据吗？"
       ],
       "common_questions": [
         "얼마나 걸릴까요?",
@@ -176,9 +533,30 @@
         "영수증 받을 수 있나요?"
       ],
       "sample_dialogue": [
-        "승객: 이 주소로 가 주세요.",
-        "기사: 네, 출발하겠습니다.",
-        "승객: 카드 결제 가능하죠?"
+        {
+          "speaker": "乘客",
+          "ko": "이 주소로 가 주세요.",
+          "zh": "请去这个地址。",
+          "en": "Please take me to this address.",
+          "romanization": "i jusoro ga juseyo."
+        },
+        {
+          "speaker": "司机",
+          "ko": "네, 출발하겠습니다.",
+          "zh": "好的，出发。",
+          "en": "OK, let's go.",
+          "romanization": "ne, chulbalhagessseumnida."
+        },
+        {
+          "speaker": "乘客",
+          "ko": "카드 결제 가능하죠?",
+          "zh": "可以刷卡吧？",
+          "en": "Card payment is okay, right?",
+          "romanization": "kadeu gyeolje ganeunghajyo?"
+        }
+      ],
+      "culture_tips_zh": [
+        "最好把韩文地址提前存在手机里给司机看。"
       ],
       "culture_tips": [
         "Having the Korean address ready on your phone helps avoid confusion."
