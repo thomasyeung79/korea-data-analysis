@@ -435,8 +435,8 @@ class APIClient:
     def get_explore_history(self, language: str = "en") -> list[dict]:
         return self._request("GET", "/api/v1/explore/history", params={"language": language})
 
-    def get_explore_living_cost(self) -> list[dict]:
-        return self._request("GET", "/api/v1/explore/living-cost")
+    def get_explore_living_cost(self, language: str = "en") -> list[dict]:
+        return self._request("GET", "/api/v1/explore/living-cost", params={"language": language})
 
     def get_explore_quick_facts(self, language: str = "en") -> list[dict]:
         return self._request("GET", "/api/v1/explore/quick-facts", params={"language": language})
@@ -452,8 +452,8 @@ class APIClient:
     def get_korean_learning_living(self, language: str = "en") -> list[dict]:
         return self._request("GET", "/api/v1/korean-learning/living", params={"language": language})
 
-    def get_korean_learning_topik(self) -> list[dict]:
-        return self._request("GET", "/api/v1/korean-learning/topik")
+    def get_korean_learning_topik(self, language: str = "en") -> list[dict]:
+        return self._request("GET", "/api/v1/korean-learning/topik", params={"language": language})
 
     def explain_korean_expression(self, payload: dict) -> dict:
         return self._request("POST", "/api/v1/korean-learning/explain", json=payload)
