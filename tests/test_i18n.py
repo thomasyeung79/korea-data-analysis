@@ -24,14 +24,14 @@ def test_english_translation_lookup(monkeypatch):
     reset_language_state(monkeypatch)
     i18n.set_language("en")
 
-    assert i18n.t("home.page_title") == "Korea Analysis"
+    assert i18n.t("home.page_title") == "Korea Compass"
 
 
 def test_chinese_translation_lookup(monkeypatch):
     reset_language_state(monkeypatch)
     i18n.set_language("zh")
 
-    assert i18n.t("home.page_title") == "韩国分析"
+    assert i18n.t("home.page_title") == "韩国指南"
 
 
 def test_missing_key_falls_back_to_raw_key(monkeypatch):
@@ -46,7 +46,7 @@ def test_missing_language_falls_back_to_english(monkeypatch):
     i18n.set_language("unsupported")
 
     assert i18n.get_language() == "en"
-    assert i18n.t("home.page_title") == "Korea Analysis"
+    assert i18n.t("home.page_title") == "Korea Compass"
 
 
 def test_parameter_interpolation(monkeypatch):

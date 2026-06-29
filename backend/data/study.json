@@ -1,0 +1,211 @@
+{
+  "metadata": {
+    "source_name": "Korea Compass Legacy Dataset",
+    "source_url": "",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Low",
+    "notes": "Legacy V5 data retained for compatibility; canonical V6 copy lives under korean/.",
+    "official_source": "Korea Compass Legacy Dataset",
+    "official_url": "https://github.com/thomasyeung79/korea-data-analysis",
+    "license": "MIT project content",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 180,
+    "verification_status": "Mock"
+  },
+  "items": [
+    {
+      "scenario": "Classroom",
+      "situation": "Joining class, asking questions, and confirming assignments.",
+      "useful_expressions": [
+        "질문이 있습니다.",
+        "다시 설명해 주실 수 있을까요?",
+        "과제 제출일이 언제인가요?"
+      ],
+      "example_dialogue": [
+        "학생: 교수님, 질문이 있습니다.",
+        "교수님: 네, 말씀하세요.",
+        "학생: 과제 제출일이 다음 주 월요일인가요?"
+      ],
+      "vocabulary": [
+        {
+          "korean": "질문",
+          "meaning": "question",
+          "romanization": "jilmun"
+        },
+        {
+          "korean": "과제",
+          "meaning": "assignment",
+          "romanization": "gwaje"
+        },
+        {
+          "korean": "제출일",
+          "meaning": "deadline",
+          "romanization": "jechuril"
+        }
+      ],
+      "ai_explanation": "Use polite endings like -습니다 or -실 수 있을까요 when speaking in class or to instructors."
+    },
+    {
+      "scenario": "Professor",
+      "situation": "Emailing or speaking to a professor about office hours and feedback.",
+      "useful_expressions": [
+        "면담 시간을 예약하고 싶습니다.",
+        "피드백을 받을 수 있을까요?",
+        "메일 확인 부탁드립니다."
+      ],
+      "example_dialogue": [
+        "학생: 교수님, 면담 시간을 예약하고 싶습니다.",
+        "교수님: 이번 주 목요일 오후는 괜찮습니다.",
+        "학생: 감사합니다. 그때 찾아뵙겠습니다."
+      ],
+      "vocabulary": [
+        {
+          "korean": "면담",
+          "meaning": "meeting / consultation",
+          "romanization": "myeondam"
+        },
+        {
+          "korean": "피드백",
+          "meaning": "feedback",
+          "romanization": "pideubaek"
+        },
+        {
+          "korean": "예약",
+          "meaning": "reservation / booking",
+          "romanization": "yeyak"
+        }
+      ],
+      "ai_explanation": "When contacting professors, keep the message concise, formal, and clear about time and purpose."
+    },
+    {
+      "scenario": "Library",
+      "situation": "Finding books, reserving study rooms, and asking about borrowing rules.",
+      "useful_expressions": [
+        "이 책을 빌릴 수 있나요?",
+        "스터디룸 예약은 어디에서 하나요?",
+        "반납일을 확인하고 싶습니다."
+      ],
+      "example_dialogue": [
+        "학생: 이 책을 빌릴 수 있나요?",
+        "직원: 네, 학생증을 보여 주세요.",
+        "학생: 반납일은 언제인가요?"
+      ],
+      "vocabulary": [
+        {
+          "korean": "도서관",
+          "meaning": "library",
+          "romanization": "doseogwan"
+        },
+        {
+          "korean": "반납",
+          "meaning": "returning borrowed items",
+          "romanization": "bannap"
+        },
+        {
+          "korean": "학생증",
+          "meaning": "student ID",
+          "romanization": "haksaengjeung"
+        }
+      ],
+      "ai_explanation": "Library interactions are practical and direct. Student ID and reservation rules are common topics."
+    },
+    {
+      "scenario": "Dormitory",
+      "situation": "Asking about dorm rules, maintenance, visitors, and quiet hours.",
+      "useful_expressions": [
+        "기숙사 규칙을 확인하고 싶습니다.",
+        "수리 요청은 어디에 하나요?",
+        "방문객 출입 시간이 어떻게 되나요?"
+      ],
+      "example_dialogue": [
+        "학생: 수리 요청은 어디에 하나요?",
+        "관리자: 사무실에 신청서를 제출해 주세요.",
+        "학생: 네, 감사합니다."
+      ],
+      "vocabulary": [
+        {
+          "korean": "기숙사",
+          "meaning": "dormitory",
+          "romanization": "gisuksa"
+        },
+        {
+          "korean": "규칙",
+          "meaning": "rules",
+          "romanization": "gyuchik"
+        },
+        {
+          "korean": "수리",
+          "meaning": "repair",
+          "romanization": "suri"
+        }
+      ],
+      "ai_explanation": "Dormitory Korean often involves rules and requests. Use polite request forms to sound cooperative."
+    },
+    {
+      "scenario": "Campus",
+      "situation": "Finding buildings, student offices, clubs, and campus services.",
+      "useful_expressions": [
+        "학생지원센터가 어디에 있나요?",
+        "동아리에 가입하고 싶습니다.",
+        "이 건물은 어떻게 가나요?"
+      ],
+      "example_dialogue": [
+        "학생: 학생지원센터가 어디에 있나요?",
+        "안내 직원: 도서관 옆 건물 2층에 있습니다.",
+        "학생: 감사합니다."
+      ],
+      "vocabulary": [
+        {
+          "korean": "학생지원센터",
+          "meaning": "student support center",
+          "romanization": "haksaengjiwon senteo"
+        },
+        {
+          "korean": "동아리",
+          "meaning": "club / society",
+          "romanization": "dongari"
+        },
+        {
+          "korean": "건물",
+          "meaning": "building",
+          "romanization": "geonmul"
+        }
+      ],
+      "ai_explanation": "Campus navigation phrases are useful early in the semester. Practice location words like 옆, 앞, 뒤, and 층."
+    },
+    {
+      "scenario": "Presentation",
+      "situation": "Opening, transitioning, and closing a class presentation.",
+      "useful_expressions": [
+        "발표를 시작하겠습니다.",
+        "다음으로 넘어가겠습니다.",
+        "질문 있으시면 말씀해 주세요."
+      ],
+      "example_dialogue": [
+        "학생: 안녕하세요. 발표를 시작하겠습니다.",
+        "학생: 다음으로 연구 결과를 설명드리겠습니다.",
+        "학생: 질문 있으시면 말씀해 주세요."
+      ],
+      "vocabulary": [
+        {
+          "korean": "발표",
+          "meaning": "presentation",
+          "romanization": "balpyo"
+        },
+        {
+          "korean": "연구 결과",
+          "meaning": "research result",
+          "romanization": "yeongu gyeolgwa"
+        },
+        {
+          "korean": "넘어가다",
+          "meaning": "move on",
+          "romanization": "neomeogada"
+        }
+      ],
+      "ai_explanation": "Presentation Korean benefits from clear signposting phrases. They help listeners follow structure."
+    }
+  ]
+}

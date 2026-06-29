@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "source_name": "Korea Compass Source Registry",
+    "source_url": "https://github.com/thomasyeung79/korea-data-analysis",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Registry for official and verified sources used by Korea Compass.",
+    "official_source": "Korea Compass Source Registry",
+    "official_url": "https://github.com/thomasyeung79/korea-data-analysis",
+    "license": "MIT project metadata",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 180,
+    "verification_status": "Verified"
+  },
+  "items": [
+    {
+      "name": "Study in Korea",
+      "official_url": "https://www.studyinkorea.go.kr",
+      "organization": "National Institute for International Education",
+      "country": "South Korea",
+      "license": "Official website terms / public information",
+      "default_confidence": "High"
+    },
+    {
+      "name": "MOE Korea",
+      "official_url": "https://www.moe.go.kr",
+      "organization": "Ministry of Education, Republic of Korea",
+      "country": "South Korea",
+      "license": "Official website terms / public information",
+      "default_confidence": "High"
+    },
+    {
+      "name": "KOSIS",
+      "official_url": "https://kosis.kr",
+      "organization": "Korean Statistical Information Service",
+      "country": "South Korea",
+      "license": "Official statistics portal terms",
+      "default_confidence": "High"
+    },
+    {
+      "name": "Statistics Korea",
+      "official_url": "https://kostat.go.kr",
+      "organization": "Statistics Korea",
+      "country": "South Korea",
+      "license": "Official website terms / public information",
+      "default_confidence": "High"
+    },
+    {
+      "name": "Seoul Metropolitan Government",
+      "official_url": "https://www.seoul.go.kr",
+      "organization": "Seoul Metropolitan Government",
+      "country": "South Korea",
+      "license": "Official website terms / public information",
+      "default_confidence": "High"
+    },
+    {
+      "name": "TOPIK",
+      "official_url": "https://www.topik.go.kr",
+      "organization": "National Institute for International Education",
+      "country": "South Korea",
+      "license": "Official website terms / public information",
+      "default_confidence": "High"
+    },
+    {
+      "name": "Hi Korea",
+      "official_url": "https://www.hikorea.go.kr",
+      "organization": "Korea Immigration Service",
+      "country": "South Korea",
+      "license": "Official website terms / public information",
+      "default_confidence": "High"
+    },
+    {
+      "name": "WorkNet Korea",
+      "official_url": "https://www.work.go.kr",
+      "organization": "Korea Employment Information Service",
+      "country": "South Korea",
+      "license": "Official employment portal terms",
+      "default_confidence": "High"
+    },
+    {
+      "name": "Korea.net",
+      "official_url": "https://www.korea.net",
+      "organization": "Korean Culture and Information Service",
+      "country": "South Korea",
+      "license": "Official website terms / public information",
+      "default_confidence": "Medium"
+    }
+  ]
+}

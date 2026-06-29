@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "source_name": "Korea Immigration Service",
+    "source_url": "https://www.immigration.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Policy summaries; verify with official immigration sources.",
+    "official_source": "Hi Korea",
+    "official_url": "https://www.hikorea.go.kr",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Official"
+  },
+  "visa_type": "F-5",
+  "description": "Permanent residence status for long-term qualified residents.",
+  "eligibility": [
+    "Long-term stay or qualifying contribution",
+    "Income, language, conduct, and residence requirements"
+  ],
+  "documents": [
+    "Passport",
+    "ARC",
+    "Income proof",
+    "Criminal record documents",
+    "Residence proof"
+  ],
+  "processing_time": "Several months",
+  "renewal": "Permanent status, but card updates may be required.",
+  "notes": "Requirements vary by pathway and should be verified with official immigration sources."
+}

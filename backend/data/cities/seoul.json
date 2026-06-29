@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "source_name": "KOSIS / Local Government",
+    "source_url": "https://kosis.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated city profile data for product planning.",
+    "official_source": "KOSIS / Local Government",
+    "official_url": "https://kosis.kr",
+    "license": "Official statistics portal terms",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "city_name": "Seoul",
+  "population": "About 9.4 million",
+  "area": "605 km2",
+  "climate": "Cold dry winters, hot humid summers, distinct spring and autumn.",
+  "average_rent": 750000,
+  "average_food_cost": 420000,
+  "transport_cost": 80000,
+  "top_universities": [
+    "Seoul National University",
+    "Yonsei University",
+    "Korea University"
+  ],
+  "major_industries": [
+    "Technology",
+    "Finance",
+    "Media",
+    "Education",
+    "Healthcare"
+  ],
+  "study_score": 95,
+  "career_score": 96,
+  "living_score": 88,
+  "recommended_for": [
+    "Top universities",
+    "Corporate jobs",
+    "Startups",
+    "Culture"
+  ],
+  "description": "Capital city with the strongest university, startup, corporate, and cultural density."
+}

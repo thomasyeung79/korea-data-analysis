@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "source_name": "Study in Korea",
+    "source_url": "https://www.studyinkorea.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated university profile data; verify tuition and scholarships officially.",
+    "official_source": "Study in Korea",
+    "official_url": "https://www.studyinkorea.go.kr",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "name": "Yonsei University",
+  "city": "Seoul",
+  "ranking": "Top private university",
+  "type": "Private",
+  "website": "https://www.yonsei.ac.kr/en_sc/",
+  "major_strengths": [
+    "Business",
+    "International Studies",
+    "Medicine",
+    "Liberal Arts",
+    "Engineering"
+  ],
+  "tuition": {
+    "undergraduate": 7800000,
+    "graduate": 8500000,
+    "currency": "KRW/year"
+  },
+  "scholarships": [
+    "Merit scholarships",
+    "Need-based scholarships",
+    "International student scholarships"
+  ],
+  "international_students": "Very large international student community",
+  "description": "Major private research university known for international programs and Seoul campus life."
+}

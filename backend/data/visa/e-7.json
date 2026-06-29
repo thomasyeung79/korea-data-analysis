@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "source_name": "Korea Immigration Service",
+    "source_url": "https://www.immigration.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Policy summaries; verify with official immigration sources.",
+    "official_source": "Hi Korea",
+    "official_url": "https://www.hikorea.go.kr",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Official"
+  },
+  "visa_type": "E-7",
+  "description": "Specific activity work visa for skilled roles sponsored by Korean employers.",
+  "eligibility": [
+    "Employer sponsorship",
+    "Role fits eligible occupation category",
+    "Relevant education or experience"
+  ],
+  "documents": [
+    "Employment contract",
+    "Company documents",
+    "Degree or career proof",
+    "Passport"
+  ],
+  "processing_time": "4-10 weeks",
+  "renewal": "Renew with ongoing employment and employer documents.",
+  "notes": "Common skilled work route for tech, engineering, business, and specialist roles."
+}

@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "source_name": "Korea Immigration Service",
+    "source_url": "https://www.immigration.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Policy summaries; verify with official immigration sources.",
+    "official_source": "Hi Korea",
+    "official_url": "https://www.hikorea.go.kr",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Official"
+  },
+  "visa_type": "F-2",
+  "description": "Long-term residence visa, including points-based pathways.",
+  "eligibility": [
+    "Points or qualifying residence pathway",
+    "Income, Korean ability, education, and stay history may matter"
+  ],
+  "documents": [
+    "Passport",
+    "ARC",
+    "Income proof",
+    "Residence history",
+    "Points documents"
+  ],
+  "processing_time": "4-12 weeks",
+  "renewal": "Renew based on continued eligibility.",
+  "notes": "Allows more job mobility than employer-sponsored visas."
+}

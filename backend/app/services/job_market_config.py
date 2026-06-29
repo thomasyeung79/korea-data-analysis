@@ -8,6 +8,8 @@ Salary ranges are directional estimates for foreign hires at Korean companies.
 """
 from typing import Any
 
+from . import data_loader
+
 ROLES = [
     # IT (keep existing)
     "Data Analyst",
@@ -712,6 +714,24 @@ def _role_group(role: str) -> str:
     return "business"
 
 
+def _job_industry_for_role(role: str) -> str:
+    group = _role_group(role)
+    return {
+        "it": "IT",
+        "business": "Business",
+        "education": "Education",
+        "healthcare": "Healthcare",
+        "engineering": "Engineering",
+    }.get(group, "Business")
+
+
+def _recommended_regions_from_kb(role: str) -> list[str]:
+    try:
+        return list(data_loader.load_job(_job_industry_for_role(role))["recommended_regions"])
+    except Exception:
+        return []
+
+
 def _visa_pathway(role: str, experience: str, language: str) -> str:
     group = _role_group(role)
     if _language(language) == "zh":
@@ -787,7 +807,7 @@ def analyze_job_market(role: str, experience: str, korean_level: str, language: 
 
     sal_min, sal_max = SALARY_GRID[role][experience]
     skills = SKILL_REQUIREMENTS.get(role, SKILL_REQUIREMENTS["Backend Developer"])
-    cities = CITIES_BY_ROLE.get(role, CITIES_BY_ROLE["Backend Developer"])
+    cities = CITIES_BY_ROLE.get(role) or _recommended_regions_from_kb(role) or CITIES_BY_ROLE["Backend Developer"]
     competitiveness = COMPETITIVENESS.get(role, COMPETITIVENESS["Backend Developer"])[experience]
     korean_req, korean_gap, visa_info = _localize_job_text(role, experience, korean_level, language)
     comp_label = (

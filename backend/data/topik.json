@@ -1,0 +1,127 @@
+{
+  "metadata": {
+    "source_name": "TOPIK",
+    "source_url": "https://www.topik.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "TOPIK planning guidance; estimated study hours.",
+    "official_source": "TOPIK",
+    "official_url": "https://www.topik.go.kr",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 180,
+    "verification_status": "Official"
+  },
+  "items": [
+    {
+      "topik_level": "TOPIK I - Level 1",
+      "current_level": "Beginner",
+      "target_level": "TOPIK 1",
+      "recommended_study_hours": "80-120 hours",
+      "weekly_study_plan": [
+        "Hangul review and pronunciation",
+        "Basic particles and present tense",
+        "Daily listening practice"
+      ],
+      "suggested_resources": [
+        "TOPIK I vocabulary lists",
+        "Beginner grammar workbook",
+        "Short Korean listening clips"
+      ],
+      "learning_roadmap": [
+        "Read Hangul comfortably",
+        "Build 800 basic words",
+        "Practice simple self-introduction"
+      ]
+    },
+    {
+      "topik_level": "TOPIK I - Level 2",
+      "current_level": "Beginner+",
+      "target_level": "TOPIK 2",
+      "recommended_study_hours": "150-200 hours",
+      "weekly_study_plan": [
+        "Past/future tense review",
+        "Simple reading passages",
+        "Two writing prompts per week"
+      ],
+      "suggested_resources": [
+        "TOPIK I past papers",
+        "Beginner reading book",
+        "Daily diary practice"
+      ],
+      "learning_roadmap": [
+        "Handle daily errands",
+        "Understand simple notices",
+        "Write short practical sentences"
+      ]
+    },
+    {
+      "topik_level": "TOPIK II - Level 3",
+      "current_level": "Lower Intermediate",
+      "target_level": "TOPIK 3",
+      "recommended_study_hours": "300-400 hours",
+      "weekly_study_plan": [
+        "Intermediate grammar",
+        "News headline reading",
+        "Listening shadowing",
+        "One essay outline"
+      ],
+      "suggested_resources": [
+        "TOPIK II grammar book",
+        "Yonsei/Korean university readers",
+        "Past listening tests"
+      ],
+      "learning_roadmap": [
+        "Follow class admin Korean",
+        "Discuss familiar topics",
+        "Write structured paragraphs"
+      ]
+    },
+    {
+      "topik_level": "TOPIK II - Level 4",
+      "current_level": "Intermediate",
+      "target_level": "TOPIK 4",
+      "recommended_study_hours": "500-650 hours",
+      "weekly_study_plan": [
+        "Advanced sentence endings",
+        "Workplace email phrases",
+        "Timed reading sets",
+        "Weekly essay"
+      ],
+      "suggested_resources": [
+        "TOPIK II writing templates",
+        "Korean news explainers",
+        "Conversation tutor sessions"
+      ],
+      "learning_roadmap": [
+        "Handle university tasks",
+        "Join meetings with preparation",
+        "Write practical emails"
+      ]
+    },
+    {
+      "topik_level": "TOPIK II - Level 5+",
+      "current_level": "Upper Intermediate",
+      "target_level": "TOPIK 5+",
+      "recommended_study_hours": "800+ hours",
+      "weekly_study_plan": [
+        "Academic vocabulary",
+        "Opinion essays",
+        "Long-form listening",
+        "Mock exams"
+      ],
+      "suggested_resources": [
+        "TOPIK II advanced writing",
+        "Korean editorials",
+        "Mock test review"
+      ],
+      "learning_roadmap": [
+        "Understand abstract topics",
+        "Write persuasive essays",
+        "Operate in professional Korean contexts"
+      ]
+    }
+  ]
+}

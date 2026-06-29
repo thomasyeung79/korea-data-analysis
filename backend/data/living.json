@@ -1,0 +1,188 @@
+{
+  "metadata": {
+    "source_name": "Korea Compass Legacy Dataset",
+    "source_url": "",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Low",
+    "notes": "Legacy V5 data retained for compatibility; canonical V6 copy lives under korean/.",
+    "official_source": "Korea Compass Legacy Dataset",
+    "official_url": "https://github.com/thomasyeung79/korea-data-analysis",
+    "license": "MIT project content",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 180,
+    "verification_status": "Mock"
+  },
+  "items": [
+    {
+      "scenario": "Restaurant",
+      "useful_expressions": [
+        "메뉴판 주세요.",
+        "이거 하나 주세요.",
+        "계산해 주세요."
+      ],
+      "common_questions": [
+        "추천 메뉴가 뭐예요?",
+        "맵지 않게 해 주실 수 있나요?",
+        "포장 가능해요?"
+      ],
+      "sample_dialogue": [
+        "손님: 이거 하나 주세요.",
+        "직원: 매운맛 괜찮으세요?",
+        "손님: 조금만 맵게 해 주세요."
+      ],
+      "culture_tips": [
+        "Water and side dishes may be self-service.",
+        "Some restaurants expect one order per person."
+      ]
+    },
+    {
+      "scenario": "Convenience Store",
+      "useful_expressions": [
+        "봉투 필요하세요?",
+        "교통카드 충전해 주세요.",
+        "영수증 주세요."
+      ],
+      "common_questions": [
+        "이거 데워 주실 수 있나요?",
+        "택배 보낼 수 있나요?",
+        "카드 결제 되나요?"
+      ],
+      "sample_dialogue": [
+        "손님: 이거 데워 주실 수 있나요?",
+        "직원: 네, 전자레인지에 데워드릴게요.",
+        "손님: 감사합니다."
+      ],
+      "culture_tips": [
+        "Convenience stores often handle parcels, transport card charging, and simple meals."
+      ]
+    },
+    {
+      "scenario": "Hospital",
+      "useful_expressions": [
+        "진료 예약을 하고 싶습니다.",
+        "어디가 아프세요?",
+        "보험 적용되나요?"
+      ],
+      "common_questions": [
+        "여권으로 접수할 수 있나요?",
+        "영어 가능한 의사 선생님 계신가요?",
+        "진단서를 받을 수 있나요?"
+      ],
+      "sample_dialogue": [
+        "환자: 진료 예약을 하고 싶습니다.",
+        "직원: 어떤 증상이 있으세요?",
+        "환자: 목이 아프고 열이 납니다."
+      ],
+      "culture_tips": [
+        "Bring ID, insurance details, and any previous prescriptions if possible."
+      ]
+    },
+    {
+      "scenario": "Pharmacy",
+      "useful_expressions": [
+        "감기약 주세요.",
+        "하루에 몇 번 먹어야 하나요?",
+        "부작용이 있나요?"
+      ],
+      "common_questions": [
+        "처방전이 필요해요?",
+        "식후에 먹나요?",
+        "졸릴 수 있나요?"
+      ],
+      "sample_dialogue": [
+        "손님: 감기약 주세요.",
+        "약사: 열도 있으세요?",
+        "손님: 네, 조금 있습니다."
+      ],
+      "culture_tips": [
+        "Pharmacists often explain dosage quickly. Ask them to repeat if needed."
+      ]
+    },
+    {
+      "scenario": "Bank",
+      "useful_expressions": [
+        "계좌를 개설하고 싶습니다.",
+        "외국인등록증이 필요하나요?",
+        "체크카드를 만들고 싶습니다."
+      ],
+      "common_questions": [
+        "수수료가 있나요?",
+        "인터넷뱅킹 신청할 수 있나요?",
+        "해외 송금이 가능한가요?"
+      ],
+      "sample_dialogue": [
+        "고객: 계좌를 개설하고 싶습니다.",
+        "직원: 외국인등록증 있으신가요?",
+        "고객: 네, 여기 있습니다."
+      ],
+      "culture_tips": [
+        "Many banking services become easier after receiving an Alien Registration Card."
+      ]
+    },
+    {
+      "scenario": "Apartment",
+      "useful_expressions": [
+        "보증금이 얼마인가요?",
+        "관리비가 포함되어 있나요?",
+        "계약 기간은 얼마나 되나요?"
+      ],
+      "common_questions": [
+        "반려동물 가능해요?",
+        "역에서 얼마나 걸려요?",
+        "옵션이 포함되어 있나요?"
+      ],
+      "sample_dialogue": [
+        "세입자: 관리비가 포함되어 있나요?",
+        "중개인: 아니요, 별도입니다.",
+        "세입자: 한 달 평균 얼마인가요?"
+      ],
+      "culture_tips": [
+        "Check deposit, maintenance fees, contract length, and move-out conditions carefully."
+      ]
+    },
+    {
+      "scenario": "Subway",
+      "useful_expressions": [
+        "이 역에서 갈아타야 하나요?",
+        "몇 번 출구로 나가야 하나요?",
+        "교통카드는 어디에서 충전하나요?"
+      ],
+      "common_questions": [
+        "막차가 몇 시예요?",
+        "급행열차인가요?",
+        "이 방향이 맞나요?"
+      ],
+      "sample_dialogue": [
+        "승객: 홍대입구역은 어디에서 갈아타나요?",
+        "직원: 2호선으로 갈아타시면 됩니다.",
+        "승객: 감사합니다."
+      ],
+      "culture_tips": [
+        "Stand on the correct side of escalators according to local flow and give seats to priority passengers."
+      ]
+    },
+    {
+      "scenario": "Taxi",
+      "useful_expressions": [
+        "이 주소로 가 주세요.",
+        "카드 결제 가능해요?",
+        "여기서 내려 주세요."
+      ],
+      "common_questions": [
+        "얼마나 걸릴까요?",
+        "고속도로로 가나요?",
+        "영수증 받을 수 있나요?"
+      ],
+      "sample_dialogue": [
+        "승객: 이 주소로 가 주세요.",
+        "기사: 네, 출발하겠습니다.",
+        "승객: 카드 결제 가능하죠?"
+      ],
+      "culture_tips": [
+        "Having the Korean address ready on your phone helps avoid confusion."
+      ]
+    }
+  ]
+}

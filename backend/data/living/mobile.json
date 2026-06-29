@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "source_name": "Korea local services / NHI / transit providers",
+    "source_url": "",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated living guidance and cost data.",
+    "official_source": "Korea.net / Local Government",
+    "official_url": "https://www.korea.net",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "module": "mobile",
+  "summary": "Mobile plans usually require identity verification and may be easier after ARC issuance.",
+  "typical_costs": {
+    "budget_plan": 30000,
+    "standard_plan": 55000,
+    "premium_plan": 80000
+  },
+  "tips": [
+    "Compare prepaid and postpaid plans",
+    "Check contract length",
+    "Verify foreigner registration requirements"
+  ]
+}

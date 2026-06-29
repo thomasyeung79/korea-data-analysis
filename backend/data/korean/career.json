@@ -1,0 +1,229 @@
+{
+  "metadata": {
+    "source_name": "TOPIK / Korea Compass scenario dataset",
+    "source_url": "https://www.topik.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Scenario-based Korean support content; not official curriculum.",
+    "official_source": "TOPIK / Korea Compass Korean Learning Dataset",
+    "official_url": "https://www.topik.go.kr",
+    "license": "Official website terms / educational sample content",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 180,
+    "verification_status": "Verified"
+  },
+  "items": [
+    {
+      "scenario": "Interview",
+      "useful_expressions": [
+        "자기소개를 드리겠습니다.",
+        "제 강점은 문제 해결 능력입니다.",
+        "입사 후 빠르게 적응하겠습니다."
+      ],
+      "interview_tips": [
+        "Prepare concise STAR examples.",
+        "Use polite but confident endings.",
+        "Connect your experience to the role."
+      ],
+      "business_vocabulary": [
+        {
+          "korean": "면접",
+          "meaning": "interview",
+          "romanization": "myeonjeop"
+        },
+        {
+          "korean": "강점",
+          "meaning": "strength",
+          "romanization": "gangjeom"
+        },
+        {
+          "korean": "적응",
+          "meaning": "adaptation",
+          "romanization": "jeogeung"
+        }
+      ],
+      "sample_conversation": [
+        "면접관: 자기소개 부탁드립니다.",
+        "지원자: 안녕하세요. 데이터 분석 직무에 지원한 김민수입니다.",
+        "면접관: 이 직무에 관심을 가진 이유는 무엇인가요?"
+      ]
+    },
+    {
+      "scenario": "Resume",
+      "useful_expressions": [
+        "경력기술서를 첨부했습니다.",
+        "프로젝트 경험을 중심으로 작성했습니다.",
+        "관련 자격증을 보유하고 있습니다."
+      ],
+      "interview_tips": [
+        "Keep Korean resume bullets specific.",
+        "Quantify outcomes where possible.",
+        "Match keywords from the job description."
+      ],
+      "business_vocabulary": [
+        {
+          "korean": "이력서",
+          "meaning": "resume",
+          "romanization": "iryeokseo"
+        },
+        {
+          "korean": "경력기술서",
+          "meaning": "career description document",
+          "romanization": "gyeongnyeok gisulseo"
+        },
+        {
+          "korean": "자격증",
+          "meaning": "certificate",
+          "romanization": "jagyeokjeung"
+        }
+      ],
+      "sample_conversation": [
+        "지원자: 이력서와 경력기술서를 제출했습니다.",
+        "담당자: 포트폴리오도 함께 보내 주실 수 있나요?",
+        "지원자: 네, 오늘 중으로 보내드리겠습니다."
+      ]
+    },
+    {
+      "scenario": "Office",
+      "useful_expressions": [
+        "확인 후 공유드리겠습니다.",
+        "회의실을 예약했습니다.",
+        "진행 상황을 업데이트하겠습니다."
+      ],
+      "interview_tips": [
+        "Use concise status updates.",
+        "Confirm ownership and deadlines.",
+        "Avoid overly casual phrasing at first."
+      ],
+      "business_vocabulary": [
+        {
+          "korean": "공유",
+          "meaning": "sharing",
+          "romanization": "gongyu"
+        },
+        {
+          "korean": "진행 상황",
+          "meaning": "progress status",
+          "romanization": "jinhaeng sanghwang"
+        },
+        {
+          "korean": "회의실",
+          "meaning": "meeting room",
+          "romanization": "hoeuisil"
+        }
+      ],
+      "sample_conversation": [
+        "동료: 자료 준비됐나요?",
+        "나: 확인 후 오후에 공유드리겠습니다.",
+        "동료: 감사합니다."
+      ]
+    },
+    {
+      "scenario": "Meeting",
+      "useful_expressions": [
+        "오늘 안건은 세 가지입니다.",
+        "제 의견을 말씀드리겠습니다.",
+        "결론을 정리하겠습니다."
+      ],
+      "interview_tips": [
+        "State agenda and conclusion clearly.",
+        "Use soft disagreement forms.",
+        "Summarize action items."
+      ],
+      "business_vocabulary": [
+        {
+          "korean": "안건",
+          "meaning": "agenda item",
+          "romanization": "angeon"
+        },
+        {
+          "korean": "의견",
+          "meaning": "opinion",
+          "romanization": "uigyeon"
+        },
+        {
+          "korean": "결론",
+          "meaning": "conclusion",
+          "romanization": "gyeollon"
+        }
+      ],
+      "sample_conversation": [
+        "팀장: 의견 있으신가요?",
+        "나: 네, 제 의견을 말씀드리겠습니다.",
+        "팀장: 좋습니다. 다음 안건으로 넘어가겠습니다."
+      ]
+    },
+    {
+      "scenario": "Email",
+      "useful_expressions": [
+        "확인 부탁드립니다.",
+        "첨부파일을 확인해 주세요.",
+        "답변 기다리겠습니다."
+      ],
+      "interview_tips": [
+        "Use clear subject lines.",
+        "Place requests near the top.",
+        "End with a polite closing."
+      ],
+      "business_vocabulary": [
+        {
+          "korean": "첨부파일",
+          "meaning": "attachment",
+          "romanization": "cheombu pail"
+        },
+        {
+          "korean": "확인",
+          "meaning": "confirmation / checking",
+          "romanization": "hwagin"
+        },
+        {
+          "korean": "답변",
+          "meaning": "reply",
+          "romanization": "dapbyeon"
+        }
+      ],
+      "sample_conversation": [
+        "나: 자료를 이메일로 보내드렸습니다.",
+        "상대방: 네, 확인 후 답변드리겠습니다.",
+        "나: 감사합니다."
+      ]
+    },
+    {
+      "scenario": "Business Phone",
+      "useful_expressions": [
+        "지금 통화 가능하신가요?",
+        "담당자분 연결 부탁드립니다.",
+        "메시지를 남겨도 될까요?"
+      ],
+      "interview_tips": [
+        "Speak slowly and confirm names.",
+        "Repeat numbers and times.",
+        "Prepare opening and closing phrases."
+      ],
+      "business_vocabulary": [
+        {
+          "korean": "통화",
+          "meaning": "phone call",
+          "romanization": "tonghwa"
+        },
+        {
+          "korean": "담당자",
+          "meaning": "person in charge",
+          "romanization": "damdangja"
+        },
+        {
+          "korean": "연결",
+          "meaning": "connection / transfer",
+          "romanization": "yeongyeol"
+        }
+      ],
+      "sample_conversation": [
+        "나: 안녕하세요. 담당자분 연결 부탁드립니다.",
+        "직원: 어떤 일로 연락 주셨나요?",
+        "나: 채용 관련 문의입니다."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "source_name": "Korea local services / NHI / transit providers",
+    "source_url": "",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated living guidance and cost data.",
+    "official_source": "Korea.net / Local Government",
+    "official_url": "https://www.korea.net",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "module": "transport",
+  "summary": "Public transport is extensive in major cities, especially Seoul and Busan.",
+  "typical_costs": {
+    "subway_base": 1500,
+    "bus_base": 1500,
+    "monthly_commute_estimate": 70000
+  },
+  "tips": [
+    "Use T-money or mobile transit card",
+    "Check last train times",
+    "Use transfer discounts"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "source_name": "KOSIS / Local Government",
+    "source_url": "https://kosis.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated city profile data for product planning.",
+    "official_source": "KOSIS / Local Government",
+    "official_url": "https://kosis.kr",
+    "license": "Official statistics portal terms",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "city_name": "Incheon",
+  "population": "About 3.0 million",
+  "area": "1065 km2",
+  "climate": "Similar to Seoul with slightly stronger coastal influence.",
+  "average_rent": 520000,
+  "average_food_cost": 350000,
+  "transport_cost": 75000,
+  "top_universities": [
+    "Inha University",
+    "Incheon National University"
+  ],
+  "major_industries": [
+    "Logistics",
+    "Airport services",
+    "Biotech",
+    "Manufacturing",
+    "International business"
+  ],
+  "study_score": 76,
+  "career_score": 80,
+  "living_score": 82,
+  "recommended_for": [
+    "International access",
+    "Logistics",
+    "Business",
+    "Seoul proximity"
+  ],
+  "description": "International gateway city near Seoul with airport, logistics, and global business links."
+}

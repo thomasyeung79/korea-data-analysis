@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "source_name": "KOSIS / Local Government",
+    "source_url": "https://kosis.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated city profile data for product planning.",
+    "official_source": "KOSIS / Local Government",
+    "official_url": "https://kosis.kr",
+    "license": "Official statistics portal terms",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "city_name": "Busan",
+  "population": "About 3.3 million",
+  "area": "770 km2",
+  "climate": "Milder winters than Seoul, humid summers, coastal winds.",
+  "average_rent": 550000,
+  "average_food_cost": 360000,
+  "transport_cost": 70000,
+  "top_universities": [
+    "Pusan National University",
+    "Dong-A University",
+    "Kyungsung University"
+  ],
+  "major_industries": [
+    "Logistics",
+    "Tourism",
+    "Marine",
+    "Manufacturing",
+    "Healthcare"
+  ],
+  "study_score": 82,
+  "career_score": 76,
+  "living_score": 90,
+  "recommended_for": [
+    "Coastal living",
+    "Logistics",
+    "Tourism",
+    "Lifestyle balance"
+  ],
+  "description": "Major port city with beaches, logistics, tourism, and a more relaxed lifestyle."
+}

@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "source_name": "KOSIS / Local Government",
+    "source_url": "https://kosis.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated city profile data for product planning.",
+    "official_source": "KOSIS / Local Government",
+    "official_url": "https://kosis.kr",
+    "license": "Official statistics portal terms",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "city_name": "Gwangju",
+  "population": "About 1.4 million",
+  "area": "501 km2",
+  "climate": "Milder southern climate with hot summers and cool winters.",
+  "average_rent": 450000,
+  "average_food_cost": 320000,
+  "transport_cost": 60000,
+  "top_universities": [
+    "Chonnam National University",
+    "Gwangju Institute of Science and Technology"
+  ],
+  "major_industries": [
+    "Culture",
+    "Arts",
+    "Education",
+    "Automotive suppliers"
+  ],
+  "study_score": 72,
+  "career_score": 62,
+  "living_score": 83,
+  "recommended_for": [
+    "Culture",
+    "Food",
+    "Affordable living",
+    "Arts"
+  ],
+  "description": "Cultural city known for arts, democratic history, food, and comparatively affordable living."
+}

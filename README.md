@@ -1,14 +1,40 @@
-# Korea Study & Career Decision Agent
+# Korea Compass
 
-> *Should I study, work, or live in Korea?*
+> Your AI Guide to Study, Work & Life in South Korea
 
-A practical decision assistant for international students and job seekers considering Korea. Estimate study costs, analyse job markets, catch up on visa/news updates, and receive personalised AI decision reports.
+Korea Compass is a full-stack information and planning app for international students and job seekers who are considering South Korea. It helps users explore Korea, create a reusable profile, estimate study and living costs, analyze career outlook, compare Korean cities, get scene-based Korean language support, track news and visa policy, and generate an exportable AI Korea Life Plan.
+
+Version 1.0 packages the Explore, Study, Work, Live, Korean Learning, AI planning, Knowledge Base, Source Registry, and Official Data Integration Foundation work into a portfolio-ready release.
+
+## Project Docs
+
+* [Release Notes](RELEASE_NOTES.md)
+* [Portfolio Summary](PORTFOLIO_SUMMARY.md)
+* [Demo Script](DEMO_SCRIPT.md)
+* [Deployment Guide](DEPLOYMENT.md)
+* [Project Health](PROJECT_HEALTH.md)
 
 ## Screenshots
 
-### Home — 4-Step Demo Flow
+### Home — Korea Compass Workflow
 
-![V2 Home](docs/screenshots/01-home.png)
+![Home](docs/screenshots/01-home.png)
+
+### Explore Korea
+
+![Explore Korea](docs/screenshots/10-explore-korea.png)
+
+### Cities
+
+![Cities](docs/screenshots/11-explore-cities.png)
+
+### Cost of Living
+
+![Cost of Living](docs/screenshots/12-cost-of-living.png)
+
+### Korean Learning Support
+
+![Korean Learning Support](docs/screenshots/13-korean-learning.png)
 
 ### Study Cost Calculator
 
@@ -18,67 +44,111 @@ A practical decision assistant for international students and job seekers consid
 
 ![Job Market](docs/screenshots/07-job-market.png)
 
-### AI Decision Report
+### AI Korea Life Plan
 
-![Decision Report](docs/screenshots/08-decision-report.png)
+![AI Korea Life Plan](docs/screenshots/08-decision-report.png)
 
 ### News & Policy
 
 ![News & Policy](docs/screenshots/09-news-policy.png)
 
-## Modules
+## Features
 
-### 📚 Study Cost Calculator *(V2 · New)*
+### Explore Korea
 
-Estimate monthly and annual costs for studying in Korea. Select your city, school type, housing, and lifestyle to get a detailed cost breakdown with interactive Plotly charts and AI-generated explanations.
+Explore Korea turns the product from a planning-only tool into a broader Korea information platform. It includes:
 
-| Input | Options |
-|-------|---------|
-| City | Seoul, Busan, Daejeon, Daegu, Other |
-| School Type | Language School, Undergraduate, Graduate School |
-| Housing | Dormitory, Shared Apartment, Studio Apartment |
-| Lifestyle | Budget, Standard, Premium |
+* Overview: country introduction, population, area, capital, currency, time zone, language, and climate
+* Cities: Seoul, Busan, Incheon, Daegu, Daejeon, Gwangju, and Jeju
+* Culture: etiquette, honorifics, food culture, festivals, school culture, and workplace culture
+* History: a compact timeline from the Three Kingdoms to Modern Korea
+* Cost of Living: city-switchable rent, food, transport, mobile, utilities, and entertainment estimates
+* Quick Facts: emergency numbers, visa types, voltage, internet, public transport, healthcare, and banking
 
-**Output:** Monthly cost, annual cost, breakdown pie chart, monthly vs annual bar chart, AI summary, CSV export, history persistence.
+### Profile Center
 
-### 💻 Career & Job Market Analyzer *(V2 · New)*
+Create one reusable profile across three planning areas:
 
-Analyse salary ranges, role-specific skill requirements, recommended cities, and visa pathways for technology, business, education, healthcare, and engineering roles in Korea. Get a personalised 3-month preparation plan based on your experience and Korean language level.
+| Area | Captured data |
+|---|---|
+| Study Profile | nationality, age, education level, target study level, target major, Korean level, English level, annual budget, preferred city |
+| Career Profile | target role, work experience, skills, language level, target industry, visa goal |
+| Living Profile | lifestyle, housing preference, monthly budget, preferred city, transport preference, community preference |
 
-| Input | Options |
-|-------|---------|
-| Role | 17 roles across IT, Business, Education, Medical, and Engineering |
-| Experience | Student, 0-2 years, 3-5 years |
-| Korean Level | None, TOPIK 3, TOPIK 4, TOPIK 5+ |
+### Korean Learning Support
 
-**Output:** Salary range bar chart, skills matrix, language gap analysis, competitiveness score, visa pathway, 3-month action plan, CSV export.
+This module focuses on real-life Korean for studying, working and living in South Korea. It is not a standalone language course or vocabulary memorization app. Instead, it provides scenario-based support for tasks users already need to perform.
 
-### 📰 News & Policy *(V2 · New)*
+Supported areas:
 
-Search recent Korea-related news and policy developments across Study, Work, Visa, Economy, and Technology categories. Get AI-generated trend summaries and practical action suggestions based on curated mock news data.
+* Study Korean: classroom, professor, library, dormitory, campus, presentation
+* Career Korean: interview, resume, office, meeting, email, business phone
+* Living Korean: restaurant, convenience store, hospital, pharmacy, bank, apartment, subway, taxi
+* TOPIK Planner: level targets, study hours, weekly plan, resources, and roadmap
+* AI Korean Helper: rule-based expression explanation, natural rewrite, translation, grammar notes, and culture notes
 
-| Input | Options |
-|-------|---------|
-| Keyword | Free text search |
-| Category | Study, Work, Visa, Economy, Technology, All |
-| Time Range | Last 7 days, Last 30 days, Last 90 days |
+### Study Cost Calculator
 
-**Output:** Category distribution chart, relevance score chart, result cards with impact analysis, AI trend summary, action suggestions, TXT export.
+Estimate monthly and annual study costs in Korea across tuition, housing, food, transportation, insurance, and miscellaneous expenses. Includes Plotly charts, bilingual AI-style explanations, CSV/TXT export, and history support.
 
-### 🧭 AI Decision Report *(V2 · New)*
+### Career & Job Market Analyzer
 
-Combine study cost and job market analysis into a personalised decision report. Assess financial fit, career fit, language requirements, and visa pathways — with a 3-month action plan.
+Analyze salary ranges, role-specific skill matrices, recommended cities, Korean language requirements, competitiveness, visa pathways, and 3-month preparation plans for technology, business, education, healthcare, and engineering roles.
 
-**Output:** Overall recommendation card, budget gap chart, risk profile bar chart, cost breakdown, salary info, 3-month action plan, TXT/Markdown/JSON export.
+### City Recommendation Score
+
+Rank Korean cities using a combined Study + Career + Living profile. Each city receives:
+
+* total_score
+* study_score
+* career_score
+* living_score
+* cost_score
+* language_fit_score
+* lifestyle_score
+* recommendation_reason
+
+Supported cities include Seoul, Busan, Incheon, Daejeon, Daegu, Gwangju, and Other.
+
+### AI Korea Life Plan
+
+Generate a combined Korea planning report with:
+
+* overall recommendation
+* best city
+* study path
+* career path
+* living plan
+* annual study cost estimate
+* monthly living cost estimate
+* budget gap
+* language, career, and living risks
+* visa pathway
+* 3-month, 6-month, and 12-month action plans
+* Markdown, TXT, and JSON exports
+
+### News & Policy
+
+Search curated Korea-related news and policy updates across Study, Work, Visa, Economy, and Technology categories. Includes relevance scoring, category charts, trend summaries, and action suggestions.
 
 ## Demo Flow
 
-The home page guides you through 4 steps:
+Explore Korea
+↓
 
-1. **📚 Calculate Study Cost** — Enter city, school, housing, and lifestyle → see pie chart, bar chart, and AI summary
-2. **💻 Analyze Career Market** — Select role, experience, and Korean level → see salary range, skills matrix, and preparation plan
-3. **🧭 Generate Decision Report** — Combine cost + career data → see recommendation card, risk chart, and 3-month action plan
-4. **📰 Check News & Policy** — Search by keyword and category → see relevance-ranked results with charts and trend summary
+Study Planning
+↓
+
+Career Planning
+↓
+
+Living Guide
+↓
+
+Korean Learning
+↓
+
+AI Korea Life Plan
 
 ## Data Provenance
 
@@ -99,6 +169,7 @@ Data used in this project is derived from publicly available sources, including:
 * Cost estimates are directional estimates based on typical student lifestyles.
 * Salary ranges are approximate market observations and may vary by company, role, experience, and language proficiency.
 * Policy summaries may become outdated as regulations change.
+* City recommendation scores are MVP planning heuristics, not official rankings.
 
 ### Update Cadence
 
@@ -113,8 +184,8 @@ This project does not provide legal, immigration, financial, or professional adv
 ## Internationalization
 
 * English and Simplified Chinese UI support.
-* Chinese mode translates user-facing labels, options, result cards, role-specific skill matrices, recommended city labels, and chart labels where practical.
-* AI-generated report content follows the selected UI language for study cost explanations, career preparation plans, decision reports, and news/policy summaries.
+* Chinese mode translates user-facing labels, options, result cards, role-specific skill matrices, recommended city labels, charts, and report text where practical.
+* AI-generated and template-based report content follows the selected UI language.
 * Internal API and database values remain stable English identifiers for compatibility.
 * Source URLs, filenames, API paths, code identifiers, and technical terms remain unchanged where appropriate.
 * Detailed i18n design: [docs/KOREA_ANALYSIS_I18N.md](docs/KOREA_ANALYSIS_I18N.md)
@@ -127,14 +198,134 @@ flowchart LR
     S --> C["API client"]
     C --> F["FastAPI backend"]
     F --> D[("SQLite")]
-    F --> E["AI report engine"]
-    E --> O["OpenAI provider"]
-    E --> L["Local fallback provider"]
+    F --> P["Profile service"]
+    F --> R["City recommendation engine"]
+    F --> L["Korea Life Plan service"]
+    F --> A["AI report layer"]
+    A --> O["OpenAI provider"]
+    A --> T["Local fallback provider"]
 ```
 
 Detailed architecture and request flows are documented in [docs/architecture.md](docs/architecture.md).
 
-The original V2 implementation plan is kept as [KOREA_ANALYSIS_V2.md](KOREA_ANALYSIS_V2.md) for traceability; its core V2 modules are implemented in the current release.
+## Knowledge Base Architecture
+
+Korea Compass V6 centralizes product content under `backend/data/`.
+
+```mermaid
+flowchart TD
+    F["Streamlit Frontend"] --> A["FastAPI API"]
+    A --> S["Services"]
+    S --> L["data_loader.py"]
+    L --> K["Knowledge Base"]
+    K --> J["JSON files"]
+    J --> P["Future PostgreSQL migration"]
+```
+
+Knowledge Base domains:
+
+* `cities/` — city profiles, cost signals, scores, industries, recommendations
+* `universities/` — school profiles, strengths, tuition, scholarships
+* `majors/` — major categories and career paths
+* `visa/` — visa descriptions, eligibility, documents, renewal notes
+* `living/` — housing, bank, hospital, transport, mobile, internet, tax, insurance
+* `jobs/` — industry salary, language, skills, and region signals
+* `culture/` — culture, history, quick facts
+* `korean/` — scenario Korean support data
+
+This keeps the current lightweight JSON workflow while making future migration to PostgreSQL straightforward.
+
+## Knowledge Base Quality
+
+Korea Compass V8 upgrades the Knowledge Base from static JSON content into a traceable, source-aware foundation for future official data integration.
+
+### Data Provenance
+
+Every Knowledge Base JSON file includes a `metadata` object with:
+
+* `source_name`
+* `source_url`
+* `last_updated`
+* `language`
+* `version`
+* `confidence_level`
+* `notes`
+* `official_source`
+* `official_url`
+* `license`
+* `retrieved_at`
+* `cache_expiry_days`
+* `verification_status`
+
+### Metadata
+
+Metadata is stored at the top level of every JSON file. List-based datasets use:
+
+```json
+{
+  "metadata": {},
+  "items": []
+}
+```
+
+Object-based datasets use:
+
+```json
+{
+  "metadata": {},
+  "city_name": "Seoul"
+}
+```
+
+### Versioning
+
+Current Knowledge Base content uses version `1.0`. The version is tracked per JSON file so future updates can be rolled out gradually by domain.
+
+### Content Quality
+
+Each file has a confidence level:
+
+* `High` — official or highly reliable source
+* `Medium` — derived from public sources and directional estimates
+* `Low` — mock, compatibility, or early-stage content
+
+### Knowledge Validation
+
+The validation endpoint checks metadata completeness:
+
+```text
+GET /api/v1/kb/status
+```
+
+It returns total files, valid files, missing metadata, missing sources, missing update dates, directory counts, update distribution, confidence distribution, source coverage, official coverage, and mock coverage.
+
+### Official Data Strategy
+
+Current architecture:
+
+```text
+Knowledge Base
+```
+
+Future data architecture:
+
+```text
+Official APIs
+Government Open Data
+Periodic Updates
+```
+
+The V8 Source Registry centralizes official source metadata so Korea Compass can later replace static JSON records with scheduled official API synchronization while preserving the same service and API layer.
+
+### Knowledge Base Quality Report
+
+The Knowledge Base Status view and `/api/v1/kb/status` endpoint report:
+
+* Source Coverage — file counts by `Official`, `Verified`, `Community`, and `Mock` status
+* Metadata Coverage — percentage of JSON files with complete required metadata
+* Official Coverage — percentage of files mapped to official source status
+* Mock Coverage — percentage of files still marked as mock compatibility data
+* Confidence Distribution — content confidence levels across the Knowledge Base
 
 ## Tech Stack
 
@@ -148,20 +339,54 @@ The original V2 implementation plan is kept as [KOREA_ANALYSIS_V2.md](KOREA_ANAL
 | Database | SQLite |
 | HTTP client | Requests |
 | AI provider | OpenAI-compatible SDK |
-| Local AI fallback | Rule-based structured report engine |
+| Local AI fallback | Deterministic template/rule engine |
 | Tests | Pytest and FastAPI TestClient |
+
+## API Overview
+
+| Area | Endpoint |
+|---|---|
+| Health | `GET /api/v1/health` |
+| Explore Korea | `GET /api/v1/explore/overview` |
+| Explore Korea | `GET /api/v1/explore/cities` |
+| Explore Korea | `GET /api/v1/explore/culture` |
+| Explore Korea | `GET /api/v1/explore/history` |
+| Explore Korea | `GET /api/v1/explore/living-cost` |
+| Explore Korea | `GET /api/v1/explore/quick-facts` |
+| Korean Learning | `GET /api/v1/korean-learning/study` |
+| Korean Learning | `GET /api/v1/korean-learning/career` |
+| Korean Learning | `GET /api/v1/korean-learning/living` |
+| Korean Learning | `GET /api/v1/korean-learning/topik` |
+| Korean Learning | `POST /api/v1/korean-learning/explain` |
+| Knowledge Base | `GET /api/v1/kb/status` |
+| Sources | `GET /api/v1/sources` |
+| Sources | `GET /api/v1/sources/{name}` |
+| Sources | `GET /api/v1/sources/status` |
+| Profiles | `POST /api/v1/profiles` |
+| Profiles | `GET /api/v1/profiles` |
+| Profiles | `GET /api/v1/profiles/latest` |
+| Study Cost | `POST /api/v1/study-cost/calculate` |
+| Career Market | `POST /api/v1/job-market/analyze` |
+| City Recommendation | `POST /api/v1/city-recommendations` |
+| AI Korea Life Plan | `POST /api/v1/korea-life-plan/generate` |
+| AI Korea Life Plan | `GET /api/v1/korea-life-plan/history` |
+| News & Policy | `POST /api/v1/news-policy/search` |
 
 ## Portfolio Highlights
 
-- FastAPI REST API with modular routers (8 routers, 12+ endpoints)
-- Streamlit multi-page product interface focused on 4 V2 modules
-- Plotly charts: pie, bar, radar, horizontal bar, donut, grouped bar
-- CSV, TXT, Markdown, and JSON export across all modules
-- Structured decision report engine with 4-dimensional risk scoring
-- Dual AI provider architecture (OpenAI + deterministic fallback)
-- 15+ curated news items with relevance scoring and category filtering
-- SQLite persistence with SQLAlchemy (7 tables, model-first design)
-- 86 automated endpoint and business-rule tests
+* Study / Career / Living three-in-one planning workflow
+* Explore Korea country information platform
+* Korean Learning Support for real study, work, and living scenarios
+* Shared Knowledge Base data layer for Explore, Study, Work, Live, and Korean Learning
+* Profile Center for reusable planning data
+* City recommendation scoring engine
+* AI Korea Life Plan with 3, 6, and 12-month action plans
+* FastAPI + Streamlit full-stack architecture
+* SQLite persistence with SQLAlchemy models
+* Plotly visualizations
+* Exportable Markdown, TXT, JSON, and CSV reports
+* Local fallback mode for Streamlit-only deployment demos
+* Automated endpoint and business-rule tests
 
 ## Project Structure
 
@@ -171,46 +396,49 @@ south_korea_perception_analysis/
 |-- api_client.py
 |-- ui_style.py
 |-- requirements.txt
-|-- study_cost_config.py              # compatibility shim
-|-- job_market_config.py              # compatibility shim
-|-- decision_report_config.py         # compatibility shim
-|-- news_policy_config.py             # compatibility shim
 |-- pages/
+|   |-- 0_Profile_Center.py
+|   |-- 1_Explore_Korea.py
 |   |-- 1_Study_Cost.py
 |   |-- 2_Job_Market.py
 |   |-- 3_Decision_Report.py
-|   `-- 4_News_Policy.py
-|-- legacy/
-|   `-- v1_archive/
-|       |-- 1_Comparison_Lab.py
-|       |-- 2_Perception_Survey.py
-|       `-- 3_Community_Insights.py
+|   |-- 4_News_Policy.py
+|   |-- 5_City_Recommendation.py
+|   |-- 6_AI_Korea_Life_Plan.py
+|   |-- 7_Korean_Learning.py
+|   `-- 8_Knowledge_Base_Status.py
 |-- backend/
-|   |-- requirements.txt
+|   |-- data/
+|   |   |-- cities/
+|   |   |-- universities/
+|   |   |-- majors/
+|   |   |-- visa/
+|   |   |-- living/
+|   |   |-- jobs/
+|   |   |-- culture/
+|   |   `-- korean/
 |   `-- app/
 |       |-- main.py
-|       |-- config.py
-|       |-- database.py
 |       |-- models.py
 |       |-- schemas.py
-|       |-- ai/
-|       |   |-- report_engine.py
-|       |   |-- openai_provider.py
-|       |   `-- local_provider.py
-|       |-- services/
-|       |   |-- study_cost_config.py
-|       |   |-- job_market_config.py
-|       |   |-- decision_report_config.py
-|       |   `-- news_policy_config.py
-|       `-- routers/
-|           |-- health.py
-|           |-- countries.py
-|           |-- surveys.py
-|           `-- ai.py
+|       |-- routers/
+|       |   |-- explore.py
+|       |   |-- korean_learning.py
+|       |   |-- kb.py
+|       |   |-- profiles.py
+|       |   |-- city_recommendations.py
+|       |   `-- korea_life_plan.py
+|       `-- services/
+|           |-- data_loader.py
+|           |-- explore_service.py
+|           |-- korean_learning.py
+|           |-- profile_service.py
+|           |-- city_recommendation.py
+|           |-- korea_life_plan.py
+|           |-- study_cost_config.py
+|           |-- job_market_config.py
+|           `-- news_policy_config.py
 |-- tests/
-|   |-- test_surveys.py
-|   |-- test_ai_report.py
-|   `-- test_community_summary.py
 |-- docs/
 |   |-- architecture.md
 |   `-- screenshots/
@@ -219,107 +447,36 @@ south_korea_perception_analysis/
 
 ## Running Locally
 
-Korea Analysis can run in two modes. For full-stack local development, run both the FastAPI backend and Streamlit frontend. If the backend is unavailable, the Streamlit app falls back to the same local Python service functions so the main product features still work.
+Korea Compass has a Streamlit frontend and a FastAPI backend.
 
-### 1. Clone and enter the project
-
-```bash
-git clone <repository-url>
-cd south_korea_perception_analysis
-```
-
-### 2. Install backend dependencies
+Start the backend:
 
 ```bash
 cd backend
-pip install -r requirements.txt
-```
-
-### 3. Start the API
-
-```bash
 uvicorn app.main:app --reload --port 8000
 ```
 
-The API is available at `http://localhost:8000` and the interactive documentation at `http://localhost:8000/docs`.
-
-### 4. Start the frontend
-
-In a second terminal:
+Start the frontend from the project root:
 
 ```bash
-cd south_korea_perception_analysis
-pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The frontend is available at `http://localhost:8501`.
-
-If you want to test the REST API layer, start the FastAPI backend first and then restart Streamlit.
+The frontend reads `API_BASE_URL` from the environment and defaults to `http://localhost:8000`.
 
 ## Streamlit Cloud Note
 
-Streamlit Cloud runs the Streamlit frontend only. Korea Analysis includes a local service fallback so Study Cost, Career & Job Market, AI Decision Report, and News & Policy can run on Streamlit Cloud without a separate FastAPI process.
-
-For a production-style cloud deployment with a separate backend:
-
-1. Deploy the FastAPI backend separately.
-2. Add the backend URL to Streamlit Secrets:
-
-```toml
-API_BASE_URL = "https://your-fastapi-backend.example.com"
-```
-
-The app also supports the same value as an environment variable named `API_BASE_URL`. When `API_BASE_URL` is not set or the backend is unreachable, Streamlit uses the local fallback mode.
-
-### Optional OpenAI configuration
-
-The product works without a paid API.
-
-```powershell
-$env:OPENAI_API_KEY="your-key"
-```
-
-When the key is missing or the provider fails, Korea Analysis automatically uses the local structured-report provider.
-
-## API Overview
-
-| Method | Endpoint | Purpose |
-|---|---|---|
-| `GET` | `/api/v1/health` | Service health |
-| `GET` | `/api/v1/countries` | Country benchmark scores |
-| `GET` | `/api/v1/countries/{country}` | Scores for one country |
-| `POST` | `/api/v1/perception-surveys` | Submit a survey |
-| `GET` | `/api/v1/perception-surveys` | Latest survey submissions |
-| `GET` | `/api/v1/perception-surveys/stats` | Survey statistics and Korea baseline |
-| `GET` | `/api/v1/perception-surveys/community-summary` | Community analytics |
-| `POST` | `/api/v1/study-cost/calculate` | Calculate study costs with breakdown |
-| `GET` | `/api/v1/study-cost/history` | Study cost calculation history |
-| `POST` | `/api/v1/job-market/analyze` | Analyse career and job market data for a role |
-| `GET` | `/api/v1/job-market/history` | Job market analysis history |
-| `POST` | `/api/v1/decision-report/generate` | Generate personalised decision report |
-| `GET` | `/api/v1/decision-report/history` | Decision report history |
-| `POST` | `/api/v1/news-policy/search` | Search news and policy items |
-| `GET` | `/api/v1/news-policy/history` | News search history |
-| `POST` | `/api/v1/ai/perception-report` | Structured perception report |
-
-## Testing
-
-```bash
-pytest
-```
-
-The test suite covers survey validation, survey endpoints, community aggregation, profile classification, local AI fallback, and AI report responses.
+Streamlit Cloud runs the frontend only. To use the FastAPI-backed API online, deploy the backend separately and set `API_BASE_URL` in Streamlit Secrets. The app also includes local fallback behavior so the demo can remain usable when no backend is configured.
 
 ## Roadmap
 
-- Improve responsive mobile layouts
-- Add exportable PDF perception reports
-- Add configurable benchmark datasets and data provenance
-- Add deployment configuration and automated CI checks
-- Add accessibility and internationalization review
+* Improve real data refresh workflow and source citations.
+* Add richer living guide content for housing, transport, healthcare, and community onboarding.
+* Add more city-level cost and job-market signals.
+* Add optional deployed backend configuration for public demos.
+* Add screenshots for the new V3 Profile Center, City Recommendation, and AI Korea Life Plan pages.
 
 ## License
 
 This project is licensed under the MIT License.
-See the [LICENSE](LICENSE) file for details.
+See the LICENSE file for details.

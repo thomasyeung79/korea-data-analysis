@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "source_name": "Korea Immigration Service",
+    "source_url": "https://www.immigration.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Policy summaries; verify with official immigration sources.",
+    "official_source": "Hi Korea",
+    "official_url": "https://www.hikorea.go.kr",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Official"
+  },
+  "visa_type": "D-4",
+  "description": "General training visa, commonly used for Korean language programs.",
+  "eligibility": [
+    "Admission to eligible language institute or training program",
+    "Proof of funds"
+  ],
+  "documents": [
+    "Passport",
+    "Admission certificate",
+    "Financial proof",
+    "Training plan"
+  ],
+  "processing_time": "2-6 weeks",
+  "renewal": "Renew with attendance and enrollment documents.",
+  "notes": "Often used before degree study or job search preparation."
+}

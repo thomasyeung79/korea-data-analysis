@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "source_name": "Korea.net / Cultural sources",
+    "source_url": "https://www.korea.net",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "General cultural and historical summaries.",
+    "official_source": "Korea.net",
+    "official_url": "https://www.korea.net",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 180,
+    "verification_status": "Verified"
+  },
+  "events": [
+    {
+      "period": "Three Kingdoms",
+      "timeframe": "57 BCE - 668 CE",
+      "summary": "Goguryeo, Baekje, and Silla shaped early Korean state formation and culture."
+    },
+    {
+      "period": "Goryeo",
+      "timeframe": "918 - 1392",
+      "summary": "Goryeo unified much of the peninsula and gave Korea its English name."
+    },
+    {
+      "period": "Joseon",
+      "timeframe": "1392 - 1897",
+      "summary": "A long Confucian dynasty that shaped language, institutions, scholarship, and social norms."
+    },
+    {
+      "period": "Japanese Occupation",
+      "timeframe": "1910 - 1945",
+      "summary": "Colonial rule deeply affected Korean politics, identity, economy, and historical memory."
+    },
+    {
+      "period": "Republic of Korea",
+      "timeframe": "1948 - present",
+      "summary": "South Korea was established after liberation and division of the peninsula."
+    },
+    {
+      "period": "Modern Korea",
+      "timeframe": "1960s - today",
+      "summary": "Rapid industrialisation, democratisation, technology growth, and global cultural influence."
+    }
+  ]
+}

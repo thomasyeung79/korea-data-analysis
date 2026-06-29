@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "source_name": "Korea.net / Cultural sources",
+    "source_url": "https://www.korea.net",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "General cultural and historical summaries.",
+    "official_source": "Korea.net",
+    "official_url": "https://www.korea.net",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 180,
+    "verification_status": "Verified"
+  },
+  "facts": [
+    {
+      "title": "Emergency Numbers",
+      "value": "112 / 119 / 1339",
+      "detail": "Police 112, fire or ambulance 119, medical information 1339."
+    },
+    {
+      "title": "Visa Types",
+      "value": "D-2, D-4, D-10, E-7, F-2",
+      "detail": "Common study, training, job-seeking, employment, and residence categories."
+    },
+    {
+      "title": "Voltage",
+      "value": "220V / 60Hz",
+      "detail": "Type C and Type F plugs are commonly used."
+    },
+    {
+      "title": "Internet",
+      "value": "Very fast",
+      "detail": "High broadband and mobile coverage in most urban areas."
+    },
+    {
+      "title": "Public Transport",
+      "value": "Subway, bus, rail",
+      "detail": "T-money and mobile transit cards are widely used."
+    },
+    {
+      "title": "Healthcare",
+      "value": "National Health Insurance",
+      "detail": "International students and residents may be required to enroll."
+    },
+    {
+      "title": "Banking",
+      "value": "ARC often required",
+      "detail": "Many banking and phone services become easier after Alien Registration Card issuance."
+    }
+  ]
+}

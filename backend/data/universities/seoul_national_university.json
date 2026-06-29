@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "source_name": "Study in Korea",
+    "source_url": "https://www.studyinkorea.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated university profile data; verify tuition and scholarships officially.",
+    "official_source": "Study in Korea",
+    "official_url": "https://www.studyinkorea.go.kr",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "name": "Seoul National University",
+  "city": "Seoul",
+  "ranking": "Top national university",
+  "type": "National",
+  "website": "https://en.snu.ac.kr",
+  "major_strengths": [
+    "Engineering",
+    "Business",
+    "Social Sciences",
+    "Medicine",
+    "Natural Sciences"
+  ],
+  "tuition": {
+    "undergraduate": 6500000,
+    "graduate": 7200000,
+    "currency": "KRW/year"
+  },
+  "scholarships": [
+    "Global Korea Scholarship",
+    "University scholarships",
+    "Department scholarships"
+  ],
+  "international_students": "Large international student community",
+  "description": "Korea's flagship national university with broad academic strengths and strong research profile."
+}

@@ -2,12 +2,28 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .database import engine, Base
-from .routers import ai, health, countries, surveys, study_cost, job_market, decision_report, news_policy
+from .routers import (
+    ai,
+    city_recommendations,
+    countries,
+    decision_report,
+    explore,
+    health,
+    job_market,
+    kb,
+    korean_learning,
+    korea_life_plan,
+    news_policy,
+    profiles,
+    sources,
+    study_cost,
+    surveys,
+)
 
 app = FastAPI(
-    title="Korea Analysis System",
-    description="A practical decision assistant for students and job seekers considering Korea.",
-    version="2.2.0",
+    title="Korea Compass",
+    description="Your AI Guide to Study, Work & Life in South Korea.",
+    version="8.0.0",
 )
 
 app.add_middleware(
@@ -71,3 +87,10 @@ app.include_router(study_cost.router)
 app.include_router(job_market.router)
 app.include_router(decision_report.router)
 app.include_router(news_policy.router)
+app.include_router(profiles.router)
+app.include_router(city_recommendations.router)
+app.include_router(korea_life_plan.router)
+app.include_router(explore.router)
+app.include_router(korean_learning.router)
+app.include_router(kb.router)
+app.include_router(sources.router)

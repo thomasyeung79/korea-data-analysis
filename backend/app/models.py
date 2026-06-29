@@ -91,3 +91,26 @@ class PerceptionSurvey(Base):
     quality_of_life_score = Column(Integer, nullable=False)
     comment = Column(Text, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+
+class UserProfile(Base):
+    __tablename__ = "user_profiles"
+
+    id = Column(Integer, primary_key=True, index=True)
+    display_name = Column(String(80), nullable=False, default="Compass User")
+    study_profile_json = Column(Text, nullable=False)
+    career_profile_json = Column(Text, nullable=False)
+    living_profile_json = Column(Text, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+
+class KoreaLifePlanHistory(Base):
+    __tablename__ = "korea_life_plan_history"
+
+    id = Column(Integer, primary_key=True, index=True)
+    display_name = Column(String(80), nullable=False, default="Compass User")
+    overall_recommendation = Column(String(80), nullable=False)
+    best_city = Column(String(50), nullable=False)
+    budget_gap = Column(Float, nullable=False)
+    plan_json = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)

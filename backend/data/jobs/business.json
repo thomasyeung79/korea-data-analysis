@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "source_name": "JobKorea / Wanted / public salary reports",
+    "source_url": "",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated job market data for portfolio planning.",
+    "official_source": "WorkNet Korea",
+    "official_url": "https://www.work.go.kr",
+    "license": "Official employment portal terms",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "industry": "Business",
+  "average_salary": {
+    "entry": 32000000,
+    "mid": 52000000,
+    "currency": "KRW/year"
+  },
+  "required_language": "TOPIK 4+ recommended for stakeholder communication.",
+  "popular_skills": [
+    "Excel",
+    "SQL basics",
+    "Market research",
+    "Operations",
+    "Stakeholder communication"
+  ],
+  "recommended_regions": [
+    "Seoul",
+    "Incheon",
+    "Busan",
+    "Daegu"
+  ]
+}

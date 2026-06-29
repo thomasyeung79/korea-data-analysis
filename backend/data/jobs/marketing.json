@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "source_name": "JobKorea / Wanted / public salary reports",
+    "source_url": "",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated job market data for portfolio planning.",
+    "official_source": "WorkNet Korea",
+    "official_url": "https://www.work.go.kr",
+    "license": "Official employment portal terms",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "industry": "Marketing",
+  "average_salary": {
+    "entry": 30000000,
+    "mid": 50000000,
+    "currency": "KRW/year"
+  },
+  "required_language": "TOPIK 4+ recommended for Korean consumer insight and copy.",
+  "popular_skills": [
+    "Naver Ads",
+    "Kakao Ads",
+    "Social media",
+    "Content strategy",
+    "Google Analytics"
+  ],
+  "recommended_regions": [
+    "Seoul",
+    "Incheon",
+    "Busan",
+    "Daegu"
+  ]
+}

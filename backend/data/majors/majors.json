@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "source_name": "Study in Korea",
+    "source_url": "https://www.studyinkorea.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated major and career mapping.",
+    "official_source": "Study in Korea",
+    "official_url": "https://www.studyinkorea.go.kr",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "items": [
+    {
+      "name": "Computer Science",
+      "category": "STEM",
+      "career_paths": [
+        "Backend Developer",
+        "AI Engineer",
+        "Data Analyst"
+      ],
+      "recommended_cities": [
+        "Seoul",
+        "Daejeon",
+        "Busan"
+      ]
+    },
+    {
+      "name": "Business Administration",
+      "category": "Business",
+      "career_paths": [
+        "Business Analyst",
+        "Marketing Specialist",
+        "Product Manager"
+      ],
+      "recommended_cities": [
+        "Seoul",
+        "Incheon",
+        "Busan"
+      ]
+    },
+    {
+      "name": "Korean Studies",
+      "category": "Humanities",
+      "career_paths": [
+        "Education",
+        "Translation",
+        "Research"
+      ],
+      "recommended_cities": [
+        "Seoul",
+        "Gwangju",
+        "Daegu"
+      ]
+    },
+    {
+      "name": "Mechanical Engineering",
+      "category": "Engineering",
+      "career_paths": [
+        "Mechanical Engineer",
+        "Manufacturing Engineer"
+      ],
+      "recommended_cities": [
+        "Daejeon",
+        "Busan",
+        "Daegu"
+      ]
+    }
+  ]
+}

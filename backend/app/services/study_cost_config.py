@@ -10,6 +10,7 @@ Source: Directional estimates based on published data from:
   - Numbeo cost of living
   - Various university international office pages
 """
+from . import data_loader
 
 # ── City base costs (monthly living, excluding tuition/housing) ──
 # These cover food + transport + insurance + misc baseline
@@ -77,7 +78,7 @@ BREAKDOWN_RATIOS = {
 def calculate_costs(city: str, school_type: str, housing_type: str, lifestyle: str) -> dict:
     """Calculate monthly and annual costs with breakdown."""
     if city not in CITY_BASE_COST:
-        city = "Other"
+        city = _add_city_from_knowledge_base(city)
     if school_type not in TUITION_ANNUAL:
         school_type = "Undergraduate"
     if housing_type not in HOUSING_COST.get(city, HOUSING_COST["Other"]):
@@ -122,6 +123,26 @@ def calculate_costs(city: str, school_type: str, housing_type: str, lifestyle: s
         "breakdown": breakdown,
         "currency": "KRW",
     }
+
+
+def _add_city_from_knowledge_base(city: str) -> str:
+    try:
+        record = data_loader.load_city(city)
+    except Exception:
+        return "Other"
+
+    city_name = record["city_name"]
+    if city_name not in CITY_BASE_COST:
+        insurance = 90000
+        misc = 180000
+        CITY_BASE_COST[city_name] = int(record["average_food_cost"] + record["transport_cost"] + insurance + misc)
+        rent = int(record["average_rent"])
+        HOUSING_COST[city_name] = {
+            "Dormitory": max(200000, int(rent * 0.55)),
+            "Shared Apartment": rent,
+            "Studio Apartment": int(rent * 1.25),
+        }
+    return city_name
 
 
 ZH_LABELS = {

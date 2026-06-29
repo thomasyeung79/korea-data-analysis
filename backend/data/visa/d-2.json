@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "source_name": "Korea Immigration Service",
+    "source_url": "https://www.immigration.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Policy summaries; verify with official immigration sources.",
+    "official_source": "Hi Korea",
+    "official_url": "https://www.hikorea.go.kr",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Official"
+  },
+  "visa_type": "D-2",
+  "description": "Student visa for degree programs at Korean universities.",
+  "eligibility": [
+    "Admission to an eligible Korean university",
+    "Proof of tuition and living funds"
+  ],
+  "documents": [
+    "Passport",
+    "Certificate of admission",
+    "Financial proof",
+    "Application form"
+  ],
+  "processing_time": "2-6 weeks",
+  "renewal": "Renew through immigration before expiry with enrollment proof.",
+  "notes": "Common route for undergraduate and graduate study."
+}

@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "source_name": "Study in Korea",
+    "source_url": "https://www.studyinkorea.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated university profile data; verify tuition and scholarships officially.",
+    "official_source": "Study in Korea",
+    "official_url": "https://www.studyinkorea.go.kr",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "name": "Pusan National University",
+  "city": "Busan",
+  "ranking": "Major national university",
+  "type": "National",
+  "website": "https://www.pusan.ac.kr/eng/",
+  "major_strengths": [
+    "Engineering",
+    "Marine Studies",
+    "Business",
+    "Humanities",
+    "Medicine"
+  ],
+  "tuition": {
+    "undergraduate": 5200000,
+    "graduate": 6200000,
+    "currency": "KRW/year"
+  },
+  "scholarships": [
+    "University scholarships",
+    "Government scholarships",
+    "Department scholarships"
+  ],
+  "international_students": "Active international student support",
+  "description": "Large national university in Busan with strong regional and industry connections."
+}

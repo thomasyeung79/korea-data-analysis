@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "source_name": "KOSIS / Local Government",
+    "source_url": "https://kosis.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated city profile data for product planning.",
+    "official_source": "KOSIS / Local Government",
+    "official_url": "https://kosis.kr",
+    "license": "Official statistics portal terms",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "city_name": "Daegu",
+  "population": "About 2.4 million",
+  "area": "883 km2",
+  "climate": "Hot summers, cold winters, inland basin climate.",
+  "average_rent": 480000,
+  "average_food_cost": 330000,
+  "transport_cost": 65000,
+  "top_universities": [
+    "Kyungpook National University",
+    "Keimyung University"
+  ],
+  "major_industries": [
+    "Healthcare",
+    "Textiles",
+    "Machinery",
+    "Education"
+  ],
+  "study_score": 74,
+  "career_score": 68,
+  "living_score": 80,
+  "recommended_for": [
+    "Lower cost",
+    "Healthcare",
+    "Regional universities",
+    "Everyday living"
+  ],
+  "description": "Inland metropolitan city with lower living costs, universities, textiles, and healthcare."
+}

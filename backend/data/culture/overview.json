@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "source_name": "Korea.net / Cultural sources",
+    "source_url": "https://www.korea.net",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "General cultural and historical summaries.",
+    "official_source": "Korea.net",
+    "official_url": "https://www.korea.net",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 180,
+    "verification_status": "Verified"
+  },
+  "sections": [
+    {
+      "title": "Etiquette",
+      "summary": "Politeness, punctuality, and respect for age or status matter in many interactions.",
+      "tips": [
+        "Use both hands when giving or receiving important items.",
+        "Bow lightly in formal greetings."
+      ]
+    },
+    {
+      "title": "Honorifics",
+      "summary": "Korean language uses honorific levels that reflect social distance, age, and context.",
+      "tips": [
+        "Use polite speech until invited otherwise.",
+        "Job titles can be used instead of first names."
+      ]
+    },
+    {
+      "title": "Food Culture",
+      "summary": "Meals are often shared, with side dishes, soups, rice, grilled meats, stews, and cafe culture.",
+      "tips": [
+        "Wait briefly for seniors to start in formal meals.",
+        "Sharing dishes is common."
+      ]
+    },
+    {
+      "title": "Festivals",
+      "summary": "Important holidays include Seollal, Chuseok, Buddha's Birthday, and many local cultural festivals.",
+      "tips": [
+        "Travel can be crowded during Chuseok and Seollal.",
+        "University festivals are major student events."
+      ]
+    },
+    {
+      "title": "School Culture",
+      "summary": "Education is structured and competitive, with strong emphasis on attendance, exams, and group projects.",
+      "tips": [
+        "Check attendance rules carefully.",
+        "Build relationships with classmates early."
+      ]
+    },
+    {
+      "title": "Workplace Culture",
+      "summary": "Workplaces vary by company, but hierarchy, communication style, and team fit remain important.",
+      "tips": [
+        "Clarify expectations in writing.",
+        "Korean ability improves trust and workplace range."
+      ]
+    }
+  ]
+}

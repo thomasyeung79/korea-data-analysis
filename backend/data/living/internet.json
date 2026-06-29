@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "source_name": "Korea local services / NHI / transit providers",
+    "source_url": "",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated living guidance and cost data.",
+    "official_source": "Korea.net / Local Government",
+    "official_url": "https://www.korea.net",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "module": "internet",
+  "summary": "Korea has fast home broadband and strong mobile internet coverage.",
+  "typical_costs": {
+    "home_internet": 30000,
+    "installation_fee": 30000
+  },
+  "tips": [
+    "Check building availability",
+    "Ask about router rental",
+    "Confirm cancellation fees"
+  ]
+}

@@ -1,6 +1,6 @@
 """
-Zero-dependency API client for Korea Analysis System.
-Simple `requests` wrapper — no auth, no session state needed in V0.1.
+Zero-dependency API client for Korea Compass.
+Simple `requests` wrapper with local fallback for Streamlit-only demos.
 """
 from typing import Any, Optional
 import os
@@ -72,8 +72,8 @@ class APIClient:
         if method == "GET" and path == "/api/v1/health":
             return {
                 "status": "ok",
-                "version": "2.0.0",
-                "service": "Korea Study & Career Decision Agent",
+                "version": "6.0.0",
+                "service": "Korea Compass",
                 "mode": "streamlit-local",
             }
 
@@ -159,6 +159,97 @@ class APIClient:
                 "action_suggestions": generate_action_suggestions(results, keyword, language=language),
                 "result_count": len(serialisable),
             }
+
+        if method == "GET" and path.startswith("/api/v1/explore/"):
+            from backend.app.services import explore_service
+
+            explore_routes = {
+                "/api/v1/explore/overview": explore_service.get_overview,
+                "/api/v1/explore/cities": explore_service.get_cities,
+                "/api/v1/explore/culture": explore_service.get_culture,
+                "/api/v1/explore/history": explore_service.get_history,
+                "/api/v1/explore/living-cost": explore_service.get_living_cost,
+                "/api/v1/explore/quick-facts": explore_service.get_quick_facts,
+            }
+            if path in explore_routes:
+                return explore_routes[path]()
+
+        if method == "GET" and path.startswith("/api/v1/korean-learning/"):
+            from backend.app.services import korean_learning
+
+            learning_routes = {
+                "/api/v1/korean-learning/study": korean_learning.get_study_scenarios,
+                "/api/v1/korean-learning/career": korean_learning.get_career_scenarios,
+                "/api/v1/korean-learning/living": korean_learning.get_living_scenarios,
+                "/api/v1/korean-learning/topik": korean_learning.get_topik_planners,
+            }
+            if path in learning_routes:
+                return learning_routes[path]()
+
+        if method == "POST" and path == "/api/v1/korean-learning/explain":
+            from backend.app.services.korean_learning import explain_expression
+
+            return explain_expression(
+                expression=payload.get("expression", ""),
+                action=payload.get("action", "explain_expression"),
+                context=payload.get("context"),
+            )
+
+        if method == "GET" and path == "/api/v1/sources":
+            from backend.app.services.source_registry import list_sources
+
+            return list_sources()
+
+        if method == "GET" and path == "/api/v1/sources/status":
+            from backend.app.services.source_registry import validate_source
+
+            return validate_source()
+
+        if method == "GET" and path.startswith("/api/v1/sources/"):
+            from backend.app.services.source_registry import get_source
+
+            return get_source(path.rsplit("/", 1)[-1].replace("%20", " "))
+
+        if method == "GET" and path == "/api/v1/kb/status":
+            from backend.app.services.data_loader import validate_metadata
+
+            return validate_metadata()
+
+        if method == "POST" and path == "/api/v1/profiles":
+            import datetime as _dt
+
+            return {
+                "id": 0,
+                "display_name": payload.get("display_name") or "Compass User",
+                "study_profile": payload.get("study_profile") or {},
+                "career_profile": payload.get("career_profile") or {},
+                "living_profile": payload.get("living_profile") or {},
+                "created_at": _dt.datetime.utcnow().isoformat(),
+            }
+
+        if method == "GET" and path == "/api/v1/profiles/latest":
+            return None
+
+        if method == "POST" and path == "/api/v1/city-recommendations":
+            from backend.app.services.city_recommendation import recommend_cities
+
+            return recommend_cities(
+                payload.get("study_profile") or {},
+                payload.get("career_profile") or {},
+                payload.get("living_profile") or {},
+                language="zh" if payload.get("language") == "zh" else "en",
+            )
+
+        if method == "POST" and path == "/api/v1/korea-life-plan/generate":
+            from backend.app.services.korea_life_plan import generate_korea_life_plan
+
+            return generate_korea_life_plan(
+                display_name=payload.get("display_name") or "Compass User",
+                study_profile=payload.get("study_profile") or {},
+                career_profile=payload.get("career_profile") or {},
+                living_profile=payload.get("living_profile") or {},
+                language="zh" if payload.get("language") == "zh" else "en",
+            )
 
         if method == "GET" and path.endswith("/history"):
             return []
@@ -319,3 +410,71 @@ class APIClient:
 
     def get_study_cost_history(self, limit: int = 10) -> list[dict]:
         return self._request("GET", "/api/v1/study-cost/history", params={"limit": limit})
+
+    # ── Explore Korea ──
+
+    def get_explore_overview(self) -> dict:
+        return self._request("GET", "/api/v1/explore/overview")
+
+    def get_explore_cities(self) -> list[dict]:
+        return self._request("GET", "/api/v1/explore/cities")
+
+    def get_explore_culture(self) -> list[dict]:
+        return self._request("GET", "/api/v1/explore/culture")
+
+    def get_explore_history(self) -> list[dict]:
+        return self._request("GET", "/api/v1/explore/history")
+
+    def get_explore_living_cost(self) -> list[dict]:
+        return self._request("GET", "/api/v1/explore/living-cost")
+
+    def get_explore_quick_facts(self) -> list[dict]:
+        return self._request("GET", "/api/v1/explore/quick-facts")
+
+    # ── Korean Learning Support ──
+
+    def get_korean_learning_study(self) -> list[dict]:
+        return self._request("GET", "/api/v1/korean-learning/study")
+
+    def get_korean_learning_career(self) -> list[dict]:
+        return self._request("GET", "/api/v1/korean-learning/career")
+
+    def get_korean_learning_living(self) -> list[dict]:
+        return self._request("GET", "/api/v1/korean-learning/living")
+
+    def get_korean_learning_topik(self) -> list[dict]:
+        return self._request("GET", "/api/v1/korean-learning/topik")
+
+    def explain_korean_expression(self, payload: dict) -> dict:
+        return self._request("POST", "/api/v1/korean-learning/explain", json=payload)
+
+    # ── Knowledge Base ──
+
+    def get_kb_status(self) -> dict:
+        return self._request("GET", "/api/v1/kb/status")
+
+    def list_sources(self) -> list[dict]:
+        return self._request("GET", "/api/v1/sources")
+
+    def get_source(self, name: str) -> dict:
+        return self._request("GET", f"/api/v1/sources/{name}")
+
+    def get_sources_status(self) -> dict:
+        return self._request("GET", "/api/v1/sources/status")
+
+    # ── Korea Compass V3 ──
+
+    def create_profile(self, payload: dict) -> dict:
+        return self._request("POST", "/api/v1/profiles", json=payload)
+
+    def get_latest_profile(self) -> Optional[dict]:
+        return self._request("GET", "/api/v1/profiles/latest")
+
+    def recommend_cities(self, payload: dict) -> dict:
+        return self._request("POST", "/api/v1/city-recommendations", json=payload)
+
+    def generate_korea_life_plan(self, payload: dict) -> dict:
+        return self._request("POST", "/api/v1/korea-life-plan/generate", json=payload)
+
+    def get_korea_life_plan_history(self, limit: int = 10) -> list[dict]:
+        return self._request("GET", "/api/v1/korea-life-plan/history", params={"limit": limit})

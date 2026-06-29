@@ -260,7 +260,7 @@ if "decision_report" in st.session_state:
     col_e1, col_e2, col_e3 = st.columns(3)
     with col_e1:
         summary_txt = (
-            f"Korea Decision Report\n"
+            f"AI Korea Life Plan\n"
             f"Goal: {goal}\n"
             f"Recommendation: {r['recommendation_label']}\n"
             f"City: {target_city}\n"
@@ -275,12 +275,12 @@ if "decision_report" in st.session_state:
         st.download_button(
             t("decision.download_summary"),
             data=summary_txt,
-            file_name="korea_decision_report.txt",
+            file_name="korea_life_plan.txt",
             use_container_width=True,
         )
     with col_e2:
         md_out = (
-            f"# Korea Decision Report\n\n"
+            f"# AI Korea Life Plan\n\n"
             f"**Goal:** {goal}  \n"
             f"**Recommendation:** {r['recommendation_label']}  \n"
             f"**Target City:** {target_city}  \n\n"
@@ -299,7 +299,7 @@ if "decision_report" in st.session_state:
         st.download_button(
             t("decision.download_md"),
             data=md_out,
-            file_name="korea_decision_report.md",
+            file_name="korea_life_plan.md",
             mime="text/markdown",
             use_container_width=True,
         )
@@ -308,7 +308,7 @@ if "decision_report" in st.session_state:
         st.download_button(
             t("decision.download_json"),
             data=json_str,
-            file_name="korea_decision_report.json",
+            file_name="korea_life_plan.json",
             use_container_width=True,
         )
 

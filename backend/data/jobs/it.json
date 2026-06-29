@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "source_name": "JobKorea / Wanted / public salary reports",
+    "source_url": "",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated job market data for portfolio planning.",
+    "official_source": "WorkNet Korea",
+    "official_url": "https://www.work.go.kr",
+    "license": "Official employment portal terms",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "industry": "IT",
+  "average_salary": {
+    "entry": 36000000,
+    "mid": 60000000,
+    "currency": "KRW/year"
+  },
+  "required_language": "TOPIK 3-4 helpful; English-friendly teams exist.",
+  "popular_skills": [
+    "Python",
+    "Java",
+    "SQL",
+    "Cloud",
+    "Docker",
+    "Data analysis"
+  ],
+  "recommended_regions": [
+    "Seoul",
+    "Seongnam (Pangyo)",
+    "Daejeon",
+    "Busan"
+  ]
+}

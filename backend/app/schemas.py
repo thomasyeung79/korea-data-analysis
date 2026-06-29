@@ -266,3 +266,336 @@ class AIReportResponse(BaseModel):
     community_average_comparison: str
     interpretation_profile: str
     suggested_next_question: str
+
+
+class StudyProfile(BaseModel):
+    nationality: str = "International"
+    age: int = Field(22, ge=15, le=70)
+    current_education_level: str = "Undergraduate"
+    target_study_level: str = "Graduate School"
+    target_major: str = "Computer Science"
+    korean_level: str = "None"
+    english_level: str = "Intermediate"
+    annual_budget: float = Field(20_000_000, ge=0)
+    preferred_city: str = "Seoul"
+
+
+class CareerProfile(BaseModel):
+    target_role: str = "Data Analyst"
+    work_experience: str = "0-2 years"
+    technical_skills: List[str] = Field(default_factory=list)
+    korean_level: str = "None"
+    english_level: str = "Intermediate"
+    target_industry: str = "Technology"
+    visa_goal: str = "E-7"
+
+
+class LivingProfile(BaseModel):
+    lifestyle: str = "Standard"
+    housing_preference: str = "Shared Apartment"
+    monthly_budget: float = Field(1_500_000, ge=0)
+    preferred_city: str = "Seoul"
+    transport_preference: str = "Public Transit"
+    community_preference: str = "International Community"
+
+
+class UserProfileCreate(BaseModel):
+    display_name: Optional[str] = "Compass User"
+    study_profile: StudyProfile = Field(default_factory=StudyProfile)
+    career_profile: CareerProfile = Field(default_factory=CareerProfile)
+    living_profile: LivingProfile = Field(default_factory=LivingProfile)
+
+
+class UserProfileResponse(UserProfileCreate):
+    id: int
+    created_at: Optional[str] = None
+
+
+class CityScore(BaseModel):
+    city: str
+    total_score: float
+    study_score: float
+    career_score: float
+    living_score: float
+    cost_score: float
+    language_fit_score: float
+    lifestyle_score: float
+    recommendation_reason: str
+
+
+class CityRecommendationRequest(BaseModel):
+    study_profile: StudyProfile = Field(default_factory=StudyProfile)
+    career_profile: CareerProfile = Field(default_factory=CareerProfile)
+    living_profile: LivingProfile = Field(default_factory=LivingProfile)
+    language: str = "en"
+
+
+class CityRecommendationResponse(BaseModel):
+    best_city: str
+    rankings: List[CityScore]
+
+
+class KoreaLifePlanRequest(UserProfileCreate):
+    language: str = "en"
+
+
+class KoreaLifePlanResponse(BaseModel):
+    overall_recommendation: str
+    best_city: str
+    study_path: str
+    career_path: str
+    living_plan: str
+    estimated_annual_study_cost: float
+    estimated_monthly_living_cost: float
+    budget_gap: float
+    language_risk: str
+    career_risk: str
+    living_risk: str
+    visa_pathway: str
+    action_plan_3_month: str
+    action_plan_6_month: str
+    action_plan_12_month: str
+    city_recommendations: List[CityScore]
+    markdown_report: str
+
+
+class KoreaLifePlanHistoryResponse(BaseModel):
+    id: int
+    display_name: str
+    overall_recommendation: str
+    best_city: str
+    budget_gap: float
+    plan_json: Optional[str] = None
+    created_at: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+
+class ExploreOverview(BaseModel):
+    country_introduction: str
+    population: str
+    area: str
+    capital: str
+    currency: str
+    time_zone: str
+    language: str
+    climate: str
+
+
+class CityInfo(BaseModel):
+    name: str
+    population: str
+    living_cost: str
+    study_score: float
+    career_score: float
+    lifestyle_score: float
+    short_description: str
+    best_for: List[str]
+
+
+class CultureSection(BaseModel):
+    title: str
+    summary: str
+    tips: List[str]
+
+
+class HistoryEvent(BaseModel):
+    period: str
+    timeframe: str
+    summary: str
+
+
+class LivingCost(BaseModel):
+    city: str
+    rent: float
+    food: float
+    transportation: float
+    mobile: float
+    utilities: float
+    entertainment: float
+    currency: str = "KRW"
+
+
+class QuickFact(BaseModel):
+    title: str
+    value: str
+    detail: str
+
+
+class KnowledgeMetadata(BaseModel):
+    source_name: str
+    source_url: str = ""
+    last_updated: str
+    language: str
+    version: str = "1.0"
+    confidence_level: str
+    notes: str = ""
+    official_source: str = ""
+    official_url: str = ""
+    license: str = ""
+    retrieved_at: str = ""
+    cache_expiry_days: int = 90
+    verification_status: str = "Mock"
+
+
+class SourceRegistryEntry(BaseModel):
+    name: str
+    official_url: str
+    organization: str
+    country: str
+    license: str
+    default_confidence: str
+
+
+class SourceRegistryStatus(BaseModel):
+    total_sources: int
+    valid_sources: int
+    missing_name: List[str]
+    missing_official_url: List[str]
+    missing_license: List[str]
+    missing_default_confidence: List[str]
+    source_names: List[str]
+
+
+class VocabularyItem(BaseModel):
+    korean: str
+    meaning: str
+    romanization: Optional[str] = None
+
+
+class StudyScenario(BaseModel):
+    metadata: Optional[KnowledgeMetadata] = None
+    scenario: str
+    situation: str
+    useful_expressions: List[str]
+    example_dialogue: List[str]
+    vocabulary: List[VocabularyItem]
+    ai_explanation: str
+
+
+class CareerScenario(BaseModel):
+    metadata: Optional[KnowledgeMetadata] = None
+    scenario: str
+    useful_expressions: List[str]
+    interview_tips: List[str]
+    business_vocabulary: List[VocabularyItem]
+    sample_conversation: List[str]
+
+
+class LivingScenario(BaseModel):
+    metadata: Optional[KnowledgeMetadata] = None
+    scenario: str
+    useful_expressions: List[str]
+    common_questions: List[str]
+    sample_dialogue: List[str]
+    culture_tips: List[str]
+
+
+class TOPIKPlanner(BaseModel):
+    metadata: Optional[KnowledgeMetadata] = None
+    topik_level: str
+    current_level: str
+    target_level: str
+    recommended_study_hours: str
+    weekly_study_plan: List[str]
+    suggested_resources: List[str]
+    learning_roadmap: List[str]
+
+
+class KoreanHelperRequest(BaseModel):
+    expression: str
+    action: str = "explain_expression"
+    context: Optional[str] = None
+
+
+class ExpressionExplanation(BaseModel):
+    expression: str
+    action: str
+    explanation: str
+    natural_rewrite: str
+    translation: str
+    grammar_notes: List[str]
+    culture_notes: List[str]
+
+
+class KnowledgeBaseCity(BaseModel):
+    metadata: KnowledgeMetadata
+    city_name: str
+    population: str
+    area: str
+    climate: str
+    average_rent: float
+    average_food_cost: float
+    transport_cost: float
+    top_universities: List[str]
+    major_industries: List[str]
+    study_score: float
+    career_score: float
+    living_score: float
+    recommended_for: List[str]
+    description: str
+
+
+class KnowledgeBaseUniversity(BaseModel):
+    metadata: KnowledgeMetadata
+    name: str
+    city: str
+    ranking: str
+    type: str
+    website: str
+    major_strengths: List[str]
+    tuition: Dict[str, object]
+    scholarships: List[str]
+    international_students: str
+    description: str
+
+
+class KnowledgeBaseVisa(BaseModel):
+    metadata: KnowledgeMetadata
+    visa_type: str
+    description: str
+    eligibility: List[str]
+    documents: List[str]
+    processing_time: str
+    renewal: str
+    notes: str
+
+
+class KnowledgeBaseJob(BaseModel):
+    metadata: KnowledgeMetadata
+    industry: str
+    average_salary: Dict[str, object]
+    required_language: str
+    popular_skills: List[str]
+    recommended_regions: List[str]
+
+
+class KnowledgeBaseLiving(BaseModel):
+    metadata: KnowledgeMetadata
+    module: str
+    summary: str
+    typical_costs: Optional[Dict[str, float]] = None
+    typical_requirements: Optional[List[str]] = None
+    checklist: Optional[List[str]] = None
+    tips: Optional[List[str]] = None
+
+
+class KnowledgeBaseStatus(BaseModel):
+    total_files: int
+    valid_files: int
+    missing_source: List[str]
+    missing_last_updated: List[str]
+    missing_metadata: List[str]
+    knowledge_base_version: str
+    metadata_coverage: float
+    directory_counts: Dict[str, int]
+    last_updated_counts: Dict[str, int]
+    confidence_distribution: Dict[str, int]
+    source_coverage: Dict[str, int] = Field(default_factory=dict)
+    source_coverage_ratio: Dict[str, float] = Field(default_factory=dict)
+    official_source_coverage: float = 0.0
+    mock_coverage: float = 0.0
+    missing_official_source: List[str] = Field(default_factory=list)
+    missing_retrieved_at: List[str] = Field(default_factory=list)
+    missing_verification_status: List[str] = Field(default_factory=list)

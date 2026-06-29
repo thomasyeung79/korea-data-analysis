@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "source_name": "Study in Korea",
+    "source_url": "https://www.studyinkorea.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated university profile data; verify tuition and scholarships officially.",
+    "official_source": "Study in Korea",
+    "official_url": "https://www.studyinkorea.go.kr",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "name": "KAIST",
+  "city": "Daejeon",
+  "ranking": "Top science and technology university",
+  "type": "National research university",
+  "website": "https://www.kaist.ac.kr/en/",
+  "major_strengths": [
+    "Computer Science",
+    "AI",
+    "Engineering",
+    "Natural Sciences",
+    "Robotics"
+  ],
+  "tuition": {
+    "undergraduate": 7000000,
+    "graduate": 8000000,
+    "currency": "KRW/year"
+  },
+  "scholarships": [
+    "KAIST scholarships",
+    "Research assistantships",
+    "Government scholarships"
+  ],
+  "international_students": "Strong STEM-focused international cohort",
+  "description": "Research-intensive science and engineering university in Daejeon."
+}

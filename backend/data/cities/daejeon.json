@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "source_name": "KOSIS / Local Government",
+    "source_url": "https://kosis.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated city profile data for product planning.",
+    "official_source": "KOSIS / Local Government",
+    "official_url": "https://kosis.kr",
+    "license": "Official statistics portal terms",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "city_name": "Daejeon",
+  "population": "About 1.4 million",
+  "area": "540 km2",
+  "climate": "Four seasons, inland temperature range, relatively balanced cost profile.",
+  "average_rent": 500000,
+  "average_food_cost": 340000,
+  "transport_cost": 65000,
+  "top_universities": [
+    "KAIST",
+    "Chungnam National University"
+  ],
+  "major_industries": [
+    "Research",
+    "Engineering",
+    "Science",
+    "Government R&D"
+  ],
+  "study_score": 88,
+  "career_score": 84,
+  "living_score": 84,
+  "recommended_for": [
+    "Research",
+    "Engineering",
+    "Science",
+    "Graduate study"
+  ],
+  "description": "Science and research hub with KAIST, government research institutes, and engineering roles."
+}

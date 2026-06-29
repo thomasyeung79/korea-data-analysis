@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "source_name": "Korea Immigration Service",
+    "source_url": "https://www.immigration.go.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Policy summaries; verify with official immigration sources.",
+    "official_source": "Hi Korea",
+    "official_url": "https://www.hikorea.go.kr",
+    "license": "Official website terms / public information",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Official"
+  },
+  "visa_type": "D-10",
+  "description": "Job seeker visa for qualified graduates and professionals seeking work in Korea.",
+  "eligibility": [
+    "Korean degree graduate or eligible professional background",
+    "Job search plan"
+  ],
+  "documents": [
+    "Passport",
+    "Degree or qualification proof",
+    "Job search plan",
+    "Financial proof"
+  ],
+  "processing_time": "2-8 weeks",
+  "renewal": "May be extended depending on eligibility and immigration review.",
+  "notes": "Useful bridge from study to E-7 sponsored employment."
+}

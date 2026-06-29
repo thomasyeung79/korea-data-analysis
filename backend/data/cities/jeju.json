@@ -1,0 +1,43 @@
+{
+  "metadata": {
+    "source_name": "KOSIS / Local Government",
+    "source_url": "https://kosis.kr",
+    "last_updated": "2026-06-29",
+    "language": "en",
+    "version": "1.0",
+    "confidence_level": "Medium",
+    "notes": "Estimated city profile data for product planning.",
+    "official_source": "KOSIS / Local Government",
+    "official_url": "https://kosis.kr",
+    "license": "Official statistics portal terms",
+    "retrieved_at": "2026-06-29",
+    "cache_expiry_days": 90,
+    "verification_status": "Verified"
+  },
+  "city_name": "Jeju",
+  "population": "About 680,000",
+  "area": "1849 km2",
+  "climate": "Mild island climate, windy, humid, and warmer than mainland Korea.",
+  "average_rent": 600000,
+  "average_food_cost": 380000,
+  "transport_cost": 90000,
+  "top_universities": [
+    "Jeju National University"
+  ],
+  "major_industries": [
+    "Tourism",
+    "Agriculture",
+    "Hospitality",
+    "Remote work"
+  ],
+  "study_score": 62,
+  "career_score": 58,
+  "living_score": 92,
+  "recommended_for": [
+    "Nature",
+    "Tourism",
+    "Lifestyle",
+    "Remote work"
+  ],
+  "description": "Island province with natural scenery, tourism, remote-work appeal, and slower pace."
+}
