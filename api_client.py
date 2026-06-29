@@ -240,6 +240,11 @@ class APIClient:
                 language="zh" if payload.get("language") == "zh" else "en",
             )
 
+        if method == "POST" and path == "/api/v1/living/mbti-city-match":
+            from backend.app.services.mbti_city_match import match_mbti_city
+
+            return match_mbti_city(payload)
+
         if method == "POST" and path == "/api/v1/korea-life-plan/generate":
             from backend.app.services.korea_life_plan import generate_korea_life_plan
 
@@ -249,6 +254,9 @@ class APIClient:
                 career_profile=payload.get("career_profile") or {},
                 living_profile=payload.get("living_profile") or {},
                 language="zh" if payload.get("language") == "zh" else "en",
+                city_recommendation=payload.get("city_recommendation"),
+                mbti_city_match=payload.get("mbti_city_match"),
+                topik_goal=payload.get("topik_goal"),
             )
 
         if method == "GET" and path.endswith("/history"):
@@ -472,6 +480,9 @@ class APIClient:
 
     def recommend_cities(self, payload: dict) -> dict:
         return self._request("POST", "/api/v1/city-recommendations", json=payload)
+
+    def match_mbti_city(self, payload: dict) -> dict:
+        return self._request("POST", "/api/v1/living/mbti-city-match", json=payload)
 
     def generate_korea_life_plan(self, payload: dict) -> dict:
         return self._request("POST", "/api/v1/korea-life-plan/generate", json=payload)

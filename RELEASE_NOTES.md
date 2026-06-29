@@ -1,5 +1,29 @@
 # Korea Compass Release Notes
 
+## v1.0.1
+
+UX, i18n, and integrated planning update.
+
+### Changes
+
+* Improved Simplified Chinese UI coverage across the Home page, Explore Korea, Profile Center, City Recommendation, Korean Learning, AI Korea Life Plan, and Knowledge Base Status.
+* Added MBTI City Match inside the Living workflow as a lifestyle preference helper, not a psychological diagnosis tool.
+* Added `POST /api/v1/living/mbti-city-match`.
+* Upgraded AI Korea Life Plan into a more integrated planning engine that can combine Profile Center, Study Cost, Career Analyzer, City Recommendation, MBTI City Match, TOPIK target, and Knowledge Base confidence metadata.
+* Added Data confidence summary to Korea Life Plan output.
+
+### Compatibility
+
+* Existing Korea Life Plan API path remains unchanged.
+* Existing profile, study, career, city, Korean Learning, Knowledge Base, and Source Registry flows remain unchanged.
+* No database schema changes.
+
+### Tests
+
+* Added MBTI City Match API/service tests.
+* Expanded i18n tests for new Chinese labels and option mappings.
+* Expanded Korea Life Plan tests for integrated inputs and missing-data handling.
+
 ## v1.0.0
 
 Portfolio-ready release of Korea Compass: a Study, Work, Live, Korean Learning, and AI planning platform for international users considering South Korea.

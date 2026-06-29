@@ -15,8 +15,9 @@ Korea Compass brings Study, Work, Live, Korean Learning, and AI planning into on
 * Study Cost Calculator with charts and exports.
 * Career & Job Market Analyzer with role-specific skills and preparation plans.
 * City Recommendation scoring engine.
+* MBTI City Match for lifestyle-based Korean city fit.
 * Scenario-based Korean Learning Support.
-* AI Korea Life Plan with 3, 6, and 12-month action plans.
+* Integrated AI Korea Life Plan with profile, study, career, city, MBTI, language, budget, visa, risk, and data confidence signals.
 * Knowledge Base Status dashboard.
 * Source Registry for official data integration readiness.
 * English and Simplified Chinese UI support.
@@ -55,6 +56,8 @@ The Streamlit app is organized as a product workflow: Explore Korea, Profile Cen
 ## AI
 
 The AI layer is designed with provider fallback. It can use an OpenAI-compatible provider when configured, while local deterministic templates keep the app usable without paid APIs.
+
+The AI Korea Life Plan has been upgraded from a standalone report into an integrated planning engine. It combines available inputs from Profile Center, Study Cost, Career Analyzer, City Recommendation, MBTI City Match, TOPIK target, and Knowledge Base confidence metadata. When an input is missing, the report states that it is based on available inputs instead of pretending the dataset is complete.
 
 ## Data Layer
 

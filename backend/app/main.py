@@ -13,6 +13,7 @@ from .routers import (
     kb,
     korean_learning,
     korea_life_plan,
+    living,
     news_policy,
     profiles,
     sources,
@@ -90,6 +91,7 @@ app.include_router(news_policy.router)
 app.include_router(profiles.router)
 app.include_router(city_recommendations.router)
 app.include_router(korea_life_plan.router)
+app.include_router(living.router)
 app.include_router(explore.router)
 app.include_router(korean_learning.router)
 app.include_router(kb.router)

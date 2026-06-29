@@ -68,6 +68,12 @@ def test_korea_life_plan_generate_contains_required_sections():
         "action_plan_12_month",
         "city_recommendations",
         "markdown_report",
+        "mbti_city_fit",
+        "language_learning_plan",
+        "budget_analysis",
+        "risk_summary",
+        "confidence_summary",
+        "based_on_available_inputs",
     ]:
         assert field in data
 
@@ -79,6 +85,60 @@ def test_korea_life_plan_chinese_output_uses_chinese_headings():
     assert "留学路径" in data["markdown_report"]
     assert "职业路径" in data["markdown_report"]
     assert "行动计划" in data["markdown_report"]
+    assert "Data confidence summary" in data["markdown_report"]
+
+
+def test_korea_life_plan_integrates_city_mbti_and_language_inputs():
+    request = payload()
+    request["topik_goal"] = "TOPIK 5+"
+    request["city_recommendation"] = {
+        "best_city": "Daejeon",
+        "rankings": [
+            {
+                "city": "Daejeon",
+                "total_score": 91,
+                "study_score": 90,
+                "career_score": 88,
+                "living_score": 86,
+                "cost_score": 82,
+                "language_fit_score": 74,
+                "lifestyle_score": 80,
+                "recommendation_reason": "Daejeon has strong study and research fit.",
+            }
+        ],
+    }
+    request["mbti_city_match"] = {
+        "best_city": "Jeju",
+        "city_scores": [],
+        "personality_fit_score": 88,
+        "lifestyle_fit_score": 90,
+        "social_fit_score": 78,
+        "career_environment_score": 52,
+        "study_environment_score": 58,
+        "recommendation_reason": "Jeju fits quiet living.",
+        "potential_challenges": ["Lower career density."],
+        "suggested_living_style": "Choose a quiet neighborhood.",
+    }
+
+    response = client.post("/api/v1/korea-life-plan/generate", json=request)
+    assert response.status_code == 200
+    data = response.json()
+
+    assert data["best_city"] == "Daejeon"
+    assert "Jeju" in data["mbti_city_fit"]
+    assert "TOPIK 5+" in data["language_learning_plan"]
+    assert "Data confidence summary" in data["confidence_summary"]
+    assert "City Recommendation" in data["based_on_available_inputs"]
+    assert "MBTI City Match" in data["based_on_available_inputs"]
+
+
+def test_korea_life_plan_handles_missing_integrated_inputs():
+    response = client.post("/api/v1/korea-life-plan/generate", json=payload())
+    assert response.status_code == 200
+    data = response.json()
+
+    assert data["best_city"]
+    assert any("missing" in item.lower() or "inferred" in item.lower() for item in data["based_on_available_inputs"])
 
 
 def test_korea_life_plan_history_created_after_generation():

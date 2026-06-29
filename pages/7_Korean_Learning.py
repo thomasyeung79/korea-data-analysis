@@ -9,7 +9,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from api_client import APIClient
-from locales.i18n import get_language, language_selector, t
+from locales.i18n import get_language, language_selector, t, translate_option
 from ui_style import apply_product_style
 
 st.set_page_config(page_title="Korean Learning Support", page_icon="🗣", layout="wide")
@@ -115,9 +115,9 @@ tab_study, tab_career, tab_living, tab_topik = st.tabs(
 )
 
 with tab_study:
-    selected = st.selectbox(label("Scenario", "场景"), [item["scenario"] for item in study_data], key="study_scenario")
+    selected = st.selectbox(label("Scenario", "场景"), [item["scenario"] for item in study_data], key="study_scenario", format_func=lambda v: translate_option("korean_scenario", v))
     item = next(row for row in study_data if row["scenario"] == selected)
-    scenario_card(item["scenario"], item["situation"])
+    scenario_card(translate_option("korean_scenario", item["scenario"]), item["situation"])
     st.markdown(f"#### {label('Useful Expressions', '实用表达')}")
     for expression in item["useful_expressions"]:
         st.markdown(f"- {expression}")
@@ -130,9 +130,9 @@ with tab_study:
     show_helper(item["useful_expressions"][0], f"Study Korean - {item['scenario']}", "study")
 
 with tab_career:
-    selected = st.selectbox(label("Scenario", "场景"), [item["scenario"] for item in career_data], key="career_scenario")
+    selected = st.selectbox(label("Scenario", "场景"), [item["scenario"] for item in career_data], key="career_scenario", format_func=lambda v: translate_option("korean_scenario", v))
     item = next(row for row in career_data if row["scenario"] == selected)
-    scenario_card(item["scenario"])
+    scenario_card(translate_option("korean_scenario", item["scenario"]))
     st.markdown(f"#### {label('Useful Expressions', '实用表达')}")
     for expression in item["useful_expressions"]:
         st.markdown(f"- {expression}")
@@ -146,9 +146,9 @@ with tab_career:
     show_helper(item["useful_expressions"][0], f"Career Korean - {item['scenario']}", "career")
 
 with tab_living:
-    selected = st.selectbox(label("Scenario", "场景"), [item["scenario"] for item in living_data], key="living_scenario")
+    selected = st.selectbox(label("Scenario", "场景"), [item["scenario"] for item in living_data], key="living_scenario", format_func=lambda v: translate_option("korean_scenario", v))
     item = next(row for row in living_data if row["scenario"] == selected)
-    scenario_card(item["scenario"])
+    scenario_card(translate_option("korean_scenario", item["scenario"]))
     st.markdown(f"#### {label('Useful Expressions', '实用表达')}")
     for expression in item["useful_expressions"]:
         st.markdown(f"- {expression}")

@@ -299,6 +299,55 @@ class LivingProfile(BaseModel):
     community_preference: str = "International Community"
 
 
+class MBTICityMatchRequest(BaseModel):
+    mbti_type: str = "INFJ"
+    social_energy: str = "Medium"
+    lifestyle_preference: str = "Balanced"
+    pace_preference: str = "Moderate"
+    budget_sensitivity: str = "Medium"
+    career_priority: int = Field(5, ge=1, le=10)
+    study_priority: int = Field(5, ge=1, le=10)
+    language: str = "en"
+
+    @field_validator("mbti_type", mode="before")
+    @classmethod
+    def normalize_mbti(cls, value):
+        value = str(value or "INFJ").strip().upper()
+        valid = {
+            "INTJ", "INTP", "ENTJ", "ENTP",
+            "INFJ", "INFP", "ENFJ", "ENFP",
+            "ISTJ", "ISFJ", "ESTJ", "ESFJ",
+            "ISTP", "ISFP", "ESTP", "ESFP",
+        }
+        return value if value in valid else "INFJ"
+
+
+class MBTICityScore(BaseModel):
+    city: str
+    total_score: float
+    personality_fit_score: float
+    lifestyle_fit_score: float
+    social_fit_score: float
+    career_environment_score: float
+    study_environment_score: float
+    recommendation_reason: str
+    potential_challenges: List[str]
+    suggested_living_style: str
+
+
+class MBTICityMatchResult(BaseModel):
+    best_city: str
+    city_scores: List[MBTICityScore]
+    personality_fit_score: float
+    lifestyle_fit_score: float
+    social_fit_score: float
+    career_environment_score: float
+    study_environment_score: float
+    recommendation_reason: str
+    potential_challenges: List[str]
+    suggested_living_style: str
+
+
 class UserProfileCreate(BaseModel):
     display_name: Optional[str] = "Compass User"
     study_profile: StudyProfile = Field(default_factory=StudyProfile)
@@ -357,6 +406,21 @@ class KoreaLifePlanResponse(BaseModel):
     action_plan_12_month: str
     city_recommendations: List[CityScore]
     markdown_report: str
+
+
+class IntegratedKoreaLifePlanRequest(KoreaLifePlanRequest):
+    city_recommendation: Optional[Dict[str, object]] = None
+    mbti_city_match: Optional[Dict[str, object]] = None
+    topik_goal: Optional[str] = None
+
+
+class IntegratedKoreaLifePlanResponse(KoreaLifePlanResponse):
+    mbti_city_fit: str
+    language_learning_plan: str
+    budget_analysis: str
+    risk_summary: str
+    confidence_summary: str
+    based_on_available_inputs: List[str] = Field(default_factory=list)
 
 
 class KoreaLifePlanHistoryResponse(BaseModel):

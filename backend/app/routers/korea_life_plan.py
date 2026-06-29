@@ -5,14 +5,14 @@ from sqlalchemy.orm import Session
 
 from ..database import get_db
 from ..models import KoreaLifePlanHistory
-from ..schemas import KoreaLifePlanHistoryResponse, KoreaLifePlanRequest, KoreaLifePlanResponse
+from ..schemas import IntegratedKoreaLifePlanRequest, IntegratedKoreaLifePlanResponse, KoreaLifePlanHistoryResponse
 from ..services.korea_life_plan import generate_korea_life_plan
 
 router = APIRouter(prefix="/api/v1/korea-life-plan", tags=["korea life plan"])
 
 
-@router.post("/generate", response_model=KoreaLifePlanResponse)
-def generate_plan(request: KoreaLifePlanRequest, db: Session = Depends(get_db)):
+@router.post("/generate", response_model=IntegratedKoreaLifePlanResponse)
+def generate_plan(request: IntegratedKoreaLifePlanRequest, db: Session = Depends(get_db)):
     language = "zh" if request.language == "zh" else "en"
     display_name = (request.display_name or "Compass User").strip() or "Compass User"
     result = generate_korea_life_plan(
@@ -21,6 +21,9 @@ def generate_plan(request: KoreaLifePlanRequest, db: Session = Depends(get_db)):
         career_profile=request.career_profile,
         living_profile=request.living_profile,
         language=language,
+        city_recommendation=request.city_recommendation,
+        mbti_city_match=request.mbti_city_match,
+        topik_goal=request.topik_goal,
     )
     history = KoreaLifePlanHistory(
         display_name=display_name,

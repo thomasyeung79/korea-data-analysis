@@ -50,11 +50,11 @@ with study_col:
     st.markdown(f"### {label('Study Profile', '留学画像')}")
     nationality = st.text_input(label("Nationality", "国籍"), value="International")
     age = st.number_input(label("Age", "年龄"), min_value=15, max_value=70, value=22)
-    current_education_level = st.selectbox(label("Current Education Level", "当前学历"), ["High School", "Undergraduate", "Graduate School", "Working Professional"])
-    target_study_level = st.selectbox(label("Target Study Level", "目标学历"), ["Language School", "Undergraduate", "Graduate School"])
+    current_education_level = st.selectbox(label("Current Education Level", "当前学历"), ["High School", "Undergraduate", "Graduate School", "Working Professional"], format_func=lambda v: translate_option("education_level", v))
+    target_study_level = st.selectbox(label("Target Study Level", "目标学历"), ["Language School", "Undergraduate", "Graduate School"], format_func=lambda v: translate_option("education_level", v))
     target_major = st.text_input(label("Target Major", "目标专业"), value="Computer Science")
     study_korean_level = st.selectbox(label("Korean Level", "韩语水平"), ["None", "TOPIK 3", "TOPIK 4", "TOPIK 5+"], format_func=lambda v: translate_option("korean_level", v))
-    study_english_level = st.selectbox(label("English Level", "英语水平"), ["Basic", "Intermediate", "Advanced", "Native"])
+    study_english_level = st.selectbox(label("English Level", "英语水平"), ["Basic", "Intermediate", "Advanced", "Native"], format_func=lambda v: translate_option("english_level", v))
     annual_budget = st.number_input(label("Annual Budget (KRW)", "年度预算（韩元）"), min_value=0, value=20_000_000, step=1_000_000)
     study_city = st.selectbox(label("Preferred City", "偏好城市"), ["Seoul", "Busan", "Incheon", "Daejeon", "Daegu", "Gwangju", "Other"], format_func=lambda v: translate_option("city", v))
 
@@ -68,8 +68,8 @@ with career_col:
     work_experience = st.selectbox(label("Work Experience", "工作经验"), ["Student", "0-2 years", "3-5 years"], format_func=lambda v: translate_option("experience", v))
     technical_skills = st.multiselect(label("Technical / Professional Skills", "技能"), ["SQL", "Python", "Marketing", "Accounting", "Teaching", "Nursing", "CAD", "Product Management"], default=["SQL"])
     career_korean_level = st.selectbox(label("Career Korean Level", "职业韩语水平"), ["None", "TOPIK 3", "TOPIK 4", "TOPIK 5+"], index=1, format_func=lambda v: translate_option("korean_level", v))
-    career_english_level = st.selectbox(label("Career English Level", "职业英语水平"), ["Basic", "Intermediate", "Advanced", "Native"], index=1)
-    target_industry = st.selectbox(label("Target Industry", "目标行业"), ["Technology", "Business", "Education", "Healthcare", "Engineering"])
+    career_english_level = st.selectbox(label("Career English Level", "职业英语水平"), ["Basic", "Intermediate", "Advanced", "Native"], index=1, format_func=lambda v: translate_option("english_level", v))
+    target_industry = st.selectbox(label("Target Industry", "目标行业"), ["Technology", "Business", "Education", "Healthcare", "Engineering"], format_func=lambda v: translate_option("industry", v))
     visa_goal = st.selectbox(label("Visa Goal", "签证目标"), ["D-2", "D-10", "E-7", "F-2"])
 
 with living_col:
@@ -78,8 +78,8 @@ with living_col:
     housing_preference = st.selectbox(label("Housing Preference", "住房偏好"), ["Dormitory", "Shared Apartment", "Studio Apartment"], format_func=lambda v: translate_option("housing_type", v))
     monthly_budget = st.number_input(label("Monthly Budget (KRW)", "月度预算（韩元）"), min_value=0, value=1_500_000, step=100_000)
     living_city = st.selectbox(label("Living Preferred City", "生活偏好城市"), ["Seoul", "Busan", "Incheon", "Daejeon", "Daegu", "Gwangju", "Other"], format_func=lambda v: translate_option("city", v))
-    transport_preference = st.selectbox(label("Transport Preference", "交通偏好"), ["Public Transit", "Walking", "Car", "Bike"])
-    community_preference = st.selectbox(label("Community Preference", "社区偏好"), ["International Community", "Quiet Neighborhood", "Student Area", "Career Network"])
+    transport_preference = st.selectbox(label("Transport Preference", "交通偏好"), ["Public Transit", "Walking", "Car", "Bike"], format_func=lambda v: translate_option("transport", v))
+    community_preference = st.selectbox(label("Community Preference", "社区偏好"), ["International Community", "Quiet Neighborhood", "Student Area", "Career Network"], format_func=lambda v: translate_option("community", v))
 
 payload = {
     "display_name": display_name,

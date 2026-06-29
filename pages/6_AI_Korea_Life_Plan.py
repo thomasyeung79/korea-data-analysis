@@ -76,11 +76,29 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-profile = st.session_state.get("compass_profile") or default_profile()
-if "compass_profile" not in st.session_state:
+profile = st.session_state.get("compass_profile")
+if not profile:
+    try:
+        profile = api.get_latest_profile()
+    except Exception:
+        profile = None
+if not profile:
+    profile = default_profile()
     st.info(label("No saved profile found. Using a sample profile for the demo.", "尚未找到已保存画像。当前使用示例画像演示。"))
 
-payload = {**profile, "language": get_language()}
+topik_goal = st.selectbox(
+    label("TOPIK Target", "TOPIK 目标"),
+    ["TOPIK 3", "TOPIK 4", "TOPIK 5+"],
+    index=1,
+)
+
+payload = {
+    **profile,
+    "language": get_language(),
+    "city_recommendation": st.session_state.get("city_recommendation"),
+    "mbti_city_match": st.session_state.get("mbti_city_match"),
+    "topik_goal": topik_goal,
+}
 
 if st.button(label("Generate AI Korea Life Plan", "生成 AI 韩国生活规划"), use_container_width=True, type="primary"):
     try:
@@ -113,6 +131,19 @@ with s3:
     st.markdown(f"### {label('Living Plan', '生活规划')}")
     st.write(plan["living_plan"])
 
+st.markdown(f"## {label('Integrated Planning', '综合规划')}")
+i1, i2 = st.columns(2)
+with i1:
+    st.markdown(f"### {label('MBTI City Fit', 'MBTI 城市匹配')}")
+    st.write(plan.get("mbti_city_fit", label("No MBTI city match was provided; report is based on available inputs.", "未提供 MBTI 城市匹配；报告基于可用输入生成。")))
+    st.markdown(f"### {label('Language Learning Plan', '语言学习计划')}")
+    st.write(plan.get("language_learning_plan", ""))
+with i2:
+    st.markdown(f"### {label('Budget Analysis', '预算分析')}")
+    st.write(plan.get("budget_analysis", ""))
+    st.markdown(f"### {label('Data Confidence Summary', '数据可信度总结')}")
+    st.write(plan.get("confidence_summary", ""))
+
 st.markdown(f"## {label('Risks and Visa', '风险与签证')}")
 r1, r2, r3, r4 = st.columns(4)
 r1.metric(label("Budget Gap", "预算差额"), f"{plan['budget_gap']:,.0f} KRW")
@@ -120,6 +151,12 @@ r2.metric(label("Language Risk", "语言风险"), translate_result_label(plan["l
 r3.metric(label("Career Risk", "职业风险"), translate_result_label(plan["career_risk"]))
 r4.metric(label("Living Risk", "生活风险"), translate_result_label(plan["living_risk"]))
 st.info(plan["visa_pathway"])
+st.markdown(f"### {label('Risk Summary', '风险总结')}")
+st.write(plan.get("risk_summary", ""))
+
+available_inputs = plan.get("based_on_available_inputs", [])
+if available_inputs:
+    st.caption(label("Based on available inputs:", "基于以下可用输入：") + " " + ", ".join(available_inputs))
 
 st.markdown(f"## {label('Action Plan', '行动计划')}")
 with st.expander(label("3-month action plan", "3 个月行动计划"), expanded=True):

@@ -32,7 +32,7 @@ st.markdown(
   <section class="hero-panel">
     <div class="brand-row"><span class="brand-dot"></span>KOREA COMPASS V8</div>
     <h1>{label("Knowledge Base Status", "知识库状态")}</h1>
-    <p>{label("Traceability, source coverage, metadata coverage, update cadence, and content confidence for the Korea Compass Knowledge Base.", "查看 Korea Compass 知识库的可追溯性、metadata 覆盖率、更新时间和内容可信度。")}</p>
+    <p>{label("Traceability, source coverage, metadata coverage, update cadence, and content confidence for the Korea Compass Knowledge Base.", "查看 Korea Compass 知识库的可追溯性、来源覆盖率、metadata 覆盖率、更新时间和内容可信度。")}</p>
   </section>
   <aside class="hero-aside">
     <h3>{label("Trusted Knowledge Base", "可信知识库")}</h3>
@@ -57,10 +57,10 @@ c3.metric(label("Metadata coverage", "Metadata 覆盖率"), f"{status['metadata_
 c4.metric(label("KB version", "知识库版本"), status["knowledge_base_version"])
 
 s1, s2 = st.columns(2)
-s1.metric(label("Official coverage", "???????"), f"{status.get('official_source_coverage', 0) * 100:.1f}%")
-s2.metric(label("Mock coverage", "Mock ???"), f"{status.get('mock_coverage', 0) * 100:.1f}%")
+s1.metric(label("Official coverage", "官方来源覆盖率"), f"{status.get('official_source_coverage', 0) * 100:.1f}%")
+s2.metric(label("Mock coverage", "Mock 覆盖率"), f"{status.get('mock_coverage', 0) * 100:.1f}%")
 
-st.markdown(f"## {label('Source Coverage', '?????')}")
+st.markdown(f"## {label('Source Coverage', '来源覆盖率')}")
 source_df = pd.DataFrame(
     [{"status": key, "files": value, "ratio": status.get("source_coverage_ratio", {}).get(key, 0)} for key, value in status.get("source_coverage", {}).items()]
 )
@@ -69,8 +69,8 @@ if not source_df.empty:
         source_df,
         x="status",
         y="files",
-        title=label("Verification status by JSON file", "? JSON ?????????"),
-        labels={"status": label("Verification Status", "????"), "files": label("Files", "???")},
+        title=label("Verification status by JSON file", "按 JSON 文件统计的验证状态"),
+        labels={"status": label("Verification Status", "验证状态"), "files": label("Files", "文件数")},
         color="status",
         color_discrete_map={"Official": "#1d4ed8", "Verified": "#16a34a", "Community": "#f59e0b", "Mock": "#dc2626"},
     )
@@ -120,15 +120,15 @@ with right:
         )
         st.dataframe(confidence_df, use_container_width=True, hide_index=True)
 
-st.markdown(f"## {label('Validation Issues', '????')}")
+st.markdown(f"## {label('Validation Issues', '校验问题')}")
 issue_cols = st.columns(3)
 issues = [
-    (label("Missing Metadata", "?? Metadata"), status["missing_metadata"]),
-    (label("Missing Source", "????"), status["missing_source"]),
-    (label("Missing Last Updated", "??????"), status["missing_last_updated"]),
-    (label("Missing Official Source", "??????"), status.get("missing_official_source", [])),
-    (label("Missing Retrieved At", "??????"), status.get("missing_retrieved_at", [])),
-    (label("Missing Verification Status", "??????"), status.get("missing_verification_status", [])),
+    (label("Missing Metadata", "缺失 Metadata"), status["missing_metadata"]),
+    (label("Missing Source", "缺失来源"), status["missing_source"]),
+    (label("Missing Last Updated", "缺失更新时间"), status["missing_last_updated"]),
+    (label("Missing Official Source", "缺失官方来源"), status.get("missing_official_source", [])),
+    (label("Missing Retrieved At", "缺失获取时间"), status.get("missing_retrieved_at", [])),
+    (label("Missing Verification Status", "缺失验证状态"), status.get("missing_verification_status", [])),
 ]
 for col, (title, values) in zip(issue_cols * 2, issues):
     with col:
@@ -137,4 +137,4 @@ for col, (title, values) in zip(issue_cols * 2, issues):
             for value in values:
                 st.warning(value)
         else:
-            st.success(label("No issues", "???"))
+            st.success(label("No issues", "无问题"))

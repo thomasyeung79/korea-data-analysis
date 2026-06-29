@@ -4,7 +4,7 @@
 
 Korea Compass is a full-stack information and planning app for international students and job seekers who are considering South Korea. It helps users explore Korea, create a reusable profile, estimate study and living costs, analyze career outlook, compare Korean cities, get scene-based Korean language support, track news and visa policy, and generate an exportable AI Korea Life Plan.
 
-Version 1.0 packages the Explore, Study, Work, Live, Korean Learning, AI planning, Knowledge Base, Source Registry, and Official Data Integration Foundation work into a portfolio-ready release.
+Version 1.0.1 packages the Explore, Study, Work, Live, Korean Learning, AI planning, Knowledge Base, Source Registry, Official Data Integration Foundation, Chinese UI polish, MBTI City Match, and integrated Korea Life Plan updates into a portfolio-ready release.
 
 ## Project Docs
 
@@ -110,20 +110,41 @@ Rank Korean cities using a combined Study + Career + Living profile. Each city r
 
 Supported cities include Seoul, Busan, Incheon, Daejeon, Daegu, Gwangju, and Other.
 
+### MBTI City Match
+
+The Living workflow includes an MBTI-based city matching helper. It is not a psychological diagnosis tool; it uses MBTI type and lifestyle preferences as lightweight signals for Korean city fit.
+
+Inputs include:
+
+* mbti_type
+* social_energy
+* lifestyle_preference
+* pace_preference
+* budget_sensitivity
+* career_priority
+* study_priority
+
+Outputs include best city, city scores, personality fit, lifestyle fit, social fit, career environment, study environment, reasons, potential challenges, and suggested living style.
+
 ### AI Korea Life Plan
 
-Generate a combined Korea planning report with:
+Generate an integrated Korea planning report with:
 
 * overall recommendation
 * best city
 * study path
 * career path
 * living plan
+* MBTI city fit
+* language learning plan
+* budget analysis
 * annual study cost estimate
 * monthly living cost estimate
 * budget gap
 * language, career, and living risks
 * visa pathway
+* risk summary
+* data confidence summary
 * 3-month, 6-month, and 12-month action plans
 * Markdown, TXT, and JSON exports
 
@@ -185,6 +206,7 @@ This project does not provide legal, immigration, financial, or professional adv
 
 * English and Simplified Chinese UI support.
 * Chinese mode translates user-facing labels, options, result cards, role-specific skill matrices, recommended city labels, charts, and report text where practical.
+* v1.0.1 improves Chinese UI coverage for Explore Korea, Profile Center, City Recommendation, Korean Learning, AI Korea Life Plan, Knowledge Base Status, and Home.
 * AI-generated and template-based report content follows the selected UI language.
 * Internal API and database values remain stable English identifiers for compatibility.
 * Source URLs, filenames, API paths, code identifiers, and technical terms remain unchanged where appropriate.
@@ -367,6 +389,7 @@ The Knowledge Base Status view and `/api/v1/kb/status` endpoint report:
 | Profiles | `GET /api/v1/profiles/latest` |
 | Study Cost | `POST /api/v1/study-cost/calculate` |
 | Career Market | `POST /api/v1/job-market/analyze` |
+| Living | `POST /api/v1/living/mbti-city-match` |
 | City Recommendation | `POST /api/v1/city-recommendations` |
 | AI Korea Life Plan | `POST /api/v1/korea-life-plan/generate` |
 | AI Korea Life Plan | `GET /api/v1/korea-life-plan/history` |
@@ -380,7 +403,8 @@ The Knowledge Base Status view and `/api/v1/kb/status` endpoint report:
 * Shared Knowledge Base data layer for Explore, Study, Work, Live, and Korean Learning
 * Profile Center for reusable planning data
 * City recommendation scoring engine
-* AI Korea Life Plan with 3, 6, and 12-month action plans
+* MBTI-based city matching as a lifestyle preference helper
+* Integrated AI Korea Life Plan with 3, 6, and 12-month action plans
 * FastAPI + Streamlit full-stack architecture
 * SQLite persistence with SQLAlchemy models
 * Plotly visualizations

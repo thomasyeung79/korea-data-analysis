@@ -137,6 +137,13 @@ def test_translate_option_display_values(monkeypatch):
     assert i18n.translate_option("school_type", "Graduate School") == "研究生院"
     assert i18n.translate_option("housing_type", "Dormitory") == "宿舍"
     assert i18n.translate_option("lifestyle", "Budget") == "节省型"
+    assert i18n.translate_option("city", "Jeju") == "济州"
+    assert i18n.translate_option("education_level", "Working Professional") == "在职人士"
+    assert i18n.translate_option("english_level", "Advanced") == "高级"
+    assert i18n.translate_option("transport", "Public Transit") == "公共交通"
+    assert i18n.translate_option("community", "Quiet Neighborhood") == "安静社区"
+    assert i18n.translate_option("mbti_preference", "Urban") == "都市"
+    assert i18n.translate_option("korean_scenario", "Business Phone") == "商务电话"
 
 
 def test_option_value_from_chinese_label(monkeypatch):
@@ -172,3 +179,12 @@ def test_translated_chart_labels_do_not_break(monkeypatch):
     fig = go.Figure(data=[go.Pie(labels=labels, values=[60, 40], textinfo="label+percent")])
 
     assert fig.data[0].labels == tuple(["学费", "住房"])
+
+
+def test_v101_new_page_key_ui_labels(monkeypatch):
+    reset_language_state(monkeypatch)
+    i18n.set_language("zh")
+
+    assert i18n.translate_option("korean_scenario", "Classroom") == "课堂"
+    assert i18n.translate_option("mbti_preference", "Fast") == "快节奏"
+    assert i18n.translate_option("city", "Jeju") == "济州"
