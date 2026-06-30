@@ -127,7 +127,16 @@ def load_culture(kind: str) -> dict:
 def load_learning(kind: str) -> list[dict]:
     envelope = _load_json(f"korean/{_normalise_key(kind)}.json")
     metadata = _metadata(envelope)
-    return [_attach_metadata(record, metadata) for record in _content(envelope)]
+    return [_normalise_learning_record(_attach_metadata(record, metadata)) for record in _content(envelope)]
+
+
+def _normalise_learning_record(record: dict) -> dict:
+    item = dict(record)
+    if "situation" not in item and "situation_en" in item:
+        item["situation"] = item["situation_en"]
+    if "ai_explanation" not in item and "ai_explanation_en" in item:
+        item["ai_explanation"] = item["ai_explanation_en"]
+    return item
 
 
 def kb_file_count() -> int:
