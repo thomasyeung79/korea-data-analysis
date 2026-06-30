@@ -108,3 +108,43 @@ def test_explore_quick_facts_api():
     facts = {item["title"] for item in response.json()}
     assert "Visa Types" in facts
     assert "Healthcare" in facts
+
+
+def test_explore_cities_chinese_best_for_labels_are_localized():
+    cities = explore_service.get_cities(language="zh")
+    labels = [label for city in cities for label in city["best_for"]]
+
+    assert "海滨生活" in labels
+    assert "国际交通便利" in labels
+    assert "研究生学习" in labels
+    assert "低成本生活" in labels
+    assert "艺术" in labels
+
+    english_residuals = {
+        "Coastal living",
+        "Lifestyle balance",
+        "International access",
+        "Business",
+        "Seoul proximity",
+        "Regional universities",
+        "Everyday living",
+        "Graduate study",
+        "Food",
+        "Affordable living",
+        "Arts",
+    }
+    assert english_residuals.isdisjoint(labels)
+
+
+def test_explore_cities_api_best_for_language_switching():
+    zh_response = client.get("/api/v1/explore/cities?language=zh")
+    en_response = client.get("/api/v1/explore/cities")
+
+    assert zh_response.status_code == 200
+    assert en_response.status_code == 200
+
+    zh_busan = next(city for city in zh_response.json() if city["name"] == "釜山")
+    en_busan = next(city for city in en_response.json() if city["name"] == "Busan")
+
+    assert zh_busan["best_for"] == ["海滨生活", "物流", "旅游", "生活平衡"]
+    assert en_busan["best_for"] == ["Coastal living", "Logistics", "Tourism", "Lifestyle balance"]

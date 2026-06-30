@@ -1,5 +1,5 @@
-from pydantic import BaseModel, Field, field_validator
-from typing import Dict, List, Optional
+﻿from pydantic import BaseModel, Field, field_validator
+from typing import Dict, List, Optional, Union
 
 
 class CountryScoreCreate(BaseModel):
@@ -626,7 +626,7 @@ class KnowledgeBaseCity(BaseModel):
     study_score: float
     career_score: float
     living_score: float
-    recommended_for: List[str]
+    recommended_for: Union[List[str], Dict[str, List[str]]]
     description: str
 
 
@@ -692,3 +692,4 @@ class KnowledgeBaseStatus(BaseModel):
     missing_official_source: List[str] = Field(default_factory=list)
     missing_retrieved_at: List[str] = Field(default_factory=list)
     missing_verification_status: List[str] = Field(default_factory=list)
+

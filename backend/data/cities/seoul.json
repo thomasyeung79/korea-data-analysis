@@ -36,11 +36,19 @@
   "study_score": 95,
   "career_score": 96,
   "living_score": 88,
-  "recommended_for": [
-    "Top universities",
-    "Corporate jobs",
-    "Startups",
-    "Culture"
-  ],
-  "description": "Capital city with the strongest university, startup, corporate, and cultural density."
+  "description": "Capital city with the strongest university, startup, corporate, and cultural density.",
+  "recommended_for": {
+    "en": [
+      "Top universities",
+      "Corporate jobs",
+      "Startups",
+      "Culture"
+    ],
+    "zh": [
+      "顶尖大学",
+      "企业岗位",
+      "创业公司",
+      "文化生活"
+    ]
+  }
 }

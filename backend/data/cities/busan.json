@@ -36,11 +36,19 @@
   "study_score": 82,
   "career_score": 76,
   "living_score": 90,
-  "recommended_for": [
-    "Coastal living",
-    "Logistics",
-    "Tourism",
-    "Lifestyle balance"
-  ],
-  "description": "Major port city with beaches, logistics, tourism, and a more relaxed lifestyle."
+  "description": "Major port city with beaches, logistics, tourism, and a more relaxed lifestyle.",
+  "recommended_for": {
+    "en": [
+      "Coastal living",
+      "Logistics",
+      "Tourism",
+      "Lifestyle balance"
+    ],
+    "zh": [
+      "海滨生活",
+      "物流",
+      "旅游",
+      "生活平衡"
+    ]
+  }
 }

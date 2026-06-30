@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from . import data_loader
 
@@ -36,26 +36,41 @@ ZH_CITY_DESCRIPTIONS = {
 }
 
 ZH_BEST_FOR = {
+    "Coastal living": "海滨生活",
+    "Lifestyle balance": "生活平衡",
+    "Balanced lifestyle": "生活平衡",
+    "International access": "国际交通便利",
+    "Airport access": "机场交通",
+    "Business": "商务",
+    "Seoul proximity": "靠近首尔",
+    "Regional universities": "地方大学",
+    "Everyday living": "日常生活",
+    "Graduate study": "研究生学习",
+    "Food": "美食",
+    "Affordable living": "低成本生活",
+    "Lower cost": "低成本生活",
+    "Arts": "艺术",
     "Top universities": "顶尖大学",
     "Corporate jobs": "企业岗位",
+    "Corporate roles": "企业岗位",
     "Startups": "创业公司",
+    "Startup companies": "创业公司",
     "Culture": "文化生活",
-    "Port logistics": "港口物流",
-    "Balanced lifestyle": "平衡生活方式",
-    "Healthcare": "医疗健康",
-    "Airport access": "机场交通",
-    "International community": "国际社区",
-    "Logistics": "物流",
-    "Manufacturing": "制造业",
-    "Lower cost": "较低成本",
-    "Engineering": "工程",
+    "Cultural life": "文化生活",
     "Research": "研究",
+    "Engineering": "工程",
     "Science": "科学",
+    "Healthcare": "医疗健康",
+    "Logistics": "物流",
+    "Tourism": "旅游",
+    "Port industries": "港口产业",
+    "Port logistics": "港口产业",
+    "Manufacturing": "制造业",
     "Quiet living": "安静生活",
     "Creative culture": "创意文化",
     "Budget living": "预算友好生活",
     "Nature": "自然环境",
-    "Tourism": "旅游",
+    "Lifestyle": "生活方式",
     "Remote work": "远程工作",
 }
 
@@ -89,7 +104,7 @@ def get_cities(language: str = "en") -> list[dict]:
             "career_score": city["career_score"],
             "lifestyle_score": city["living_score"],
             "short_description": ZH_CITY_DESCRIPTIONS.get(city["city_name"], city["description"]) if language == "zh" else city["description"],
-            "best_for": [_translate_best_for(item, language) for item in city["recommended_for"]],
+            "best_for": _localized_recommended_for(city["recommended_for"], language),
         }
         for city in cities
     ]
@@ -178,6 +193,14 @@ def get_quick_facts(language: str = "en") -> list[dict]:
     ]
 
 
+
+
+def _localized_recommended_for(value: list[str] | dict, language: str) -> list[str]:
+    if isinstance(value, dict):
+        items = value.get(language) or value.get("en") or []
+        return [_translate_best_for(item, language) for item in items]
+    return [_translate_best_for(item, language) for item in value]
+
 def _living_cost_label(average_rent: float, language: str = "en") -> str:
     if average_rent >= 700000:
         return "很高" if language == "zh" else "Very high"
@@ -200,3 +223,4 @@ def _translate_best_for(value: str, language: str) -> str:
     if language != "zh":
         return value
     return ZH_BEST_FOR.get(value, value)
+

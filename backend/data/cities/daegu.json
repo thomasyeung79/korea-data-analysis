@@ -34,11 +34,19 @@
   "study_score": 74,
   "career_score": 68,
   "living_score": 80,
-  "recommended_for": [
-    "Lower cost",
-    "Healthcare",
-    "Regional universities",
-    "Everyday living"
-  ],
-  "description": "Inland metropolitan city with lower living costs, universities, textiles, and healthcare."
+  "description": "Inland metropolitan city with lower living costs, universities, textiles, and healthcare.",
+  "recommended_for": {
+    "en": [
+      "Lower cost",
+      "Healthcare",
+      "Regional universities",
+      "Everyday living"
+    ],
+    "zh": [
+      "低成本生活",
+      "医疗健康",
+      "地方大学",
+      "日常生活"
+    ]
+  }
 }

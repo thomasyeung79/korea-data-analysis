@@ -35,11 +35,19 @@
   "study_score": 76,
   "career_score": 80,
   "living_score": 82,
-  "recommended_for": [
-    "International access",
-    "Logistics",
-    "Business",
-    "Seoul proximity"
-  ],
-  "description": "International gateway city near Seoul with airport, logistics, and global business links."
+  "description": "International gateway city near Seoul with airport, logistics, and global business links.",
+  "recommended_for": {
+    "en": [
+      "International access",
+      "Logistics",
+      "Business",
+      "Seoul proximity"
+    ],
+    "zh": [
+      "国际交通便利",
+      "物流",
+      "商务",
+      "靠近首尔"
+    ]
+  }
 }

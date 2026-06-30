@@ -33,11 +33,19 @@
   "study_score": 62,
   "career_score": 58,
   "living_score": 92,
-  "recommended_for": [
-    "Nature",
-    "Tourism",
-    "Lifestyle",
-    "Remote work"
-  ],
-  "description": "Island province with natural scenery, tourism, remote-work appeal, and slower pace."
+  "description": "Island province with natural scenery, tourism, remote-work appeal, and slower pace.",
+  "recommended_for": {
+    "en": [
+      "Nature",
+      "Tourism",
+      "Lifestyle",
+      "Remote work"
+    ],
+    "zh": [
+      "自然环境",
+      "旅游",
+      "生活方式",
+      "远程工作"
+    ]
+  }
 }

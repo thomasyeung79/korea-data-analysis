@@ -188,3 +188,23 @@ def test_v101_new_page_key_ui_labels(monkeypatch):
     assert i18n.translate_option("korean_scenario", "Classroom") == "课堂"
     assert i18n.translate_option("mbti_preference", "Fast") == "快节奏"
     assert i18n.translate_option("city", "Jeju") == "济州"
+
+
+def test_best_for_option_labels_are_localized(monkeypatch):
+    reset_language_state(monkeypatch)
+    i18n.set_language("zh")
+
+    assert i18n.translate_option("best_for", "Coastal living") == "海滨生活"
+    assert i18n.translate_option("best_for", "Lifestyle balance") == "生活平衡"
+    assert i18n.translate_option("best_for", "International access") == "国际交通便利"
+    assert i18n.translate_option("best_for", "Regional universities") == "地方大学"
+    assert i18n.translate_option("best_for", "Graduate study") == "研究生学习"
+    assert i18n.translate_option("best_for", "Affordable living") == "低成本生活"
+
+
+def test_best_for_option_labels_keep_english(monkeypatch):
+    reset_language_state(monkeypatch)
+    i18n.set_language("en")
+
+    assert i18n.translate_option("best_for", "Coastal living") == "Coastal living"
+    assert i18n.translate_option("best_for", "Lifestyle balance") == "Lifestyle balance"

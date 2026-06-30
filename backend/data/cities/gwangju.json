@@ -34,11 +34,19 @@
   "study_score": 72,
   "career_score": 62,
   "living_score": 83,
-  "recommended_for": [
-    "Culture",
-    "Food",
-    "Affordable living",
-    "Arts"
-  ],
-  "description": "Cultural city known for arts, democratic history, food, and comparatively affordable living."
+  "description": "Cultural city known for arts, democratic history, food, and comparatively affordable living.",
+  "recommended_for": {
+    "en": [
+      "Culture",
+      "Food",
+      "Affordable living",
+      "Arts"
+    ],
+    "zh": [
+      "文化生活",
+      "美食",
+      "低成本生活",
+      "艺术"
+    ]
+  }
 }

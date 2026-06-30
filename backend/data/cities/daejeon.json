@@ -34,11 +34,19 @@
   "study_score": 88,
   "career_score": 84,
   "living_score": 84,
-  "recommended_for": [
-    "Research",
-    "Engineering",
-    "Science",
-    "Graduate study"
-  ],
-  "description": "Science and research hub with KAIST, government research institutes, and engineering roles."
+  "description": "Science and research hub with KAIST, government research institutes, and engineering roles.",
+  "recommended_for": {
+    "en": [
+      "Research",
+      "Engineering",
+      "Science",
+      "Graduate study"
+    ],
+    "zh": [
+      "研究",
+      "工程",
+      "科学",
+      "研究生学习"
+    ]
+  }
 }

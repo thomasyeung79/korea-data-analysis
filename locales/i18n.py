@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import streamlit as st
 
@@ -54,6 +54,33 @@ OPTION_LABELS: dict[str, dict[str, dict[str, str]]] = {
         "Changwon": {"en": "Changwon", "zh": "昌原"},
         "Pohang": {"en": "Pohang", "zh": "浦项"},
         "Other": {"en": "Other", "zh": "其他"},
+    },
+    "best_for": {
+        "Coastal living": {"en": "Coastal living", "zh": "海滨生活"},
+        "Lifestyle balance": {"en": "Lifestyle balance", "zh": "生活平衡"},
+        "International access": {"en": "International access", "zh": "国际交通便利"},
+        "Business": {"en": "Business", "zh": "商务"},
+        "Seoul proximity": {"en": "Seoul proximity", "zh": "靠近首尔"},
+        "Regional universities": {"en": "Regional universities", "zh": "地方大学"},
+        "Everyday living": {"en": "Everyday living", "zh": "日常生活"},
+        "Graduate study": {"en": "Graduate study", "zh": "研究生学习"},
+        "Food": {"en": "Food", "zh": "美食"},
+        "Affordable living": {"en": "Affordable living", "zh": "低成本生活"},
+        "Arts": {"en": "Arts", "zh": "艺术"},
+        "Top universities": {"en": "Top universities", "zh": "顶尖大学"},
+        "Corporate roles": {"en": "Corporate roles", "zh": "企业岗位"},
+        "Corporate jobs": {"en": "Corporate jobs", "zh": "企业岗位"},
+        "Startup companies": {"en": "Startup companies", "zh": "创业公司"},
+        "Startups": {"en": "Startups", "zh": "创业公司"},
+        "Cultural life": {"en": "Cultural life", "zh": "文化生活"},
+        "Culture": {"en": "Culture", "zh": "文化生活"},
+        "Research": {"en": "Research", "zh": "研究"},
+        "Engineering": {"en": "Engineering", "zh": "工程"},
+        "Science": {"en": "Science", "zh": "科学"},
+        "Healthcare": {"en": "Healthcare", "zh": "医疗健康"},
+        "Logistics": {"en": "Logistics", "zh": "物流"},
+        "Tourism": {"en": "Tourism", "zh": "旅游"},
+        "Port industries": {"en": "Port industries", "zh": "港口产业"},
     },
     "education_level": {
         "High School": {"en": "High School", "zh": "高中"},
