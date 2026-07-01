@@ -20,6 +20,13 @@ from .routers import (
     study_cost,
     surveys,
 )
+from .config import settings
+
+
+def _cors_origins() -> list[str]:
+    if settings.CORS_ORIGINS.strip() == "*":
+        return ["*"]
+    return [origin.strip() for origin in settings.CORS_ORIGINS.split(",") if origin.strip()]
 
 app = FastAPI(
     title="Korea Compass",
@@ -29,7 +36,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=_cors_origins(),
     allow_methods=["*"],
     allow_headers=["*"],
 )

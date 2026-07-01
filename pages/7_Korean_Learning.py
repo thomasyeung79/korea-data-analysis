@@ -106,10 +106,11 @@ st.markdown(
 
 try:
     lang = get_language()
-    study_data = api.get_korean_learning_study(lang)
-    career_data = api.get_korean_learning_career(lang)
-    living_data = api.get_korean_learning_living(lang)
-    topik_data = api.get_korean_learning_topik()
+    with st.spinner(t("common.loading_official_data")):
+        study_data = api.get_korean_learning_study(lang)
+        career_data = api.get_korean_learning_career(lang)
+        living_data = api.get_korean_learning_living(lang)
+        topik_data = api.get_korean_learning_topik()
 except Exception as exc:
     st.error(label(f"Korean Learning data is unavailable: {exc}", f"韩语学习支持数据暂不可用：{exc}"))
     st.stop()
@@ -181,3 +182,5 @@ with tab_topik:
     st.markdown(f"#### {t('korean.roadmap')}")
     for step in item["learning_roadmap"]:
         st.markdown(f"- {step}")
+
+st.caption(t("common.footer"))

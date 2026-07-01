@@ -13,13 +13,32 @@ from api_client import APIClient
 from locales.i18n import get_language, language_selector, t
 from ui_style import apply_product_style
 
-st.set_page_config(page_title="Knowledge Base Status", page_icon="🧾", layout="wide")
+st.set_page_config(page_title="知识库状态" if get_language() == "zh" else "Knowledge Base Status", page_icon="🧾", layout="wide")
 apply_product_style()
 api = APIClient()
 
 
 def label(en: str, zh: str) -> str:
     return zh if get_language() == "zh" else en
+
+
+def status_label(value: str) -> str:
+    labels = {
+        "Official": label("Official", "官方"),
+        "Verified": label("Verified", "已验证"),
+        "Community": label("Community", "社区"),
+        "Mock": label("Mock", "模拟"),
+    }
+    return labels.get(value, value)
+
+
+def confidence_label(value: str) -> str:
+    labels = {
+        "High": label("High", "高"),
+        "Medium": label("Medium", "中"),
+        "Low": label("Low", "低"),
+    }
+    return labels.get(value, value)
 
 
 language_selector("kb_status_language")
@@ -44,7 +63,8 @@ st.markdown(
 )
 
 try:
-    status = api.get_kb_status()
+    with st.spinner(t("common.loading_official_data")):
+        status = api.get_kb_status()
 except Exception as exc:
     st.error(label(f"Knowledge Base status unavailable: {exc}", f"知识库状态暂不可用：{exc}"))
     st.stop()
@@ -65,18 +85,24 @@ source_df = pd.DataFrame(
     [{"status": key, "files": value, "ratio": status.get("source_coverage_ratio", {}).get(key, 0)} for key, value in status.get("source_coverage", {}).items()]
 )
 if not source_df.empty:
+    source_df["status_label"] = source_df["status"].map(status_label)
     fig = px.bar(
         source_df,
-        x="status",
+        x="status_label",
         y="files",
         title=label("Verification status by JSON file", "按 JSON 文件统计的验证状态"),
-        labels={"status": label("Verification Status", "验证状态"), "files": label("Files", "文件数")},
-        color="status",
-        color_discrete_map={"Official": "#1d4ed8", "Verified": "#16a34a", "Community": "#f59e0b", "Mock": "#dc2626"},
+        labels={"status_label": label("Verification Status", "验证状态"), "files": label("Files", "文件数")},
+        color="status_label",
     )
     st.plotly_chart(fig, use_container_width=True)
     source_df["ratio"] = source_df["ratio"].map(lambda value: f"{value * 100:.1f}%")
-    st.dataframe(source_df, use_container_width=True, hide_index=True)
+    st.dataframe(
+        source_df[["status_label", "files", "ratio"]].rename(
+            columns={"status_label": label("Verification Status", "验证状态"), "files": label("Files", "文件数"), "ratio": label("Ratio", "比例")}
+        ),
+        use_container_width=True,
+        hide_index=True,
+    )
 
 st.markdown(f"## {label('Directory Statistics', '目录统计')}")
 directory_df = pd.DataFrame(
@@ -106,7 +132,11 @@ with left:
             px.pie(update_df, names="last_updated", values="files", title=label("Last updated distribution", "更新时间分布")),
             use_container_width=True,
         )
-        st.dataframe(update_df, use_container_width=True, hide_index=True)
+        st.dataframe(
+            update_df.rename(columns={"last_updated": label("Last Updated", "更新时间"), "files": label("Files", "文件数")}),
+            use_container_width=True,
+            hide_index=True,
+        )
 
 with right:
     st.markdown(f"## {label('Confidence Distribution', '可信度分布')}")
@@ -114,11 +144,16 @@ with right:
         [{"confidence": key, "files": value} for key, value in status["confidence_distribution"].items()]
     )
     if not confidence_df.empty:
+        confidence_df["confidence_label"] = confidence_df["confidence"].map(confidence_label)
         st.plotly_chart(
-            px.pie(confidence_df, names="confidence", values="files", title=label("Confidence levels", "可信度等级")),
+            px.pie(confidence_df, names="confidence_label", values="files", title=label("Confidence levels", "可信度等级")),
             use_container_width=True,
         )
-        st.dataframe(confidence_df, use_container_width=True, hide_index=True)
+        st.dataframe(
+            confidence_df[["confidence_label", "files"]].rename(columns={"confidence_label": label("Confidence", "可信度"), "files": label("Files", "文件数")}),
+            use_container_width=True,
+            hide_index=True,
+        )
 
 st.markdown(f"## {label('Validation Issues', '校验问题')}")
 issue_cols = st.columns(3)
@@ -138,3 +173,5 @@ for col, (title, values) in zip(issue_cols * 2, issues):
                 st.warning(value)
         else:
             st.success(label("No issues", "无问题"))
+
+st.caption(t("common.footer"))

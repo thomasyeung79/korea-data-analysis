@@ -10,10 +10,10 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from api_client import APIClient
-from locales.i18n import get_language, language_selector, t
+from locales.i18n import format_krw, get_language, language_selector, t, translate_option
 from ui_style import apply_product_style
 
-st.set_page_config(page_title="Explore Korea", page_icon="🌏", layout="wide")
+st.set_page_config(page_title="探索韩国" if get_language() == "zh" else "Explore Korea", page_icon="🌏", layout="wide")
 apply_product_style()
 api = APIClient()
 
@@ -58,12 +58,13 @@ st.markdown(
 
 try:
     language = get_language()
-    overview = api.get_explore_overview(language)
-    cities = api.get_explore_cities(language)
-    culture = api.get_explore_culture(language)
-    history = api.get_explore_history(language)
-    living_cost = api.get_explore_living_cost()
-    quick_facts = api.get_explore_quick_facts(language)
+    with st.spinner(t("common.loading_official_data")):
+        overview = api.get_explore_overview(language)
+        cities = api.get_explore_cities(language)
+        culture = api.get_explore_culture(language)
+        history = api.get_explore_history(language)
+        living_cost = api.get_explore_living_cost()
+        quick_facts = api.get_explore_quick_facts(language)
 except Exception as exc:
     st.error(label(f"Explore Korea data is unavailable: {exc}", f"探索韩国数据暂不可用：{exc}"))
     st.stop()
@@ -141,8 +142,9 @@ with tab_history:
 with tab_cost:
     st.markdown(f"## {label('Cost of Living', '生活成本')}")
     cost_df = pd.DataFrame(living_cost)
-    selected_city = st.selectbox(label("City", "城市"), cost_df["city"].tolist())
+    selected_city = st.selectbox(label("City", "城市"), cost_df["city"].tolist(), format_func=lambda value: translate_option("city", value))
     city_cost = cost_df[cost_df["city"] == selected_city].iloc[0]
+    selected_city_label = translate_option("city", selected_city)
     chart_df = pd.DataFrame(
         {
             "category": [
@@ -167,13 +169,19 @@ with tab_cost:
         chart_df,
         x="category",
         y="amount",
-        title=label(f"Monthly cost estimate in {selected_city}", f"{selected_city} 月度生活成本估算"),
+        title=label(f"Monthly cost estimate in {selected_city}", f"{selected_city_label} 月度生活成本估算"),
         labels={"category": label("Category", "类别"), "amount": label("Amount (KRW)", "金额（韩元）")},
         color="amount",
         color_continuous_scale="Blues",
     )
     st.plotly_chart(fig, use_container_width=True)
-    st.dataframe(chart_df, use_container_width=True, hide_index=True)
+    display_df = chart_df.copy()
+    display_df["amount"] = display_df["amount"].map(format_krw)
+    st.dataframe(
+        display_df.rename(columns={"category": label("Category", "类别"), "amount": label("Amount", "金额")}),
+        use_container_width=True,
+        hide_index=True,
+    )
 
 with tab_facts:
     st.markdown(f"## {label('Quick Facts', '实用信息')}")
@@ -182,3 +190,5 @@ with tab_facts:
         for col, fact in zip(cols, quick_facts[row_start:row_start + 3]):
             with col:
                 card(fact["title"], fact["value"], fact["detail"])
+
+st.caption(t("common.footer"))

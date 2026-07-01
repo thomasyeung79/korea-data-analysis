@@ -83,7 +83,8 @@ st.divider()
 
 if calculate_clicked:
     try:
-        result = api.calculate_study_cost(
+        with st.spinner(t("common.calculating_cost")):
+            result = api.calculate_study_cost(
             city=city,
             school_type=school_type,
             housing_type=housing_type,
@@ -241,7 +242,7 @@ if "last_cost_result" in st.session_state:
             st.rerun()
 
 else:
-    st.info(t("study.empty"))
+    st.info(t("common.no_data"))
 
 st.divider()
-st.caption(t("study.footer"))
+st.caption(t("common.footer"))

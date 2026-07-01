@@ -132,7 +132,8 @@ if generate_clicked:
         "language": get_language(),
     }
     try:
-        result = api.generate_decision_report(payload)
+        with st.spinner(t("common.generating_ai_plan")):
+            result = api.generate_decision_report(payload)
         st.session_state["decision_report"] = result
     except Exception as e:
         st.error(t("decision.failed", error=e))
@@ -313,7 +314,7 @@ if "decision_report" in st.session_state:
         )
 
 elif "decision_report" not in st.session_state:
-    st.info(t("decision.empty"))
+    st.info(t("common.no_data"))
 
 st.divider()
-st.caption(t("decision.footer"))
+st.caption(t("common.footer"))

@@ -1,4 +1,5 @@
 ﻿import json
+from datetime import date
 
 from fastapi.testclient import TestClient
 
@@ -46,7 +47,7 @@ def test_all_kb_metadata_has_v8_source_fields():
         assert metadata.official_source
         assert metadata.official_url
         assert metadata.license
-        assert metadata.retrieved_at == "2026-06-29"
+        assert date.fromisoformat(metadata.retrieved_at)
         assert metadata.cache_expiry_days > 0
         assert metadata.verification_status in {"Official", "Verified", "Community", "Mock"}
 
@@ -88,3 +89,4 @@ def test_kb_status_api_includes_v8_quality_report_fields():
     assert "source_coverage_ratio" in data
     assert "official_source_coverage" in data
     assert "mock_coverage" in data
+

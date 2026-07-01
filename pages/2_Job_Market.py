@@ -109,7 +109,8 @@ if analyze_clicked:
     if role not in ROLE_OPTIONS:
         role = "Backend Developer"
     try:
-        result = api.analyze_job_market(
+        with st.spinner(t("common.analyzing_career")):
+            result = api.analyze_job_market(
             role=role,
             experience_level=experience,
             korean_level=korean_level,
@@ -259,7 +260,7 @@ if "last_job_result" in st.session_state:
         )
 
 else:
-    st.info(t("job.empty"))
+    st.info(t("common.no_data"))
 
 st.divider()
-st.caption(t("job.footer"))
+st.caption(t("common.footer"))

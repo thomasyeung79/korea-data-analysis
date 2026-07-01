@@ -1,10 +1,12 @@
-# Korea Compass
+﻿# Korea Compass
 
 > Your AI Guide to Study, Work & Life in South Korea
 
 Korea Compass is a full-stack information and planning app for international students and job seekers who are considering South Korea. It helps users explore Korea, create a reusable profile, estimate study and living costs, analyze career outlook, compare Korean cities, get scene-based Korean language support, track news and visa policy, and generate an exportable AI Korea Life Plan.
 
 Version 1.0.1 packages the Explore, Study, Work, Live, Korean Learning, AI planning, Knowledge Base, Source Registry, Official Data Integration Foundation, Chinese UI polish, MBTI City Match, and integrated Korea Life Plan updates into a portfolio-ready release.
+
+Version 2.1 improves official-data readiness, deployment documentation, and portfolio presentation. The Knowledge Base now includes expanded university coverage, refreshed visa guidance metadata, city data provenance, root `.env.example`, and a clearer Streamlit Cloud plus external FastAPI deployment story.
 
 ## Project Docs
 
@@ -13,6 +15,74 @@ Version 1.0.1 packages the Explore, Study, Work, Live, Korean Learning, AI plann
 * [Demo Script](DEMO_SCRIPT.md)
 * [Deployment Guide](DEPLOYMENT.md)
 * [Project Health](PROJECT_HEALTH.md)
+* [Screenshot Guide](SCREENSHOT_GUIDE.md)
+* [Video Demo Script](VIDEO_DEMO_SCRIPT.md)
+
+## Product Features
+
+Korea Compass v2.1 is organized around one planning journey: explore Korea, create a reusable profile, compare city fit, estimate study and living costs, analyze career readiness, get scene-based Korean support, and generate an exportable AI Korea Life Plan.
+
+Core product areas:
+
+* Explore Korea: country overview, cities, culture, history, cost of living, and quick facts
+* Profile Center: reusable Study, Career, and Living profile
+* Study: study cost calculator and budget fit
+* Work: career and job market analyzer
+* Live: news, policy, and MBTI city matching
+* Korean Learning: scenario-based Korean support for study, work, and daily life
+* AI Korea Life Plan: integrated planning report with exports
+* Knowledge Base Status: source, metadata, and confidence visibility
+
+## User Journey
+
+1. Explore Korea
+2. Create a Profile
+3. Generate City Recommendations
+4. Estimate Study and Living Costs
+5. Analyze Career Outlook
+6. Use Korean Learning Support
+7. Generate the AI Korea Life Plan
+8. Review Knowledge Base Status
+
+## Technology Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | Streamlit |
+| Backend | FastAPI |
+| Database | SQLite |
+| Visualizations | Plotly |
+| Data Layer | JSON Knowledge Base + Source Registry |
+| AI Layer | Rule-based local fallback, optional OpenAI provider |
+| Testing | pytest |
+
+## Architecture Overview
+
+```mermaid
+flowchart TD
+    A[Streamlit UI] --> B[API Client]
+    B --> C[FastAPI Routers]
+    C --> D[Services]
+    D --> E[SQLite Persistence]
+    D --> F[Knowledge Base JSON]
+    F --> G[Source Registry]
+    D --> H[AI Report Engine]
+```
+
+## Testing Summary
+
+The project includes automated coverage for backend APIs, service logic, i18n fallback behavior, Streamlit fallback paths, Knowledge Base metadata, Source Registry loading, Korean Learning data, MBTI city matching, and integrated Korea Life Plan generation.
+
+Current target: full `pytest` suite passing before release or deployment.
+
+## Deployment Status
+
+Korea Compass is designed for local full-stack development and portfolio deployment:
+
+* Local: run FastAPI backend and Streamlit frontend together.
+* Streamlit Cloud: frontend can run independently with local fallback behavior for demo flows.
+* External backend: deploy FastAPI separately on Render, Railway, or similar and set `API_BASE_URL`.
+* AI: `OPENAI_API_KEY` is optional; local rule-based fallback remains available.
 
 ## Screenshots
 
@@ -173,6 +243,18 @@ AI Korea Life Plan
 
 ## Data Provenance
 
+### Official / Verified Data Strategy
+
+Korea Compass uses a staged data-quality model:
+
+* `Official`: records structured from official government, institution, or official portal sources.
+* `Verified`: records aligned with official or reputable public references, with some directional product estimates.
+* `Mock`: limited MVP planning data retained where official confirmation is still pending.
+
+v2.1 prioritizes official or verified metadata for universities, visas, and cities. University entries use official university websites and the Study in Korea ecosystem for traceability. Visa guidance points to Hi Korea / Korea Immigration Service sources. City profiles use KOSIS and local-government provenance while keeping living costs and recommendation scores clearly marked as planning estimates.
+
+Every Knowledge Base JSON file includes `source_name`, `source_url`, `retrieved_at`, `last_updated`, `verification_status`, confidence metadata, license notes, and cache expiry guidance.
+
 ### Sources
 
 This project provides educational and informational guidance for users interested in studying, working, or living in South Korea.
@@ -212,7 +294,40 @@ This project does not provide legal, immigration, financial, or professional adv
 * Source URLs, filenames, API paths, code identifiers, and technical terms remain unchanged where appropriate.
 * Detailed i18n design: [docs/KOREA_ANALYSIS_I18N.md](docs/KOREA_ANALYSIS_I18N.md)
 
-## Architecture
+## Deployment Readiness
+
+Korea Compass supports two demo modes:
+
+* Streamlit-only portfolio demo using local fallback behavior when `API_BASE_URL` is not configured.
+* Full-stack deployment with Streamlit frontend plus a separately hosted FastAPI backend.
+
+Environment variables:
+
+| Variable | Purpose |
+|---|---|
+| `API_BASE_URL` | Optional FastAPI backend URL for deployed frontend |
+| `OPENAI_API_KEY` | Optional AI provider key; local fallback works without it |
+| `AI_PROVIDER` | Defaults to `local` for no-cost demos |
+| `CORS_ORIGINS` | Comma-separated frontend origins for FastAPI CORS |
+
+See [.env.example](.env.example) and [DEPLOYMENT.md](DEPLOYMENT.md).
+
+## Portfolio Highlights
+
+* Study / Work / Live in Korea AI planning app.
+* English and Simplified Chinese UI.
+* Explore Korea country and city information.
+* Profile Center for reusable user planning context.
+* City Recommendation scoring engine.
+* MBTI City Match for lifestyle fit.
+* Korean Learning Support for real study, work, and living scenarios.
+* AI Korea Life Plan with exportable reports.
+* JSON Knowledge Base with metadata, source registry, and official / verified data strategy.
+* FastAPI + Streamlit architecture with SQLite persistence.
+* Plotly visualizations and Streamlit Cloud fallback mode.
+* 200+ automated tests covering API, services, schemas, i18n, KB quality, and fallback behavior.
+
+## Detailed Architecture
 
 ```mermaid
 flowchart LR
@@ -349,7 +464,7 @@ The Knowledge Base Status view and `/api/v1/kb/status` endpoint report:
 * Mock Coverage — percentage of files still marked as mock compatibility data
 * Confidence Distribution — content confidence levels across the Knowledge Base
 
-## Tech Stack
+## Detailed Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -504,3 +619,6 @@ Streamlit Cloud runs the frontend only. To use the FastAPI-backed API online, de
 
 This project is licensed under the MIT License.
 See the LICENSE file for details.
+
+
+

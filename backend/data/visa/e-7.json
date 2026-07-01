@@ -1,33 +1,34 @@
 {
   "metadata": {
-    "source_name": "Korea Immigration Service",
-    "source_url": "https://www.immigration.go.kr",
-    "last_updated": "2026-06-29",
+    "source_name": "Hi Korea",
+    "source_url": "https://www.hikorea.go.kr",
+    "last_updated": "2026-06-30",
     "language": "en",
-    "version": "1.0",
-    "confidence_level": "Medium",
-    "notes": "Policy summaries; verify with official immigration sources.",
+    "version": "2.1",
+    "confidence_level": "High",
+    "notes": "Visa summaries are structured from official immigration guidance for planning only. Users must verify requirements, documents, and processing with Hi Korea or the relevant Korean diplomatic mission before applying.",
     "official_source": "Hi Korea",
     "official_url": "https://www.hikorea.go.kr",
     "license": "Official website terms / public information",
-    "retrieved_at": "2026-06-29",
-    "cache_expiry_days": 90,
+    "retrieved_at": "2026-06-30",
+    "cache_expiry_days": 60,
     "verification_status": "Official"
   },
   "visa_type": "E-7",
-  "description": "Specific activity work visa for skilled roles sponsored by Korean employers.",
+  "description": "Specific activities work visa for eligible professional roles sponsored by a Korean employer.",
   "eligibility": [
-    "Employer sponsorship",
-    "Role fits eligible occupation category",
-    "Relevant education or experience"
+    "Eligible occupation category",
+    "Korean employer sponsorship",
+    "Relevant degree, experience, or qualifications"
   ],
   "documents": [
+    "Passport",
     "Employment contract",
-    "Company documents",
+    "Employer documents",
     "Degree or career proof",
-    "Passport"
+    "Application form"
   ],
-  "processing_time": "4-10 weeks",
-  "renewal": "Renew with ongoing employment and employer documents.",
-  "notes": "Common skilled work route for tech, engineering, business, and specialist roles."
+  "processing_time": "Varies by occupation, employer, and immigration review; confirm officially.",
+  "renewal": "Renewal generally requires continued eligible employment and employer support.",
+  "notes": "Important pathway for professional employment. Occupation code and employer requirements are critical."
 }

@@ -2,40 +2,41 @@
   "metadata": {
     "source_name": "Study in Korea",
     "source_url": "https://www.studyinkorea.go.kr",
-    "last_updated": "2026-06-29",
+    "last_updated": "2026-06-30",
     "language": "en",
-    "version": "1.0",
-    "confidence_level": "Medium",
-    "notes": "Estimated university profile data; verify tuition and scholarships officially.",
+    "version": "2.1",
+    "confidence_level": "High",
+    "notes": "Institution names, cities, types, websites, and broad academic profile are curated from official university / Study in Korea sources. Tuition figures remain directional planning estimates and should be verified with each university.",
     "official_source": "Study in Korea",
     "official_url": "https://www.studyinkorea.go.kr",
     "license": "Official website terms / public information",
-    "retrieved_at": "2026-06-29",
+    "retrieved_at": "2026-06-30",
     "cache_expiry_days": 90,
-    "verification_status": "Verified"
+    "verification_status": "Official"
   },
   "name": "KAIST",
   "city": "Daejeon",
-  "ranking": "Top science and technology university",
+  "ranking": "Science and technology institute",
   "type": "National research university",
-  "website": "https://www.kaist.ac.kr/en/",
+  "website": "https://www.kaist.ac.kr",
   "major_strengths": [
     "Computer Science",
+    "Electrical Engineering",
     "AI",
-    "Engineering",
-    "Natural Sciences",
-    "Robotics"
+    "Mechanical Engineering",
+    "Natural Sciences"
   ],
   "tuition": {
     "undergraduate": 7000000,
     "graduate": 8000000,
-    "currency": "KRW/year"
+    "currency": "KRW/year",
+    "note": "Directional estimate; verify by program and funding status."
   },
   "scholarships": [
+    "Global Korea Scholarship",
     "KAIST scholarships",
-    "Research assistantships",
-    "Government scholarships"
+    "Research assistantships"
   ],
-  "international_students": "Strong STEM-focused international cohort",
-  "description": "Research-intensive science and engineering university in Daejeon."
+  "international_students": "International STEM-focused student community",
+  "description": "A leading science and technology university in Daejeon with strong research orientation."
 }

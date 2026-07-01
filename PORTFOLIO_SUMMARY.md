@@ -63,6 +63,8 @@ The AI Korea Life Plan has been upgraded from a standalone report into an integr
 
 The Knowledge Base stores structured JSON data by domain. V1.0 adds metadata, source coverage, licensing fields, retrieval timestamps, cache expiry, verification status, and a centralized Source Registry.
 
+V2.1 upgrades the data layer for portfolio readiness by expanding official / verified university, visa, and city records. It keeps uncertain costs and scores labeled as planning estimates instead of presenting them as official facts.
+
 ## Testing
 
 The test suite covers API endpoints, service logic, schema validation, localization helpers, Streamlit fallback mode, Knowledge Base metadata, Source Registry behavior, and business-rule outputs.
@@ -80,3 +82,5 @@ The test suite covers API endpoints, service logic, schema validation, localizat
 * Add scheduled Knowledge Base refresh and validation jobs.
 * Improve source citations inside individual result cards.
 * Add richer deployment examples for Streamlit Cloud plus external FastAPI hosting.
+* Replace remaining mock records with official or verified sources.
+* Add scheduled source refresh checks and data-quality reports.

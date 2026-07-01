@@ -93,7 +93,8 @@ with tab_policy:
 
     if search_clicked:
         try:
-            result = api.search_news_policy(
+            with st.spinner(t("common.searching_policy")):
+                result = api.search_news_policy(
                 keyword=keyword,
                 category=category,
                 time_range=time_range,
@@ -229,10 +230,10 @@ with tab_policy:
         )
 
     else:
-        st.info(t("news.empty"))
+        st.info(t("common.no_data"))
 
     st.divider()
-    st.caption(t("news.footer"))
+    st.caption(t("common.footer"))
 
 with tab_mbti:
     st.markdown(f'<div class="section-label">{label("LIVING PREFERENCE", "生活偏好")}</div>', unsafe_allow_html=True)
@@ -264,7 +265,8 @@ with tab_mbti:
     }
     if st.button(label("Match My City", "匹配我的城市"), use_container_width=True, type="primary"):
         try:
-            match = api.match_mbti_city(mbti_payload)
+            with st.spinner(t("common.analyzing_city")):
+                match = api.match_mbti_city(mbti_payload)
             st.session_state["mbti_city_match"] = match
             st.success(label("MBTI city match generated.", "MBTI 城市匹配已生成。"))
         except Exception as exc:

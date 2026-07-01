@@ -1,5 +1,21 @@
 # Korea Compass Project Health
 
+## v2.1 Status
+
+Korea Compass v2.1 is deployment-ready for a portfolio demo. It supports Streamlit-only fallback mode and full-stack mode with a separately deployed FastAPI backend.
+
+## Data Quality
+
+Priority universities, visas, and cities now include official or verified provenance metadata. Remaining mock records are intentionally limited and visible through Knowledge Base Status.
+
+## Deployment Readiness
+
+* Root `.env.example` is available.
+* `API_BASE_URL` supports Streamlit Cloud full-stack configuration.
+* `OPENAI_API_KEY` is optional.
+* `CORS_ORIGINS` is configurable for hosted FastAPI deployments.
+* Local fallback keeps Streamlit demos usable without a backend.
+
 ## Current Status
 
 Korea Compass v1.0 is portfolio-ready. The product includes Explore Korea, Study, Work, Live, Korean Learning, AI Korea Life Plan, Knowledge Base, Source Registry, and Official Data Integration Foundation capabilities.

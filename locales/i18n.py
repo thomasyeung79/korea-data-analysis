@@ -1,5 +1,7 @@
 ﻿from __future__ import annotations
 
+from copy import deepcopy
+
 import streamlit as st
 
 SUPPORTED_LANGUAGES = {
@@ -104,6 +106,7 @@ OPTION_LABELS: dict[str, dict[str, dict[str, str]]] = {
     },
     "transport": {
         "Public Transit": {"en": "Public Transit", "zh": "公共交通"},
+        "Public Transport": {"en": "Public Transport", "zh": "公共交通"},
         "Walking": {"en": "Walking", "zh": "步行"},
         "Car": {"en": "Car", "zh": "汽车"},
         "Bike": {"en": "Bike", "zh": "自行车"},
@@ -112,6 +115,7 @@ OPTION_LABELS: dict[str, dict[str, dict[str, str]]] = {
         "International Community": {"en": "International Community", "zh": "国际社区"},
         "Quiet Neighborhood": {"en": "Quiet Neighborhood", "zh": "安静社区"},
         "Student Area": {"en": "Student Area", "zh": "学生区"},
+        "Student Community": {"en": "Student Community", "zh": "学生社区"},
         "Career Network": {"en": "Career Network", "zh": "职业人脉圈"},
     },
     "mbti_preference": {
@@ -252,7 +256,10 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
         "zh": "运行：`cd backend && uvicorn app.main:app --reload`",
     },
     "common.download_csv": {"en": "📥 Download CSV", "zh": "📥 下载 CSV"},
-    "common.no_data": {"en": "No data available.", "zh": "暂无数据。"},
+    "common.no_data": {
+        "en": "No data available.\n\nPlease complete your profile first.",
+        "zh": "暂无可展示的数据。\n\n请先完成个人画像或选择相关条件。",
+    },
     "common.category": {"en": "Category", "zh": "类别"},
     "common.amount_krw": {"en": "Amount (KRW)", "zh": "金额（韩元）"},
     "common.percent": {"en": "Percent", "zh": "占比"},
@@ -260,8 +267,19 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
     "common.export": {"en": "EXPORT", "zh": "导出"},
     "common.your_profile": {"en": "YOUR PROFILE", "zh": "你的资料"},
     "common.directional_estimates": {"en": "Directional estimates", "zh": "方向性估算"},
+    "common.loading_official_data": {"en": "Loading official Korea data...", "zh": "正在加载韩国官方数据..."},
+    "common.generating_ai_plan": {"en": "Generating AI plan...", "zh": "正在生成 AI 规划..."},
+    "common.analyzing_city": {"en": "Analyzing city recommendations...", "zh": "正在分析城市推荐..."},
+    "common.saving_profile": {"en": "Saving profile...", "zh": "正在保存个人画像..."},
+    "common.calculating_cost": {"en": "Calculating study cost...", "zh": "正在计算留学成本..."},
+    "common.analyzing_career": {"en": "Analyzing career outlook...", "zh": "正在分析职业前景..."},
+    "common.searching_policy": {"en": "Loading Korea news and policy data...", "zh": "正在加载韩国新闻与政策数据..."},
+    "common.footer": {
+        "en": "Korea Compass v2.1\n\nStudy • Work • Live in Korea\n\nPowered by Official / Verified Knowledge Base",
+        "zh": "Korea Compass v2.1\n\nStudy • Work • Live in Korea\n\nData Source:\nOfficial / Verified Knowledge Base",
+    },
 
-    "profile.saved": {"en": "Profile saved", "zh": "个人画像已保存"},
+    "profile.saved": {"en": "Profile saved", "zh": "个人个人画像已保存"},
     "profile.study_summary": {"en": "Study Profile", "zh": "学习画像"},
     "profile.career_summary": {"en": "Career Profile", "zh": "职业画像"},
     "profile.living_summary": {"en": "Living Profile", "zh": "生活画像"},
@@ -283,7 +301,8 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
     "profile.housing": {"en": "Housing preference", "zh": "住宿偏好"},
     "profile.transport": {"en": "Transport preference", "zh": "交通偏好"},
     "profile.community": {"en": "Community preference", "zh": "社区偏好"},
-    "profile.raw_data": {"en": "View raw data", "zh": "查看原始数据"},
+    "profile.raw_data": {"en": "View Display Data", "zh": "查看展示数据"},
+    "profile.display_data": {"en": "View Display Data", "zh": "查看展示数据"},
 
     "home.page_title": {"en": "Korea Compass", "zh": "韩国指南"},
     "home.brand": {"en": "KOREA COMPASS", "zh": "韩国指南"},
@@ -294,7 +313,7 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
     },
     "home.kpi.study": {"en": "Study Cost Calculator", "zh": "留学成本计算器"},
     "home.kpi.job": {"en": "Career & Job Market Analyzer", "zh": "职业与就业市场分析"},
-    "home.kpi.report": {"en": "AI Korea Life Plan", "zh": "AI 韩国生活规划"},
+    "home.kpi.report": {"en": "AI Korea Life Plan", "zh": "AI 韩国发展规划"},
     "home.aside_tag": {"en": "V2 · ISSUE #2", "zh": "V2 · 议题 #2"},
     "home.aside_title": {"en": "Study Cost Calculator", "zh": "留学成本计算器"},
     "home.aside_desc": {
@@ -318,7 +337,7 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
     "home.flow.study.desc": {"en": "Estimate monthly and annual costs for your Korea study plan.", "zh": "估算你的韩国留学月度与年度成本。"},
     "home.flow.job.title": {"en": "Analyze Career Market", "zh": "分析职业市场"},
     "home.flow.job.desc": {"en": "See salary ranges, required skills, and visa pathways across tech and business roles.", "zh": "查看技术与商业岗位的薪资范围、技能要求和签证路径。"},
-    "home.flow.report.title": {"en": "Generate AI Korea Life Plan", "zh": "生成 AI 韩国生活规划"},
+    "home.flow.report.title": {"en": "Generate AI Korea Life Plan", "zh": "生成 AI 韩国发展规划"},
     "home.flow.report.desc": {"en": "Combine cost + career into a personalised recommendation with action plan.", "zh": "把成本和职业分析合并成带行动计划的个性化建议。"},
     "home.flow.news.title": {"en": "Check News & Policy", "zh": "查看新闻与政策"},
     "home.flow.news.desc": {"en": "Search recent Korea visa, study, work, and tech policy updates.", "zh": "搜索近期韩国签证、留学、工作和科技政策动态。"},
@@ -440,9 +459,9 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
     "job.empty": {"en": "Select your profile above and click **Analyze Job Market** to see results.", "zh": "选择上方资料并点击 **分析就业市场** 查看结果。"},
     "job.footer": {"en": "Korea Compass · Career & Job Market Analyzer v3.0", "zh": "韩国指南 · 职业与就业市场分析 v3.0"},
 
-    "decision.page_title": {"en": "AI Korea Life Plan", "zh": "AI 韩国生活规划"},
+    "decision.page_title": {"en": "AI Korea Life Plan", "zh": "AI 韩国发展规划"},
     "decision.brand": {"en": "V2 · MODULE 3", "zh": "V2 · 模块 3"},
-    "decision.heading": {"en": "AI Korea Life Plan", "zh": "AI 韩国生活规划"},
+    "decision.heading": {"en": "AI Korea Life Plan", "zh": "AI 韩国发展规划"},
     "decision.subtitle": {"en": "Should you study, work, or live in Korea? Tell us about yourself and get a personalised report combining cost analysis, career insights, risk assessment, and a 3-month action plan.", "zh": "你适合去韩国学习、工作还是生活？告诉我们你的情况，获得结合成本、职业洞察、风险评估和 3 个月行动计划的个性化报告。"},
     "decision.aside_tag": {"en": "Rule-based engine", "zh": "规则引擎"},
     "decision.aside_title": {"en": "Combines 4 risk dimensions", "zh": "结合 4 个风险维度"},
@@ -452,7 +471,7 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
     "decision.target_city": {"en": "Target City", "zh": "目标城市"},
     "decision.monthly_budget": {"en": "Monthly Budget (KRW)", "zh": "月度预算（韩元）"},
     "decision.budget_help": {"en": "Your estimated monthly budget in Korean Won (tuition + living expenses).", "zh": "你的韩元月度预算估计（学费 + 生活费）。"},
-    "decision.generate": {"en": "Generate AI Korea Life Plan", "zh": "生成 AI 韩国生活规划"},
+    "decision.generate": {"en": "Generate AI Korea Life Plan", "zh": "生成 AI 韩国发展规划"},
     "decision.failed": {"en": "Failed to generate report: {error}", "zh": "生成报告失败：{error}"},
     "decision.recommendation": {"en": "RECOMMENDATION", "zh": "建议"},
     "decision.overall": {"en": "OVERALL RECOMMENDATION", "zh": "总体建议"},
@@ -481,8 +500,8 @@ _TRANSLATIONS: dict[str, dict[str, str]] = {
     "decision.download_summary": {"en": "📥 Download Summary (TXT)", "zh": "📥 下载摘要（TXT）"},
     "decision.download_md": {"en": "📥 Download Markdown", "zh": "📥 下载 Markdown"},
     "decision.download_json": {"en": "📥 Download Full Report (JSON)", "zh": "📥 下载完整报告（JSON）"},
-    "decision.empty": {"en": "Fill in your profile above and click **Generate AI Korea Life Plan** to see your personalised report.", "zh": "填写上方资料并点击 **生成 AI 韩国生活规划** 查看你的个性化报告。"},
-    "decision.footer": {"en": "Korea Compass · AI Korea Life Plan v3.0", "zh": "韩国指南 · AI 韩国生活规划 v3.0"},
+    "decision.empty": {"en": "Fill in your profile above and click **Generate AI Korea Life Plan** to see your personalised report.", "zh": "填写上方资料并点击 **生成 AI 韩国发展规划** 查看你的个性化报告。"},
+    "decision.footer": {"en": "Korea Compass · AI Korea Life Plan v3.0", "zh": "韩国指南 · AI 韩国发展规划 v3.0"},
 
     "news.page_title": {"en": "News & Policy", "zh": "新闻与政策"},
     "news.brand": {"en": "V2 · MODULE 4", "zh": "V2 · 模块 4"},
@@ -672,6 +691,23 @@ def translate_result_label(value: str) -> str:
     return _display_value(RESULT_LABELS, value)
 
 
+def format_krw(value: float | int | None) -> str:
+    amount = float(value or 0)
+    if get_language() == "zh":
+        wan = amount / 10_000
+        if wan >= 100:
+            return f"约 {wan:,.0f} 万韩元"
+        return f"约 {amount:,.0f} 韩元"
+    return f"₩{amount:,.0f}"
+
+
+def format_score_100(value: float | int | None) -> str:
+    score = float(value or 0)
+    if score.is_integer():
+        return f"{int(score)} / 100"
+    return f"{score:.1f} / 100"
+
+
 def display_role(role: str) -> str:
     return translate_option("role", role)
 
@@ -692,6 +728,68 @@ def translation_key_count() -> int:
     return len(_TRANSLATIONS)
 
 
+PROFILE_VALUE_CATEGORIES = {
+    "nationality": "nationality",
+    "current_education_level": "education_level",
+    "target_study_level": "education_level",
+    "target_major": "major",
+    "korean_level": "korean_level",
+    "english_level": "english_level",
+    "preferred_city": "city",
+    "target_role": "role",
+    "work_experience": "experience",
+    "target_industry": "industry",
+    "lifestyle": "profile_lifestyle",
+    "housing_preference": "housing_type",
+    "transport_preference": "transport",
+    "community_preference": "community",
+}
+
+PROFILE_RAW_VALUE_LABELS = {
+    "display_name": {
+        "Compass User": {"en": "Compass User", "zh": "\u97e9\u56fd\u6307\u5357\u7528\u6237"},
+    },
+    "profile_lifestyle": {
+        "Budget": {"en": "Budget", "zh": "\u9884\u7b97\u578b"},
+        "Standard": {"en": "Standard", "zh": "\u6807\u51c6\u578b"},
+        "Premium": {"en": "Premium", "zh": "\u9ad8\u54c1\u8d28"},
+    },
+}
+
+
+def _translate_profile_value(key: str, value: str, language: str) -> str:
+    if language != "zh":
+        return value
+    special = PROFILE_RAW_VALUE_LABELS.get(key, {}).get(value)
+    if special:
+        return special.get("zh", value)
+    category = PROFILE_VALUE_CATEGORIES.get(key)
+    if not category:
+        return value
+    if category in PROFILE_RAW_VALUE_LABELS:
+        entry = PROFILE_RAW_VALUE_LABELS[category].get(value, {})
+        return entry.get("zh") or entry.get("en") or value
+    entry = OPTION_LABELS.get(category, {}).get(value, {})
+    return entry.get("zh") or entry.get("en") or value
+
+
+def translate_profile_json(profile: dict, language: str | None = None) -> dict:
+    language = language or get_language()
+    if language != "zh":
+        return deepcopy(profile)
+
+    def convert(value, key: str = ""):
+        if isinstance(value, dict):
+            return {item_key: convert(item_value, item_key) for item_key, item_value in value.items()}
+        if isinstance(value, list):
+            return [convert(item, key) for item in value]
+        if isinstance(value, str):
+            return _translate_profile_value(key, value, language)
+        return value
+
+    return convert(profile)
+
+
 def profile_summary(profile: dict) -> dict[str, list[tuple[str, str]]]:
     study = profile.get("study_profile", {})
     career = profile.get("career_profile", {})
@@ -705,7 +803,7 @@ def profile_summary(profile: dict) -> dict[str, list[tuple[str, str]]]:
             (t("profile.target_major"), translate_option("major", study.get("target_major", ""))),
             (t("profile.korean_level"), translate_option("korean_level", study.get("korean_level", ""))),
             (t("profile.english_level"), translate_option("english_level", study.get("english_level", ""))),
-            (t("profile.annual_budget"), f"{float(study.get('annual_budget', 0)):,.0f} KRW"),
+            (t("profile.annual_budget"), format_krw(study.get("annual_budget", 0))),
             (t("profile.preferred_city"), translate_option("city", study.get("preferred_city", ""))),
         ],
         t("profile.career_summary"): [
@@ -723,3 +821,4 @@ def profile_summary(profile: dict) -> dict[str, list[tuple[str, str]]]:
             (t("profile.community"), translate_option("community", living.get("community_preference", ""))),
         ],
     }
+

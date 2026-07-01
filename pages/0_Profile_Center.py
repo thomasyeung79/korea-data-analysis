@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 from pathlib import Path
 
 import streamlit as st
@@ -8,10 +8,10 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from api_client import APIClient
-from locales.i18n import get_language, language_selector, t, translate_option, display_role, profile_summary
+from locales.i18n import get_language, language_selector, t, translate_option, display_role, profile_summary, translate_profile_json
 from ui_style import apply_product_style
 
-st.set_page_config(page_title="Profile Center", page_icon="🧩", layout="wide")
+st.set_page_config(page_title="个人画像" if get_language() == "zh" else "Profile Center", page_icon="🧩", layout="wide")
 apply_product_style()
 api = APIClient()
 
@@ -29,8 +29,8 @@ st.markdown(
 <div class="product-hero">
   <section class="hero-panel">
     <div class="brand-row"><span class="brand-dot"></span>KOREA COMPASS V3</div>
-    <h1>{label("Profile Center", "画像中心")}</h1>
-    <p>{label("Create one reusable profile for study, career, living, city recommendations, and AI Korea Life Plan.", "创建一个可复用画像，用于留学、职业、生活、城市推荐和 AI 韩国生活规划。")}</p>
+    <h1>{label("Profile Center", "个人画像")}</h1>
+    <p>{label("Create one reusable profile for study, career, living, city recommendations, and AI Korea Life Plan.", "创建一个可复用个人画像，用于留学、职业、生活、城市推荐和 AI 韩国发展规划。")}</p>
   </section>
   <aside class="hero-aside">
     <h3>{label("Study / Career / Living", "留学 / 职业 / 生活")}</h3>
@@ -41,7 +41,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.markdown(f"## {label('Create Profile', '创建画像')}")
+st.markdown(f"## {label('Create Profile', '创建个人画像')}")
 display_name = st.text_input(label("Display name", "显示名称"), value="Compass User")
 
 study_col, career_col, living_col = st.columns(3)
@@ -113,10 +113,11 @@ payload = {
     },
 }
 
-if st.button(label("Save Profile", "保存画像"), use_container_width=True, type="primary"):
-    saved = api.create_profile(payload)
+if st.button(label("Save Profile", "保存个人画像"), use_container_width=True, type="primary"):
+    with st.spinner(t("common.saving_profile")):
+        saved = api.create_profile(payload)
     st.session_state["compass_profile"] = payload
-    st.success(label("Profile saved. You can now generate city recommendations and a Korea Life Plan.", "画像已保存。现在可以生成城市推荐和韩国生活规划。"))
+    st.success(label("Profile saved. You can now generate city recommendations and a Korea Life Plan.", "个人画像已保存。现在可以生成城市推荐和韩国生活规划。"))
     st.markdown(f"## {t('profile.saved')}")
     summary = profile_summary(payload)
     cols = st.columns(3)
@@ -125,8 +126,11 @@ if st.button(label("Save Profile", "保存画像"), use_container_width=True, ty
             st.markdown(f"### {section}")
             for key, value in rows:
                 st.markdown(f"- **{key}：** {value}")
-    with st.expander(t("profile.raw_data"), expanded=False):
-        st.json(saved)
+    with st.expander(t("profile.display_data"), expanded=False):
+        st.json(translate_profile_json(saved, get_language()))
 
 if "compass_profile" in st.session_state:
-    st.info(label("Current profile is ready for Korea Compass modules.", "当前画像已可用于 Korea Compass 模块。"))
+    st.info(label("Current profile is ready for Korea Compass modules.", "当前个人画像已可用于 Korea Compass 模块。"))
+
+st.caption(t("common.footer"))
+

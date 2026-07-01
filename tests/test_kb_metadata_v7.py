@@ -1,5 +1,6 @@
-import json
+﻿import json
 import sys
+from datetime import date
 from pathlib import Path
 
 from fastapi.testclient import TestClient
@@ -43,7 +44,7 @@ def test_loader_returns_metadata_with_city_record():
     parsed = KnowledgeBaseCity(**city)
 
     assert parsed.metadata.source_name
-    assert parsed.metadata.last_updated == "2026-06-29"
+    assert date.fromisoformat(parsed.metadata.last_updated)
     assert parsed.city_name == "Seoul"
 
 
@@ -64,3 +65,4 @@ def test_kb_status_api():
     assert data["metadata_coverage"] == 1.0
     assert "cities" in data["directory_counts"]
     assert "Medium" in data["confidence_distribution"] or "Low" in data["confidence_distribution"]
+

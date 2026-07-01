@@ -1,4 +1,5 @@
 import sys
+import json
 from pathlib import Path
 
 from fastapi.testclient import TestClient
@@ -125,3 +126,68 @@ def test_profile_summary_english_mode_stays_english(monkeypatch):
     assert "Business Analyst" in flat_values
     assert "Graduate School" in flat_values
     assert "Busan" in flat_values
+
+
+def test_translate_profile_json_localizes_chinese_display_values(monkeypatch):
+    monkeypatch.setattr(i18n, "st", SimpleNamespace(session_state={}))
+    i18n.set_language("zh")
+    profile = sample_profile()
+    profile["display_name"] = "Compass User"
+    profile["study_profile"].update({
+        "nationality": "International",
+        "current_education_level": "High School",
+        "target_study_level": "Language School",
+        "target_major": "Computer Science",
+        "korean_level": "None",
+        "english_level": "Basic",
+        "preferred_city": "Seoul",
+    })
+    profile["career_profile"].update({
+        "target_role": "Data Analyst",
+        "work_experience": "Student",
+        "technical_skills": ["SQL", "Python"],
+        "target_industry": "Technology",
+    })
+    profile["living_profile"].update({
+        "lifestyle": "Budget",
+        "housing_preference": "Dormitory",
+        "transport_preference": "Public Transport",
+        "community_preference": "Student Community",
+    })
+
+    display_profile = i18n.translate_profile_json(profile, "zh")
+    rendered = json.dumps(display_profile, ensure_ascii=False)
+
+    assert display_profile["display_name"] == "韩国指南用户"
+    assert display_profile["study_profile"]["nationality"] == "国际学生"
+    assert display_profile["study_profile"]["current_education_level"] == "高中"
+    assert display_profile["study_profile"]["target_study_level"] == "语言学校"
+    assert display_profile["study_profile"]["target_major"] == "计算机科学"
+    assert display_profile["study_profile"]["korean_level"] == "无"
+    assert display_profile["study_profile"]["english_level"] == "基础"
+    assert display_profile["study_profile"]["preferred_city"] == "首尔"
+    assert display_profile["career_profile"]["target_role"] == "数据分析师"
+    assert display_profile["career_profile"]["work_experience"] == "学生"
+    assert display_profile["career_profile"]["target_industry"] == "科技"
+    assert display_profile["living_profile"]["lifestyle"] == "预算型"
+    assert display_profile["living_profile"]["housing_preference"] == "宿舍"
+    assert display_profile["living_profile"]["transport_preference"] == "公共交通"
+    assert display_profile["living_profile"]["community_preference"] == "学生社区"
+
+    assert "High School" not in rendered
+    assert "Computer Science" not in rendered
+    assert "International" not in rendered
+    assert "SQL" in rendered
+    assert "Python" in rendered
+    assert "TOPIK 3" in rendered
+
+
+def test_translate_profile_json_english_mode_keeps_raw_values(monkeypatch):
+    monkeypatch.setattr(i18n, "st", SimpleNamespace(session_state={}))
+    i18n.set_language("en")
+    profile = sample_profile()
+
+    display_profile = i18n.translate_profile_json(profile, "en")
+
+    assert display_profile == profile
+    assert display_profile is not profile

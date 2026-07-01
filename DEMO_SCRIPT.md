@@ -1,5 +1,9 @@
 # Korea Compass Demo Script
 
+## v2.1 Demo Note
+
+Before recording or presenting, mention that Korea Compass can run in Streamlit-only demo mode or full-stack mode with a deployed FastAPI backend. Use Knowledge Base Status to show source coverage, official / verified data strategy, and that the app is built for data-quality transparency.
+
 Use this script for a 5 to 8 minute portfolio walkthrough.
 
 ## 1. Homepage

@@ -54,6 +54,40 @@ Two deployment options are supported:
 1. Streamlit-only demo mode: leave `API_BASE_URL` unset and use local fallback behavior.
 2. Full-stack mode: deploy FastAPI separately and set `API_BASE_URL` in Streamlit Secrets.
 
+### Streamlit Cloud Checklist
+
+* App entry point: `app.py`
+* Python dependencies: `requirements.txt`
+* Optional secret: `API_BASE_URL`
+* Optional secret: `OPENAI_API_KEY`
+* No backend process is started by Streamlit Cloud automatically.
+
+For a frontend-only portfolio demo, leave `API_BASE_URL` unset. The API client will use local fallback services where available.
+
+## Render / Railway FastAPI Backend
+
+Deploy the `backend` directory as a Python web service.
+
+Example start command:
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port $PORT
+```
+
+Recommended backend environment variables:
+
+```text
+CORS_ORIGINS=https://your-streamlit-app.streamlit.app
+OPENAI_API_KEY=
+AI_PROVIDER=local
+```
+
+After deployment, set the Streamlit frontend secret:
+
+```text
+API_BASE_URL=https://your-fastapi-service.example.com
+```
+
 ## API_BASE_URL
 
 Use this variable when a backend is deployed:
@@ -77,6 +111,17 @@ OPENAI_API_KEY=your_key_here
 ```
 
 If the key is missing or the provider fails, Korea Compass uses local deterministic fallback logic.
+
+## Environment Variables
+
+See `.env.example` at the repository root.
+
+| Variable | Required | Description |
+|---|---:|---|
+| `API_BASE_URL` | No | Frontend URL for a deployed FastAPI backend |
+| `OPENAI_API_KEY` | No | Optional OpenAI-compatible provider key |
+| `AI_PROVIDER` | No | Defaults to local fallback mode |
+| `CORS_ORIGINS` | No | Comma-separated frontend origins for backend CORS |
 
 ## Troubleshooting
 

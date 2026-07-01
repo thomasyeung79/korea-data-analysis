@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 from pathlib import Path
 
 import streamlit as st
@@ -44,7 +44,7 @@ st.markdown(
             <div class="brand-row" style="color:#cbd5e1;"><span class="brand-dot"></span>V6 · REAL DATA & KNOWLEDGE BASE EDITION</div>
             <h3 style="margin-top:1.2rem;">{label("One profile, one Korea plan", "一个画像，一份韩国规划")}</h3>
             <p style="color:#cbd5e1;">
-                {label("Create a reusable profile, compare city fit, estimate costs, review career readiness, and generate an exportable AI Korea Life Plan.", "创建可复用画像，比较城市匹配度，估算成本，评估职业准备度，并生成可导出的 AI 韩国生活规划。")}
+                {label("Create a reusable profile, compare city fit, estimate costs, review career readiness, and generate an exportable AI Korea Life Plan.", "创建可复用画像，比较城市匹配度，估算成本，评估职业准备度，并生成可导出的 AI 韩国发展规划。")}
             </p>
         </div>
         <div class="insight-card" style="background:#111c33;border-color:#26344f;">
@@ -79,7 +79,7 @@ flow_steps = [
     ("3", "💼", label("Career Planning", "职业规划"), label("Review role-specific salary, skills, cities, and visa options.", "查看岗位薪资、技能、城市和签证路径。")),
     ("4", "🏙️", label("Living Guide", "生活指南"), label("Compare city fit across cost, lifestyle, and language readiness.", "比较城市在成本、生活方式和语言匹配上的表现。")),
     ("5", "🗣", label("Korean Learning", "韩语场景支持"), label("Learn Korean expressions for real study, work, and living situations.", "学习真实留学、工作和生活场景中的韩语表达。")),
-    ("6", "🧭", label("AI Korea Life Plan", "AI 韩国生活规划"), label("Combine study, work, living, risks, visa, and action plans.", "整合留学、工作、生活、风险、签证和行动计划。")),
+    ("6", "🧭", label("AI Korea Life Plan", "AI 韩国发展规划"), label("Combine study, work, living, risks, visa, and action plans.", "整合留学、工作、生活、风险、签证和行动计划。")),
 ]
 
 for row_start in (0, 3):
@@ -111,7 +111,7 @@ modules = [
     ("💼", label("Work in Korea", "韩国求职"), label("Analyze salary ranges, skills, city fit, language requirements, and visa pathways.", "分析薪资范围、技能、城市匹配、语言要求和签证路径。"), "pages/2_Job_Market.py", t("home.open_analyzer")),
     ("🏙️", label("Live in Korea", "韩国生活"), label("Rank Korean cities using study, career, living, cost, language, and lifestyle scores.", "基于留学、职业、生活、成本、语言和生活方式评分推荐城市。"), "pages/5_City_Recommendation.py", label("Open Living Guide", "打开生活指南")),
     ("🗣", label("Korean Learning", "韩语场景支持"), label("Use scene-based Korean support for classrooms, interviews, offices, restaurants, hospitals, banks, and TOPIK planning.", "使用场景式韩语支持，覆盖课堂、面试、办公室、餐厅、医院、银行和 TOPIK 规划。"), "pages/7_Korean_Learning.py", label("Open Korean Learning", "打开韩语支持")),
-    ("🧭", label("AI Korea Life Plan", "AI 韩国生活规划"), label("Generate an exportable Korea plan with 3, 6, and 12-month actions.", "生成可导出的韩国规划，包含 3、6、12 个月行动计划。"), "pages/6_AI_Korea_Life_Plan.py", label("Open Life Plan", "打开生活规划")),
+    ("🧭", label("AI Korea Life Plan", "AI 韩国发展规划"), label("Generate an exportable Korea plan with 3, 6, and 12-month actions.", "生成可导出的韩国规划，包含 3、6、12 个月行动计划。"), "pages/6_AI_Korea_Life_Plan.py", label("Open Life Plan", "打开生活规划")),
 ]
 
 for row_start in (0, 3):
@@ -138,13 +138,13 @@ with u1:
         f"""
 <div class="module-card">
     <div class="module-tag">V3</div>
-    <h3>🧩 {label("Profile Center", "画像中心")}</h3>
-    <p>{label("Create one reusable profile for every Korea Compass module.", "创建一个可供所有模块复用的画像。")}</p>
+    <h3>🧩 {label("Profile Center", "个人画像")}</h3>
+    <p>{label("Create one reusable profile for every Korea Compass module.", "创建一个可供所有模块复用的个人画像。")}</p>
 </div>
         """,
         unsafe_allow_html=True,
     )
-    if st.button(label("Open Profile Center", "打开画像中心"), use_container_width=True, key="nav_profile"):
+    if st.button(label("Open Profile Center", "打开个人画像"), use_container_width=True, key="nav_profile"):
         st.switch_page("pages/0_Profile_Center.py")
 with u2:
     st.markdown(
@@ -174,3 +174,6 @@ with dev2:
             "FastAPI 支持画像持久化、城市推荐、韩国生活规划生成、留学成本、职业分析和新闻政策搜索。在 Streamlit Cloud 未配置后端时，本地备用模式会保持演示可用。",
         )
     )
+
+st.caption(t("common.footer"))
+

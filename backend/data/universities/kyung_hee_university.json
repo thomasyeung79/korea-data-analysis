@@ -14,29 +14,29 @@
     "cache_expiry_days": 90,
     "verification_status": "Official"
   },
-  "name": "Pusan National University",
-  "city": "Busan",
-  "ranking": "Major national university",
-  "type": "National",
-  "website": "https://www.pusan.ac.kr",
+  "name": "Kyung Hee University",
+  "city": "Seoul / Yongin",
+  "ranking": "Major private university",
+  "type": "Private",
+  "website": "https://www.khu.ac.kr",
   "major_strengths": [
-    "Engineering",
-    "Marine Studies",
-    "Business",
+    "Hospitality",
+    "International Studies",
     "Medicine",
-    "Natural Sciences"
+    "Arts",
+    "Business"
   ],
   "tuition": {
-    "undergraduate": 5200000,
-    "graduate": 6500000,
+    "undergraduate": 8000000,
+    "graduate": 8800000,
     "currency": "KRW/year",
-    "note": "Directional estimate; verify by program."
+    "note": "Directional estimate; verify by campus and program."
   },
   "scholarships": [
     "Global Korea Scholarship",
     "University scholarships",
-    "Department scholarships"
+    "International student scholarships"
   ],
-  "international_students": "Regional international student community in Busan",
-  "description": "A major national university in Busan with strong engineering, marine, medicine, and regional industry links."
+  "international_students": "International programs across multiple campuses",
+  "description": "A private university known for international orientation, hospitality, medicine, and arts programs."
 }

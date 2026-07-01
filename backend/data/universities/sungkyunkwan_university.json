@@ -14,29 +14,29 @@
     "cache_expiry_days": 90,
     "verification_status": "Official"
   },
-  "name": "Pusan National University",
-  "city": "Busan",
-  "ranking": "Major national university",
-  "type": "National",
-  "website": "https://www.pusan.ac.kr",
+  "name": "Sungkyunkwan University",
+  "city": "Seoul / Suwon",
+  "ranking": "Major private research university",
+  "type": "Private",
+  "website": "https://www.skku.edu",
   "major_strengths": [
-    "Engineering",
-    "Marine Studies",
     "Business",
+    "Engineering",
+    "Semiconductors",
     "Medicine",
-    "Natural Sciences"
+    "Humanities"
   ],
   "tuition": {
-    "undergraduate": 5200000,
-    "graduate": 6500000,
+    "undergraduate": 8500000,
+    "graduate": 9400000,
     "currency": "KRW/year",
-    "note": "Directional estimate; verify by program."
+    "note": "Directional estimate; verify by campus and program."
   },
   "scholarships": [
     "Global Korea Scholarship",
     "University scholarships",
-    "Department scholarships"
+    "International student support"
   ],
-  "international_students": "Regional international student community in Busan",
-  "description": "A major national university in Busan with strong engineering, marine, medicine, and regional industry links."
+  "international_students": "International student support across Seoul and Suwon campuses",
+  "description": "A historic private research university with strengths across business, humanities, medicine, and technology."
 }

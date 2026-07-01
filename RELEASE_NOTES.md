@@ -1,5 +1,28 @@
 # Korea Compass Release Notes
 
+## v2.1
+
+Official Data, Deployment, and Portfolio Polish update.
+
+### Changes
+
+* Expanded university Knowledge Base coverage to 10 priority institutions: Seoul National University, Korea University, Yonsei University, KAIST, POSTECH, Hanyang University, Sungkyunkwan University, Kyung Hee University, Ewha Womans University, and Pusan National University.
+* Refreshed visa metadata and structured guidance for D-2, D-4, D-10, E-7, F-2, and F-5 using Hi Korea / Korea Immigration Service provenance.
+* Updated city metadata for Seoul, Busan, Incheon, Daejeon, Daegu, Gwangju, and Jeju with KOSIS / local-government provenance while keeping cost and recommendation scores marked as planning estimates.
+* Added root `.env.example` for Streamlit and backend deployment configuration.
+* Made FastAPI CORS origins configurable through `CORS_ORIGINS`.
+* Added Screenshot Guide and Video Demo Script for portfolio presentation.
+* Updated README, Portfolio Summary, Demo Script, Deployment Guide, and Project Health documentation.
+
+### Data Quality
+
+* Priority university, visa, and city records include `source_name`, `source_url`, `retrieved_at`, `last_updated`, and `verification_status`.
+* Mock data count is held at 3 records and did not increase in v2.1.
+
+### Tests
+
+* Added v2.1 official-data quality tests for required universities, visa coverage, source URLs, mock count, and KB status API health.
+
 ## v1.0.1
 
 UX, i18n, and integrated planning update.

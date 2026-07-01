@@ -14,29 +14,29 @@
     "cache_expiry_days": 90,
     "verification_status": "Official"
   },
-  "name": "Pusan National University",
-  "city": "Busan",
-  "ranking": "Major national university",
-  "type": "National",
-  "website": "https://www.pusan.ac.kr",
+  "name": "Hanyang University",
+  "city": "Seoul",
+  "ranking": "Major private university",
+  "type": "Private",
+  "website": "https://www.hanyang.ac.kr",
   "major_strengths": [
     "Engineering",
-    "Marine Studies",
     "Business",
-    "Medicine",
-    "Natural Sciences"
+    "Architecture",
+    "Computer Science",
+    "Design"
   ],
   "tuition": {
-    "undergraduate": 5200000,
-    "graduate": 6500000,
+    "undergraduate": 8200000,
+    "graduate": 9000000,
     "currency": "KRW/year",
     "note": "Directional estimate; verify by program."
   },
   "scholarships": [
     "Global Korea Scholarship",
-    "University scholarships",
-    "Department scholarships"
+    "International student scholarships",
+    "Merit scholarships"
   ],
-  "international_students": "Regional international student community in Busan",
-  "description": "A major national university in Busan with strong engineering, marine, medicine, and regional industry links."
+  "international_students": "Active international student programs",
+  "description": "A Seoul-based university particularly known for engineering, entrepreneurship, and applied programs."
 }

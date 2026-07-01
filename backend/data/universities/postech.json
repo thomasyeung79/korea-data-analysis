@@ -14,29 +14,29 @@
     "cache_expiry_days": 90,
     "verification_status": "Official"
   },
-  "name": "Pusan National University",
-  "city": "Busan",
-  "ranking": "Major national university",
-  "type": "National",
-  "website": "https://www.pusan.ac.kr",
+  "name": "POSTECH",
+  "city": "Pohang",
+  "ranking": "Science and technology institute",
+  "type": "Private research university",
+  "website": "https://www.postech.ac.kr",
   "major_strengths": [
-    "Engineering",
-    "Marine Studies",
-    "Business",
-    "Medicine",
-    "Natural Sciences"
+    "Materials Science",
+    "Chemical Engineering",
+    "Electrical Engineering",
+    "Computer Science",
+    "Physics"
   ],
   "tuition": {
-    "undergraduate": 5200000,
-    "graduate": 6500000,
+    "undergraduate": 7800000,
+    "graduate": 8500000,
     "currency": "KRW/year",
-    "note": "Directional estimate; verify by program."
+    "note": "Directional estimate; verify by program and funding status."
   },
   "scholarships": [
     "Global Korea Scholarship",
     "University scholarships",
-    "Department scholarships"
+    "Research assistantships"
   ],
-  "international_students": "Regional international student community in Busan",
-  "description": "A major national university in Busan with strong engineering, marine, medicine, and regional industry links."
+  "international_students": "Specialized STEM international community",
+  "description": "A research-intensive science and engineering university in Pohang."
 }

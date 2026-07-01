@@ -14,29 +14,29 @@
     "cache_expiry_days": 90,
     "verification_status": "Official"
   },
-  "name": "Pusan National University",
-  "city": "Busan",
-  "ranking": "Major national university",
-  "type": "National",
-  "website": "https://www.pusan.ac.kr",
+  "name": "Korea University",
+  "city": "Seoul",
+  "ranking": "Major private research university",
+  "type": "Private",
+  "website": "https://www.korea.edu",
   "major_strengths": [
-    "Engineering",
-    "Marine Studies",
     "Business",
-    "Medicine",
-    "Natural Sciences"
+    "Law",
+    "Engineering",
+    "Media",
+    "International Studies"
   ],
   "tuition": {
-    "undergraduate": 5200000,
-    "graduate": 6500000,
+    "undergraduate": 8200000,
+    "graduate": 9000000,
     "currency": "KRW/year",
     "note": "Directional estimate; verify by program."
   },
   "scholarships": [
     "Global Korea Scholarship",
-    "University scholarships",
-    "Department scholarships"
+    "International student scholarships",
+    "Merit scholarships"
   ],
-  "international_students": "Regional international student community in Busan",
-  "description": "A major national university in Busan with strong engineering, marine, medicine, and regional industry links."
+  "international_students": "Large international student community in Seoul",
+  "description": "A leading Seoul private university known for business, law, international studies, and research networks."
 }

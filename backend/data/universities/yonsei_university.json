@@ -2,40 +2,41 @@
   "metadata": {
     "source_name": "Study in Korea",
     "source_url": "https://www.studyinkorea.go.kr",
-    "last_updated": "2026-06-29",
+    "last_updated": "2026-06-30",
     "language": "en",
-    "version": "1.0",
-    "confidence_level": "Medium",
-    "notes": "Estimated university profile data; verify tuition and scholarships officially.",
+    "version": "2.1",
+    "confidence_level": "High",
+    "notes": "Institution names, cities, types, websites, and broad academic profile are curated from official university / Study in Korea sources. Tuition figures remain directional planning estimates and should be verified with each university.",
     "official_source": "Study in Korea",
     "official_url": "https://www.studyinkorea.go.kr",
     "license": "Official website terms / public information",
-    "retrieved_at": "2026-06-29",
+    "retrieved_at": "2026-06-30",
     "cache_expiry_days": 90,
-    "verification_status": "Verified"
+    "verification_status": "Official"
   },
   "name": "Yonsei University",
   "city": "Seoul",
-  "ranking": "Top private university",
+  "ranking": "Major private research university",
   "type": "Private",
-  "website": "https://www.yonsei.ac.kr/en_sc/",
+  "website": "https://www.yonsei.ac.kr",
   "major_strengths": [
+    "Medicine",
     "Business",
     "International Studies",
-    "Medicine",
-    "Liberal Arts",
-    "Engineering"
+    "Engineering",
+    "Humanities"
   ],
   "tuition": {
-    "undergraduate": 7800000,
-    "graduate": 8500000,
-    "currency": "KRW/year"
+    "undergraduate": 8500000,
+    "graduate": 9200000,
+    "currency": "KRW/year",
+    "note": "Directional estimate; verify by program."
   },
   "scholarships": [
-    "Merit scholarships",
-    "Need-based scholarships",
-    "International student scholarships"
+    "Global Korea Scholarship",
+    "University scholarships",
+    "Need-based support"
   ],
-  "international_students": "Very large international student community",
-  "description": "Major private research university known for international programs and Seoul campus life."
+  "international_students": "Large international student community in Seoul",
+  "description": "A major private research university with strong international programs and a large Seoul campus."
 }

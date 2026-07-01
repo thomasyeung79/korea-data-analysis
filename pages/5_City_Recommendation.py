@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 from pathlib import Path
 
 import pandas as pd
@@ -10,10 +10,10 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from api_client import APIClient
-from locales.i18n import get_language, language_selector, t, translate_option
+from locales.i18n import format_score_100, get_language, language_selector, t, translate_option
 from ui_style import apply_product_style
 
-st.set_page_config(page_title="City Recommendation", page_icon="🏙️", layout="wide")
+st.set_page_config(page_title="城市推荐" if get_language() == "zh" else "City Recommendation", page_icon="🏙️", layout="wide")
 apply_product_style()
 api = APIClient()
 
@@ -65,12 +65,12 @@ st.markdown(
 <div class="product-hero">
   <section class="hero-panel">
     <div class="brand-row"><span class="brand-dot"></span>KOREA COMPASS V3</div>
-    <h1>{label("City Recommendation Score", "城市推荐评分")}</h1>
+    <h1>{label("City Recommendation", "城市推荐")}</h1>
     <p>{label("Rank Korean cities across study fit, career opportunity, living comfort, cost, language fit, and lifestyle.", "从留学匹配、职业机会、生活舒适度、成本、语言匹配和生活方式维度推荐韩国城市。")}</p>
   </section>
   <aside class="hero-aside">
     <h3>{label("Study + Career + Living", "留学 + 职业 + 生活")}</h3>
-    <p>{label("Use your saved Profile Center data or run a default Korea Compass profile.", "使用画像中心保存的数据，或用默认画像快速体验。")}</p>
+    <p>{label("Use your saved Profile Center data or run a default Korea Compass profile.", "使用个人画像保存的数据，或用默认个人画像快速体验。")}</p>
   </aside>
 </div>
 """,
@@ -79,7 +79,7 @@ st.markdown(
 
 profile = st.session_state.get("compass_profile") or default_profile()
 if "compass_profile" not in st.session_state:
-    st.info(label("No saved profile found. Using a sample profile for the demo.", "尚未找到已保存画像。当前使用示例画像演示。"))
+    st.info(label("No saved profile found. Using a sample profile for the demo.", "尚未找到已保存个人画像。当前使用示例画像演示。"))
 
 payload = {
     "study_profile": profile["study_profile"],
@@ -90,14 +90,15 @@ payload = {
 
 if st.button(label("Generate City Ranking", "生成城市排名"), use_container_width=True, type="primary"):
     try:
-        result = api.recommend_cities(payload)
+        with st.spinner(t("common.analyzing_city")):
+            result = api.recommend_cities(payload)
         st.session_state["city_recommendation"] = result
     except Exception as exc:
         st.error(label(f"City recommendation failed: {exc}", f"城市推荐失败：{exc}"))
 
 result = st.session_state.get("city_recommendation")
 if not result:
-    st.caption(label("Click the button above to calculate city scores.", "点击上方按钮计算城市评分。"))
+    st.info(t("common.no_data"))
     st.stop()
 
 rankings = result.get("rankings", [])
@@ -109,7 +110,7 @@ st.markdown(
     f"""
 <div class="insight-card">
   <h3>{translate_option("city", best_city)}</h3>
-  <p>{label("Total score", "总分")}: <strong>{best.get("total_score", 0)}</strong>/100</p>
+  <p>{label("Total score", "总分")}: <strong>{format_score_100(best.get("total_score", 0))}</strong></p>
   <p>{best.get("recommendation_reason", "")}</p>
 </div>
 """,
@@ -157,3 +158,7 @@ if not df.empty:
     st.markdown(f"## {label('Recommendation Reasons', '推荐理由')}")
     for row in rankings:
         st.markdown(f"**{translate_option('city', row['city'])}**: {row['recommendation_reason']}")
+
+st.caption(t("common.footer"))
+
+
