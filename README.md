@@ -1,4 +1,4 @@
-﻿# Korea Compass
+# Korea Compass
 
 > Your AI Guide to Study, Work & Life in South Korea
 
@@ -620,5 +620,12 @@ Streamlit Cloud runs the frontend only. To use the FastAPI-backed API online, de
 This project is licensed under the MIT License.
 See the LICENSE file for details.
 
+## User Account & Personalization
 
+Korea Compass v2.2 adds lightweight account support for personalized planning while preserving demo mode. Users can register, log in, and save profile and planning history using JWT-based authentication.
 
+* Account page: Register, Login, Logout, and Current User
+* Auth API: `/api/v1/auth/register`, `/api/v1/auth/login`, `/api/v1/auth/me`
+* Personalized data: Profile Center, City Recommendation history, and AI Korea Life Plan history can be linked to `user_id`
+* Demo mode: all core workflows remain usable without login
+* Security: portfolio-grade JWT auth; production deployments must set a strong `JWT_SECRET_KEY`

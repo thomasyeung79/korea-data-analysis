@@ -151,3 +151,14 @@ Run from the repository root and make sure package directories such as `backend/
 ### Data looks directional
 
 The current Knowledge Base includes official, verified, and limited mock planning records. Use Knowledge Base Status to inspect source coverage and confidence levels.
+
+## Authentication Environment Variables
+
+For v2.2 account support, configure these values in local `.env`, Render/Railway environment variables, or Streamlit/FastAPI deployment settings:
+
+```env
+JWT_SECRET_KEY=replace-with-a-long-random-secret
+JWT_EXPIRE_MINUTES=1440
+```
+
+`JWT_SECRET_KEY` must not use the default value in production. Streamlit Cloud still requires a separately deployed FastAPI backend for login, because authentication APIs run on the backend. If no backend is configured, Korea Compass continues in demo mode.

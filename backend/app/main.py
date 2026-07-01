@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
 from .routers import (
     ai,
+    auth,
     city_recommendations,
     countries,
     decision_report,
@@ -45,6 +46,7 @@ app.add_middleware(
 @app.on_event("startup")
 def on_startup():
     Base.metadata.create_all(bind=engine)
+    _ensure_optional_auth_columns()
 
     # Seed data if empty
     from .database import SessionLocal
@@ -88,6 +90,7 @@ def _seed_data(db):
 
 # Include routers
 app.include_router(health.router)
+app.include_router(auth.router)
 app.include_router(countries.router)
 app.include_router(surveys.router)
 app.include_router(ai.router)
@@ -103,3 +106,21 @@ app.include_router(explore.router)
 app.include_router(korean_learning.router)
 app.include_router(kb.router)
 app.include_router(sources.router)
+
+
+def _ensure_optional_auth_columns():
+    if engine.dialect.name != "sqlite":
+        return
+    from sqlalchemy import inspect, text
+
+    inspector = inspect(engine)
+    table_names = set(inspector.get_table_names())
+    with engine.begin() as conn:
+        if "user_profiles" in table_names:
+            columns = {column["name"] for column in inspector.get_columns("user_profiles")}
+            if "user_id" not in columns:
+                conn.execute(text("ALTER TABLE user_profiles ADD COLUMN user_id INTEGER"))
+        if "korea_life_plan_history" in table_names:
+            columns = {column["name"] for column in inspector.get_columns("korea_life_plan_history")}
+            if "user_id" not in columns:
+                conn.execute(text("ALTER TABLE korea_life_plan_history ADD COLUMN user_id INTEGER"))

@@ -24,6 +24,14 @@ language_selector("profile_language")
 if st.button(f"🏠 {t('common.back_home')}"):
     st.switch_page("app.py")
 
+current_user = st.session_state.get("current_user")
+if not current_user and st.session_state.get("auth_token"):
+    try:
+        current_user = api.me()
+        st.session_state["current_user"] = current_user
+    except Exception:
+        current_user = None
+
 st.markdown(
     f"""
 <div class="product-hero">
@@ -42,6 +50,16 @@ st.markdown(
 )
 
 st.markdown(f"## {label('Create Profile', '创建个人画像')}")
+if current_user:
+    st.success(label(
+        f"Saving profiles for {current_user['display_name']} ({current_user['email']}).",
+        f"正在为 {current_user['display_name']}（{current_user['email']}）保存个人画像。",
+    ))
+else:
+    st.info(label(
+        "Demo mode. Log in to save profiles and planning history.",
+        "当前为演示模式。登录后可以保存个人画像和历史规划。",
+    ))
 display_name = st.text_input(label("Display name", "显示名称"), value="Compass User")
 
 study_col, career_col, living_col = st.columns(3)

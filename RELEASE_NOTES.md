@@ -127,3 +127,11 @@ Latest local verification:
 * Connect selected official APIs where available.
 * Improve city-level job, housing, and university data depth.
 * Add more production deployment examples.
+
+## v2.2 ? User Account & Personalization
+
+* Added lightweight JWT account system with register, login, logout, and current user flows.
+* Added optional `user_id` binding for profiles, city recommendation history, and AI Korea Life Plan history.
+* Preserved demo mode so core planning features continue working without authentication.
+* Added standard-library password hashing and JWT signing for deployment-friendly auth.
+* Added account deployment variables: `JWT_SECRET_KEY` and `JWT_EXPIRE_MINUTES`.

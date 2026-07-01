@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Column, Integer, String, Float, DateTime, Text, UniqueConstraint
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Float, DateTime, Text, UniqueConstraint
 
 from .database import Base
 
@@ -93,10 +93,23 @@ class PerceptionSurvey(Base):
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
 
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    email = Column(String(255), nullable=False, unique=True, index=True)
+    display_name = Column(String(80), nullable=False)
+    password_hash = Column(String(255), nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+    is_active = Column(Boolean, default=True, nullable=False)
+
+
 class UserProfile(Base):
     __tablename__ = "user_profiles"
 
     id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True, index=True)
     display_name = Column(String(80), nullable=False, default="Compass User")
     study_profile_json = Column(Text, nullable=False)
     career_profile_json = Column(Text, nullable=False)
@@ -108,9 +121,20 @@ class KoreaLifePlanHistory(Base):
     __tablename__ = "korea_life_plan_history"
 
     id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True, index=True)
     display_name = Column(String(80), nullable=False, default="Compass User")
     overall_recommendation = Column(String(80), nullable=False)
     best_city = Column(String(50), nullable=False)
     budget_gap = Column(Float, nullable=False)
     plan_json = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+
+
+class CityRecommendationHistory(Base):
+    __tablename__ = "city_recommendation_history"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True, index=True)
+    best_city = Column(String(50), nullable=False)
+    result_json = Column(Text, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)

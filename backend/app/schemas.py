@@ -1,4 +1,4 @@
-﻿from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator
 from typing import Dict, List, Optional, Union
 
 
@@ -73,6 +73,60 @@ class PerceptionSurveyStats(BaseModel):
     strongest_category: Optional[str] = None
     weakest_category: Optional[str] = None
     korea_baseline: Dict[str, float]
+
+
+class UserCreate(BaseModel):
+    email: str
+    display_name: str = Field(..., min_length=1, max_length=80)
+    password: str = Field(..., min_length=8)
+
+    @field_validator("email", mode="before")
+    @classmethod
+    def normalize_email(cls, value):
+        value = str(value or "").strip().lower()
+        if "@" not in value or "." not in value.rsplit("@", 1)[-1]:
+            raise ValueError("Invalid email address")
+        return value
+
+    @field_validator("display_name", mode="before")
+    @classmethod
+    def clean_display_name(cls, value):
+        value = str(value or "").strip()
+        return value or "Korea Compass User"
+
+
+class UserLogin(BaseModel):
+    email: str
+    password: str = Field(..., min_length=1)
+
+    @field_validator("email", mode="before")
+    @classmethod
+    def normalize_email(cls, value):
+        value = str(value or "").strip().lower()
+        if "@" not in value or "." not in value.rsplit("@", 1)[-1]:
+            raise ValueError("Invalid email address")
+        return value
+
+
+class UserResponse(BaseModel):
+    id: int
+    email: str
+    display_name: str
+    is_active: bool
+    created_at: Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: UserResponse
+
+
+class CurrentUser(UserResponse):
+    pass
 
 
 class StudyCostRequest(BaseModel):

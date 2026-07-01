@@ -68,6 +68,22 @@ try:
 except Exception:
     col4.metric("API", label("Local fallback", "本地备用模式"))
 
+account_col1, account_col2 = st.columns([3, 1])
+with account_col1:
+    if st.session_state.get("current_user"):
+        st.success(label(
+            f"Logged in as {st.session_state['current_user']['display_name']}",
+            f"已登录：{st.session_state['current_user']['display_name']}",
+        ))
+    else:
+        st.info(label(
+            "Demo mode. Log in to save profiles and planning history.",
+            "当前为演示模式。登录后可以保存个人画像和历史规划。",
+        ))
+with account_col2:
+    if st.button(label("Account", "账号中心"), use_container_width=True, key="nav_account_top"):
+        st.switch_page("pages/9_Account.py")
+
 st.divider()
 
 st.markdown(f'<div class="section-label">{label("PORTFOLIO DEMO FLOW", "作品集演示流程")}</div>', unsafe_allow_html=True)

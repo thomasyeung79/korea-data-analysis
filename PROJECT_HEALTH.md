@@ -78,3 +78,12 @@ Recommended before production:
 * Configure `API_BASE_URL` in Streamlit Secrets.
 * Replace mock Knowledge Base records with official or verified records.
 * Add scheduled data refresh and validation workflows.
+
+## v2.2 Security Notes
+
+* Current auth is portfolio-grade JWT authentication.
+* Passwords are stored using PBKDF2-HMAC-SHA256 hashes with per-password salts.
+* OAuth is not enabled.
+* Email verification is not enabled.
+* Production deployments must set a strong `JWT_SECRET_KEY`.
+* Demo mode remains available without login and should not be treated as a secure user workspace.

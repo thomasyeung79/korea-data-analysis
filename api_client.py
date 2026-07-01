@@ -36,7 +36,35 @@ For cloud deployment, deploy the FastAPI backend separately and set API_BASE_URL
 
 
 class APIClient:
-    """Minimal API client. Stateless — no auth for V0.1."""
+    """Minimal API client with optional JWT auth and Streamlit demo fallback."""
+
+    def __init__(self, token: Optional[str] = None):
+        self.token = token
+        if not self.token:
+            try:
+                import streamlit as st
+
+                self.token = st.session_state.get("auth_token")
+            except Exception:
+                self.token = None
+
+    def set_token(self, token: Optional[str]) -> None:
+        self.token = token
+        try:
+            import streamlit as st
+
+            if token:
+                st.session_state["auth_token"] = token
+            else:
+                st.session_state.pop("auth_token", None)
+        except Exception:
+            pass
+
+    def _headers(self) -> dict:
+        headers = {"Content-Type": "application/json"}
+        if self.token:
+            headers["Authorization"] = f"Bearer {self.token}"
+        return headers
 
     def _request(self, method: str, path: str, **kwargs) -> Any:
         if not API_BASE_URL:
@@ -46,7 +74,7 @@ class APIClient:
         try:
             resp = _requests.request(
                 method, url, timeout=10,
-                headers={"Content-Type": "application/json"},
+                headers=self._headers(),
                 **kwargs,
             )
         except _requests.RequestException:
@@ -76,6 +104,9 @@ class APIClient:
                 "service": "Korea Compass",
                 "mode": "streamlit-local",
             }
+
+        if path.startswith("/api/v1/auth/"):
+            raise ConnectionError("Backend API is required for account login. Demo mode remains available without login.")
 
         if method == "POST" and path == "/api/v1/study-cost/calculate":
             from backend.app.services.study_cost_config import calculate_costs, generate_cost_explanation
@@ -270,6 +301,25 @@ class APIClient:
 
     def health(self) -> dict:
         return self._request("GET", "/api/v1/health")
+
+    # ── Auth ──
+
+    def register(self, email: str, display_name: str, password: str) -> dict:
+        result = self._request(
+            "POST",
+            "/api/v1/auth/register",
+            json={"email": email, "display_name": display_name, "password": password},
+        )
+        self.set_token(result.get("access_token"))
+        return result
+
+    def login(self, email: str, password: str) -> dict:
+        result = self._request("POST", "/api/v1/auth/login", json={"email": email, "password": password})
+        self.set_token(result.get("access_token"))
+        return result
+
+    def me(self) -> dict:
+        return self._request("GET", "/api/v1/auth/me")
 
     # ── Country scores ──
 

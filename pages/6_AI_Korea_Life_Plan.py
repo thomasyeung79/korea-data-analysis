@@ -60,6 +60,14 @@ language_selector("life_plan_language")
 if st.button(f"🏠 {t('common.back_home')}"):
     st.switch_page("app.py")
 
+current_user = st.session_state.get("current_user")
+if not current_user and st.session_state.get("auth_token"):
+    try:
+        current_user = api.me()
+        st.session_state["current_user"] = current_user
+    except Exception:
+        current_user = None
+
 st.markdown(
     f"""
 <div class="product-hero">
@@ -86,6 +94,16 @@ if not profile:
 if not profile:
     profile = default_profile()
     st.info(label("No saved profile found. Using a sample profile for the demo.", "尚未找到已保存个人画像。当前使用示例画像演示。"))
+elif current_user:
+    st.success(label(
+        f"Using the latest profile for {current_user['display_name']}.",
+        f"正在使用 {current_user['display_name']} 的最新个人画像。",
+    ))
+else:
+    st.info(label(
+        "Demo mode. Log in to save profiles and planning history.",
+        "当前为演示模式。登录后可以保存个人画像和历史规划。",
+    ))
 
 topik_goal = st.selectbox(
     label("TOPIK Target", "TOPIK 目标"),

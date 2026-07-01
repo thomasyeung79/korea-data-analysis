@@ -84,3 +84,7 @@ The test suite covers API endpoints, service logic, schema validation, localizat
 * Add richer deployment examples for Streamlit Cloud plus external FastAPI hosting.
 * Replace remaining mock records with official or verified sources.
 * Add scheduled source refresh checks and data-quality reports.
+
+## v2.2 Personalization Update
+
+Korea Compass now includes a lightweight account layer. It demonstrates practical full-stack personalization: JWT auth, password hashing, protected `/auth/me`, optional authenticated requests from Streamlit, and user-scoped profile/planning history while retaining anonymous demo mode for portfolio review.
